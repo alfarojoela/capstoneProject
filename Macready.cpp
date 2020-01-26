@@ -99,7 +99,7 @@ void Macready::featureTwo()
 				std::cout << "You decide to check the king. The best defense is a good offense you think.\n"
 					"The computer's queen moves to a new position and puts your king in check and then checkmate.\n"
 					"The game flashes 'You lose!' over and over again. Stunned by this sudden defeat you get up to continue your search.\n"
-					"As you walk away you think to yourself, 'Cheating bitch'." << std::endl;
+					"As you walk away you think to yourself, 'Screw that computer'." << std::endl;
 
 				response = "correct";
 			}
