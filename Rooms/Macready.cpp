@@ -9,7 +9,7 @@
    /* Function sets the attributes of this room so they can be called by get functions.*/
 void Macready::setRoom()
 {
-	name = "MacReady's quarters";
+	name = "macready";
 	longDes = "You wake up.\nYour head is killing you. Must have drank too much again...\n"
 		"You are not in your quarters. This is MacReady's room. It doesn't look like he's around though.\n"
 		"You could search around for more booze. You also notice a computer in the room with a chess game in progress.\n";
@@ -199,7 +199,7 @@ void Macready::displayExits()
 }
 
 /* Function receives the list of rooms and a phrase from the user. It then selects a room to move to based on
-* the phrase. It then returns a pointer to that room to main so the game can move to that room. */
+* the phrase. It returns a pointer to that room to main so the game can move to that room. */
 Room* Macready::changeRooms(std::vector<Room*> rooms, std::string phrase)
 {
 	Room* nextRoom = NULL;
@@ -207,7 +207,7 @@ Room* Macready::changeRooms(std::vector<Room*> rooms, std::string phrase)
 
 	if (phrase == "go south" || phrase == "south" || phrase == "go back" || phrase == "back")
 	{
-		roomName = "Hallway 1";
+		roomName = "hallway1";
 	}
 
 	for (int x = 0; x < 15; ++x)
