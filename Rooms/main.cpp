@@ -6,23 +6,29 @@
 #include "Galley.hpp"
 #include "Macready.hpp"
 #include "Hallway1.hpp"
+#include "SickBay.hpp"
+#include "Latrine.hpp"
 
 int main()
 {
 	//First room tests
 	Galley *newGalley = new Galley();
 	newGalley->setRoom();
-
-	Macready* newStart = new Macready();
+	Macready *newStart = new Macready();
 	newStart->setRoom();
-
-	Hallway1* newHall1 = new Hallway1();
+	Hallway1 *newHall1 = new Hallway1();
 	newHall1->setRoom();
+	SickBay *newSick = new SickBay();
+	newSick->setRoom();
+	Latrine *newLat = new Latrine();
+	newLat->setRoom();
 
 	std::vector<Room*> rooms;
 	rooms.push_back(newGalley);
 	rooms.push_back(newStart);
 	rooms.push_back(newHall1);
+	rooms.push_back(newLat);
+	rooms.push_back(newSick);
 
 	Room* currentRoom = newStart;
 
