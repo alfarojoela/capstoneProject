@@ -1,4 +1,4 @@
-* Project Name: Capstone Project
+/* Project Name: Capstone Project
    Class: CS 467
    Team: Team Thing- Ryan Alcorn, Joel Alfaro, Neil Gayeta
    File: Galley.cpp
