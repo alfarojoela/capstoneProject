@@ -1,4 +1,4 @@
-/* Project Name: Capstone Project
+* Project Name: Capstone Project
    Class: CS 467
    Team: Team Thing- Ryan Alcorn, Joel Alfaro, Neil Gayeta
    File: Galley.cpp
@@ -158,7 +158,7 @@ void Galley::displayExits()
 }
 
 /* Function receives the list of rooms and a phrase from the user. It then selects a room to move to based on
-* the phrase. It then returns a pointer to that room to main so the game can move to that room. */
+* the phrase. It returns a pointer to that room to main so the game can move to that room. */
 Room* Galley::changeRooms(std::vector<Room*> rooms, std::string phrase)
 {
 	Room* nextRoom = NULL;
@@ -166,7 +166,7 @@ Room* Galley::changeRooms(std::vector<Room*> rooms, std::string phrase)
 
 	if (phrase == "go north" || phrase == "north" || phrase == "go back" || phrase == "back")
 	{
-		roomName = "Mess Hall";
+		roomName = "messHall";
 	}
 
 	for (int x = 0; x < 15; ++x)
