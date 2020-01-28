@@ -9,7 +9,7 @@
    /* Function sets the attributes of this room so they can be called by get functions.*/
 void Hallway1::setRoom()
 {
-	name = "Hallway 1";
+	name = "hallway1";
 	longDes = "You enter a hallway. This hallway is connected to many of the important rooms inside the base.\n"
 		"There appears to be nobody around right. There is a terrible smell emanating from the room.\n"
 		"Along with the smell, the lights are blinking on and off. The room wasn't like this yesterday...\n";
@@ -157,7 +157,7 @@ void Hallway1::displayExits()
 }
 
 /* Function receives the list of rooms and a phrase from the user. It then selects a room to move to based on
-* the phrase. It then returns a pointer to that room to main so the game can move to that room. */
+* the phrase. It returns a pointer to that room to main so the game can move to that room. */
 Room* Hallway1::changeRooms(std::vector<Room*> rooms, std::string phrase)
 {
 	Room* nextRoom = NULL;
@@ -165,23 +165,27 @@ Room* Hallway1::changeRooms(std::vector<Room*> rooms, std::string phrase)
 
 	if (phrase == "go west" || phrase == "west" || phrase == "go sick bay" || phrase == "sick bay")
 	{
-		roomName = "Sick Bay";
+		roomName = "sickBay";
 	}
 	else if (phrase == "go east" || phrase == "east" || phrase == "go radio" || phrase == "radio")
 	{
-		roomName = "Radio Room";
+		roomName = "radioRoom";
 	}
 	else if (phrase == "go booze" || phrase == "booze" || phrase == "go latrine" || phrase == "latrine")
 	{
-		roomName = "Latrine";
+		roomName = "latrine";
 	}
 	else if (phrase == "go research" || phrase == "research" || phrase == "go doctor" || phrase == "doctor")
 	{
-		roomName = "Research Lab";
+		roomName = "researchLab";
 	}
 	else if (phrase == "go equipment" || phrase == "equipment" || phrase == "go get items" || phrase == "get items")
 	{
-		roomName = "Equipment Room";
+		roomName = "equipmentRoom";
+	}
+	else if (phrase == "go north" || phrase == "north" || phrase == "go macready" || phrase == "macready")
+	{
+		roomName = "macready";
 	}
 
 	for (int x = 0; x < 15; ++x)
