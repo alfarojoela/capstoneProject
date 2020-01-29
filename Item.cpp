@@ -25,7 +25,17 @@ std::string Item::getLocation()
 	return location;
 }
 
+bool Item::getUse()
+{
+	return singleUse;
+}
+
 void Item::setLocation(std::string newLoc)
 {
 	location = newLoc;
+}
+
+void Item::setUse()
+{
+	singleUse = 1;
 }
