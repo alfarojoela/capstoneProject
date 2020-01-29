@@ -15,9 +15,12 @@ public:
 	Item(std::string newName, std::string newLocation);
 	std::string getName();
 	std::string getLocation();
+	bool getUse();
 	void setLocation(std::string);
+	void setUse();
 
 private:
 	std::string name;
 	std::string location;
+	bool singleUse = 0;
 };
