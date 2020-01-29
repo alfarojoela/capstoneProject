@@ -20,8 +20,8 @@ public:
 	virtual std::string getExitShort() = 0;
 	virtual bool getFeatureOneHap() = 0;
 	virtual bool getFeatureTwoHap() = 0;
-	virtual void featureOne() = 0;
-	virtual void featureTwo() = 0;
+	virtual int featureOne(std::vector<Item*>) = 0;
+	virtual int featureTwo(std::vector<Item*>) = 0;
 	virtual void setRoom() = 0;
 	virtual void addItem(Item*) = 0;
 	virtual void removeItem(Item*) = 0;
