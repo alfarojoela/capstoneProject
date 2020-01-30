@@ -17,12 +17,12 @@ public:
 	std::string getExitShort();
 	bool getFeatureOneHap();
 	bool getFeatureTwoHap();
-	void featureOne();
-	void featureTwo();
+	int featureOne(std::vector<Item*>);
+	int featureTwo(std::vector<Item*>);
 	void setRoom();
 	void itemsInRoom();
-	void addItem(Item*);
-	void removeItem(Item*);
+	void addItem(Item*, std::vector<Item*>, int);
+	void removeItem(Item*, std::vector<Item*>);
 	void displayDescrip();
 	void displayExits();
 	Room* changeRooms(std::vector<Room*>, std::string);
