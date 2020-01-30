@@ -12,7 +12,7 @@
 
 class Item {
 public:
-	Item(std::string newName, std::string newLocation);
+	Item(std::string newName);
 	std::string getName();
 	std::string getLocation();
 	bool getUse();
