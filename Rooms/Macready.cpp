@@ -6,7 +6,7 @@
 
 #include "Macready.hpp"
 
-   /* Function sets the attributes of this room so they can be called by get functions.*/
+/* Function sets the attributes of this room so they can be called by get functions.*/
 void Macready::setRoom()
 {
 	name = "macready";
@@ -64,8 +64,10 @@ bool Macready::getFeatureTwoHap()
 }
 
 /* Function performs the action for the first feature of the room.*/
-void Macready::featureOne()
+int Macready::featureOne(std::vector<Item*> inventory)
 {
+	int outcome = 0;
+
 	std::cout << "You begin to search the room for booze. It's the only way to stop this headache.\n"
 		"You can't see any booze visible at the moment. MacReady's room is a mess though. You decide to search under the bed.\n"
 		"You don't find any booze under the bed. You do see a strange object though. It looks like a mask...\n"
@@ -73,11 +75,14 @@ void Macready::featureOne()
 		"You decide to put the mask back under the bed. MacReady's weird.\n"<< std::endl;
 
 	++fOneHappened;
+
+	return outcome;
 }
 
 /* Function performs the action for the second feature of the room.*/
-void Macready::featureTwo()
+int Macready::featureTwo(std::vector<Item*> inventory)
 {
+	int outcome = 0;
 	std::string choice = "";
 	std::string response = "incorrect";
 
@@ -121,24 +126,44 @@ void Macready::featureTwo()
 		std::cout << std::endl;
 
 		++fTwoHappened;
+
+		return outcome;
 }
 
-/* Function adds an item to the vector of items in the room.*/
-void Macready::addItem(Item* newItem)
+/* Function adds an item to the vector of items in the room. It receives the player's inventory
+* in case the player wishes to drop an item from their inventory into the room. */
+void Macready::addItem(Item* newItem, std::vector<Item*> inventory, int number)
 {
-	items.push_back(newItem);
-	newItem->setLocation(name);
+	if (number == 0)
+	{
+		items.push_back(newItem);
+		newItem->setLocation(name);
+	}
+	else
+	{
+		items.push_back(newItem);
+
+		for (unsigned int i = 0; i < inventory.size(); ++i)
+		{
+			if (inventory[i]->getName() == newItem->getName())
+			{
+				inventory.erase(inventory.begin() + i);
+				newItem->setLocation(name);
+			}
+		}
+	}
 }
 
-/* Function removes an item from the vector of items in the room.*/
-void Macready::removeItem(Item* removeItem)
+/* Function removes an item from the vector of items in the room and adds it to the player's inventory.*/
+void Macready::removeItem(Item* removeItem, std::vector<Item*> inventory)
 {
 	if (items.size() > 0)
 	{
-		for (int i = 0; i < items.size(); ++i)
+		for (unsigned int i = 0; i < items.size(); ++i)
 		{
 			if (items[i]->getName() == removeItem->getName())
 			{
+				inventory.push_back(removeItem);
 				items.erase(items.begin() + i);
 				removeItem->setLocation("player's inventory");
 			}
@@ -152,7 +177,7 @@ void Macready::itemsInRoom()
 	if (items.size() > 0)
 	{
 		std::cout << "The current items in the " << getName() << " are: ";
-		for (int i = 0; i < items.size(); i++)
+		for (unsigned int i = 0; i < items.size(); i++)
 		{
 			if (i != (items.size() - 1))
 			{
