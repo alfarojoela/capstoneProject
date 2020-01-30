@@ -7,10 +7,9 @@
 #include "Item.hpp"
 
 /* Constructor for an item object.*/
-Item::Item(std::string newName, std::string newLocation)
+Item::Item(std::string newName)
 {
 	name = newName;
-	location = newLocation;
 }
 
 /* Function returns the name of the item. */
