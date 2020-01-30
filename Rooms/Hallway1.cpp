@@ -6,7 +6,7 @@
 
 #include "Hallway1.hpp"
 
-   /* Function sets the attributes of this room so they can be called by get functions.*/
+/* Function sets the attributes of this room so they can be called by get functions.*/
 void Hallway1::setRoom()
 {
 	name = "hallway1";
@@ -65,38 +65,63 @@ bool Hallway1::getFeatureTwoHap()
 }
 
 /* Function performs the action for the first feature of the room.*/
-void Hallway1::featureOne()
+int Hallway1::featureOne(std::vector<Item*> inventory)
 {
+	int outcome = 0;
+
 	std::cout << "Description of the smell of blood.\n" << std::endl;
 
 	++fOneHappened;
+
+	return outcome;
 }
 
 /* Function performs the action for the second feature of the room.*/
-void Hallway1::featureTwo()
+int Hallway1::featureTwo(std::vector<Item*> inventory)
 {
+	int outcome = 0;
 
 	std::cout << "Event with light blinking on and off." << std::endl;
 
 	++fTwoHappened;
+
+	return outcome;
 }
 
-/* Function adds an item to the vector of items in the room.*/
-void Hallway1::addItem(Item* newItem)
+/* Function adds an item to the vector of items in the room. It receives the player's inventory
+* in case the player wishes to drop an item from their inventory into the room. */
+void Hallway1::addItem(Item* newItem, std::vector<Item*> inventory, int number)
 {
-	items.push_back(newItem);
-	newItem->setLocation(name);
+	if (number == 0)
+	{
+		items.push_back(newItem);
+		newItem->setLocation(name);
+	}
+	else
+	{
+		items.push_back(newItem);
+
+		for (unsigned int i = 0; i < inventory.size(); ++i)
+		{
+			if (inventory[i]->getName() == newItem->getName())
+			{
+				inventory.erase(inventory.begin() + i);
+				newItem->setLocation(name);
+			}
+		}
+	}
 }
 
-/* Function removes an item from the vector of items in the room.*/
-void Hallway1::removeItem(Item* removeItem)
+/* Function removes an item from the vector of items in the room and adds it to the player's inventory.*/
+void Hallway1::removeItem(Item* removeItem, std::vector<Item*> inventory)
 {
 	if (items.size() > 0)
 	{
-		for (int i = 0; i < items.size(); ++i)
+		for (unsigned int i = 0; i < items.size(); ++i)
 		{
 			if (items[i]->getName() == removeItem->getName())
 			{
+				inventory.push_back(removeItem);
 				items.erase(items.begin() + i);
 				removeItem->setLocation("player's inventory");
 			}
@@ -110,7 +135,7 @@ void Hallway1::itemsInRoom()
 	if (items.size() > 0)
 	{
 		std::cout << "The current items in the " << getName() << " are: ";
-		for (int i = 0; i < items.size(); i++)
+		for (unsigned int i = 0; i < items.size(); i++)
 		{
 			if (i != (items.size() - 1))
 			{
