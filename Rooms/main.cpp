@@ -8,20 +8,25 @@
 #include "Hallway1.hpp"
 #include "SickBay.hpp"
 #include "Latrine.hpp"
+#include "ResearchLab.hpp"
 
 int main()
 {
+	std::vector<Item*> inventory;
+
 	//First room tests
-	Galley *newGalley = new Galley();
+	Galley* newGalley = new Galley();
 	newGalley->setRoom();
-	Macready *newStart = new Macready();
+	Macready* newStart = new Macready();
 	newStart->setRoom();
-	Hallway1 *newHall1 = new Hallway1();
+	Hallway1* newHall1 = new Hallway1();
 	newHall1->setRoom();
-	SickBay *newSick = new SickBay();
+	SickBay* newSick = new SickBay();
 	newSick->setRoom();
-	Latrine *newLat = new Latrine();
+	Latrine* newLat = new Latrine();
 	newLat->setRoom();
+	ResearchLab* newLab = new ResearchLab();
+	newLab->setRoom();
 
 	std::vector<Room*> rooms;
 	rooms.push_back(newGalley);
@@ -29,16 +34,33 @@ int main()
 	rooms.push_back(newHall1);
 	rooms.push_back(newLat);
 	rooms.push_back(newSick);
+	rooms.push_back(newLab);
+
+	Item* newItem = new Item("gun");
+
+	newGalley->addItem(newItem, inventory, 0);
+
+	newGalley->itemsInRoom();
+
+	std::cout << "The item's location is " << newItem->getLocation() << std::endl;
+
+	newGalley->removeItem(newItem, inventory);
+
+	newGalley->itemsInRoom();
+
+	std::cout << "The item's location is " << newItem->getLocation() << std::endl;
+
+	std::cout << std::endl;
 
 	Room* currentRoom = newStart;
 
 	std::cout << "Room name before function call: " << currentRoom->getName() << std::endl;
-	currentRoom->featureOne();
+	currentRoom->featureOne(inventory);
 
 	currentRoom = currentRoom->changeRooms(rooms, "go back");
 
 	std::cout << "Room name after function call: " << currentRoom->getName() << std::endl;
-	currentRoom->featureOne();
+	currentRoom->featureOne(inventory);
 
 	/*Item gun("gun", "unknown");
 	Item flamethrower("flamethrower", "unknown");
