@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include "Item.hpp"
+#include "Player.hpp"
 
 class Room {
 public:
@@ -20,11 +21,11 @@ public:
 	virtual std::string getExitShort() = 0;
 	virtual bool getFeatureOneHap() = 0;
 	virtual bool getFeatureTwoHap() = 0;
-	virtual int featureOne(std::vector<Item*>) = 0;
-	virtual int featureTwo(std::vector<Item*>) = 0;
+	virtual int featureOne(Player*) = 0;
+	virtual int featureTwo(Player*) = 0;
 	virtual void setRoom() = 0;
-	virtual void addItem(Item*, std::vector<Item*>, int) = 0;
-	virtual void removeItem(Item*, std::vector<Item*>) = 0;
+	virtual void addItem(Item*, Player*, int) = 0;
+	virtual void removeItem(Item*, Player*) = 0;
 	virtual void itemsInRoom() = 0;
 	virtual void displayDescrip() = 0;
 	virtual void displayExits() = 0;
