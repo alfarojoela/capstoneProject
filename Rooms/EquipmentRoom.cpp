@@ -1,74 +1,73 @@
-/* Project Name: Capstone Project
-   Class: CS 467
-   Team: Team Thing- Ryan Alcorn, Joel Alfaro, Neil Gayeta
-   File: SickBay.cpp
-   Description: Class implementation for SickBay room.*/
+/* Project Name : Capstone Project
+Class : CS 467
+Team : Team Thing - Ryan Alcorn, Joel Alfaro, Neil Gayeta
+File : EquipmentRoom.cpp
+Description : Class implementation for EquipmentRoom room.*/
 
-#include "SickBay.hpp"
+#include "EquipmentRoom.hpp"
 
 /* Function sets the attributes of this room so they can be called by get functions.*/
-void SickBay::setRoom()
+void EquipmentRoom::setRoom()
 {
-	name = "sickBay";
-	longDes = "You enter the sick bay. This is not an area of the base you want to be on a regular basis.\n"
-		"The crew has luckily not had too many members stay here for long. You notice that the room contains medical supplies for the base."
-		" There is also a member of the crew current laying on the bed. You can't tell there condition from this distance.\n";
-	shortDes = "You return to the sick bay. This is the room where the sick or injured are cared for.\n";
-	exitLong = "The hallway which connects to many rooms in the base including the research lab and radio room is from the way you came.\n";
-	exitShort = "There is a hallway from the direction you came.\n";
+	name = "equipmentRoom";
+	longDes = "You enter the equipment room. The room is currently pitch black. There must be a light switch in here somewhere.\n";
+	shortDes = "You return to the equipment room. It contains equipment used on the base.\n";
+	exitLong = "The hallway which connects to many rooms in the base including the research lab and sick bay is from the way you came.\n"
+		"There is a tool shed located to the east.";
+	exitShort = "There is a hallway from the direction you came and a tool shed to the east.\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
 }
 
 /* Function returns the name of the room. */
-std::string SickBay::getName()
+std::string EquipmentRoom::getName()
 {
 	return name;
 }
 
 /* Function returns the long description of the room. */
-std::string SickBay::getLongDescrip()
+std::string EquipmentRoom::getLongDescrip()
 {
 	return longDes;
 }
 
 /* Function returns the short description of the room. */
-std::string SickBay::getShortDescrip()
+std::string EquipmentRoom::getShortDescrip()
 {
 	return shortDes;
 }
 
 /* Function returns the long version of the exits description of the room. */
-std::string SickBay::getExitLong()
+std::string EquipmentRoom::getExitLong()
 {
 	return exitLong;
 }
 
 /* Function returns the short version of the exits description of the room. */
-std::string SickBay::getExitShort()
+std::string EquipmentRoom::getExitShort()
 {
 	return exitShort;
 }
 
 /* Function returns the boolean value that represents whether a feature happened.*/
-bool SickBay::getFeatureOneHap()
+bool EquipmentRoom::getFeatureOneHap()
 {
 	return fOneHappened;
 }
 
 /* Function returns the boolean value that represents whether a feature happened.*/
-bool SickBay::getFeatureTwoHap()
+bool EquipmentRoom::getFeatureTwoHap()
 {
 	return fTwoHappened;
 }
 
 /* Function performs the action for the first feature of the room.*/
-int SickBay::featureOne(Player* user)
+int EquipmentRoom::featureOne(Player* user)
 {
 	int outcome = 0;
 
-	std::cout << "Player inspects the toilet paper." << std::endl;
+	std::cout << "Player tries to turn on the light switch." << std::endl;
 
 	++fOneHappened;
 
@@ -76,11 +75,11 @@ int SickBay::featureOne(Player* user)
 }
 
 /* Function performs the action for the second feature of the room.*/
-int SickBay::featureTwo(Player* user)
+int EquipmentRoom::featureTwo(Player* user)
 {
 	int outcome = 0;
 
-	std::cout << "Player uses the bathroom." << std::endl;
+	std::cout << "Player tries to obtain the blow torch." << std::endl;
 
 	++fTwoHappened;
 
@@ -89,7 +88,7 @@ int SickBay::featureTwo(Player* user)
 
 /* Function adds an item to the vector of items in the room. It receives a Player instance
 * in case the player wishes to drop an item from their inventory into the room. */
-void SickBay::addItem(Item* newItem, Player* user, int number)
+void EquipmentRoom::addItem(Item* newItem, Player* user, int number)
 {
 	if (number == 0)
 	{
@@ -105,7 +104,7 @@ void SickBay::addItem(Item* newItem, Player* user, int number)
 }
 
 /* Function removes an item from the vector of items in the room and adds it to the player's inventory.*/
-void SickBay::removeItem(Item* removeItem, Player* user)
+void EquipmentRoom::removeItem(Item* removeItem, Player* user)
 {
 	if (items.size() > 0)
 	{
@@ -122,7 +121,7 @@ void SickBay::removeItem(Item* removeItem, Player* user)
 }
 
 /* Function displays the items currently in the room.*/
-void SickBay::itemsInRoom()
+void EquipmentRoom::itemsInRoom()
 {
 	if (items.size() > 0)
 	{
@@ -147,7 +146,7 @@ void SickBay::itemsInRoom()
 }
 
 /* Function displays either the short or long description based off a boolean value.*/
-void SickBay::displayDescrip()
+void EquipmentRoom::displayDescrip()
 {
 	if (roomEntered == 0)
 	{
@@ -161,7 +160,7 @@ void SickBay::displayDescrip()
 }
 
 /* Function displays the exit descriptions based on whether it is the first time the user entered the room.*/
-void SickBay::displayExits()
+void EquipmentRoom::displayExits()
 {
 	if (roomEntered == 1)
 	{
@@ -175,7 +174,7 @@ void SickBay::displayExits()
 
 /* Function receives the list of rooms and a phrase from the user. It then selects a room to move to based on
 * the phrase. It returns a pointer to that room to main so the game can move to that room. */
-Room* SickBay::changeRooms(std::vector<Room*> rooms, std::string phrase)
+Room* EquipmentRoom::changeRooms(std::vector<Room*> rooms, std::string phrase)
 {
 	Room* nextRoom = NULL;
 	std::string roomName = "";
@@ -183,6 +182,11 @@ Room* SickBay::changeRooms(std::vector<Room*> rooms, std::string phrase)
 	if (phrase == "go back" || phrase == "back" || phrase == "go hallway" || phrase == "hallway")
 	{
 		roomName = "hallway1";
+	}
+	else if (phrase == "go east" || phrase == "east" || phrase == "go outside" || phrase == "outside" || phrase == "go tools"
+		|| phrase == "tools")
+	{
+		roomName = "toolShed";
 	}
 
 	for (int x = 0; x < 15; ++x)

@@ -1,20 +1,19 @@
-/* Project Name: Capstone Project
-   Class: CS 467
-   Team: Team Thing- Ryan Alcorn, Joel Alfaro, Neil Gayeta
-   File: SickBay.cpp
-   Description: Class implementation for SickBay room.*/
+/* Project Name : Capstone Project
+Class : CS 467
+Team : Team Thing - Ryan Alcorn, Joel Alfaro, Neil Gayeta
+File : RadioRoom.cpp
+Description : Class implementation for RadioRoom room.*/
 
-#include "SickBay.hpp"
+#include "RadioRoom.hpp"
 
 /* Function sets the attributes of this room so they can be called by get functions.*/
-void SickBay::setRoom()
+void RadioRoom::setRoom()
 {
-	name = "sickBay";
-	longDes = "You enter the sick bay. This is not an area of the base you want to be on a regular basis.\n"
-		"The crew has luckily not had too many members stay here for long. You notice that the room contains medical supplies for the base."
-		" There is also a member of the crew current laying on the bed. You can't tell there condition from this distance.\n";
-	shortDes = "You return to the sick bay. This is the room where the sick or injured are cared for.\n";
-	exitLong = "The hallway which connects to many rooms in the base including the research lab and radio room is from the way you came.\n";
+	name = "radioRoom";
+	longDes = "You enter the radio room. This room contains the radio equipment along with other advanced equipment used on the base.\n"
+		"You see the radio equipment in the corner of the room.\n";
+	shortDes = "You return to the radio room. It contains equipement to contact the outside world.\n";
+	exitLong = "The hallway which connects to many rooms in the base including the research lab and sick bay is from the way you came.\n";
 	exitShort = "There is a hallway from the direction you came.\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
@@ -22,53 +21,53 @@ void SickBay::setRoom()
 }
 
 /* Function returns the name of the room. */
-std::string SickBay::getName()
+std::string RadioRoom::getName()
 {
 	return name;
 }
 
 /* Function returns the long description of the room. */
-std::string SickBay::getLongDescrip()
+std::string RadioRoom::getLongDescrip()
 {
 	return longDes;
 }
 
 /* Function returns the short description of the room. */
-std::string SickBay::getShortDescrip()
+std::string RadioRoom::getShortDescrip()
 {
 	return shortDes;
 }
 
 /* Function returns the long version of the exits description of the room. */
-std::string SickBay::getExitLong()
+std::string RadioRoom::getExitLong()
 {
 	return exitLong;
 }
 
 /* Function returns the short version of the exits description of the room. */
-std::string SickBay::getExitShort()
+std::string RadioRoom::getExitShort()
 {
 	return exitShort;
 }
 
 /* Function returns the boolean value that represents whether a feature happened.*/
-bool SickBay::getFeatureOneHap()
+bool RadioRoom::getFeatureOneHap()
 {
 	return fOneHappened;
 }
 
 /* Function returns the boolean value that represents whether a feature happened.*/
-bool SickBay::getFeatureTwoHap()
+bool RadioRoom::getFeatureTwoHap()
 {
 	return fTwoHappened;
 }
 
 /* Function performs the action for the first feature of the room.*/
-int SickBay::featureOne(Player* user)
+int RadioRoom::featureOne(Player* user)
 {
 	int outcome = 0;
 
-	std::cout << "Player inspects the toilet paper." << std::endl;
+	std::cout << "Player tries to use the radio." << std::endl;
 
 	++fOneHappened;
 
@@ -76,11 +75,11 @@ int SickBay::featureOne(Player* user)
 }
 
 /* Function performs the action for the second feature of the room.*/
-int SickBay::featureTwo(Player* user)
+int RadioRoom::featureTwo(Player* user)
 {
 	int outcome = 0;
 
-	std::cout << "Player uses the bathroom." << std::endl;
+	std::cout << "Player decides to destroy the base." << std::endl;
 
 	++fTwoHappened;
 
@@ -89,7 +88,7 @@ int SickBay::featureTwo(Player* user)
 
 /* Function adds an item to the vector of items in the room. It receives a Player instance
 * in case the player wishes to drop an item from their inventory into the room. */
-void SickBay::addItem(Item* newItem, Player* user, int number)
+void RadioRoom::addItem(Item* newItem, Player* user, int number)
 {
 	if (number == 0)
 	{
@@ -105,7 +104,7 @@ void SickBay::addItem(Item* newItem, Player* user, int number)
 }
 
 /* Function removes an item from the vector of items in the room and adds it to the player's inventory.*/
-void SickBay::removeItem(Item* removeItem, Player* user)
+void RadioRoom::removeItem(Item* removeItem, Player* user)
 {
 	if (items.size() > 0)
 	{
@@ -122,7 +121,7 @@ void SickBay::removeItem(Item* removeItem, Player* user)
 }
 
 /* Function displays the items currently in the room.*/
-void SickBay::itemsInRoom()
+void RadioRoom::itemsInRoom()
 {
 	if (items.size() > 0)
 	{
@@ -147,7 +146,7 @@ void SickBay::itemsInRoom()
 }
 
 /* Function displays either the short or long description based off a boolean value.*/
-void SickBay::displayDescrip()
+void RadioRoom::displayDescrip()
 {
 	if (roomEntered == 0)
 	{
@@ -161,7 +160,7 @@ void SickBay::displayDescrip()
 }
 
 /* Function displays the exit descriptions based on whether it is the first time the user entered the room.*/
-void SickBay::displayExits()
+void RadioRoom::displayExits()
 {
 	if (roomEntered == 1)
 	{
@@ -175,7 +174,7 @@ void SickBay::displayExits()
 
 /* Function receives the list of rooms and a phrase from the user. It then selects a room to move to based on
 * the phrase. It returns a pointer to that room to main so the game can move to that room. */
-Room* SickBay::changeRooms(std::vector<Room*> rooms, std::string phrase)
+Room* RadioRoom::changeRooms(std::vector<Room*> rooms, std::string phrase)
 {
 	Room* nextRoom = NULL;
 	std::string roomName = "";

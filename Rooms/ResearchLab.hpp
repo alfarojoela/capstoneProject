@@ -1,14 +1,14 @@
 /* Project Name: Capstone Project
    Class: CS 467
    Team: Team Thing- Ryan Alcorn, Joel Alfaro, Neil Gayeta
-   File: Hallway1.hpp
-   Description: Class header for the first Hallway room.*/
+   File: ResearchLab.hpp
+   Description: Class header for ResearchLab room.*/
 
 #pragma once
 
 #include "Room.hpp"
 
-class Hallway1 : public Room {
+class ResearchLab : public Room {
 public:
 	std::string getName();
 	std::string getLongDescrip();

@@ -9,10 +9,13 @@
 #include "SickBay.hpp"
 #include "Latrine.hpp"
 #include "ResearchLab.hpp"
+#include "Player.hpp"
 
 int main()
 {
 	std::vector<Item*> inventory;
+
+	Player* newPlayer = new Player();
 
 	//First room tests
 	Galley* newGalley = new Galley();
@@ -38,13 +41,13 @@ int main()
 
 	Item* newItem = new Item("gun");
 
-	newGalley->addItem(newItem, inventory, 0);
+	newGalley->addItem(newItem, newPlayer, 0);
 
 	newGalley->itemsInRoom();
 
 	std::cout << "The item's location is " << newItem->getLocation() << std::endl;
 
-	newGalley->removeItem(newItem, inventory);
+	newGalley->removeItem(newItem, newPlayer);
 
 	newGalley->itemsInRoom();
 
@@ -55,12 +58,12 @@ int main()
 	Room* currentRoom = newStart;
 
 	std::cout << "Room name before function call: " << currentRoom->getName() << std::endl;
-	currentRoom->featureOne(inventory);
+	currentRoom->featureOne(newPlayer);
 
 	currentRoom = currentRoom->changeRooms(rooms, "go back");
 
 	std::cout << "Room name after function call: " << currentRoom->getName() << std::endl;
-	currentRoom->featureOne(inventory);
+	currentRoom->featureOne(newPlayer);
 
 	/*Item gun("gun", "unknown");
 	Item flamethrower("flamethrower", "unknown");

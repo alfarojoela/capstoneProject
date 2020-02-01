@@ -7,6 +7,7 @@
 #pragma once
 
 #include "Room.hpp"
+#include "Player.hpp"
 
 class Macready : public Room {
 public:
@@ -17,12 +18,12 @@ public:
 	std::string getExitShort();
 	bool getFeatureOneHap();
 	bool getFeatureTwoHap();
-	int featureOne(std::vector<Item*>);
-	int featureTwo(std::vector<Item*>);
+	int featureOne(Player*);
+	int featureTwo(Player*);
 	void setRoom();
 	void itemsInRoom();
-	void addItem(Item*, std::vector<Item*>, int);
-	void removeItem(Item*, std::vector<Item*>);
+	void addItem(Item*, Player*, int);
+	void removeItem(Item*, Player*);
 	void displayDescrip();
 	void displayExits();
 	Room* changeRooms(std::vector<Room*>, std::string);

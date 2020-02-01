@@ -64,7 +64,7 @@ bool Latrine::getFeatureTwoHap()
 }
 
 /* Function performs the action for the first feature of the room.*/
-int Latrine::featureOne(std::vector<Item*> inventory)
+int Latrine::featureOne(Player* user)
 {
 	int outcome = 0;
 
@@ -76,7 +76,7 @@ int Latrine::featureOne(std::vector<Item*> inventory)
 }
 
 /* Function performs the action for the second feature of the room.*/
-int Latrine::featureTwo(std::vector<Item*> inventory)
+int Latrine::featureTwo(Player* user)
 {
 	int outcome = 0;
 
@@ -87,9 +87,9 @@ int Latrine::featureTwo(std::vector<Item*> inventory)
 	return outcome;
 }
 
-/* Function adds an item to the vector of items in the room. It receives the player's inventory
+/* Function adds an item to the vector of items in the room. It receives a Player instance
 * in case the player wishes to drop an item from their inventory into the room. */
-void Latrine::addItem(Item* newItem, std::vector<Item*> inventory, int number)
+void Latrine::addItem(Item* newItem, Player* user, int number)
 {
 	if (number == 0)
 	{
@@ -100,19 +100,12 @@ void Latrine::addItem(Item* newItem, std::vector<Item*> inventory, int number)
 	{
 		items.push_back(newItem);
 
-		for (unsigned int i = 0; i < inventory.size(); ++i)
-		{
-			if (inventory[i]->getName() == newItem->getName())
-			{
-				inventory.erase(inventory.begin() + i);
-				newItem->setLocation(name);
-			}
-		}
+		//Call Player function to remove item from player's inventory
 	}
 }
 
 /* Function removes an item from the vector of items in the room and adds it to the player's inventory.*/
-void Latrine::removeItem(Item* removeItem, std::vector<Item*> inventory)
+void Latrine::removeItem(Item* removeItem, Player* user)
 {
 	if (items.size() > 0)
 	{
@@ -120,7 +113,7 @@ void Latrine::removeItem(Item* removeItem, std::vector<Item*> inventory)
 		{
 			if (items[i]->getName() == removeItem->getName())
 			{
-				inventory.push_back(removeItem);
+				user->setInventory(removeItem);
 				items.erase(items.begin() + i);
 				removeItem->setLocation("player's inventory");
 			}
