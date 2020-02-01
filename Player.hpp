@@ -23,7 +23,7 @@ private:
 
 	
 	std::vector<Item> inventory;
-	Room* currentLocation;
+//	Room* currentLocation;
 
 public:
 	Player();
@@ -48,12 +48,12 @@ public:
 
 	void usePowerUp(std::string powerUp);
 
-	void setLocation(Room* currentLocation);
+//	void setLocation(Room* currentLocation);
 	std::string getLocation();
 	
 	void setGameEnd(int ending);
 	int getGameEnd();
-	Room* returnLocation();
+//	Room* returnLocation();
 
 
 };

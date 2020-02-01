@@ -6,7 +6,7 @@ Player::Player()
 	alive = 1;
 	victory = 0;
 	std::vector<Item> inventory;
-	Room* currentLocation = NULL;
+	//Room* currentLocation = NULL;
 	gameEnd=0;
 
 }
@@ -148,17 +148,17 @@ void Player::setGrit(Item powerup)
 	}
 
 	/*Set location for player.  Starts as null but at start of game points to MacReady's quarters.*/
-	void Player::setLocation(Room* newLocation)
-	{
-		currentLocation = newLocation;
-	}
+//	void Player::setLocation(Room* newLocation)
+//	{
+//		currentLocation = newLocation;
+//	}
 
 	/*Gets string name for player's current position on the map.*/
-	std::string Player::getLocation()
-	{
-		std::string roomName = currentLocation->getName();
-		return roomName;
-	}
+//	std::string Player::getLocation()
+//	{
+//		std::string roomName = currentLocation->getName();
+//		return roomName;
+//	}
 
 
 
@@ -178,9 +178,9 @@ void Player::setGrit(Item powerup)
 	return gameEnd;
 	}
 
-	Room* Player::returnLocation()
+//	Room* Player::returnLocation()
 
-	{
-	return currentLocation;
-	}
+//	{
+//	return currentLocation;
+//	}
 

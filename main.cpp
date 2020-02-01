@@ -13,12 +13,12 @@
 
 /*action functions after parser translation*/
 /*
-#include "lookAtAction.hpp"
-#include "look.hpp"
-#include "useAction.hpp"
-#include "dropAction.hpp"
-#include "goAction.hpp"
-*/
+ * #include "lookAtAction.hpp"
+ * #include "look.hpp"
+ * #include "useAction.hpp"
+ * #include "dropAction.hpp"
+ * #include "goAction.hpp"
+ * */
 
 
 
@@ -40,87 +40,186 @@
 #include "Verb.hpp"
 
 /*REFACTOR FUNCTION LATER*/
-/*Function allows player to get long form explanation of the room again.*/
-void look(Player &rj)
+
+/*discard this function.  only a test*/
+void joelsbadParser(std::string userInput, std::string (&commands) [3])
 {
-Room* currentPosition = rj.returnLocation();
-std::string longDes = currentPosition->getLongDescrip();
-std::cout << longDes<< std::endl;
+	if (userInput=="look for booze")
+	{
+		commands[0] = "look";
+		commands[1] = "for";
+		commands[1] = "booze";
+	}
+
+	if (userInput=="use the computer")
+	{
+		commands[0] = "use";
+		commands[1] = "the";
+		commands[2] = "computer";
+	}
+
+	if (userInput=="go to hallway")
+	{
+		commands[0] = "go";
+		commands[1] = "to";
+		commands[2] = "hallway";
+	}
+
+	if (userInput == "look at bed")
+	{
+		commands[0] = "look";
+		commands[1] = "at";
+		commands[2] = "bed";
+	}
 }
 
+void chooseActionMacready(std::string commands[3], Room* playerLocation, Player& rj, Hallway1 &hallway1)
+{
+	std::cout << "In chooseActionMacready function: " << std::endl;
+
+	std::vector<Item*> rjInventory;
 
 
+	/*Macready room*/
+	if (commands[0] == "look" )
+	{
+		playerLocation->getLongDescrip();
+	}
+
+
+	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
+	{
+		if (playerLocation->getFeatureOneHap() == 1)
+		{
+			std::cout << "You already checked under the bed and the room.  No booze.  Drat!" << std::endl;
+			return;
+		}
+
+		if (playerLocation->getFeatureOneHap() == 0)
+		{
+			playerLocation->featureOne(rjInventory);
+			return;
+		}
+	}
+
+	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "bed")
+	{
+		std::cout << "The bed is in disarray.  MacReady's quarters are a pig sty." << std::endl;
+	}
+
+	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "computer")
+	{
+		std::cout << "It's a state of the art Commodore 64." << std::endl;
+		std::cout << "The CPU is 1.023 MHz!" << std::endl;
+		std::cout << "The memory is 64 KB of RAM!" << std::endl;
+		std::cout << "This must have set MacReady back by $519.00" << std::endl;
+		std::cout << "He is quite the spender." << std::endl;
+
+	}
+
+	if (commands[0] == "use" && commands[1] == "computer")
+	{
+		if (playerLocation->getFeatureTwoHap()==1)
+		{
+			std::cout << "You already played with the computer." << std::endl;
+			return;
+		}
+
+		if (playerLocation->getFeatureTwoHap() == 0)
+		{
+			playerLocation->featureTwo(rjInventory);
+			return;
+		}
+	}
+
+	if (commands[0] == "go" && commands[1] == "hallway")
+	{
+		playerLocation = &hallway1;
+		std::cout << "You go out to the hallway" << std::endl;
+		return;
+	}
+
+	if ((commands[0] != "look" && commands[1] != "booze") || 
+		(commands[0] != "use" && commands[1] != "computer") || 
+		(commands[0] != "go" && commands[1] != "hallway") || (commands[0] != "look" && commands[1] != "at"))
+	{
+		std::cout << "You can't do that here." << std::endl;
+	}
+}
 
 int main()
 {
-//intro();
-//menu();
-//map();
-//help();
+intro();
+menu();
+map();
+help();
 
 	/*Creation of Objects*/
 	Player rj;
 	Macready macready;
-//	Hallway1 hallway1;
-//	SickBay sickbay;
-//	Latrine latrine;
-//	Galley galley;
-		
+	Hallway1 hallway1;
+	SickBay sickbay;
+	Latrine latrine;
+	Galley galley;
 
-	/*Pointers to Room objects*/
-	Room* roomStarter = &macready;
-	roomStarter->setRoom();		
-	
+
+
 	/*Note to self: need to call setRoom function to fill data members before calling functions*/
-	Room* currentRoomPtr =&macready;
-	rj.setLocation(currentRoomPtr);
-	
+	/*Alternative to using new command and perhaps preventing memory leaks*/
 
+Room* roomStarter = &macready;
+roomStarter->setRoom();
+
+roomStarter = &hallway1;
+roomStarter->setRoom();
+
+roomStarter = &sickbay;
+roomStarter->setRoom();
+
+roomStarter = &latrine;
+roomStarter->setRoom();
+
+roomStarter = &galley;
+roomStarter->setRoom();
+
+
+Room* playerLocation = &macready;
+
+std::string commands[3];
 std::string userInput;	
+
 	
 /*Loop starts*/
-do {
+//do {
 /*Checks victory status at start of loop.*/
 if (rj.getVictory() != 0)
 {
 gameEnd(rj);
 }
+playerLocation->displayDescrip();
+playerLocation->displayExits();
 
-
-//std::string roomName =currentRoomPtr->getName();
-//std::cout << "Current Location: " <<roomName << std::endl;
-
-//std::cout << "Room Description: ";
-//currentRoomPtr->displayDescrip();
-
-//std::cout << "Room Exits: " ;
-//currentRoomPtr->displayExits();
-
-/*input from user.  string*/
-std::cout << "Enter choice now: " << std::endl;
+std::cout << "What do you want to do?" << std::endl;
 std::cin >> userInput;
 
+joelsbadParser(userInput, commands);
 
-look(rj);
-/*Call example: verbNoun[2]= parser(userInput)*/
-/*Example: 'look for booze'.  parser needs to take out 'for'. so what is left is a command and noun.  do we want numbers or strings for return values? strings maybe be easier
- * for human reading and understanding. numbers may be an issue because then a dictonary has to be created and checked.*/
+/*Might refactor the code into separate function files.*/
+if (playerLocation->getName() == "macready")
+{
+	chooseActionMacready(commands, playerLocation, rj, hallway1);
+}
 
-/*thoughts: limit command structure to one command and one noun.  items used in combination with each other could just have
- * an inventory check and then its all automated. Example: instead of 'use petri dish with blood sample and blowtorch' it could just be 'use petri dish' and then a check is done
- * for the other items..  */
-
-/* */
-
-/*call actionFunction.  send arguments: Player Object.*/
-
-
-//Tests for setting victory and game ending
-//rj.setVictory(1);
-//rj.setGameEnd(1);
+if (playerLocation->getName() == "hallway")
+{
+	/*chooseActionMacready(commands, playerLocation, rj, hallway1);*/
+}
 
 
-}while(userInput != "exit");
+
+
+//}while(userInput != "exit");
 
 }
+
 
