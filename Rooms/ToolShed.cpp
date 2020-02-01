@@ -97,6 +97,8 @@ int ToolShed::featureTwo(Player* user)
 			std::cout << "Today's been crazy already why not see what this is! You head towards the glinting item in the snow.\n"
 				"The item becomes more clear as you move closer. It is a bottle of Maker's Mark. You could always use more alcohol.\n"
 				"You obtain a bottle of Maker's Mark!" << std::endl;
+			
+			//Function call to gain Maker's Mark bottle
 
 			response = "correct";
 		}
