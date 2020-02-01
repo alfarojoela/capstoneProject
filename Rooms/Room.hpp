@@ -14,21 +14,21 @@
 
 class Room {
 public:
-	virtual std::string getName() = 0;
-	virtual std::string getLongDescrip() = 0;
-	virtual std::string getShortDescrip() = 0;
-	virtual std::string getExitLong() = 0;
-	virtual std::string getExitShort() = 0;
-	virtual bool getFeatureOneHap() = 0;
-	virtual bool getFeatureTwoHap() = 0;
+	virtual std::string getName();
+	virtual std::string getLongDescrip();
+	virtual std::string getShortDescrip();
+	virtual std::string getExitLong();
+	virtual std::string getExitShort();
+	virtual bool getFeatureOneHap();
+	virtual bool getFeatureTwoHap();
 	virtual int featureOne(Player*) = 0;
 	virtual int featureTwo(Player*) = 0;
 	virtual void setRoom() = 0;
-	virtual void addItem(Item*, Player*, int) = 0;
-	virtual void removeItem(Item*, Player*) = 0;
-	virtual void itemsInRoom() = 0;
-	virtual void displayDescrip() = 0;
-	virtual void displayExits() = 0;
+	virtual void addItem(Item*, Player*, int);
+	virtual void removeItem(Item*, Player*);
+	virtual void itemsInRoom();
+	virtual void displayDescrip();
+	virtual void displayExits();
 	virtual Room* changeRooms(std::vector<Room*>, std::string) = 0;
 
 protected:
