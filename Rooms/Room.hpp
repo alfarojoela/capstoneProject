@@ -9,6 +9,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <stdlib.h>
+#include <time.h> 
 #include "Item.hpp"
 #include "Player.hpp"
 
