@@ -9,9 +9,15 @@
 enum VERBS {
     DRINK,
     SMELL,
-    TALK
+    TALK,
+    DROP,
+    ATTACK,
+    EAT
 };
 
 const auto TALK_NAME = "talk";
 const auto SMELL_NAME = "smell";
 const auto DRINK_NAME = "drink";
+const auto DROP_NAME = "drop";
+const auto ATTACK_NAME = "attack";
+const auto EAT_NAME = "eat";
