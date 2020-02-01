@@ -83,7 +83,7 @@ int ToolShed::featureTwo(Player* user)
 
 	std::cout << "As you make your way towards the tool shed, you notice a glint in the snow.\n" 
 		"Your body is getting colder and colder, but there could be something useful there.\n"
-		"What do you do?\n"
+		"What do you do?\n\n"
 		"1. Head deeper into the snow to obtain the item\n"
 		"2. Continue on your path to the tool shed" << std::endl;
 	std::cin >> choice;
