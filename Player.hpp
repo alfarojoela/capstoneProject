@@ -6,12 +6,12 @@
 #include <string>
 #include <vector>
 
-#include "Room.hpp"
+/*#include "Room.hpp"*/
 #include "Item.hpp"
 
 
-#include "Macready.hpp"
-#include "Hallway1.hpp"
+/*#include "Macready.hpp"*/
+/*#include "Hallway1.hpp"*/
 
 class Player
 {
