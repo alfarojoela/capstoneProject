@@ -97,7 +97,7 @@ void chooseActionMacready(std::string commands[3], Room* playerLocation, Player&
 
 		if (playerLocation->getFeatureOneHap() == 0)
 		{
-			playerLocation->featureOne(rjInventory);
+			//playerLocation->featureOne(rjInventory);
 			return;
 		}
 	}
@@ -127,7 +127,7 @@ void chooseActionMacready(std::string commands[3], Room* playerLocation, Player&
 
 		if (playerLocation->getFeatureTwoHap() == 0)
 		{
-			playerLocation->featureTwo(rjInventory);
+			//playerLocation->featureTwo(rjInventory);
 			return;
 		}
 	}
