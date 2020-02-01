@@ -11,57 +11,15 @@ void Hallway1::setRoom()
 {
 	name = "hallway1";
 	longDes = "You enter a hallway. This hallway is connected to many of the important rooms inside the base.\n"
-		"There appears to be nobody around right. There is a terrible smell emanating from the room.\n"
+		"There appears to be nobody around right now. There is a terrible smell emanating from the room.\n"
 		"Along with the smell, the lights are blinking on and off. The room wasn't like this yesterday...\n";
 	shortDes = "You enter a hallway. This hallway is connected to many rooms. The lights are blinking on and off. On and off.\n";
-	exitLong = "This room is connected to many other rooms at the base. This includes the radio room, equipment room,\n"
+	exitLong = "This room is connected to many other rooms at the base.\nThis includes the radio room, equipment room,"
 		" sick bay, latrine, and research lab.\n";
 	exitShort = "There are five rooms connected to this room.\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
-}
-
-/* Function returns the name of the room. */
-std::string Hallway1::getName()
-{
-	return name;
-}
-
-/* Function returns the long description of the room. */
-std::string Hallway1::getLongDescrip()
-{
-	return longDes;
-}
-
-/* Function returns the short description of the room. */
-std::string Hallway1::getShortDescrip()
-{
-	return shortDes;
-}
-
-/* Function returns the long version of the exits description of the room. */
-std::string Hallway1::getExitLong()
-{
-	return exitLong;
-}
-
-/* Function returns the short version of the exits description of the room. */
-std::string Hallway1::getExitShort()
-{
-	return exitShort;
-}
-
-/* Function returns the boolean value that represents whether a feature happened.*/
-bool Hallway1::getFeatureOneHap()
-{
-	return fOneHappened;
-}
-
-/* Function returns the boolean value that represents whether a feature happened.*/
-bool Hallway1::getFeatureTwoHap()
-{
-	return fTwoHappened;
 }
 
 /* Function performs the action for the first feature of the room.*/
@@ -86,92 +44,6 @@ int Hallway1::featureTwo(Player* user)
 	++fTwoHappened;
 
 	return outcome;
-}
-
-/* Function adds an item to the vector of items in the room. It receives a Player instance
-* in case the player wishes to drop an item from their inventory into the room. */
-void Hallway1::addItem(Item* newItem, Player* user, int number)
-{
-	if (number == 0)
-	{
-		items.push_back(newItem);
-		newItem->setLocation(name);
-	}
-	else
-	{
-		items.push_back(newItem);
-
-		//Call Player function to remove item from player's inventory
-	}
-}
-
-/* Function removes an item from the vector of items in the room and adds it to the player's inventory.*/
-void Hallway1::removeItem(Item* removeItem, Player* user)
-{
-	if (items.size() > 0)
-	{
-		for (unsigned int i = 0; i < items.size(); ++i)
-		{
-			if (items[i]->getName() == removeItem->getName())
-			{
-				user->setInventory(removeItem);
-				items.erase(items.begin() + i);
-				removeItem->setLocation("player's inventory");
-			}
-		}
-	}
-}
-
-/* Function displays the items currently in the room.*/
-void Hallway1::itemsInRoom()
-{
-	if (items.size() > 0)
-	{
-		std::cout << "The current items in the " << getName() << " are: ";
-		for (unsigned int i = 0; i < items.size(); i++)
-		{
-			if (i != (items.size() - 1))
-			{
-				std::cout << items[i]->getName() << ", ";
-			}
-			else
-			{
-				std::cout << items[i]->getName() << std::endl;
-				std::cout << std::endl;
-			}
-		}
-	}
-	else
-	{
-		std::cout << "There are no items to pick up in the room." << std::endl;
-	}
-}
-
-/* Function displays either the short or long description based off a boolean value.*/
-void Hallway1::displayDescrip()
-{
-	if (roomEntered == 0)
-	{
-		std::cout << longDes << std::endl;
-	}
-	else
-	{
-		std::cout << shortDes << std::endl;
-	}
-	++roomEntered;
-}
-
-/* Function displays the exit descriptions based on whether it is the first time the user entered the room.*/
-void Hallway1::displayExits()
-{
-	if (roomEntered == 1)
-	{
-		std::cout << exitLong << std::endl;
-	}
-	else
-	{
-		std::cout << exitShort << std::endl;
-	}
 }
 
 /* Function receives the list of rooms and a phrase from the user. It then selects a room to move to based on
