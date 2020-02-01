@@ -83,7 +83,7 @@ int ToolShed::featureTwo(Player* user)
 
 	std::cout << "As you make your way towards the tool shed, you notice a glint in the snow.\n" 
 		"Your body is getting colder and colder, but there could be something useful there.\n"
-		"What do you do?\n"
+		"What do you do?\n\n"
 		"1. Head deeper into the snow to obtain the item\n"
 		"2. Continue on your path to the tool shed" << std::endl;
 	std::cin >> choice;
@@ -97,6 +97,8 @@ int ToolShed::featureTwo(Player* user)
 			std::cout << "Today's been crazy already why not see what this is! You head towards the glinting item in the snow.\n"
 				"The item becomes more clear as you move closer. It is a bottle of Maker's Mark. You could always use more alcohol.\n"
 				"You obtain a bottle of Maker's Mark!" << std::endl;
+			
+			//Function call to gain Maker's Mark bottle
 
 			response = "correct";
 		}
