@@ -33,7 +33,12 @@ public:
 	virtual void displayExits();
 	virtual Room* changeRooms(std::vector<Room*>, std::string) = 0;
 
+	/*Added function*/
+	/*virtual void addItem2Inventory(Item playerItem);*/
 protected:
+	/*Added line*/
+	/*std::vector<Item> items2;*/
+
 	std::string name;
 	std::string longDes;
 	std::string shortDes;
