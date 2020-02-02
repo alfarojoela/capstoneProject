@@ -6,12 +6,12 @@
 #include <string>
 #include <vector>
 
-//#include "Room.hpp"
+/*#include "Room.hpp"*/
 #include "Item.hpp"
 
 
-//#include "Macready.hpp"
-//#include "Hallway1.hpp"
+/*#include "Macready.hpp"*/
+/*#include "Hallway1.hpp"*/
 
 class Player
 {
@@ -23,7 +23,6 @@ private:
 
 
 	std::vector<Item*> inventory;
-	//	Room* currentLocation;
 
 public:
 	Player();
@@ -48,12 +47,13 @@ public:
 
 	void usePowerUp(std::string powerUp);
 
-	//	void setLocation(Room* currentLocation);
-	//std::string getLocation();
-
 	void setGameEnd(int ending);
 	int getGameEnd();
-	//	Room* returnLocation();
+	
+	void deletePlayerItem(std::string itemNeeded);
 
+	Item transferItem(std::string itemNeeded);
 
+	int getIndex(std::string itemToCheck);
 };
+

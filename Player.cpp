@@ -6,7 +6,7 @@ Player::Player()
 	alive = 1;
 	victory = 0;
 	std::vector<Item> inventory;
-	//Room* currentLocation = NULL;
+	/*Room* currentLocation = NULL;*/
 	gameEnd = 0;
 
 }
@@ -111,7 +111,6 @@ int Player::getAlive()
 	return alive;
 }
 
-
 void Player::setInventory(Item* newItem)
 {
 	inventory.push_back(newItem);
@@ -146,20 +145,57 @@ bool Player::checkInventory(std::string itemNeeded)
 			return 0;
 	}
 }
+/*Takes string and searches the vector.  The Item element is initialized to whatever element the index points at in the inventory vector.*/
+/*An Item pointer is declared and assigned to the address of the element so that the data members of the object can be checked with functions*/
+/*If the element's name matches the string name, it returns the appropriate Item object.  Function cannot be called unless it passes the item function.*/
+Item Player::transferItem(std::string itemNeeded)
+{
+	for (int i = 0; i < inventory.size(); i++)
+	{
+		Item element = *inventory[i];
+		Item* elementPtr = &element;
+		std::string elementName = elementPtr->getName();
 
-/*Set location for player.  Starts as null but at start of game points to MacReady's quarters.*/
-//	void Player::setLocation(Room* newLocation)
-//	{
-//		currentLocation = newLocation;
-//	}
+		if (elementName == itemNeeded)
+		{
+			return element;
+		}
+	}
+}
 
-	/*Gets string name for player's current position on the map.*/
-//	std::string Player::getLocation()
-//	{
-//		std::string roomName = currentLocation->getName();
-//		return roomName;
-//	}
+/*string of item to drop is sent as an argument.  checks names of items in inventory.  if found, deletes cell where the item is held.*/
+void Player::deletePlayerItem(std::string itemNeeded)
+{
+	for (int i = 0; i < inventory.size(); i++)
+	{
+		Item element = *inventory[i];
+		Item* elementPtr = &element;
+		std::string elementName = elementPtr->getName();
 
+		if (elementName == itemNeeded)
+		{
+			inventory.erase(inventory.begin()+i);
+			return;
+		}
+	}
+}
+
+int Player::getIndex(std::string itemToCheck)
+{
+	for (int i = 0; i < inventory.size(); i++)
+	{
+		Item element = *inventory[i];
+		Item* elementPtr = &element;
+		std::string elementName = elementPtr->getName();
+
+		if (elementName == itemToCheck)
+		{
+			return i;
+		}
+	}
+
+
+}
 
 
 
@@ -178,8 +214,5 @@ int Player::getGameEnd()
 	return gameEnd;
 }
 
-//	Room* Player::returnLocation()
 
-//	{
-//	return currentLocation;
-//	}
+
