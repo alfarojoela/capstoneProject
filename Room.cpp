@@ -127,3 +127,11 @@ void Room::displayExits()
 		std::cout << exitShort << std::endl;
 	}
 }
+
+
+
+
+/*void Room::addItem2Inventory(Item playerItem)*/
+/*{*/
+	/*items2.push_back(playerItem);*/
+/*}*/
