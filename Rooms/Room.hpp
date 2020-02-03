@@ -26,12 +26,11 @@ public:
 	virtual int featureOne(Player*) = 0;
 	virtual int featureTwo(Player*) = 0;
 	virtual void setRoom() = 0;
-	virtual void addItem(Item*, Player*, int);
-	virtual void removeItem(Item*, Player*);
+	virtual void addItem(Item, Player*, int);
+	virtual void removeItem(Item, Player*);
 	virtual void itemsInRoom();
 	virtual void displayDescrip();
 	virtual void displayExits();
-	virtual Room* changeRooms(std::vector<Room*>, std::string) = 0;
 
 protected:
 	std::string name;
@@ -39,7 +38,7 @@ protected:
 	std::string shortDes;
 	std::string exitLong;
 	std::string exitShort;
-	std::vector<Item*> items;
+	std::vector<Item> items;
 	int roomEntered;
 	bool fOneHappened;
 	bool fTwoHappened;
