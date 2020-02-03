@@ -44,33 +44,30 @@ bool Room::getFeatureTwoHap()
 
 /* Function adds an item to the vector of items in the room. It receives a Player instance
 * in case the player wishes to drop an item from their inventory into the room. */
-void Room::addItem(Item* newItem, Player* user, int number)
+void Room::addItem(Item newItem, Player* user, int number)
 {
 	if (number == 0)
 	{
 		items.push_back(newItem);
-		newItem->setLocation(name);
 	}
 	else
 	{
+		//Call Player function to remove item from player inventory
 		items.push_back(newItem);
-
-		//Call Player function to remove item from player's inventory
 	}
 }
 
 /* Function removes an item from the vector of items in the room and adds it to the player's inventory.*/
-void Room::removeItem(Item* removeItem, Player* user)
+void Room::removeItem(Item removeItem, Player* user)
 {
 	if (items.size() > 0)
 	{
 		for (unsigned int i = 0; i < items.size(); ++i)
 		{
-			if (items[i]->getName() == removeItem->getName())
+			if (items[i].getName() == removeItem.getName())
 			{
-				user->setInventory(removeItem);
+				user->setInventory(&removeItem);
 				items.erase(items.begin() + i);
-				removeItem->setLocation("player's inventory");
 			}
 		}
 	}
@@ -86,12 +83,11 @@ void Room::itemsInRoom()
 		{
 			if (i != (items.size() - 1))
 			{
-				std::cout << items[i]->getName() << ", ";
+				std::cout << items[i].getName() << ", ";
 			}
 			else
 			{
-				std::cout << items[i]->getName() << std::endl;
-				std::cout << std::endl;
+				std::cout << items[i].getName() << std::endl;
 			}
 		}
 	}
