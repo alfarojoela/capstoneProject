@@ -5,6 +5,7 @@
 std::vector<std::string> similar::getTalkVerbs()
 {
     std::vector<std::string> similarTalkVerbs {
+        "talk",
         "chat", 
         "communicate", 
         "says", 
@@ -17,6 +18,7 @@ std::vector<std::string> similar::getTalkVerbs()
 std::vector<std::string> similar::getDrinkVerbs()
 {
     std::vector<std::string> similarDrinkVerbs {
+        "drink",
         "consume", 
         "gulp", 
         "guzzle", 
@@ -35,6 +37,7 @@ std::vector<std::string> similar::getDrinkVerbs()
 std::vector<std::string> similar::getSmellVerbs()
 {
     std::vector<std::string> similarSmellVerbs {
+        "smell",
         "breathe", 
         "detect", 
         "sniff", 
@@ -47,6 +50,7 @@ std::vector<std::string> similar::getSmellVerbs()
 std::vector<std::string> similar::getDropVerbs()
 {
     std::vector<std::string> similarDropVerbs {
+        "drop",
         "abandon", 
         "dump", 
         "give up", 
@@ -60,6 +64,7 @@ std::vector<std::string> similar::getDropVerbs()
 std::vector<std::string> similar::getAttackVerbs()
 {
     std::vector<std::string> similarAttackVerbs {
+        "attack",
         "charge", 
         "strike", 
         "advance"
@@ -70,6 +75,7 @@ std::vector<std::string> similar::getAttackVerbs()
 std::vector<std::string> similar::getEatVerbs()
 {
     std::vector<std::string> similarEatVerbs {
+        "eat",
         "devour", 
         "dine", 
         "feed", 
