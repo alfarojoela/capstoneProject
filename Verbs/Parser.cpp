@@ -64,16 +64,77 @@ std::unordered_map<std::string, std::vector<std::string>> initializeSimilarActio
 /* Static class unordered map which contains all similar verbs that will be compared against the valid actions */
 std::unordered_map<std::string, std::vector<std::string>> Parser::similarActions = initializeSimilarActions();
 
-/* Destructor */
-Parser::~Parser()
+std::unordered_map<std::string, std::vector<std::string>> Parser::getSimilarActions()
 {
-    /* Clear vector allocation */
-    std::cout << this->validActions.size() << std::endl;
-    for (auto verb = validActions.begin(); verb != validActions.end(); verb++)
-    {
-        auto tempVerb = *verb;
-        delete tempVerb;
-    }
+    return similarActions;
+}
 
-    this->validActions.clear();
+/* Predicate for stripping non-alphanumeric characters */
+bool parserPredicate(char character)
+{
+    std::locale locale;
+    return (std::isalpha(character, locale) || character == ' ') ? false : true;
+}
+
+/* Main text parser */
+void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THREE])
+{
+    bool verbSet = false, prepSet = false, nounSet = false;
+    commands[0] = commands[1] = commands[2] = "";
+
+    /* Strip all non-alphanumeric characters */
+    userInput.erase(std::remove_if(userInput.begin(), userInput.end(), parserPredicate), userInput.end());
+
+    /* Change every character to a lower-case for parsing */
+    std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::tolower);
+
+    /* Stream */
+    auto inputStream = std::istringstream(userInput);
+
+    std::string tempValue;
+    while (inputStream >> tempValue)
+    {
+        /* Check verbs */
+        if (!verbSet) 
+        {
+            const auto actions = getValidActions();
+            const auto similarActions = getSimilarActions();
+
+            for (Verb *verb : actions)
+            {
+                auto similar = similarActions.find(verb->getName())->second;
+                for (std::string similarValue : similar)
+                {
+                    if (tempValue == similarValue) 
+                    {
+                        commands[0] = verb->getName();
+
+                        verbSet = true;
+                        break;
+                    }
+                }
+
+                if (verbSet) break;
+            }
+
+            if (verbSet) continue;
+        }
+
+        /* Check prepositions */
+        if (!prepSet)
+        {
+            // TODO: Associate prepositions depending on the verb (ex. if verb is 'drink' then preposition is 'the')
+            prepSet = true;
+            continue;
+        }
+
+        /* Check feature/item */
+        if (!nounSet)
+        {
+            // TODO: 
+            nounSet = true;
+            continue;
+        }
+
+    }
 }
