@@ -52,7 +52,7 @@ void Room::addItem(Item newItem, Player* user, int number)
 	}
 	else
 	{
-		//Call Player function to remove item from player inventory
+		user->removeInventory();
 		items.push_back(newItem);
 	}
 }
@@ -71,6 +71,22 @@ void Room::removeItem(Item removeItem, Player* user)
 			}
 		}
 	}
+}
+
+/* Function searches through the room's inventory to find the index of an item.*/
+int Room::findItemIndex(std::string itemName)
+{
+	int index = 0;
+
+	for (unsigned int i = 0; i < items.size(); ++i)
+	{
+		if (items[i].getName() == itemName)
+		{
+			index = i;
+		}
+	}
+
+	return index;
 }
 
 /* Function displays the items currently in the room.*/
