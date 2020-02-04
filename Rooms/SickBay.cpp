@@ -10,9 +10,9 @@
 void SickBay::setRoom()
 {
 	name = "sickBay";
-	longDes = "You enter the sick bay. This is not an area of the base you want to be on a regular basis.\n"
+	longDes = "You enter the sick bay. This is not an area of the base you want to be in on a regular basis.\n"
 		"The crew has luckily not had too many members stay here for long.\nYou notice that the room contains medical supplies for the base."
-		"\nThere is also a member of the crew current laying on the bed. You can't tell there condition from this distance.\n";
+		"\nThere is also a member of the crew currently laying on the bed. You can't tell their condition from this distance.\n";
 	shortDes = "You return to the sick bay. This is the room where the sick or injured are cared for.\n";
 	exitLong = "The hallway which connects to many rooms in the base including the research lab and radio room is from the way you came.\n";
 	exitShort = "There is a hallway from the direction you came.\n";
@@ -24,9 +24,13 @@ void SickBay::setRoom()
 /* Function performs the action for the first feature of the room.*/
 int SickBay::featureOne(Player* user)
 {
-	int outcome = 0;
+	int outcome = 3;
 
-	std::cout << "Player inspects the toilet paper." << std::endl;
+	std::cout << "You decide to use the medical kit on the table to patch up your wounds.\n"
+		"There are not many items to heal wounds in the base so you are lucky to find it.\n"
+		"You gain one health!\n"<< std::endl;
+
+	//Return outcome 3 which heals the player or calls function to heal player
 
 	++fOneHappened;
 
@@ -37,34 +41,79 @@ int SickBay::featureOne(Player* user)
 int SickBay::featureTwo(Player* user)
 {
 	int outcome = 0;
+	int number = 0;
+	std::string choice = "";
+	std::string response = "incorrect";
 
-	std::cout << "Player uses the bathroom." << std::endl;
+	std::cout << "You approach the member of the crew laying on the bed. It's Jack!\n"
+		"He is one of the younger members of the crew. You haven't had a chance to get to know him yet.\n"
+		"He currently has a huge, bloody bandage wrapped around his body.\n"
+		"He attempts to speak, but can't. He seems heavily sedated.\n\n"
+		"His body begins to shake violently!\n"
+		"Through these motions he takes a swing at you!\n"
+		"What do you do?\n\n"
+		"1. Block the attack with your arm\n"
+		"2. Dodge the attack"<< std::endl;
+	std::cin >> choice;
+
+	while (response == "incorrect")
+	{
+		if (choice == "1")
+		{
+			std::cout << std::endl;
+			std::cout << "You attempt to block his attack!\n" << std::endl;
+
+			number = rand() % 100 + 1;
+
+			if (number > 70)
+			{
+				std::cout << "You successfully block the attack!\n"
+					"He slumps over after the attempt. You think 'What the hell is going on here?!?'" << std::endl;
+			}
+			else
+			{
+				std::cout << "You block his attack but he scrathes you in the process! The wound is pretty deep.\n"
+					"He slumps over after hitting you. You grimace in pain.\n"
+					"You lose 1 health!"<< std::endl;
+			}
+
+			//Outcome set to 1 to call function to lose health
+			outcome = 1;
+
+			response = "correct";
+		}
+		else if (choice == "2")
+		{
+			std::cout << std::endl;
+			std::cout << "You attempt to dodge his attack!\n" << std::endl;
+
+			number = rand() % 100 + 1;
+
+			if (number > 40)
+			{
+				std::cout << "You successfully dodge the attack!\n"
+					"He slumps over after the attempt. You think 'What the hell is going on here?!?'" << std::endl;
+			}
+			else
+			{
+				std::cout << "You don't get out of the way in time! He scratches your back. The wound is pretty deep.\n"
+					"He slumps over after hitting you. You grimace in pain.\n"
+					"You lose 1 health!"<< std::endl;
+
+				//Outcome set to 1 to call function to lose health
+				outcome = 1;
+			}
+
+			response = "correct";
+		}
+		else
+		{
+			std::cout << "You have picked an incorrect choice. Please chose again: ";
+			std::cin >> choice;
+		}
+	}
 
 	++fTwoHappened;
 
 	return outcome;
-}
-
-/* Function receives the list of rooms and a phrase from the user. It then selects a room to move to based on
-* the phrase. It returns a pointer to that room to main so the game can move to that room. */
-Room* SickBay::changeRooms(std::vector<Room*> rooms, std::string phrase)
-{
-	Room* nextRoom = NULL;
-	std::string roomName = "";
-
-	if (phrase == "go back" || phrase == "back" || phrase == "go hallway" || phrase == "hallway")
-	{
-		roomName = "hallway1";
-	}
-
-	for (int x = 0; x < 15; ++x)
-	{
-		if (rooms[x]->getName() == roomName)
-		{
-			nextRoom = rooms[x];
-			x = 15;
-		}
-	}
-
-	return nextRoom;
 }
