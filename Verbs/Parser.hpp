@@ -9,6 +9,9 @@
 #include <unordered_map>
 #include <vector>
 #include <utility>
+#include <algorithm>
+#include <locale>
+#include <sstream>
 
 #include "SimilarVerbHelper.hpp"
 
@@ -19,6 +22,8 @@
 #include "Attack.hpp"
 #include "Eat.hpp"
 
+const int CONST_THREE = 3;
+
 class Parser {
 
 private:
@@ -27,11 +32,7 @@ private:
     // TODO: CONTINUE ADDING PARSER MEMBERS & FUNCTIONALITY
 
 public:
-    ~Parser();
-    static std::vector<std::string> parseInput(std::string);
+    static void parseInput(std::string, std::string (&commands)[CONST_THREE]);
     static std::vector<Verb *> getValidActions();
     static std::unordered_map<std::string, std::vector<std::string>> getSimilarActions();
-
-
-
 };
