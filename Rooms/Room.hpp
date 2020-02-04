@@ -25,6 +25,7 @@ public:
 	virtual bool getFeatureTwoHap();
 	virtual int featureOne(Player*) = 0;
 	virtual int featureTwo(Player*) = 0;
+	virtual int findItemIndex(std::string);
 	virtual void setRoom() = 0;
 	virtual void addItem(Item, Player*, int);
 	virtual void removeItem(Item, Player*);
