@@ -10,7 +10,7 @@ Eat - devour, dine, feed, ingest, nibble, swallow, bite
 Use - apply, handle, spend, expend
 Jump - bounce, hurdle, rise, upsurge, vault, hop, leap, pounce, skip, spring
 Flee - depart, desert, retreat, take off, vanish, evade
-Break - crack, breach, fracture, rupture, fracture
+Break - crack, breach, fracture, rupture
 Look - eye, peek, stare, view, glimpse, glance
 Look at - detect, acknowledge, discern, recognize, note, see
 Go - progress, move, pass, continue 
@@ -36,6 +36,9 @@ namespace similar
     std::vector<std::string> getUseVerbs();
     std::vector<std::string> getJumpVerbs();
     std::vector<std::string> getFleeVerbs();
+    std::vector<std::string> getBreakVerbs();
+    std::vector<std::string> getLookVerbs();
+    std::vector<std::string> getLookAtVerbs();
 
     // TODO: ADDING MORE ACTIONS
 
