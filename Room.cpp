@@ -43,37 +43,54 @@ bool Room::getFeatureTwoHap()
 }
 
 /* Function adds an item to the vector of items in the room. It receives a Player instance
-* in case the player wishes to drop an item from their inventory into the room. */
-void Room::addItem(Item* newItem, Player* user, int number)
+ * * in case the player wishes to drop an item from their inventory into the room. */
+void Room::addItem(Item newItem, Player* user, int number)
 {
 	if (number == 0)
 	{
 		items.push_back(newItem);
-		newItem->setLocation(name);
 	}
 	else
 	{
+		/*prior line:*/
+		/*user->removeInventory();*/
+		/**changed line to*/ 
+		/*user->deletePlayerItem(newItem);*/
 		items.push_back(newItem);
-
-		//Call Player function to remove item from player's inventory
 	}
 }
 
 /* Function removes an item from the vector of items in the room and adds it to the player's inventory.*/
-void Room::removeItem(Item* removeItem, Player* user)
+void Room::removeItem(Item removeItem, Player* user)
 {
 	if (items.size() > 0)
 	{
 		for (unsigned int i = 0; i < items.size(); ++i)
 		{
-			if (items[i]->getName() == removeItem->getName())
+			if (items[i].getName() == removeItem.getName())
 			{
+				/*Removed address of removeItem*/
 				user->setInventory(removeItem);
 				items.erase(items.begin() + i);
-				removeItem->setLocation("player's inventory");
 			}
 		}
 	}
+}
+
+/* Function searches through the room's inventory to find the index of an item.*/
+int Room::findItemIndex(std::string itemName)
+{
+	int index = 0;
+
+	for (unsigned int i = 0; i < items.size(); ++i)
+	{
+		if (items[i].getName() == itemName)
+		{
+			index = i;
+		}
+	}
+
+	return index;
 }
 
 /* Function displays the items currently in the room.*/
@@ -86,12 +103,11 @@ void Room::itemsInRoom()
 		{
 			if (i != (items.size() - 1))
 			{
-				std::cout << items[i]->getName() << ", ";
+				std::cout << items[i].getName() << ", ";
 			}
 			else
 			{
-				std::cout << items[i]->getName() << std::endl;
-				std::cout << std::endl;
+				std::cout << items[i].getName() << std::endl;
 			}
 		}
 	}
@@ -128,10 +144,3 @@ void Room::displayExits()
 	}
 }
 
-
-
-
-/*void Room::addItem2Inventory(Item playerItem)*/
-/*{*/
-	/*items2.push_back(playerItem);*/
-/*}*/

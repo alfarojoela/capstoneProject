@@ -1,8 +1,8 @@
 /* Project Name: Capstone Project
-   Class: CS 467
-   Team: Team Thing- Ryan Alcorn, Joel Alfaro, Neil Gayeta
-   File: Room.hpp 
-   Description: Abstract parent class for Room children class files.*/
+ *    Class: CS 467
+ *       Team: Team Thing- Ryan Alcorn, Joel Alfaro, Neil Gayeta
+ *          File: Room.hpp 
+ *             Description: Abstract parent class for Room children class files.*/
 
 #pragma once
 
@@ -25,27 +25,23 @@ public:
 	virtual bool getFeatureTwoHap();
 	virtual int featureOne(Player*) = 0;
 	virtual int featureTwo(Player*) = 0;
+	virtual int findItemIndex(std::string);
 	virtual void setRoom() = 0;
-	virtual void addItem(Item*, Player*, int);
-	virtual void removeItem(Item*, Player*);
+	virtual void addItem(Item, Player*, int);
+	virtual void removeItem(Item, Player*);
 	virtual void itemsInRoom();
 	virtual void displayDescrip();
 	virtual void displayExits();
-	virtual Room* changeRooms(std::vector<Room*>, std::string) = 0;
 
-	/*Added function*/
-	/*virtual void addItem2Inventory(Item playerItem);*/
 protected:
-	/*Added line*/
-	/*std::vector<Item> items2;*/
-
 	std::string name;
 	std::string longDes;
 	std::string shortDes;
 	std::string exitLong;
 	std::string exitShort;
-	std::vector<Item*> items;
+	std::vector<Item> items;
 	int roomEntered;
 	bool fOneHappened;
 	bool fTwoHappened;
 };
+
