@@ -37,11 +37,12 @@ int SickBay::featureOne(Player* user)
 	return outcome;
 }
 
-/* Function performs the action for the second feature of the room.*/
+/* Function performs the action for the second feature of the room. Player can gain the scapel in this feature.*/
 int SickBay::featureTwo(Player* user)
 {
 	int outcome = 0;
 	int number = 0;
+	int index = 0;
 	std::string choice = "";
 	std::string response = "incorrect";
 
@@ -52,7 +53,7 @@ int SickBay::featureTwo(Player* user)
 		"His body begins to shake violently!\n"
 		"Through these motions he takes a swing at you!\n"
 		"What do you do?\n\n"
-		"1. Block the attack with your arm\n"
+		"1. Defend yourself\n"
 		"2. Dodge the attack"<< std::endl;
 	std::cin >> choice;
 
@@ -61,20 +62,25 @@ int SickBay::featureTwo(Player* user)
 		if (choice == "1")
 		{
 			std::cout << std::endl;
-			std::cout << "You attempt to block his attack!\n" << std::endl;
+			std::cout << "You grab a nearby scapel to defend yourself!\n" << std::endl;
+
+			//Finds the index of the scapel in the room inventory and then uses the index to remove it from the room inventory while adding it to the player's inventory.
+			index = findItemIndex("scapel");
+			removeItem(items[index], user);
 
 			number = rand() % 100 + 1;
 
 			if (number > 70)
 			{
-				std::cout << "You successfully block the attack!\n"
-					"He slumps over after the attempt. You think 'What the hell is going on here?!?'" << std::endl;
+				std::cout << "You successfully fend off the attack with the scapel!\n"
+					"He groans in pain as you slash his arm and slumps over after the attempt. You think 'What the hell is going on here?!?'\n"
+					"You gain a scapel!"<< std::endl;
 			}
 			else
 			{
-				std::cout << "You block his attack but he scrathes you in the process! The wound is pretty deep.\n"
+				std::cout << "You do not fend off his attack and he scrathes you in the process! The wound is pretty deep.\n"
 					"He slumps over after hitting you. You grimace in pain.\n"
-					"You lose 1 health!"<< std::endl;
+					"You lose 1 health and gain a scapel!"<< std::endl;
 			}
 
 			//Outcome set to 1 to call function to lose health
