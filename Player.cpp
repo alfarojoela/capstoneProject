@@ -31,56 +31,94 @@ int Player::getVictory()
 	return victory;
 }
 
-void Player::setGrit(Item* powerup)
+
+void Player::setGrit(std::string powerup)
 {
 	/*Call to item class.  Get data member for item.  And then compare with below.*/
-	std::string type = powerup->getName();
-
-	if (type == "Vodka")
+	/*Item* powerupPtr = &powerup;*/
+	/*std::string type = powerupPtr->getName();*/
+	std::string type = powerup;
+	if (type == "vodka")
 	{
 		grit = grit + 5;
+
+		std::cout << "You just had some vodka." << std::endl;
+		std::cout <<"You feel your resolve strengthened." << std::endl;
+		std::cout << "Your grit level is now: " << getGrit() << std::endl;
+		deletePlayerItem("vodka");
 		return;
 	}
 
-	if (type == "Gin")
+	if (type == "gin")
 	{
 		grit = grit + 4;
+		std::cout << "You just had some gin." << std::endl;
+		std::cout << "You think of that song by Kiss..." << std::endl;
+		std::cout << "'My heater's broken and I am so tired...I need some fuel to build a fire...' You sing." << std::endl;
+		std::cout << "Your grit level is now: " << getGrit() << std::endl;
+		deletePlayerItem("gin");
 		return;
 	}
 
-	if (type == "Whisky")
+	if (type == "whiskey")
 	{
 		grit = grit + 3;
+		std::cout << "You just had some whiskey." << std::endl;
+		std::cout << "You think of that song that Thin Lizzy covered..." << std::endl;
+		std::cout << "'Musha rain a dum a doo...There's whisky in the jar, oh...' You sing." << std::endl;
+		std::cout << "Your grit level is now: " << getGrit() << std::endl;
+		deletePlayerItem("whiskey");
 		return;
 	}
 
-	if (type == "Tequila")
+	if (type == "tequila")
 	{
 		grit = grit + 2;
+		std::cout << "You just had some tequila." << std::endl;
+		std::cout << "You think of that song by The Champs..." << std::endl;
+		std::cout << "You hum that horn riff from the song and say 'Tequila!'" << std::endl;
+		std::cout << "You have the urge to put on some platform shoes, a checkered suit, and a bow tie." << std::endl;
+		std::cout << "And dance like a doofus." << std::endl;
+		std::cout << "Your grit level is now: " << getGrit() << std::endl;
+		deletePlayerItem("tequila");
 		return;
 	}
 
-	if (type == "Beer")
+	if (type == "beer")
 	{
 		grit = grit + 1;
+		std::cout << "You just had a can of the King of Beers." << std::endl;
+		std::cout << "You still feel thirsty." << std::endl;
+		std::cout << "Your grit level is now: " << getGrit() << std::endl;
+		deletePlayerItem("beer");
+
 		return;
 	}
 
-	if (type == "Pabst")
+	if (type == "pabst")
 	{
 		grit--;
+		std::cout << "You just had a can of Pabst Blue Ribbon." << std::endl;
+		std::cout << "You feel like you are going to throw up." << std::endl;
+		std::cout << "Your grit level takes a hit of -1 from the inferior brew." << std::endl;
+		std::cout << "Your grit level is now: " << getGrit();
+		deletePlayerItem("pabst");
+
 		return;
 	}
 
-	if (type == "Mata Rata")
+	if (type == "matarata")
 	{
 		std::cout << "Not a good idea hitting the Mata Rata Tequila...That's Spanish for Rat Killer.  And apparently it is good at killing people too.";
 		setAlive(0);
 	}
 
-	if (type == "Red Herring")
+	if (type == "redherring")
 	{
+		std::cout << "You eat the Red Herring." << std::endl;
 		std::cout << "You feel no effect on your grit level...How disappointing.  You feel cheated and that this was an exercise in futility." << std::endl;
+		deletePlayerItem("redherring");
+
 		return;
 	}
 
@@ -111,7 +149,7 @@ int Player::getAlive()
 	return alive;
 }
 
-void Player::setInventory(Item* newItem)
+void Player::setInventory(Item newItem)
 {
 	inventory.push_back(newItem);
 }
@@ -121,7 +159,7 @@ void Player::getInventory()
 {
 	for (int i = 0; i < inventory.size(); i++)
 	{
-		Item element = *inventory[i];
+		Item element = inventory[i];
 		Item* elementPtr = &element;
 		std::string elementName = elementPtr->getName();
 		std::cout << elementName << std::endl;
@@ -133,7 +171,7 @@ bool Player::checkInventory(std::string itemNeeded)
 {
 	for (int i = 0; i < inventory.size(); i++)
 	{
-		Item element = *inventory[i];
+		Item element = inventory[i];
 		Item* elementPtr = &element;
 		std::string elementName = elementPtr->getName();
 
@@ -141,9 +179,11 @@ bool Player::checkInventory(std::string itemNeeded)
 		{
 			return 1;
 		}
-		else
-			return 0;
+
 	}
+		return 0;
+
+
 }
 /*Takes string and searches the vector.  The Item element is initialized to whatever element the index points at in the inventory vector.*/
 /*An Item pointer is declared and assigned to the address of the element so that the data members of the object can be checked with functions*/
@@ -152,7 +192,7 @@ Item Player::transferItem(std::string itemNeeded)
 {
 	for (int i = 0; i < inventory.size(); i++)
 	{
-		Item element = *inventory[i];
+		Item element = inventory[i];
 		Item* elementPtr = &element;
 		std::string elementName = elementPtr->getName();
 
@@ -166,13 +206,16 @@ Item Player::transferItem(std::string itemNeeded)
 /*string of item to drop is sent as an argument.  checks names of items in inventory.  if found, deletes cell where the item is held.*/
 void Player::deletePlayerItem(std::string itemNeeded)
 {
+	/*Item* itemNeededPtr = &itemNeeded;*/
+	std::string itemToDelete = itemNeeded;
+
 	for (int i = 0; i < inventory.size(); i++)
 	{
-		Item element = *inventory[i];
+		Item element = inventory[i];
 		Item* elementPtr = &element;
 		std::string elementName = elementPtr->getName();
 
-		if (elementName == itemNeeded)
+		if (elementName == itemToDelete)
 		{
 			inventory.erase(inventory.begin()+i);
 			return;
@@ -184,7 +227,7 @@ int Player::getIndex(std::string itemToCheck)
 {
 	for (int i = 0; i < inventory.size(); i++)
 	{
-		Item element = *inventory[i];
+		Item element = inventory[i];
 		Item* elementPtr = &element;
 		std::string elementName = elementPtr->getName();
 
@@ -193,8 +236,6 @@ int Player::getIndex(std::string itemToCheck)
 			return i;
 		}
 	}
-
-
 }
 
 
@@ -213,6 +254,7 @@ int Player::getGameEnd()
 {
 	return gameEnd;
 }
+
 
 
 

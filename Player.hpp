@@ -21,22 +21,28 @@ private:
 	int victory;
 	int gameEnd;
 
+	/*altered line*/
+	/*std::vector<Item*> inventory;*/
+	std::vector<Item> inventory;
 
-	std::vector<Item*> inventory;
 
 public:
 	Player();
 
 
 	void useItem(std::string item);
-	void setGrit(Item* powerup);
+	/*altered line*/
+	/*void setGrit(Item* powerup);*/
+	void setGrit(std::string powerup);
 
 	int getGrit();
 	void setAlive(int dead);
 
 	int getAlive();
 
-	void setInventory(Item* newItem);
+	/*altered line*/
+	/*void setInventory(Item* newItem);*/
+	void setInventory(Item newItem);
 	void getInventory();
 
 	int getVictory();
@@ -56,4 +62,5 @@ public:
 
 	int getIndex(std::string itemToCheck);
 };
+
 
