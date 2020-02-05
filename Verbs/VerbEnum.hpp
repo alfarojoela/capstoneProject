@@ -12,7 +12,10 @@ enum VERBS {
     TALK,
     DROP,
     ATTACK,
-    EAT
+    EAT,
+    USE,
+    JUMP,
+    FLEE
 };
 
 const auto TALK_NAME = "talk";
@@ -21,3 +24,6 @@ const auto DRINK_NAME = "drink";
 const auto DROP_NAME = "drop";
 const auto ATTACK_NAME = "attack";
 const auto EAT_NAME = "eat";
+const auto USE_NAME = "use";
+const auto JUMP_NAME = "jump";
+const auto FLEE_NAME = "flee";
