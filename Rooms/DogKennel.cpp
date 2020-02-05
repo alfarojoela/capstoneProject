@@ -49,7 +49,7 @@ int DogKennel::featureOne(Player* user)
 				"But you're surprised that you connect with a hit. The creature appears to be a dog, but malformed.\n"
 				"It scurries off after the hit.\n"
 				"You do notice that the creature scratched you pretty good on the arm. Blood is gushing from a cut.\n"
-				"You lose one health!\n"<< std::endl;
+				"You lose one health!"<< std::endl;
 
 			//Outcome set to 1 to call function to lose health
 			outcome = 1;
@@ -58,7 +58,6 @@ int DogKennel::featureOne(Player* user)
 		}
 		else if (choice == "2")
 		{
-			//
 			if (choice == "2")
 			{
 				std::cout << "You attack the creature with the weapon. It stood no chance.\n"
@@ -94,6 +93,7 @@ int DogKennel::featureOne(Player* user)
 			std::cin >> choice;
 		}
 	}
+	std::cout << std::endl;
 
 	++fOneHappened;
 
@@ -156,32 +156,9 @@ int DogKennel::featureTwo(Player* user)
 			std::cin >> choice;
 		}
 	}
+	std::cout << std::endl;
 
 	++fTwoHappened;
 
 	return outcome;
-}
-
-/* Function receives the list of rooms and a phrase from the user. It then selects a room to move to based on
-* the phrase. It returns a pointer to that room to main so the game can move to that room. */
-Room* DogKennel::changeRooms(std::vector<Room*> rooms, std::string phrase)
-{
-	Room* nextRoom = NULL;
-	std::string roomName = "";
-
-	if (phrase == "go back" || phrase == "back" || phrase == "go hallway" || phrase == "hallway")
-	{
-		roomName = "hallway2";
-	}
-
-	for (int x = 0; x < 15; ++x)
-	{
-		if (rooms[x]->getName() == roomName)
-		{
-			nextRoom = rooms[x];
-			x = 15;
-		}
-	}
-
-	return nextRoom;
 }
