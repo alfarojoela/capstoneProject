@@ -87,3 +87,50 @@ std::vector<std::string> similar::getEatVerbs()
 
     return similarEatVerbs;
 }
+
+std::vector<std::string> similar::getUseVerbs() 
+{
+    std::vector<std::string> similarUseVerbs {
+        "use", 
+        "apply", 
+        "handle", 
+        "spend", 
+        "expend"
+    };
+
+    return similarUseVerbs;
+}
+
+std::vector<std::string> similar::getJumpVerbs() 
+{
+    std::vector<std::string> similarJumpVerbs {
+        "jump", 
+        "bounce", 
+        "hurdle", 
+        "rise", 
+        "upsurge", 
+        "vault", 
+        "hop", 
+        "leap", 
+        "pounce", 
+        "skip", 
+        "spring"
+    };
+
+    return similarJumpVerbs;
+}
+
+std::vector<std::string> similar::getFleeVerbs() 
+{
+    std::vector<std::string> similarFleeVerbs {
+        "flee", 
+        "depart", 
+        "desert", 
+        "retreat", 
+        "take off", 
+        "vanish", 
+        "evade"
+    };
+
+    return similarFleeVerbs;
+}
