@@ -33,6 +33,9 @@ namespace similar
     std::vector<std::string> getDropVerbs();
     std::vector<std::string> getAttackVerbs();
     std::vector<std::string> getEatVerbs();
+    std::vector<std::string> getUseVerbs();
+    std::vector<std::string> getJumpVerbs();
+    std::vector<std::string> getFleeVerbs();
 
     // TODO: ADDING MORE ACTIONS
 
