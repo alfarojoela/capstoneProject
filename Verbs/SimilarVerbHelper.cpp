@@ -134,3 +134,46 @@ std::vector<std::string> similar::getFleeVerbs()
 
     return similarFleeVerbs;
 }
+
+std::vector<std::string> similar::getBreakVerbs()
+{
+    std::vector<std::string> similarBreakVerbs {
+        "break",
+        "crack", 
+        "breach", 
+        "fracture", 
+        "rupture"
+    };
+
+    return similarBreakVerbs;
+}
+
+std::vector<std::string> similar::getLookVerbs() 
+{
+    std::vector<std::string> similarLookVerbs {
+        "look",
+        "eye", 
+        "peek", 
+        "stare", 
+        "view", 
+        "glimpse", 
+        "glance"
+    };
+
+    return similarLookVerbs;
+}
+
+std::vector<std::string> similar::getLookAtVerbs()
+{
+    std::vector<std::string> similarLookAtVerbs {
+        "look at",
+        "detect", 
+        "acknowledge", 
+        "discern", 
+        "recognize", 
+        "note", 
+        "see"
+    };
+
+    return similarLookAtVerbs;
+}
