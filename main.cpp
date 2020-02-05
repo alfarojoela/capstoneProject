@@ -1,10 +1,12 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <stdio.h>
-#include <stdlib.h>
 #include <ios>
 #include <limits>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 /*Functions accessed by main*/
 #include "map.hpp"
@@ -15,12 +17,12 @@
 
 /*action functions after parser translation*/
 /*
- *  * #include "lookAtAction.hpp"
- *   * #include "look.hpp"
- *    * #include "useAction.hpp"
- *     * #include "dropAction.hpp"
- *      * #include "goAction.hpp"
- *       * */
+ *  *  * #include "lookAtAction.hpp"
+ *   *   * #include "look.hpp"
+ *    *    * #include "useAction.hpp"
+ *     *     * #include "dropAction.hpp"
+ *      *      * #include "goAction.hpp"
+ *       *       * */
 
 
 
@@ -28,29 +30,109 @@
 #include "Player.hpp"
 
 /*Room class*/
+#include "Basement.hpp"
+#include "ConferenceRoom.hpp"
+#include "DogKennel.hpp"
+#include "EquipmentRoom.hpp"
 #include "Galley.hpp"
-#include "Macready.hpp"
+#include "Garage.hpp"
 #include "Hallway1.hpp"
-#include "SickBay.hpp"
+#include "Hallway2.hpp"
 #include "Latrine.hpp"
+#include "Macready.hpp"
+#include "MessHall.hpp"
+#include "RadioRoom.hpp"
+#include "ResearchLab.hpp"
+#include "SickBay.hpp"
+#include "ToolShed.hpp"
 
 /*Parser class*/
+#include "Attack.hpp"
 #include "Drink.hpp"
+#include "Drop.hpp"
+#include "Eat.hpp"
+#include "Parser.hpp"
+#include "SimilarVerbHelper.hpp"
 #include "Smell.hpp"
 #include "Talk.hpp"
 #include "VerbEnum.hpp"
 #include "Verb.hpp"
+
+
 
 /*REFACTOR FUNCTION LATER*/
 
 /*discard this function.  only a test*/
 void joelsbadParser(std::string userInput, std::string (&commands) [3])
 {
+	if (userInput == "eat the redherring")
+	{
+		commands[0] = "eat";
+		commands[1] = "the";
+		commands[2] = "redherring";
+	}
+
+	if (userInput == "drink the vodka")
+	{
+		commands[0] = "drink";
+		commands[1] = "the";
+		commands[2] = "vodka";
+	}
+
+	if (userInput == "drink the beer")
+	{
+		commands[0] = "drink";
+		commands[1] = "the";
+		commands[2] = "beer";
+	}
+
+	if (userInput == "drink the gin")
+	{
+		commands[0] = "drink";
+		commands[1] = "the";
+		commands[2] = "gin";
+	}
+
+	if (userInput == "drink the whiskey")
+	{
+		commands[0] = "drink";
+		commands[1] = "the";
+		commands[2] = "whiskey";
+	}
+
+	if (userInput == "drink the pabst")
+	{
+		commands[0] = "drink";
+		commands[1] = "the";
+		commands[2] = "pabst";
+	}
+
+	if (userInput == "drink the matarata")
+	{
+		commands[0] = "drink";
+		commands[1] = "the";
+		commands[2] = "matarata";
+	}
+
+	if (userInput == "drink the tequila")
+	{
+		commands[0] = "drink";
+		commands[1] = "the";
+		commands[2] = "tequila";
+	}
+
+	if (userInput == "take the mask")
+	{
+		commands[0] = "take";
+		commands[1] = "the";
+		commands[2] = "mask";
+	}
+	
 	if (userInput == "drop vodka")
 	{
 		commands[0] = "drop";
-		commands[1] = "vodka";
-		commands[2] = "vodka";
+		commands[1] = "vodkaTest";
+		commands[2] = "vodkaTest";
 	}
 
 	if (userInput == "look at room")
@@ -94,6 +176,41 @@ void joelsbadParser(std::string userInput, std::string (&commands) [3])
 		commands[2] = "hallway1";
 	}
 }
+
+/*Uncertain of how to send the Item object to the room function.*/
+void take(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
+{
+	std::string itemToTake = commands[2];
+	int inventoryIndex = playerLocation->findItemIndex(itemToTake);
+	/*playerLocation->removeItem( , playerPtr);*/
+}
+
+void eat(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
+{
+	std::string food = commands[2];
+	/*bool check = playerPtr->checkInventory(food);*/
+	if (playerPtr->checkInventory(food) == 1)
+	{
+		Item redherring("redherring");
+		playerPtr->setGrit("redherring");
+	}
+	else
+		std::cout << "Sorry.  You can't eat what you don't have in your inventory." << std::endl;
+}
+
+void drink(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
+{
+	std::string beverage = commands[2];
+	/*bool check = playerPtr->checkInventory(food);*/
+	if (playerPtr->checkInventory(beverage) == 1)
+	{
+		playerPtr->setGrit(beverage);
+	}
+	else
+		std::cout << "Sorry.  You can't drink what you don't have in your inventory." << std::endl;
+}
+
+
 /*Function called from roomInteraction function if drop command is sent.*/
 void drop(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
 {
@@ -104,9 +221,8 @@ void drop(std::string commands[3], Room* &playerLocation, Player* &playerPtr, st
 		Item itemToDrop = playerPtr->transferItem(itemToCheck);
 		Item* itemToDropPtr = &itemToDrop;
 		int number = playerPtr->getIndex(itemToCheck);
-		playerLocation->addItem(itemToDropPtr, playerPtr, number);
+		playerLocation->addItem(itemToDrop, playerPtr, number);
 		playerPtr->deletePlayerItem(itemToCheck);
-		/*playerLocation->addItem2Inventory(itemToDrop);*/
 	}
 }
 
@@ -126,6 +242,24 @@ void go(Room* &playerLocation, std::vector<Room*> &roomList, int roomNumber)
 void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
 {
 	std::cout << "IN roomInteractionMacready FUNCTION: " << std::endl;
+	
+	if (commands[0] == "drink")
+	{
+		drink(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
+	if (commands[0] == "eat")
+	{
+		eat(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
+	if (commands[0] == "take")
+	{
+		take(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
 
 	if (commands[0] == "drop")
 	{
@@ -201,10 +335,12 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 
 int main()
 {
+srand(time(NULL));
 intro();
-/*menu();*/
-/*map();*/
-/*help();*/
+/*menu(); */
+map();
+help();
+
 
 	/*Creation of Objects*/
 	Player rj;
@@ -222,8 +358,8 @@ intro();
 /*Each room gets its own pointer to call setRoom function and then be pushed into roomList vector.*/
 /*The roomList vector will be sent to roomInteraction function*/
 /****************************************************************************/
-Room* macreadyPtr = &macready;
-macreadyPtr->setRoom();
+Room* macreadyRoomPtr = &macready;
+macreadyRoomPtr->setRoom();
 
 Room* hallway1Ptr = &hallway1;
 hallway1Ptr->setRoom();
@@ -244,7 +380,7 @@ Player* playerPtr = &rj;
 	
 
 std::vector<Room*> roomList;
-roomList.push_back(macreadyPtr);
+roomList.push_back(macreadyRoomPtr);
 roomList.push_back(hallway1Ptr);
 roomList.push_back(sickbayPtr);
 roomList.push_back(latrinePtr);
@@ -256,9 +392,43 @@ std::string userInput = "";
 
 /**********************************************/
 /*Test to add inventory to player object*/
-Item alcohol("vodka");
+Item alcohol("vodkaTest");
 Item* alcoholPtr = &alcohol;
-playerPtr->setInventory(alcoholPtr);
+alcoholPtr->setUse();
+playerPtr->setInventory(alcohol);
+
+Item mask("mask");
+Item* maskPtr = &mask;
+
+macreadyRoomPtr->addItem(mask, playerPtr, 0);
+
+Item vodka("vodka");
+Item whiskey("whiskey");
+Item tequila("tequila");
+Item beer("beer");
+Item matarata("matarata");
+Item pabst("pabst");
+Item gin("gin");
+Item redHerring("redherring");
+
+playerPtr->setInventory(vodka);
+playerPtr->setInventory(whiskey);
+playerPtr->setInventory(tequila);
+playerPtr->setInventory(beer);
+playerPtr->setInventory(matarata);
+playerPtr->setInventory(pabst);
+playerPtr->setInventory(gin);
+playerPtr->setInventory(redHerring);
+
+
+
+
+
+
+
+
+
+
 
 /*********************************************/
 
@@ -301,6 +471,7 @@ if (playerLocation->getName() == "hallway1")
 }while(userInput != "exit");
 
 }
+
 
 
 
