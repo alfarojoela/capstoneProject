@@ -21,7 +21,7 @@ void Latrine::setRoom()
 	roomEntered = 0;
 }
 
-/* Function performs the action for the first feature of the room.*/
+/* Function performs the action for the first feature of the room. Player can gain the toilet paper from the feature.*/
 int Latrine::featureOne(Player* user)
 {
 	int outcome = 0;
@@ -33,16 +33,16 @@ int Latrine::featureOne(Player* user)
 		"There are numbers written on here. 5...3...9...2.\n"
 		"Someone wrote the code to the flamethrower locker on here. Odd...\n"<< std::endl;
 
-	index = findItemIndex("toilet paper");
 
-	removeItem(items[index], user);
+	//Removes the toilet paper from the room using the removeItem function
+	removeItem("toilet paper", user);
 
 	++fOneHappened;
 
 	return outcome;
 }
 
-/* Function performs the action for the second feature of the room.*/
+/* Function performs the action for the second feature of the room. Player can get hurt in this function.*/
 int Latrine::featureTwo(Player* user)
 {
 	int outcome = 0;
@@ -74,6 +74,7 @@ int Latrine::featureTwo(Player* user)
 		else if (choice == "2")
 		{
 			std::cout << std::endl;
+
 			//Add function to check if user has specific items to protect themselves
 			if (user->checkInventory("gun") || user->checkInventory("flamethrower") || user->checkInventory("axe"))
 			{
@@ -97,6 +98,7 @@ int Latrine::featureTwo(Player* user)
 			std::cout << "You attempt to dodge the incoming attack!" << std::endl;
 			std::cout << std::endl;
 
+			//Random chance the player will get hurt
 			number = rand() % 100 + 1;
 
 			if (number > 50)
