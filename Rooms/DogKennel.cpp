@@ -36,15 +36,14 @@ int DogKennel::featureOne(Player* user)
 		"What do you do?\n\n"
 		"1. Attack it with your fists\n"
 		"2. Attack it with a weapon\n"
-		"3. Attempt to flee\n"<< std::endl;
+		"3. Attempt to flee"<< std::endl;
 	std::cin >> choice;
 
 	while (response == "incorrect")
 	{
-		std::cout << std::endl;
-
 		if (choice == "1")
 		{
+			std::cout << std::endl;
 			std::cout << "You attack it with your fists. You have no formal training in any discipline.\n"
 				"But you're surprised that you connect with a hit. The creature appears to be a dog, but malformed.\n"
 				"It scurries off after the hit.\n"
@@ -58,7 +57,9 @@ int DogKennel::featureOne(Player* user)
 		}
 		else if (choice == "2")
 		{
-			if (choice == "2")
+			std::cout << std::endl;
+			//Add function to check if user has specific items to protect themselves
+			if (user->checkInventory("gun") || user->checkInventory("flamethrower") || user->checkInventory("axe"))
 			{
 				std::cout << "You attack the creature with the weapon. It stood no chance.\n"
 					"It only takes one swift blow and the growling has ceased. Its body lays on the floor below you."<< std::endl;
@@ -76,6 +77,7 @@ int DogKennel::featureOne(Player* user)
 		
 		if (choice == "3")
 		{
+			std::cout << std::endl;
 			std::cout << "You attempt to flee. You do not like the sounds this creature is making!\n"
 				"Unfornately you are too slow. The creature barrels into your legs knocking you over.\n"
 				"You hit your head on the wall nearby!\n"
@@ -112,15 +114,14 @@ int DogKennel::featureTwo(Player* user)
 		"It's on a shelf that is too tall for you to grab just standing up. You could jump for it.\n"
 		"What do you do?\n\n"
 		"1. Jump for the object\n"
-		"2. Ignore the object\n" << std::endl;
+		"2. Ignore the object" << std::endl;
 	std::cin >> choice;
 
 	while (response == "incorrect")
 	{
-		std::cout << std::endl;
-
 		if (choice == "1")
 		{
+			std::cout << std::endl;
 			std::cout << "You attempt to jump for the object." << std::endl;
 
 			number = rand() % 100 + 1;
@@ -142,10 +143,14 @@ int DogKennel::featureTwo(Player* user)
 
 			std::cout << "You obtain a petri dish!" << std::endl;
 
+			//Removes the petri dish from the room using the removeItem function
+			removeItem("petri dish", user);
+
 			response = "correct";
 		}
 		else if (choice == "2")
 		{
+			std::cout << std::endl;
 			std::cout << "You decide to ignore the object. Doesn't look like booze anyways!" << std::endl;
 
 			response = "correct";
