@@ -3,19 +3,41 @@
 #include <iostream>
 #include <string.h>
 #include <vector>
+#include <time.h>
+#include "ConferenceRoom.hpp"
 #include "Galley.hpp"
 #include "Macready.hpp"
+#include "MessHall.hpp"
 #include "Hallway1.hpp"
+#include "Hallway2.hpp"
 #include "SickBay.hpp"
 #include "Latrine.hpp"
 #include "ResearchLab.hpp"
+#include "EquipmentRoom.hpp"
+#include "RadioRoom.hpp"
+#include "ToolShed.hpp"
+#include "DogKennel.hpp"
+#include "Basement.hpp"
+#include "Garage.hpp"
 #include "Player.hpp"
 
 int main()
 {
-	std::vector<Item*> inventory;
+	srand(time(NULL));
+	std::vector<Item> inventory;
 
 	Player* newPlayer = new Player();
+
+	Item toiletPaper("toilet paper");
+	Item blowTorch("blow torch");
+	Item scapel("scapel");
+	Item petri("petri dish");
+	Item gun("gun");
+	Item axe("axe");
+	Item gin("gin");
+	Item* ptr = &axe;
+
+	newPlayer->setInventory(ptr);
 
 	//First room tests
 	Galley* newGalley = new Galley();
@@ -24,108 +46,73 @@ int main()
 	newStart->setRoom();
 	Hallway1* newHall1 = new Hallway1();
 	newHall1->setRoom();
+	Hallway2* newHall2 = new Hallway2();
+	newHall2->setRoom();
 	SickBay* newSick = new SickBay();
 	newSick->setRoom();
+	newSick->addItem(scapel);
 	Latrine* newLat = new Latrine();
 	newLat->setRoom();
+	newLat->addItem(toiletPaper);
 	ResearchLab* newLab = new ResearchLab();
 	newLab->setRoom();
+	EquipmentRoom* newEquip = new EquipmentRoom();
+	newEquip->setRoom();
+	newEquip->addItem(blowTorch);
+	ToolShed* newTool = new ToolShed();
+	newTool->setRoom();
+	RadioRoom* newRadio = new RadioRoom();
+	newRadio->setRoom();
+	MessHall* newMess = new MessHall();
+	newMess->setRoom();
+	newMess->addItem(gin);
+	DogKennel* newDog = new DogKennel();
+	newDog->setRoom();
+	newDog->addItem(petri);
+	Basement* newBase = new Basement();
+	newBase->setRoom();
+	Garage* newGar = new Garage();
+	newGar->setRoom();
+	ConferenceRoom* newCon = new ConferenceRoom();
+	newCon->setRoom();
 
 	std::vector<Room*> rooms;
 	rooms.push_back(newGalley);
 	rooms.push_back(newStart);
 	rooms.push_back(newHall1);
+	rooms.push_back(newHall2);
 	rooms.push_back(newLat);
 	rooms.push_back(newSick);
 	rooms.push_back(newLab);
+	rooms.push_back(newEquip);
+	rooms.push_back(newTool);
+	rooms.push_back(newRadio);
+	rooms.push_back(newMess);
+	rooms.push_back(newDog);
+	rooms.push_back(newBase);
+	rooms.push_back(newGar);
+	rooms.push_back(newCon);
 
-	Item* newItem = new Item("gun");
+	Room* newRoom;
 
-	newGalley->addItem(newItem, newPlayer, 0);
-
-	newGalley->itemsInRoom();
-
-	std::cout << "The item's location is " << newItem->getLocation() << std::endl;
-
-	newGalley->removeItem(newItem, newPlayer);
-
-	newGalley->itemsInRoom();
-
-	std::cout << "The item's location is " << newItem->getLocation() << std::endl;
-
-	std::cout << std::endl;
-
-	Room* currentRoom = newStart;
-
-	std::cout << "Room name before function call: " << currentRoom->getName() << std::endl;
-	currentRoom->featureOne(newPlayer);
-
-	currentRoom = currentRoom->changeRooms(rooms, "go back");
-
-	std::cout << "Room name after function call: " << currentRoom->getName() << std::endl;
-	currentRoom->featureOne(newPlayer);
-
-	/*Item gun("gun", "unknown");
-	Item flamethrower("flamethrower", "unknown");
-
-	std::cout << "The name of the room is " << newGalley->getName() << ".\n" << std::endl;
-
-	std::cout << "Long Description: ";
-	newGalley->displayDescrip();
-	std::cout << "Long Exit: ";
-	newGalley->displayExits();
-
-	std::cout << "Add Items to galley: " << std::endl;
-	newGalley->addItem(&gun);
-	newGalley->addItem(&flamethrower);
-
-	std::cout << "The location of the gun is in the " << gun.getLocation() << ".\n" << std::endl;
-
-	newGalley->itemsInRoom();
-
-	std::cout << "Remove gun from galley: " << std::endl;
-	newGalley->removeItem(&gun);
-
-	std::cout << "The location of the gun is in the " << gun.getLocation() << ".\n" << std::endl;
-
-	newGalley->itemsInRoom();
-
-	std::cout << "Short Description: ";
-	newGalley->displayDescrip();
-	std::cout << "Short Exit: ";
-	newGalley->displayExits();
-
-	std::cout << "Feature Two: \n";
-	newGalley->featureTwo();
-
-	std::cout << std::endl;
-
-	//Second room tests
-	std::cout << "The name of the room is " << newStart->getName() << ".\n" << std::endl;
-
-	std::cout << "Long Description: ";
-	newStart->displayDescrip();
-	std::cout << "Long Exit: ";
-	newStart->displayExits();
-
-	std::cout << "Feature One: ";
-	newStart->featureOne();
-
-	std::cout << "Feature Two: ";
-	newStart->featureTwo();
-
-	std::cout << "Check to see if bool value updated for feature two: ";
-	if (newStart->getFeatureTwoHap() == 1)
+	for (unsigned int i = 0; i < rooms.size(); ++i)
 	{
-		std::cout << "Feature two happened and cannot run again.\n" << std::endl;
-	}
-	else
-	{
-		std::cout << "Feature two didn't happen yet.\n" << std::endl;
+		newRoom = rooms[i];
+		std::cout << "The name of the room is " << newRoom->getName() << std::endl;
+		newRoom->displayDescrip();
+		newRoom->displayExits();
 	}
 
-	std::cout << "Short Description: ";
-	newStart->displayDescrip();
-	std::cout << "Short Exit: ";
-	newStart->displayExits();*/
+	newDog->featureOne(newPlayer);
+
+	newDog->itemsInRoom();
+	std::cout << "Player's inventory: ";
+	newPlayer->getInventory();
+	std::cout << std::endl;
+	newDog->featureTwo(newPlayer);
+	newDog->itemsInRoom();
+	std::cout << "Player's inventory: ";
+	newPlayer->getInventory();
+	std::cout << std::endl;
 }
+
