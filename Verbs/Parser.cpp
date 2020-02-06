@@ -17,6 +17,13 @@ std::vector<Verb *> initializeActions()
     actions.emplace_back(new Drop());
     actions.emplace_back(new Attack());
     actions.emplace_back(new Eat());
+    actions.emplace_back(new Use());
+    actions.emplace_back(new Jump());
+    actions.emplace_back(new Flee());
+    actions.emplace_back(new Break());
+    actions.emplace_back(new Look());
+    actions.emplace_back(new LookAt());
+
     // TODO: MORE VERBS TO BE ADDED
 
     return actions;
@@ -55,6 +62,25 @@ std::unordered_map<std::string, std::vector<std::string>> initializeSimilarActio
 
     similarActions.insert( { validActions.front()->getName(), similar::getEatVerbs() } );
     validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getUseVerbs() } );
+    validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getJumpVerbs() } );
+    validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getFleeVerbs() } );
+    validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getBreakVerbs() } );
+    validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getLookVerbs() } );
+    validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getLookAtVerbs() } );
+    validActions.erase(validActions.begin());
+
 
     // TODO: ADDING MORE SIMILAR ACTIONS
 
