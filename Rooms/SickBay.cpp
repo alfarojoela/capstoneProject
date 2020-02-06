@@ -21,7 +21,7 @@ void SickBay::setRoom()
 	roomEntered = 0;
 }
 
-/* Function performs the action for the first feature of the room.*/
+/* Function performs the action for the first feature of the room which allows the player to heal.*/
 int SickBay::featureOne(Player* user)
 {
 	int outcome = 3;
@@ -37,7 +37,7 @@ int SickBay::featureOne(Player* user)
 	return outcome;
 }
 
-/* Function performs the action for the second feature of the room. Player can gain the scapel in this feature.*/
+/* Function performs the action for the second feature of the room. Player can gain the scapel in this feature and possibly get hurt.*/
 int SickBay::featureTwo(Player* user)
 {
 	int outcome = 0;
@@ -64,10 +64,10 @@ int SickBay::featureTwo(Player* user)
 			std::cout << std::endl;
 			std::cout << "You grab a nearby scapel to defend yourself!\n" << std::endl;
 
-			//Finds the index of the scapel in the room inventory and then uses the index to remove it from the room inventory while adding it to the player's inventory.
-			index = findItemIndex("scapel");
-			removeItem(items[index], user);
+			//Removes the scapel from the room using the removeItem function
+			removeItem("scapel", user);
 
+			//Random chance the player will get hurt
 			number = rand() % 100 + 1;
 
 			if (number > 70)
@@ -93,6 +93,7 @@ int SickBay::featureTwo(Player* user)
 			std::cout << std::endl;
 			std::cout << "You attempt to dodge his attack!\n" << std::endl;
 
+			//Random chance the player will get hurt
 			number = rand() % 100 + 1;
 
 			if (number > 40)
