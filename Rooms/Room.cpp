@@ -42,51 +42,28 @@ bool Room::getFeatureTwoHap()
 	return fTwoHappened;
 }
 
-/* Function adds an item to the vector of items in the room. It receives a Player instance
-* in case the player wishes to drop an item from their inventory into the room. */
-void Room::addItem(Item newItem, Player* user, int number)
+/* Function adds an item to the vector of items in the room.  */
+void Room::addItem(Item newItem)
 {
-	if (number == 0)
-	{
-		items.push_back(newItem);
-	}
-	else
-	{
-		user->removeInventory();
-		items.push_back(newItem);
-	}
+	items.push_back(newItem);
 }
 
 /* Function removes an item from the vector of items in the room and adds it to the player's inventory.*/
-void Room::removeItem(Item removeItem, Player* user)
+void Room::removeItem(std::string itemToSearch, Player* user)
 {
+	int result = 0;
+
 	if (items.size() > 0)
 	{
-		for (unsigned int i = 0; i < items.size(); ++i)
+		//Calls checkItem to see if the item is in the room inventory. If it is, the index is used to add it to the player's inventory and remove it from the room.
+		result = checkItem(itemToSearch);
+
+		if (result != 999)
 		{
-			if (items[i].getName() == removeItem.getName())
-			{
-				user->setInventory(&removeItem);
-				items.erase(items.begin() + i);
-			}
+			user->setInventory(&items[result]);
+			items.erase(items.begin() + result);
 		}
 	}
-}
-
-/* Function searches through the room's inventory to find the index of an item.*/
-int Room::findItemIndex(std::string itemName)
-{
-	int index = 0;
-
-	for (unsigned int i = 0; i < items.size(); ++i)
-	{
-		if (items[i].getName() == itemName)
-		{
-			index = i;
-		}
-	}
-
-	return index;
 }
 
 /* Function displays the items currently in the room.*/
@@ -111,6 +88,25 @@ void Room::itemsInRoom()
 	{
 		std::cout << "There are no items to pick up in the room." << std::endl;
 	}
+}
+
+/* Function receives a string and checks if an item is in the room's inventory. Returns the index if the item is found. Else returns 999.*/
+int Room::checkItem(std::string itemName)
+{
+	int itemFound = 999;
+
+	if (items.size() > 0)
+	{
+		for (unsigned int i = 0; i < items.size(); ++i)
+		{
+			if (items[i].getName() == itemName)
+			{
+				itemFound = i;
+			}
+		}
+	}
+
+	return itemFound;
 }
 
 /* Function displays either the short or long description based off a boolean value.*/
