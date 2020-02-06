@@ -20,7 +20,7 @@ void EquipmentRoom::setRoom()
 	roomEntered = 0;
 }
 
-/* Function performs the action for the first feature of the room.*/
+/* Function performs the action for the first feature of the room. Player could die in the function.*/
 int EquipmentRoom::featureOne(Player* user)
 {
 	int outcome = 0;
@@ -54,6 +54,7 @@ int EquipmentRoom::featureOne(Player* user)
 			std::cout << std::endl;
 			std::cout << "You attempt to cross the room through the dark!\n" << std::endl;
 
+			//Random chance that the player will die or make it to the other side of the room
 			number = rand() % 100 + 1;
 
 			if (number < 21)
@@ -89,7 +90,7 @@ int EquipmentRoom::featureOne(Player* user)
 	return outcome;
 }
 
-/* Function performs the action for the second feature of the room.*/
+/* Function performs the action for the second feature of the room. Player could potentally die in the function.*/
 int EquipmentRoom::featureTwo(Player* user)
 {
 	int outcome = 0;
@@ -120,6 +121,7 @@ int EquipmentRoom::featureTwo(Player* user)
 			std::cout << std::endl;
 			std::cout << "You attempt to break the glass with your fists!\n" << std::endl;
 
+			//Random chance that the player dies
 			number = rand() % 100 + 1;
 
 			if (number < 21)
@@ -127,9 +129,8 @@ int EquipmentRoom::featureTwo(Player* user)
 				std::cout << "You successfully break the glass! Somehow you don't even cut yourself!\n"
 					"You obtain the blow torch!" << std::endl;
 
-				//Finds the index of the blow torch and then uses the index to remove it from the room inventory while adding it to the player's inventory.
-				index = findItemIndex("blow torch");
-				removeItem(items[index], user);
+				//Removes the blow torch from the room using the removeItem function
+				removeItem("blow torch", user);
 			}
 			else
 			{
@@ -157,9 +158,8 @@ int EquipmentRoom::featureTwo(Player* user)
 				"The glass shatters easily and falls to the ground.\n"
 				"You obtain the blow torch!" << std::endl;
 
-			//Finds the index of the blow torch and then uses the index to remove it from the room inventory while adding it to the player's inventory.
-			index = findItemIndex("blow torch");
-			removeItem(items[index], user);
+			//Removes the blow torch from the room using the removeItem function
+			removeItem("blow torch", user);
 
 			response = "correct";
 		}
