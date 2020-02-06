@@ -101,7 +101,7 @@ void Player::setGrit(std::string powerup)
 		std::cout << "You just had a can of Pabst Blue Ribbon." << std::endl;
 		std::cout << "You feel like you are going to throw up." << std::endl;
 		std::cout << "Your grit level takes a hit of -1 from the inferior brew." << std::endl;
-		std::cout << "Your grit level is now: " << getGrit();
+		std::cout << "Your grit level is now: " << getGrit() << std::endl;
 		deletePlayerItem("pabst");
 
 		return;
@@ -206,6 +206,7 @@ Item Player::transferItem(std::string itemNeeded)
 /*string of item to drop is sent as an argument.  checks names of items in inventory.  if found, deletes cell where the item is held.*/
 void Player::deletePlayerItem(std::string itemNeeded)
 {
+	std::cout << "INSIDE OBJECT FUNCTION: void Player::deletePlayerItem" << std::endl;
 	/*Item* itemNeededPtr = &itemNeeded;*/
 	std::string itemToDelete = itemNeeded;
 
@@ -221,6 +222,8 @@ void Player::deletePlayerItem(std::string itemNeeded)
 			return;
 		}
 	}
+
+	std::cout << "You drop the " << itemNeeded << std::endl;
 }
 
 int Player::getIndex(std::string itemToCheck)
@@ -254,6 +257,7 @@ int Player::getGameEnd()
 {
 	return gameEnd;
 }
+
 
 
 
