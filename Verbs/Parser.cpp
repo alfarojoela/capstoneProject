@@ -56,6 +56,25 @@ std::unordered_map<std::string, std::vector<std::string>> initializeSimilarActio
     similarActions.insert( { validActions.front()->getName(), similar::getEatVerbs() } );
     validActions.erase(validActions.begin());
 
+    similarActions.insert ( { validActions.front()->getName(), similar::getUseVerbs() } );
+    validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getJumpVerbs() } );
+    validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getFleeVerbs() } );
+    validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getBreakVerbs() } );
+    validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getLookVerbs() } );
+    validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getLookAtVerbs() } );
+    validActions.erase(validActions.begin());
+
+
     // TODO: ADDING MORE SIMILAR ACTIONS
 
     return similarActions;
