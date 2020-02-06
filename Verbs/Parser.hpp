@@ -21,6 +21,12 @@
 #include "Drop.hpp"
 #include "Attack.hpp"
 #include "Eat.hpp"
+#include "Use.hpp"
+#include "Jump.hpp"
+#include "Flee.hpp"
+#include "Break.hpp"
+#include "Look.hpp"
+#include "LookAt.hpp"
 
 const int CONST_THREE = 3;
 

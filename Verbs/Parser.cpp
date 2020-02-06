@@ -17,6 +17,13 @@ std::vector<Verb *> initializeActions()
     actions.emplace_back(new Drop());
     actions.emplace_back(new Attack());
     actions.emplace_back(new Eat());
+    actions.emplace_back(new Use());
+    actions.emplace_back(new Jump());
+    actions.emplace_back(new Flee());
+    actions.emplace_back(new Break());
+    actions.emplace_back(new Look());
+    actions.emplace_back(new LookAt());
+
     // TODO: MORE VERBS TO BE ADDED
 
     return actions;
