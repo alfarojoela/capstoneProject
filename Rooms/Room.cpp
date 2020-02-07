@@ -60,7 +60,7 @@ void Room::removeItem(std::string itemToSearch, Player* user)
 
 		if (result != 999)
 		{
-			user->setInventory(&items[result]);
+			user->setInventory(items[result]);
 			items.erase(items.begin() + result);
 		}
 	}
