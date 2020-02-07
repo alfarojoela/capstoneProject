@@ -59,13 +59,38 @@
 #include "Verb.hpp"
 
 /*Prototypes*/
+void roomRouter(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
+
 void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
+void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
+void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
 
 /*REFACTOR FUNCTION LATER*/
 
 /*discard this function.  only a test*/
 void parserPrototype(std::string userInput, std::string(&commands)[3])
 {
+	if (userInput == "take the toilet paper")
+	{
+		commands[0] == "take";
+		commands[1] == "the";
+		commands[2] == "toilet paper";
+	}
+
+	if (userInput == "take the vodka")
+	{
+		commands[0] = "take";
+		commands[1] = "the";
+		commands[2] = "vodka";
+	}
+
+	if (userInput == "room inventory")
+	{
+		commands[0] = "room";
+		commands[1] = "";
+		commands[2] = "inventory";
+	}
+
 	if (userInput == "inventory")
 	{
 		commands[0] = "inventory";
@@ -237,14 +262,22 @@ void parserPrototype(std::string userInput, std::string(&commands)[3])
 		commands[1] = "to";
 		commands[2] = "latrine";
 	}
+
+	if (userInput == "look at toilet paper")
+	{
+		commands[0] = "look";
+		commands[1] = "at";
+		commands[2] = "toilet paper";
+	}
+
+
 }
 
-/*Uncertain of how to send the Item object to the room function.*/
+/*Gets a string out of the commands vector.  Sends the string to the room removeItem function with the player pointer.  Room function handles the transition of inventory to player inventory and then deletes the appropriate cell.*/
 void take(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
 {
 	std::string itemToTake = commands[2];
-	int inventoryIndex = playerLocation->findItemIndex(itemToTake);
-	/*playerLocation->removeItem( , playerPtr);*/
+	playerLocation->removeItem(itemToTake, playerPtr);
 }
 
 void eat(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
@@ -283,7 +316,7 @@ void drop(std::string commands[3], Room* &playerLocation, Player* &playerPtr, st
 		Item itemToDrop = playerPtr->transferItem(itemToCheck);
 		Item* itemToDropPtr = &itemToDrop;
 		int number = playerPtr->getIndex(itemToCheck);
-		playerLocation->addItem(itemToDrop, playerPtr, number);
+		playerLocation->addItem(itemToDrop);
 		playerPtr->deletePlayerItem(itemToCheck);
 		std::cout << "You dropped the " << itemToCheck << std::endl;
 		std::cout << "Don't believe me?" << std::endl;
@@ -301,6 +334,30 @@ void go(Room* &playerLocation, std::vector<Room*> &roomList, int roomNumber)
 	std::cout << "You go to " << roomName << std::endl;
 }
 
+/*Based on conditions, calls appropriate roomInteractionFunction.*/
+void roomRouter(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
+{
+	/*Plan is to refactor the code into separate function files for routing which interaction is called.*/
+	/*If current player location is the macready room, then roomInteractionMacready will be called.*/
+	if (playerLocation->getName() == "macready")
+	{
+		roomInteractionMacready(commands, playerLocation, playerPtr, roomList);
+		return;
+	}
+
+	if (playerLocation->getName() == "hallway1")
+	{
+		roomInteractionHallway1(commands, playerLocation, playerPtr, roomList);
+		return;
+	}
+
+	if (playerLocation->getName() == "latrine")
+	{
+		roomInteractionLatrine(commands, playerLocation, playerPtr, roomList);
+		return;
+	}
+
+}
 /*Function to interact with macready room*/
 /*Based on commands within array, conditions are set up to control interactions with room.*/
 /*If a condition is met a room function is called for more interaction.  return is then used to get back to the main function.*/
@@ -308,6 +365,22 @@ void go(Room* &playerLocation, std::vector<Room*> &roomList, int roomNumber)
 void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
 {
 	std::cout << "IN FUNCTION: roomInteractionMacready FUNCTION: " << std::endl;
+
+
+	/*Set of commands to check room inventory.  Mainly for testing purposes rather than for the player.  May keep condition to allow player a cheat.  Won't put in help list.*/
+	if (commands[0] == "room" && commands[2] == "inventory")
+	{
+		std::cout << "Room Inventory roomINteractionMacready FUNCTION:" << std::endl;
+		playerLocation->itemsInRoom();
+		return;
+	}
+
+	if (commands[0] == "take")
+	{
+		take(commands, playerLocation, playerPtr, roomList, 0);
+	}
+
+
 	if (commands[0] == "help")
 	{
 		help();
@@ -416,26 +489,23 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 	
 }
 
-void roomRouter(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
-{
-	/*Might refactor the code into separate function files for routing which interaction is called.*/
-	/*If current player location is the macready room, then roomInteractionMacready will be called.*/
-	if (playerLocation->getName() == "macready")
-	{
-		roomInteractionMacready(commands, playerLocation, playerPtr, roomList);
-		return;
-	}
-	
-	if (playerLocation->getName() == "hallway1")
-	{
-		roomInteractionHallway1(commands, playerLocation, playerPtr, roomList);
-		return;
-	}
 
-}
+
 void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
 {
 	std::cout << "IN FUNCITON: roomInteractionHallway1 FUNCTION: " << std::endl;
+
+
+
+	if (commands[0] == "room" && commands[2] == "inventory")
+	{
+		std::cout << "Room Inventory roomInteractionLatrine FUNCTION:" << std::endl;
+		playerLocation->itemsInRoom();
+		return;
+	}
+
+
+
 	if (commands[0] == "help")
 	{
 		help();
@@ -479,7 +549,7 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 	
-	/*Macready room*/
+	/*Hallway1 room*/
 	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "room")
 	{
 		std::cout << "CHECKING getLongDescrip() " << std::endl;
@@ -510,16 +580,6 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "computer")
-	{
-		std::cout << "It's a state of the art Commodore 64." << std::endl;
-		std::cout << "The CPU is 1.023 MHz!" << std::endl;
-		std::cout << "The memory is 64 KB of RAM!" << std::endl;
-		std::cout << "This must have set MacReady back by $519.00" << std::endl;
-		std::cout << "He is quite the spender." << std::endl;
-		return;
-	}
-
 	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "lights")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
@@ -538,16 +598,147 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "latrine")
 	{
-		go(playerLocation, roomList, 4);
+		go(playerLocation, roomList, 2);
 		return;
 	}
 
 	
 		std::cout << "You can't do that here." << std::endl;
+		return;
 	
 }
 
+void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
+{
+	std::cout << "IN FUNCTION: roomInteractionLatrine FUNCTION:" << std::endl;
 
+
+	/*Set of commands to check room inventory.  Mainly for testing purposes rather than for the player.  May keep condition to allow player a cheat.  Won't put in help list.*/
+	if (commands[0] == "room" && commands[2] == "inventory")
+	{
+		std::cout << "Room Inventory roomInteractionLatrine FUNCTION:" << std::endl;
+		playerLocation->itemsInRoom();
+		return;
+	}
+
+	if (commands[0] == "take")
+	{
+		take(commands, playerLocation, playerPtr, roomList, 0);
+	}
+
+
+	if (commands[0] == "help")
+	{
+		help();
+		return;
+	}
+
+	if (commands[0] == "inventory")
+	{
+		playerPtr->getInventory();
+		return;
+	}
+
+	if (commands[0] == "map")
+	{
+		map();
+		return;
+	}
+
+	if (commands[0] == "drink")
+	{
+		drink(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
+	if (commands[0] == "eat")
+	{
+		eat(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
+	if (commands[0] == "take" && commands[2] == "vodka")
+	{
+		take(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
+	if (commands[0] == "drop")
+	{
+		drop(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+	/*Macready room*/
+	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "room")
+	{
+		std::cout << "CHECKING getLongDescrip() " << std::endl;
+		std::string longDescription = playerLocation->getLongDescrip();
+		std::cout << longDescription << std::endl;
+		return;
+	}
+
+	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
+	{
+			std::cout << "You lift the lid off the toilet tank of the toilet that is out of order." << std::endl;
+			std::cout << "Success!  You found half a bottle of vodka chilling in the toilet tank." << std::endl;
+			std::cout << "This could come in handy.  It could give you a bit of liquid courage to help you face whatever terrors are running loose." << std::endl;
+			std::cout << "Do you want to take the vodka?" << std::endl;
+			return;
+
+	}
+
+	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "toilet paper")
+	{
+		if (playerLocation->getFeatureOneHap() == 1)
+		{
+			std::cout << "You already did that." << std::endl;
+			return;
+		}
+
+		if (playerLocation->getFeatureOneHap() == 0)
+		{
+			playerLocation->featureOne(playerPtr);
+			return;
+		}
+	}
+
+	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "computer")
+	{
+		std::cout << "It's a state of the art Commodore 64." << std::endl;
+		std::cout << "The CPU is 1.023 MHz!" << std::endl;
+		std::cout << "The memory is 64 KB of RAM!" << std::endl;
+		std::cout << "This must have set MacReady back by $519.00" << std::endl;
+		std::cout << "He is quite the spender." << std::endl;
+		return;
+	}
+
+	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "computer")
+	{
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "You already played with the computer." << std::endl;
+			return;
+		}
+
+		if (playerLocation->getFeatureTwoHap() == 0)
+		{
+			playerLocation->featureTwo(playerPtr);
+			return;
+		}
+	}
+
+	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
+	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway1")
+	{
+		go(playerLocation, roomList, 1);
+		return;
+	}
+
+
+	std::cout << "You can't do that here." << std::endl;
+	return;
+
+}
 
 int main()
 {
@@ -586,6 +777,14 @@ sickbayPtr->setRoom();
 Room* latrinePtr = &latrine;
 latrinePtr->setRoom();
 
+Item toiletPaper("toilet paper");
+latrinePtr->addItem(toiletPaper);
+Item vodka("vodka");
+latrinePtr->addItem(vodka);
+
+
+
+
 Room* galleyPtr = &galley;
 galleyPtr->setRoom();
 
@@ -598,8 +797,8 @@ Player* playerPtr = &rj;
 std::vector<Room*> roomList;
 roomList.push_back(macreadyRoomPtr);
 roomList.push_back(hallway1Ptr);
-roomList.push_back(sickbayPtr);
 roomList.push_back(latrinePtr);
+roomList.push_back(sickbayPtr);
 roomList.push_back(galleyPtr);
 
 
@@ -616,9 +815,10 @@ playerPtr->setInventory(alcohol);
 Item mask("mask");
 Item* maskPtr = &mask;
 
-macreadyRoomPtr->addItem(mask, playerPtr, 0);
+/*macreadyRoomPtr->addItem(mask);*/
 
-Item vodka("vodka");
+
+
 Item whiskey("whiskey");
 Item tequila("tequila");
 Item beer("beer");
@@ -636,17 +836,9 @@ playerPtr->setInventory(pabst);
 playerPtr->setInventory(gin);
 playerPtr->setInventory(redHerring);
 
-
-
-
-
-
-
-
-
-
-
 /*********************************************/
+
+
 
 /*Loop starts*/
 do {
@@ -656,10 +848,11 @@ if (rj.getVictory() != 0)
 gameEnd(rj);
 }
 
+playerLocation->displayDescrip();
+
 userInput = "";
 
-playerLocation->displayDescrip();
-playerLocation->displayExits();
+
 std::cout << "________________________________________________________________________________________________________" << std::endl;
 std::cout << "What do you want to do?" << std::endl;
 /*Discards anything left in the input buffer. Source: https://www.geeksforgeeks.org/clearing-the-input-buffer-in-cc/ */
@@ -671,9 +864,7 @@ parserPrototype(userInput, commands);
 
 roomRouter(commands, playerLocation, playerPtr, roomList);
 
-
-
-
+playerLocation->displayExits();
 
 }while(userInput != "exit");
 
