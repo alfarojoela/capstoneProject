@@ -27,6 +27,10 @@
 #include "Break.hpp"
 #include "Look.hpp"
 #include "LookAt.hpp"
+#include "Go.hpp"
+#include "Take.hpp"
+#include "Help.hpp"
+#include "Inventory.hpp"
 
 const int CONST_THREE = 3;
 
@@ -35,7 +39,6 @@ class Parser {
 private:
     static std::vector<Verb *> validActions;
     static std::unordered_map<std::string, std::vector<std::string>> similarActions;
-    // TODO: CONTINUE ADDING PARSER MEMBERS & FUNCTIONALITY
 
 public:
     static void parseInput(std::string, std::string (&commands)[CONST_THREE]);

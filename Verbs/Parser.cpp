@@ -23,8 +23,10 @@ std::vector<Verb *> initializeActions()
     actions.emplace_back(new Break());
     actions.emplace_back(new Look());
     actions.emplace_back(new LookAt());
-
-    // TODO: MORE VERBS TO BE ADDED
+    actions.emplace_back(new Go());
+    actions.emplace_back(new Take());
+    actions.emplace_back(new Help());
+    actions.emplace_back(new Inventory());
 
     return actions;
 }
@@ -81,8 +83,17 @@ std::unordered_map<std::string, std::vector<std::string>> initializeSimilarActio
     similarActions.insert ( { validActions.front()->getName(), similar::getLookAtVerbs() } );
     validActions.erase(validActions.begin());
 
+    similarActions.insert ( { validActions.front()->getName(), similar::getGoVerbs() } );
+    validActions.erase(validActions.begin());
 
-    // TODO: ADDING MORE SIMILAR ACTIONS
+    similarActions.insert ( { validActions.front()->getName(), similar::getTakeVerbs() } );
+    validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getHelpVerbs() } );
+    validActions.erase(validActions.begin());
+
+    similarActions.insert ( { validActions.front()->getName(), similar::getInventoryVerbs() } );
+    validActions.erase(validActions.begin());
 
     return similarActions;
 }

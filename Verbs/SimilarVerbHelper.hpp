@@ -39,7 +39,8 @@ namespace similar
     std::vector<std::string> getBreakVerbs();
     std::vector<std::string> getLookVerbs();
     std::vector<std::string> getLookAtVerbs();
-
-    // TODO: ADDING MORE ACTIONS
-
+    std::vector<std::string> getGoVerbs();
+    std::vector<std::string> getTakeVerbs();
+    std::vector<std::string> getHelpVerbs();
+    std::vector<std::string> getInventoryVerbs();
 } 

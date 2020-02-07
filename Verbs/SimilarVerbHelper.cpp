@@ -29,7 +29,8 @@ std::vector<std::string> similar::getDrinkVerbs()
         "downs", 
         "indulges", 
         "swig", 
-        "wash down"};
+        "wash down"
+    };
 
     return similarDrinkVerbs;
 }
@@ -176,4 +177,60 @@ std::vector<std::string> similar::getLookAtVerbs()
     };
 
     return similarLookAtVerbs;
+}
+
+std::vector<std::string> similar::getGoVerbs()
+{
+    std::vector<std::string> similarGoVerbs {
+        "progress",
+        "move", 
+        "pass", 
+        "continue" 
+    };
+
+    return similarGoVerbs;
+}
+std::vector<std::string> similar::getTakeVerbs()
+{
+    std::vector<std::string> similarTakeVerbs {
+        "grab",
+        "get"
+    };
+
+    return similarTakeVerbs;
+}
+std::vector<std::string> similar::getHelpVerbs()
+{
+    std::vector<std::string> similarHelpVerbs {
+        "advice", 
+        "aid", 
+        "guidance", 
+        "helping hand", 
+        "support", 
+        "assist", 
+        "assistance", 
+        "utility"
+    };
+
+    return similarHelpVerbs;
+}
+std::vector<std::string> similar::getInventoryVerbs()
+{
+    std::vector<std::string> similarInventoryVerbs {
+        "reserve", 
+        "supply", 
+        "supplies", 
+        "stockpile", 
+        "bag", 
+        "backpack", 
+        "items", 
+        "pouch", 
+        "gear", 
+        "kit", 
+        "pack", 
+        "sack", 
+        "knapsack"
+    };
+
+    return similarInventoryVerbs;
 }

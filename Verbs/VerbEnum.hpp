@@ -18,7 +18,11 @@ enum VERBS {
     FLEE,
     BREAK,
     LOOK,
-    LOOK_AT
+    LOOK_AT,
+    GO,
+    TAKE,
+    HELP,
+    INVENTORY
 };
 
 const auto TALK_NAME = "talk";
@@ -33,3 +37,7 @@ const auto FLEE_NAME = "flee";
 const auto BREAK_NAME = "break";
 const auto LOOK_NAME = "look";
 const auto LOOK_AT_NAME = "look at";
+const auto GO_NAME = "go";
+const auto TAKE_NAME = "take";
+const auto HELP_NAME = "help";
+const auto INVENTORY_NAME = "inventory";
