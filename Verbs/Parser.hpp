@@ -14,6 +14,8 @@
 #include <sstream>
 
 #include "SimilarVerbHelper.hpp"
+#include "PrepositionHelper.hpp"
+#include "NounHelper.hpp"
 
 #include "Drink.hpp"
 #include "Smell.hpp"

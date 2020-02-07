@@ -196,7 +196,8 @@ std::vector<std::string> similar::getTakeVerbs()
     std::vector<std::string> similarTakeVerbs {
         "take",
         "grab",
-        "get"
+        "get",
+        "pick up"
     };
 
     return similarTakeVerbs;

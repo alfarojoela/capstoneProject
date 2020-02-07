@@ -140,7 +140,7 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
             for (Verb *verb : actions)
             {
                 auto similar = similarActions.find(verb->getName())->second;
-                for (std::string similarValue : similar)
+                for (const auto &similarValue : similar)
                 {
                     if (tempValue == similarValue) 
                     {
@@ -160,18 +160,39 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
         /* Check prepositions */
         if (!prepSet)
         {
-            // TODO: Associate prepositions depending on the verb (ex. if verb is 'drink' then preposition is 'the')
-            prepSet = true;
-            continue;
+            const auto prepositions = preposition::getPrepositions();
+
+            for (const auto &prep : prepositions)
+            {
+                if (tempValue == prep) 
+                {
+                    commands[1] = tempValue;
+
+                    prepSet = true;
+                    break;
+                }
+            }
+            
+            if (prepSet) continue;
         }
 
         /* Check feature/item */
         if (!nounSet)
         {
-            // TODO: 
-            nounSet = true;
-            continue;
-        }
+            const auto nouns = noun::getNouns();
 
+            for (const auto &noun : nouns) 
+            {
+                if (tempValue == noun)
+                {
+                    commands[2] = tempValue;
+
+                    nounSet = true;
+                    break;
+                }
+            }
+            
+            if (nounSet) continue;
+        }
     }
 }
