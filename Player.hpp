@@ -61,6 +61,11 @@ public:
 	Item transferItem(std::string itemNeeded);
 
 	int getIndex(std::string itemToCheck);
+
+	void decrementGrit();
+
+	void gritWarning();
+
 };
 
 
