@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-	grit = 2;
+	grit = 3;
 	alive = 1;
 	victory = 0;
 	std::vector<Item> inventory;
@@ -97,11 +97,11 @@ void Player::setGrit(std::string powerup)
 
 	if (type == "pabst")
 	{
-		grit--;
-		std::cout << "You just had a can of Pabst Blue Ribbon." << std::endl;
-		std::cout << "You feel like you are going to throw up." << std::endl;
-		std::cout << "Your grit level takes a hit of -1 from the inferior brew." << std::endl;
-		std::cout << "Your grit level is now: " << getGrit() << std::endl;
+		std::cout << "You drink the can of Pabst Blue Ribbon." << std::endl;
+		std::cout << "Even though this base is located in the middle of a frozen tundra, this can of beer seems to be body temperature warm somehow." << std::endl;
+		std::cout << "Your stomach twists itself into a pretzel as you shake the last drop from the can into your thirsty mouth." << std::endl;
+		std::cout << "You feel like you are going to throw up now." << std::endl;
+		decrementGrit();
 		deletePlayerItem("pabst");
 
 		return;
@@ -241,23 +241,39 @@ int Player::getIndex(std::string itemToCheck)
 	}
 }
 
-
-
-
 void Player::setGameEnd(int ending)
 {
 	gameEnd = ending;
 
 }
 
-
-
-
 int Player::getGameEnd()
 {
 	return gameEnd;
 }
 
+void Player::decrementGrit()
+{
+	grit--;
+	std::cout << "Your grit has decreased!" << std::endl;
+	std::cout << "Current grit is: "<<grit << std::endl;
+}
+
+void Player::gritWarning()
+{
+	if (grit == 1)
+	{
+		std::cout << "Your grit is running dangerously low." << std::endl;
+		std::cout << "If it reaches 0, you will become a big blurbing baby and you will be incapable of crushing your enemies and seeing them driven before you." << std::endl;
+		std::cout << "Also it will be game over for you." << std::endl;
+	}
+
+	if (grit == 0)
+	{
+		std::cout << "You couldn't handle the pressure.  You snapped like a rubber band.  What a pitiful disgrace." << std::endl;
+		setAlive(0);
+	}
+}
 
 
 
