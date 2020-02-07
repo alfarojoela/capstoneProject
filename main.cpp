@@ -17,19 +17,19 @@
 
 /*action functions after parser translation*/
 /*
- *  *  *  * #include "lookAtAction.hpp"
- *   *   *   * #include "look.hpp"
- *    *    *    * #include "useAction.hpp"
- *     *     *     * #include "dropAction.hpp"
- *      *      *      * #include "goAction.hpp"
- *       *       *       * */
+ *  *  *  *  * #include "lookAtAction.hpp"
+ *   *   *   *   * #include "look.hpp"
+ *    *    *    *    * #include "useAction.hpp"
+ *     *     *     *     * #include "dropAction.hpp"
+ *      *      *      *      * #include "goAction.hpp"
+ *       *       *       *       * */
 
 
 
 /*Player class.  Player object keeps game status such as grit level, victory, death, etc.*/
 #include "Player.hpp"
 
-/*Room class*/
+/*Room class all 15 files included.*/
 #include "Basement.hpp"
 #include "ConferenceRoom.hpp"
 #include "DogKennel.hpp"
@@ -70,6 +70,19 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 /*discard this function.  only a test*/
 void parserPrototype(std::string userInput, std::string(&commands)[3])
 {
+	if (userInput == "go to macready")
+	{
+		commands[0] = "go";
+		commands[1] = "to";
+		commands[2] = "macready";
+	}
+
+	if (userInput == "use the toilet")
+	{
+		commands[0] = "use";
+		commands[1] = "the";
+		commands[2] = "toilet";
+	}
 	if (userInput == "take the toilet paper")
 	{
 		commands[0] == "take";
@@ -83,6 +96,21 @@ void parserPrototype(std::string userInput, std::string(&commands)[3])
 		commands[1] = "the";
 		commands[2] = "vodka";
 	}
+
+	if (userInput == "take the whiskey")
+	{
+		commands[0] = "take";
+		commands[1] = "the";
+		commands[2] = "whiskey";
+	}
+
+	if (userInput == "take the tequila")
+	{
+		commands[0] = "take";
+		commands[1] = "the";
+		commands[2] = "tequila";
+	}
+
 
 	if (userInput == "room inventory")
 	{
@@ -123,6 +151,15 @@ void parserPrototype(std::string userInput, std::string(&commands)[3])
 		commands[1] = "at";
 		commands[2] = "lights";
 	}
+
+	if (userInput == "use the lights")
+	{
+		commands[0] = "use";
+		commands[1] = "the";
+		commands[2] = "lights";
+	}
+
+
 	if (userInput == "smell the room")
 	{
 		commands[0] = "smell";
@@ -200,18 +237,18 @@ void parserPrototype(std::string userInput, std::string(&commands)[3])
 		commands[2] = "vodka";
 	}
 
-	if (userInput == "drop beer")
+	if (userInput == "drop whiskey")
 	{
 		commands[0] = "drop";
 		commands[1] = "the";
-		commands[2] = "beer";
+		commands[2] = "whiskey";
 	}
 
 	if (userInput == "drop tequila")
 	{
 		commands[0] = "drop";
 		commands[1] = "the";
-		commands[2] = "beer";
+		commands[2] = "tequila";
 	}
 
 
@@ -270,6 +307,19 @@ void parserPrototype(std::string userInput, std::string(&commands)[3])
 		commands[2] = "toilet paper";
 	}
 
+	if (userInput == "current room")
+	{
+		commands[0] = "current";
+		commands[1] = "room";
+		commands[2] = "room";
+	}
+
+	if (userInput == "look at creature")
+	{
+		commands[0] = "look";
+		commands[1] = "at";
+		commands[2] = "creature";
+	}
 
 }
 
@@ -277,7 +327,14 @@ void parserPrototype(std::string userInput, std::string(&commands)[3])
 void take(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
 {
 	std::string itemToTake = commands[2];
-	playerLocation->removeItem(itemToTake, playerPtr);
+	if (playerLocation->checkItem(itemToTake) != 999)
+	{
+		std::cout << "Oinks!  You found the " << itemToTake << std::endl;
+		std::cout << "You're taking it with you." << std::endl;
+		playerLocation->removeItem(itemToTake, playerPtr);
+		return;
+	}
+
 }
 
 void eat(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
@@ -321,8 +378,12 @@ void drop(std::string commands[3], Room* &playerLocation, Player* &playerPtr, st
 		std::cout << "You dropped the " << itemToCheck << std::endl;
 		std::cout << "Don't believe me?" << std::endl;
 		std::cout << "Check your inventory." << std::endl;
-
+		return;
 	}
+	else
+		std::cout << "You can't drop what's not in your inventory. " << std::endl;
+
+
 }
 
 /*go function.  helper function for roomInteraction functions.  Takes playerLocation pointer, vector of room pointers, and an int for the roomNumber.*/
@@ -332,6 +393,7 @@ void go(Room* &playerLocation, std::vector<Room*> &roomList, int roomNumber)
 	playerLocation = roomList[roomNumber];
 	std::string roomName = playerLocation->getName();
 	std::cout << "You go to " << roomName << std::endl;
+	std::cout << "CURRENT LOCATION: " << playerLocation->getName() << std::endl;
 }
 
 /*Based on conditions, calls appropriate roomInteractionFunction.*/
@@ -364,14 +426,18 @@ void roomRouter(std::string commands[3], Room* &playerLocation, Player* &playerP
 /*If no conditions are met, it moves to the bottom of the function and a message is printed that whatever the user typed cannot be done.*/
 void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
 {
-	std::cout << "IN FUNCTION: roomInteractionMacready FUNCTION: " << std::endl;
-
 
 	/*Set of commands to check room inventory.  Mainly for testing purposes rather than for the player.  May keep condition to allow player a cheat.  Won't put in help list.*/
 	if (commands[0] == "room" && commands[2] == "inventory")
 	{
-		std::cout << "Room Inventory roomINteractionMacready FUNCTION:" << std::endl;
+		std::cout << "Room Inventory:" << std::endl;
 		playerLocation->itemsInRoom();
+		return;
+	}
+
+	if (commands[0] == "current" && commands[2] == "room")
+	{
+		std::cout << "CURRENT ROOM: " << playerLocation->getName() << std::endl;
 		return;
 	}
 
@@ -493,18 +559,12 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 
 void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
 {
-	std::cout << "IN FUNCITON: roomInteractionHallway1 FUNCTION: " << std::endl;
-
-
-
 	if (commands[0] == "room" && commands[2] == "inventory")
 	{
-		std::cout << "Room Inventory roomInteractionLatrine FUNCTION:" << std::endl;
+		std::cout << "Room Inventory:" << std::endl;
 		playerLocation->itemsInRoom();
 		return;
 	}
-
-
 
 	if (commands[0] == "help")
 	{
@@ -580,7 +640,7 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "lights")
+	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "lights")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -591,11 +651,19 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		if (playerLocation->getFeatureTwoHap() == 0)
 		{
 			playerLocation->featureTwo(playerPtr);
+			std::cout << "Whatever ran past you has freaked you out.  You loose some of your resolve." << std::endl;
+			playerPtr->decrementGrit();
+
 			return;
 		}
 	}
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
+	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "macready")
+	{
+		go(playerLocation, roomList, 0);
+		return;
+	}
 	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "latrine")
 	{
 		go(playerLocation, roomList, 2);
@@ -610,13 +678,11 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 
 void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
 {
-	std::cout << "IN FUNCTION: roomInteractionLatrine FUNCTION:" << std::endl;
-
 
 	/*Set of commands to check room inventory.  Mainly for testing purposes rather than for the player.  May keep condition to allow player a cheat.  Won't put in help list.*/
 	if (commands[0] == "room" && commands[2] == "inventory")
 	{
-		std::cout << "Room Inventory roomInteractionLatrine FUNCTION:" << std::endl;
+		std::cout << "Room Inventory:" << std::endl;
 		playerLocation->itemsInRoom();
 		return;
 	}
@@ -663,6 +729,18 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
+	if (commands[0] == "take" && commands[2] == "whiskey")
+	{
+		take(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
+	if (commands[0] == "take" && commands[2] == "tequila")
+	{
+		take(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
 	if (commands[0] == "drop")
 	{
 		drop(commands, playerLocation, playerPtr, roomList, 0);
@@ -682,8 +760,8 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 			std::cout << "You lift the lid off the toilet tank of the toilet that is out of order." << std::endl;
 			std::cout << "Success!  You found half a bottle of vodka chilling in the toilet tank." << std::endl;
 			std::cout << "This could come in handy.  It could give you a bit of liquid courage to help you face whatever terrors are running loose." << std::endl;
-			std::cout << "Do you want to take the vodka?" << std::endl;
-			return;
+			std::cout << "You can choose to take the vodka or just leave it where you found it." <<std::endl;			
+		return;
 
 	}
 
@@ -702,21 +780,11 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "computer")
-	{
-		std::cout << "It's a state of the art Commodore 64." << std::endl;
-		std::cout << "The CPU is 1.023 MHz!" << std::endl;
-		std::cout << "The memory is 64 KB of RAM!" << std::endl;
-		std::cout << "This must have set MacReady back by $519.00" << std::endl;
-		std::cout << "He is quite the spender." << std::endl;
-		return;
-	}
-
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "computer")
+	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "toilet")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
-			std::cout << "You already played with the computer." << std::endl;
+			std::cout << "Are you sure you want to try that again?  Remember what happened last time you did that?" << std::endl;
 			return;
 		}
 
@@ -727,9 +795,17 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		}
 	}
 
+	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "creature" && playerLocation->getFeatureTwoHap() == 1)
+	{
+		std::cout << "You have never seen anything like this creature before.  You suspect it is not of this Earth." << std::endl;
+		std::cout << "Is this what caused all the carnage in the Hallway?" << std::endl;
+		return;
+	}
+
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway1")
 	{
+		std::cout << "BACK TO HALLWAY1..." << std::endl;
 		go(playerLocation, roomList, 1);
 		return;
 	}
@@ -753,11 +829,18 @@ intro();
 	Player rj;
 	Macready macready;
 	Hallway1 hallway1;
-	SickBay sickbay;
 	Latrine latrine;
+	EquipmentRoom equipmentroom;
+	ToolShed toolshed;
+	SickBay sickbay;
+	RadioRoom radioroom;
+	ResearchLab researchlab;
+
+
 	Galley galley;
 
 
+	Item vodka("vodka");
 
 	/*Note to self: need to call setRoom function to fill data members before calling functions*/
 	/*Alternative to using new command and perhaps preventing memory leaks*/
@@ -776,11 +859,23 @@ sickbayPtr->setRoom();
 
 Room* latrinePtr = &latrine;
 latrinePtr->setRoom();
-
-Item toiletPaper("toilet paper");
-latrinePtr->addItem(toiletPaper);
-Item vodka("vodka");
 latrinePtr->addItem(vodka);
+
+Room* equipmentroomPtr = &equipmentroom;
+equipmentroomPtr->setRoom();
+
+Room* toolshedPtr = &toolshed;
+toolshedPtr -> setRoom();
+
+Room* radioroomPtr = &radioroom;
+radioroomPtr->setRoom();
+
+Room* researchlabPtr = &researchlab;
+researchlabPtr->setRoom();
+
+
+
+
 
 
 
@@ -795,11 +890,15 @@ Player* playerPtr = &rj;
 	
 
 std::vector<Room*> roomList;
+/*macready=0, hallway1=1, latrine=2, equipmentroom=3, toolshed=4, sickbay=5, radioroom=6, researchlab = 7*/
 roomList.push_back(macreadyRoomPtr);
 roomList.push_back(hallway1Ptr);
 roomList.push_back(latrinePtr);
+roomList.push_back(equipmentroomPtr);
+roomList.push_back(toolshedPtr);
 roomList.push_back(sickbayPtr);
-roomList.push_back(galleyPtr);
+roomList.push_back(radioroomPtr);
+roomList.push_back(researchlabPtr);
 
 
 std::string commands[3];
@@ -807,33 +906,14 @@ std::string userInput = "";
 
 /**********************************************/
 /*Test to add inventory to player object*/
-Item alcohol("vodkaTest");
-Item* alcoholPtr = &alcohol;
-alcoholPtr->setUse();
-playerPtr->setInventory(alcohol);
-
-Item mask("mask");
-Item* maskPtr = &mask;
-
-/*macreadyRoomPtr->addItem(mask);*/
-
-
 
 Item whiskey("whiskey");
 Item tequila("tequila");
-Item beer("beer");
-Item matarata("matarata");
-Item pabst("pabst");
-Item gin("gin");
 Item redHerring("redherring");
 
 playerPtr->setInventory(vodka);
 playerPtr->setInventory(whiskey);
 playerPtr->setInventory(tequila);
-playerPtr->setInventory(beer);
-playerPtr->setInventory(matarata);
-playerPtr->setInventory(pabst);
-playerPtr->setInventory(gin);
 playerPtr->setInventory(redHerring);
 
 /*********************************************/
@@ -869,6 +949,7 @@ playerLocation->displayExits();
 }while(userInput != "exit");
 
 }
+
 
 
 

@@ -6,7 +6,6 @@ Player::Player()
 	alive = 1;
 	victory = 0;
 	std::vector<Item> inventory;
-	/*Room* currentLocation = NULL;*/
 	gameEnd = 0;
 
 }
@@ -157,6 +156,8 @@ void Player::setInventory(Item newItem)
 /*Allows player to see list of inventory.  Not the same as checkInventory*/
 void Player::getInventory()
 {
+	std::cout << "Player Inventory: " << std::endl;
+	std::cout << "---" << std::endl;
 	for (int i = 0; i < inventory.size(); i++)
 	{
 		Item element = inventory[i];
@@ -164,6 +165,8 @@ void Player::getInventory()
 		std::string elementName = elementPtr->getName();
 		std::cout << elementName << std::endl;
 	}
+	std::cout << "---" << std::endl;
+
 }
 
 /*Used to check if player has necessary item to pass test.*/
@@ -274,6 +277,7 @@ void Player::gritWarning()
 		setAlive(0);
 	}
 }
+
 
 
 
