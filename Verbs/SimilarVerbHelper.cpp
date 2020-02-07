@@ -182,6 +182,7 @@ std::vector<std::string> similar::getLookAtVerbs()
 std::vector<std::string> similar::getGoVerbs()
 {
     std::vector<std::string> similarGoVerbs {
+        "go",
         "progress",
         "move", 
         "pass", 
@@ -193,6 +194,7 @@ std::vector<std::string> similar::getGoVerbs()
 std::vector<std::string> similar::getTakeVerbs()
 {
     std::vector<std::string> similarTakeVerbs {
+        "take",
         "grab",
         "get"
     };
@@ -202,6 +204,7 @@ std::vector<std::string> similar::getTakeVerbs()
 std::vector<std::string> similar::getHelpVerbs()
 {
     std::vector<std::string> similarHelpVerbs {
+        "help",
         "advice", 
         "aid", 
         "guidance", 
@@ -217,6 +220,7 @@ std::vector<std::string> similar::getHelpVerbs()
 std::vector<std::string> similar::getInventoryVerbs()
 {
     std::vector<std::string> similarInventoryVerbs {
+        "inventory",
         "reserve", 
         "supply", 
         "supplies", 
