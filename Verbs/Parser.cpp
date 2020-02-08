@@ -126,7 +126,8 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
     std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::tolower);
 
     /* Stream */
-    auto inputStream = std::istringstream(userInput);
+    std::istringstream inputStream;
+    inputStream.str(userInput);
 
     std::string tempValue;
     while (inputStream >> tempValue)
