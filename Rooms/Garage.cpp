@@ -21,19 +21,38 @@ void Garage::setRoom()
 	roomEntered = 0;
 }
 
-/* Function performs the action for the first feature of the room.*/
+/* Function performs the action for the first feature of the room where the player can obtain the flamethrower.*/
 int Garage::featureOne(Player* user)
 {
 	int outcome = 0;
 
-	std::cout << "Use the code to get the flamethrower" << std::endl;
+	std::cout << "You approach the case containing the flamethrower. This is a powerful tool that could be useful to you.\n"
+		"It is currently sitting in a locker since it is also very dangerous to use. Especially inside!\n"
+		"You attempt to open the locker with a code.\n"<< std::endl;
+
+	if (user->checkInventory("toilet paper"))
+	{
+		std::cout << "You pull out the toilet paper you found in the Latrine since it has the code to the locker written on it.\n"
+			"You type in 5...\n3...\n9...\n2...\nThe locker opens.\n"
+			"'Nothing's going to mess with me now' you think.\n"
+			"You obtain the flamethrower!\n" << std::endl;
+
+		//Removes the flamethrower from the room's inventory into the player's inventory
+		removeItem("flamethrower", user);
+	}
+	else
+	{
+		std::cout << "You can't quite remember the code. You think it starts with a 5...\n"
+			"You input a few codes, but the locker isn't opening.\n"
+			"You decide to give up. You're not going to be able to open it.\n" << std::endl;
+	}
 
 	++fOneHappened;
 
 	return outcome;
 }
 
-/* Function performs the action for the second feature of the room.*/
+/* Function performs the action for the second feature of the room the player checks if the snowmobile is working.*/
 int Garage::featureTwo(Player* user)
 {
 	int outcome = 0;
@@ -41,35 +60,11 @@ int Garage::featureTwo(Player* user)
 	std::cout << "You decide to see if the snowmobile is working. Like many things in the base, this vehicle is older.\n"
 		"It has had to be fixed a couple of times, but it has been running recently.\n"
 		"It's strange that the other snowmobile is missing...\n"
-		"You grab the key from a nearby table and attempt to turn the ignition...\n"
+		"\nYou grab the key from a nearby table and attempt to turn the ignition...\n"
 		"The engine begins to start up, but ultimately doesn't crank over.\n"
 		"It was a good idea, but it looks like there's no easy way out of this situation.\n"<< std::endl;
 
 	++fTwoHappened;
 
 	return outcome;
-}
-
-/* Function receives the list of rooms and a phrase from the user. It then selects a room to move to based on
-* the phrase. It returns a pointer to that room to main so the game can move to that room. */
-Room* Garage::changeRooms(std::vector<Room*> rooms, std::string phrase)
-{
-	Room* nextRoom = NULL;
-	std::string roomName = "";
-
-	if (phrase == "go back" || phrase == "back" || phrase == "go hallway" || phrase == "hallway")
-	{
-		roomName = "hallway2";
-	}
-
-	for (int x = 0; x < 15; ++x)
-	{
-		if (rooms[x]->getName() == roomName)
-		{
-			nextRoom = rooms[x];
-			x = 15;
-		}
-	}
-
-	return nextRoom;
 }
