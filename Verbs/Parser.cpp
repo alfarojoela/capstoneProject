@@ -120,7 +120,7 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
     commands[0] = commands[1] = commands[2] = "";
 
     /* Strip all non-alphanumeric characters */
-    userInput.erase(std::remove_if(userInput.begin(), userInput.end(), parserPredicate), userInput.end());
+    // userInput.erase(std::remove_if(userInput.begin(), userInput.end(), parserPredicate), userInput.end());
 
     /* Change every character to a lower-case for parsing */
     std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::tolower);

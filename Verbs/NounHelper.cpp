@@ -1,6 +1,6 @@
 #include "NounHelper.hpp"
 
-std::vector<std::string> getNouns() 
+std::vector<std::string> noun::getNouns() 
 {
     std::vector<std::string> nouns {
         "wall",
@@ -25,11 +25,17 @@ std::vector<std::string> getNouns()
         "bed",
         "booze",
         "red herring",
+        "redherring",
+        "toilet",
+        "creature",
         "toilet paper",
         "beer",
         "vodka",
         "mask",
         "tequila",
+        "lights",
+        "wall",
+        "macready",
         "matarata",
         "whiskey",
         "gin",
@@ -41,7 +47,8 @@ std::vector<std::string> getNouns()
         "flamethrower",
         "axe",
         "creature",
-        "blow torch"
+        "blow torch",
+        "inventory"
     };
 
     return nouns;
