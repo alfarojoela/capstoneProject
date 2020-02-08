@@ -11,8 +11,8 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h> 
-#include "Item.hpp"
-#include "Player.hpp"
+#include "../Item.hpp"
+#include "../Player.hpp"
 
 class Room {
 public:
