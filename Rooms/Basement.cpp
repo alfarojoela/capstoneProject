@@ -44,27 +44,3 @@ int Basement::featureTwo(Player* user)
 
 	return outcome;
 }
-
-/* Function receives the list of rooms and a phrase from the user. It then selects a room to move to based on
-* the phrase. It returns a pointer to that room to main so the game can move to that room. */
-Room* Basement::changeRooms(std::vector<Room*> rooms, std::string phrase)
-{
-	Room* nextRoom = NULL;
-	std::string roomName = "";
-
-	if (phrase == "go back" || phrase == "back" || phrase == "go hallway" || phrase == "hallway")
-	{
-		roomName = "hallway2";
-	}
-
-	for (int x = 0; x < 15; ++x)
-	{
-		if (rooms[x]->getName() == roomName)
-		{
-			nextRoom = rooms[x];
-			x = 15;
-		}
-	}
-
-	return nextRoom;
-}
