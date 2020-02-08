@@ -47,16 +47,26 @@
 #include "ToolShed.hpp"
 
 /*Parser class*/
-#include "Attack.hpp"
-#include "Drink.hpp"
-#include "Drop.hpp"
-#include "Eat.hpp"
-/*#include "Parser.hpp"*/
-#include "SimilarVerbHelper.hpp"
-#include "Smell.hpp"
-#include "Talk.hpp"
-#include "VerbEnum.hpp"
-#include "Verb.hpp"
+#include "Verbs/Attack.hpp"
+#include "Verbs/Break.hpp"
+#include "Verbs/Drink.hpp"
+#include "Verbs/Drop.hpp"
+#include "Verbs/Eat.hpp"
+#include "Verbs/Flee.hpp"
+#include "Verbs/Go.hpp"
+#include "Verbs/Help.hpp"
+#include "Verbs/Inventory.hpp"
+#include "Verbs/Jump.hpp"
+#include "Verbs/Look.hpp"
+#include "Verbs/LookAt.hpp"
+#include "Verbs/Smell.hpp"
+#include "Verbs/Take.hpp"
+#include "Verbs/Talk.hpp"
+#include "Verbs/Use.hpp"
+
+#include "Verbs/VerbEnum.hpp"
+#include "Verbs/Verb.hpp"
+#include "Verbs/Parser.hpp"
 
 /*Prototypes*/
 void roomRouter(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
@@ -940,7 +950,8 @@ getline(std::cin, userInput);
 std::cout << "________________________________________________________________________________________________________" << std::endl;
 
 /*userInput will be sent to parser along with a 3 slot array for strings.  the parser will process string into array slots.*/
-parserPrototype(userInput, commands);
+// parserPrototype(userInput, commands);
+Parser::parseInput(userInput, commands);
 
 roomRouter(commands, playerLocation, playerPtr, roomList);
 
