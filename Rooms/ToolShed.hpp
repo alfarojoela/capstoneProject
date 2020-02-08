@@ -13,5 +13,5 @@ public:
 	int featureOne(Player*);
 	int featureTwo(Player*);
 	void setRoom();
-	Room* changeRooms(std::vector<Room*>, std::string);
+    void obtainRope(Player*);
 };
