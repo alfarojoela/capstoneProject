@@ -12,7 +12,7 @@ void Galley::setRoom()
 	name = "galley";
 	longDes = "You enter the galley. This is the area of the base where members of the team prepared their food.\n" 
 		"The room usually smells good, but today it smells entirely different. There is more of a rotten smell"
-		" in the air.\nYou sense the area where the smell is coming from. You also notice an object on the counter.\n";
+		" in the air.\nYou sense the area where the smell is coming from. You also notice some food on the counter.\n";
 	shortDes = "You return to the galley. The area still smells terrible.\n";
 	exitLong = "The mess hall is from the direction you came.\nIt is the area of the base where members of the"
 		" crew ate their meals together.\n";
@@ -22,26 +22,63 @@ void Galley::setRoom()
 	roomEntered = 0;
 }
 
-/* Function performs the action for the first feature of the room.*/
+/* Function performs the action for the first feature of the room which allows the user to gain the red herring.*/
 int Galley::featureOne(Player* user)
 {
 	int outcome = 0;
+	std::string choice = "";
+	std::string response = "incorrect";
 
-	std::cout << "Player interacts with the red herring." << std::endl;
+	std::cout << "You head over to counter to inspect the food. It looks like a can of sardines.\n"
+		"Pick it up?\n\n"
+		"1. Pick up the can of sardines\n"
+		"2. Ignore it"<< std::endl;
+	std::cin >> choice;
+
+	while (response == "incorrect")
+	{
+		if (choice == "1")
+		{
+			std::cout << std::endl;
+			std::cout << "You decide to pick up the can.\n"
+				"It's not your favorite food, but it might be some of the only edible food left on the base.\n"
+				"You obtain the can of sardines!" << std::endl;
+
+			removeItem("red herring", user);
+
+			response = "correct";
+		}
+		else if (choice == "2")
+		{
+			std::cout << std::endl;
+			std::cout << "You decide to not pick up the can of sardines. That stuff is nasty." << std::endl;
+
+			response = "correct";
+		}
+		else
+		{
+			std::cout << "You have picked an incorrect choice. Please chose again: ";
+			std::cin >> choice;
+		}
+	}
+	std::cout << std::endl;
 
 	++fOneHappened;
 
 	return outcome;
 }
 
-/* Function performs the action for the second feature of the room.*/
+/* Function performs the action for the second feature of the room which allows the user to smell something in the room.*/
 int Galley::featureTwo(Player* user)
 {
 	int outcome = 0;
 
-	std::cout << "You decide to move closer to the smell. This is perhaps the worst smell you have experienced in"
-		" a while.\nIt at first doesn't look like something that belongs in the galley.\nYou step closer. The smell gets"
-		" more horrible.\nYou step closer. You see that it is just decomposing leftovers. Someone forgot to clean up after themselves." << std::endl;
+	std::cout << "You decide to move closer to the smell. This is perhaps the worst smell you have experienced in a while.\n"
+		"It's sitting on a plate, but it doesn't look like food.\n\n"
+		"You step closer. The smell gets more horrible...\n\n"
+		"You step closer. You begin to really contemplate why you are doing this. It isn't booze, who cares?\n\n"
+		"You step closer. You see that it is just decomposing leftovers. Someone forgot to clean up after themselves." << std::endl;
+	std::cout << std::endl;
 
 	++fTwoHappened;
 
