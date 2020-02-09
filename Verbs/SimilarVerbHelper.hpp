@@ -43,4 +43,5 @@ namespace similar
     std::vector<std::string> getTakeVerbs();
     std::vector<std::string> getHelpVerbs();
     std::vector<std::string> getInventoryVerbs();
+    std::vector<std::string> getMiscVerbs();
 } 

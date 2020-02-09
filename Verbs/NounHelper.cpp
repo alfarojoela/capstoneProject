@@ -53,3 +53,19 @@ std::vector<std::string> noun::getNouns()
 
     return nouns;
 }
+
+std::string noun::checkCombinedNoun(std::string str, std::string streamString)
+{ 
+    std::string returnString = str;
+
+    for (const auto &noun : getNouns()) 
+    {
+        if (str + " " + streamString == noun)
+        {
+            returnString = noun;
+            break;
+        }
+    }
+
+    return returnString;
+}

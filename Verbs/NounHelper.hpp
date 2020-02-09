@@ -7,4 +7,5 @@
 namespace noun 
 {
     std::vector<std::string> getNouns();
+    std::string checkCombinedNoun(std::string, std::string);
 }

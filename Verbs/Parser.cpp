@@ -155,6 +155,21 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
                 if (verbSet) break;
             }
 
+            if (!verbSet) 
+            {
+                for (const auto &similarValue : similar::getMiscVerbs())
+                {
+                    if (tempValue == similarValue)
+                    {
+                        commands[0] = tempValue;
+
+                        verbSet = true;
+                        break;
+                    }
+                }  
+            }
+
+
             if (verbSet) continue;
         }
 
@@ -193,7 +208,12 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
                 }
             }
             
-            if (nounSet) continue;
+            if (nounSet) 
+            {
+                inputStream >> tempValue;
+                commands[2] = noun::checkCombinedNoun(commands[2], tempValue);
+                continue;
+            }
         }
     }
 }
