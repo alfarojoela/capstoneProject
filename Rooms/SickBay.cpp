@@ -37,7 +37,7 @@ int SickBay::featureOne(Player* user)
 	return outcome;
 }
 
-/* Function performs the action for the second feature of the room. Player can gain the scapel in this feature and possibly get hurt.*/
+/* Function performs the action for the second feature of the room. Player can gain the scalpel in this feature and possibly get hurt.*/
 int SickBay::featureTwo(Player* user)
 {
 	int outcome = 0;
@@ -47,7 +47,7 @@ int SickBay::featureTwo(Player* user)
 	std::string response = "incorrect";
 
 	std::cout << "You approach the member of the crew laying on the bed. It's Jack!\n"
-		"He is one of the younger members of the crew. You haven't had a chance to get to know him yet.\n"
+		"He is one of the newer members of the crew. You haven't had a chance to get to know him yet.\n"
 		"He currently has a huge, bloody bandage wrapped around his body.\n"
 		"He attempts to speak, but can't. He seems heavily sedated.\n\n"
 		"His body begins to shake violently!\n"
@@ -62,25 +62,25 @@ int SickBay::featureTwo(Player* user)
 		if (choice == "1")
 		{
 			std::cout << std::endl;
-			std::cout << "You grab a nearby scapel to defend yourself!\n" << std::endl;
+			std::cout << "You grab a nearby scalpel to defend yourself!\n" << std::endl;
 
-			//Removes the scapel from the room using the removeItem function
-			removeItem("scapel", user);
+			//Removes the scalpel from the room using the removeItem function
+			removeItem("scalpel", user);
 
 			//Random chance the player will get hurt
 			number = rand() % 100 + 1;
 
 			if (number > 70)
 			{
-				std::cout << "You successfully fend off the attack with the scapel!\n"
+				std::cout << "You successfully fend off the attack with the scalpel!\n"
 					"He groans in pain as you slash his arm and slumps over after the attempt. You think 'What the hell is going on here?!?'\n"
-					"You gain a scapel!"<< std::endl;
+					"You gain a scalpel!"<< std::endl;
 			}
 			else
 			{
 				std::cout << "You do not fend off his attack and he scrathes you in the process! The wound is pretty deep.\n"
 					"He slumps over after hitting you. You grimace in pain.\n"
-					"You lose 1 health and gain a scapel!"<< std::endl;
+					"You lose 1 health and gain a scalpel!"<< std::endl;
 			}
 
 			//Outcome set to 1 to call function to lose health
@@ -119,6 +119,7 @@ int SickBay::featureTwo(Player* user)
 			std::cin >> choice;
 		}
 	}
+	std::cout << std::endl;
 
 	++fTwoHappened;
 
