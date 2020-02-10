@@ -339,7 +339,7 @@ void take(std::string commands[3], Room* &playerLocation, Player* &playerPtr, st
 	std::string itemToTake = commands[2];
 	if (playerLocation->checkItem(itemToTake) != 999)
 	{
-		std::cout << "Oinks!  You found the " << itemToTake << std::endl;
+		std::cout << "'Yoinks!'you say.  Just like Shaggy from Scooby Doo.  You found the " << itemToTake << std::endl;
 		std::cout << "You're taking it with you." << std::endl;
 		playerLocation->removeItem(itemToTake, playerPtr);
 		return;
@@ -398,12 +398,13 @@ void drop(std::string commands[3], Room* &playerLocation, Player* &playerPtr, st
 
 /*go function.  helper function for roomInteraction functions.  Takes playerLocation pointer, vector of room pointers, and an int for the roomNumber.*/
 /*rooms will be listed 0-14.*/
-void go(Room* &playerLocation, std::vector<Room*> &roomList, int roomNumber)
+void go(Room* &playerLocation, std::vector<Room*> &roomList, int roomNumber, Player* &playerPtr)
 {
 	playerLocation = roomList[roomNumber];
 	std::string roomName = playerLocation->getName();
 	std::cout << "You go to " << roomName << std::endl;
 	std::cout << "CURRENT LOCATION: " << playerLocation->getName() << std::endl;
+	playerPtr->setBearings(1);
 }
 
 /*Based on conditions, calls appropriate roomInteractionFunction.*/
@@ -556,7 +557,7 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 	if (commands[0] == "go" && commands[1] == "to" && commands[2]=="hallway1")
 	{
-		go(playerLocation, roomList, 1);
+		go(playerLocation, roomList, 1, playerPtr);
 		return;
 	}
 
@@ -671,12 +672,12 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "macready")
 	{
-		go(playerLocation, roomList, 0);
+		go(playerLocation, roomList, 0, playerPtr);
 		return;
 	}
 	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "latrine")
 	{
-		go(playerLocation, roomList, 2);
+		go(playerLocation, roomList, 2, playerPtr);
 		return;
 	}
 
@@ -816,7 +817,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway1")
 	{
 		std::cout << "BACK TO HALLWAY1..." << std::endl;
-		go(playerLocation, roomList, 1);
+		go(playerLocation, roomList, 1, playerPtr);
 		return;
 	}
 
@@ -938,8 +939,12 @@ if (rj.getVictory() != 0)
 gameEnd(rj);
 }
 
+if(playerPtr->getBearings() == 1)
+{
 playerLocation->displayDescrip();
-
+playerLocation->displayExits();
+playerPtr->setBearings(0);
+}
 userInput = "";
 
 
@@ -955,7 +960,7 @@ Parser::parseInput(userInput, commands);
 
 roomRouter(commands, playerLocation, playerPtr, roomList);
 
-playerLocation->displayExits();
+//playerLocation->displayExits();
 
 }while(userInput != "exit");
 
