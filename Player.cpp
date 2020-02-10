@@ -7,6 +7,7 @@ Player::Player()
 	victory = 0;
 	std::vector<Item> inventory;
 	gameEnd = 0;
+	needBearings = 1;
 
 }
 
@@ -278,7 +279,15 @@ void Player::gritWarning()
 	}
 }
 
+int Player::getBearings()
+{
+return needBearings;
+}
 
+void Player::setBearings(int bearings)
+{
+needBearings = bearings;
+}
 
 
 
