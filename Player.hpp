@@ -20,7 +20,7 @@ private:
 	int alive;
 	int victory;
 	int gameEnd;
-
+	int needBearings;
 	/*altered line*/
 	/*std::vector<Item*> inventory;*/
 	std::vector<Item> inventory;
@@ -65,6 +65,10 @@ public:
 	void decrementGrit();
 
 	void gritWarning();
+
+	int getBearings();
+
+	void setBearings(int);	
 
 };
 
