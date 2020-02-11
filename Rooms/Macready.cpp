@@ -51,7 +51,7 @@ int Macready::featureTwo(Player* user)
 		"Which do you choose?\n\n"
 		"1. Check the bot's king\n"
 		"2. Protect your king" << std::endl;
-		std::cin >> choice;
+		getline(std::cin, choice);
 
 		while (response == "incorrect")
 		{
@@ -77,7 +77,7 @@ int Macready::featureTwo(Player* user)
 			else
 			{
 				std::cout << "You have picked an incorrect choice. Please chose again: ";
-				std::cin >> choice;
+				getline(std::cin, choice);
 			}
 		}
 
