@@ -57,7 +57,7 @@ int Latrine::featureTwo(Player* user)
 		"What do you do?\n\n"
 		"1. Attack it with your fists\n"
 		"2. Attack it with a weapon\n"
-		"3. Attempt to dodge the attack\n" << std::endl;
+		"3. Attempt to dodge the attack" << std::endl;
 	getline(std::cin, choice);
 
 	while (response == "incorrect")
