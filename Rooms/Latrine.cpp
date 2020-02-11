@@ -58,7 +58,7 @@ int Latrine::featureTwo(Player* user)
 		"1. Attack it with your fists\n"
 		"2. Attack it with a weapon\n"
 		"3. Attempt to dodge the attack\n" << std::endl;
-	std::cin >> choice;
+	getline(std::cin, choice);
 
 	while (response == "incorrect")
 	{
@@ -122,7 +122,7 @@ int Latrine::featureTwo(Player* user)
 		if (choice != "1" && choice != "2" && choice != "3")
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 
