@@ -21,12 +21,197 @@ void Basement::setRoom()
 	roomEntered = 0;
 }
 
-/* Function performs the action for the first feature of the room.*/
+/* Function performs the action for the first feature of the room which allows the user to test another crew member to see if they are infected.*/
 int Basement::featureOne(Player* user)
 {
 	int outcome = 0;
+	int number = 0;
+	int correctQuestion = 0;
+	std::string choice = "";
+	std::string response = "incorrect";
 
-	std::cout << "Talk to doppelganger" << std::endl;
+	std::cout << "You approach the hunched over figure. As you get closer, it begins to get up.\n"
+		"It looks human and when it turns around you recognize the individual.\n"
+		"He's an older man with glasses and a balding head. It's Dr. Blair!\n\n"
+		"'Don't trust the computer son', he says, 'It's displaying gibberish.'\n\n"
+		"'Computer, what are you talking about?', you say.\n\n"
+		"'The computer! That we do our research on. It's gone haywire!', he says.\n"
+		"'Everything's going to be fine! Thing was freaking the Captain out.'\n"<< std::endl;
+
+	std::cout << "He looks at you waiting for a response. He's staring at you intently.\n"
+		"You notice a gun underneath his lab coat.\n\n"
+		"'Doc, you're not looking too good. Did you hit your head?'\n'Mind if I ask you a couple questions to jog your memory?', you say.\n"
+		"He nods. Still staring at you intently.\n"<< std::endl;
+
+	//Function uses three while loops to ask questions to the crew member.
+	std::cout << "What question do you ask?\n\n"
+		"1. Do you remember the Captain's name?\n"
+		"2. Do you remember your wive's name?" << std::endl;
+	getline(std::cin, choice);
+
+	while (response == "incorrect")
+	{
+		if (choice == "1")
+		{
+			std::cout << std::endl;
+			std::cout << "'The Captain?!?', he says, 'What kind of stupid question is that?'\n"
+				"'We mostly just call him 'Captain', but his real name is Bill.'\n\n"
+				"The Captain's name is Bill. That does line up. You decide to ask him another question.\n" << std::endl;
+
+			response = "correct";
+		}
+		else if (choice == "2")
+		{
+			std::cout << std::endl;
+			std::cout << "'My wife...', he says, 'We've been here so long I can hardly remember her face hehe.'\n"
+				"'Uhhhhhh...ummmmmmmmmmmmmm'\n"
+				"He seems to have lost his train of thought. 'That's ok, Doc', you say, 'You must have hit your head on something.'\n\n"
+				"Him not remembering his wife is suspicious, but not enough evidence that something's off.\n"
+				"You decide to ask him another question.\n" << std::endl;
+
+			//Increments a counter used to determine if the NPC is lying.
+			++correctQuestion;
+			response = "correct";
+		}
+		else
+		{
+			std::cout << "You have picked an incorrect choice. Please chose again: ";
+			getline(std::cin, choice);
+		}
+	}
+
+	response = "incorrect";
+
+	std::cout << "What question do you ask?\n\n"
+		"1. What do you do here on the base?\n"
+		"2. What's your degree in?" << std::endl;
+	getline(std::cin, choice);
+
+	while (response == "incorrect")
+	{
+		if (choice == "1")
+		{
+			std::cout << std::endl;
+			std::cout << "'What do I do?!?', he says, 'That's easy. I research.'\n"
+				"'We're discovering new things about this ecosystem everyday. The plants and animals and everything else.'\n"
+				"His response is correct. You decide to ask him another question.\n" << std::endl;
+
+			response = "correct";
+		}
+		else if (choice == "2")
+		{
+			std::cout << std::endl;
+			std::cout << "'My degree...', he says, 'Well I'm a researcher here so I studied Biology!.'\n\n"
+				"You remember him telling you his degree was in Microbiology.\n"
+				"His response was off a little bit, but it's not enough to suspect him of anything fishy.\n"
+				"You decide to ask him another question.\n" << std::endl;
+
+			//Increments a counter used to determine if the NPC is lying.
+			++correctQuestion;
+			response = "correct";
+		}
+		else
+		{
+			std::cout << "You have picked an incorrect choice. Please chose again: ";
+			getline(std::cin, choice);
+		}
+	}
+
+	response = "incorrect";
+
+	std::cout << "What question do you ask?\n\n"
+		"1. How old are you?\n"
+		"2. How many people currently work at the base?" << std::endl;
+	getline(std::cin, choice);
+
+	while (response == "incorrect")
+	{
+		if (choice == "1")
+		{
+			std::cout << std::endl;
+			std::cout << "'How old am I?!?', he says, 'Well I'm getting up there is what I'll say.'\n"
+				"'These questions are getting awfully nosey. You look like you could use a drink.'\n"
+				"'I hear the Captain's opened some booze in the Mess Hall. You should go check it out.'\n"
+				"You could always use some more booze, but he didn't answer the question.\n"<< std::endl;
+
+			//Increments a counter used to determine if the NPC is lying.
+			++correctQuestion;
+			response = "correct";
+		}
+		else if (choice == "2")
+		{
+			std::cout << std::endl;
+			std::cout << "'That's easy', he says, 'There's seven crew members right now.'\n\n"
+				"'I feel like I'm starting to remember things real well,' he says.\n"
+				"'These questions are getting awfully nosey. You look like you could use a drink.'\n"
+				"'I hear the Captain's opened some booze in the Mess Hall. You should go check it out.'\n"
+				"His response was correct.\n" << std::endl;
+
+			response = "correct";
+		}
+		else
+		{
+			std::cout << "You have picked an incorrect choice. Please chose again: ";
+			getline(std::cin, choice);
+		}
+	}
+
+	//Different options play out based on how many correct questions the user asked.
+	if (correctQuestion > 1)
+	{
+		std::cout << "You stare at each other for about ten seconds. Some of his answers are not lining up.\n"
+			"As you are contemplating this, he begins to reach for the gun.\n"
+			"Before he can grab the gun you decide to act. You decide to punch him in the face.\n"
+			"He's an older man so you think you can react quicker.\n" << std::endl;
+
+		number = rand() % 100 + 1;
+
+		//Even if the user asked mostly correct questions there's still a chance of a negative outcome.
+		if (number > 30)
+		{
+			std::cout << "You successfully punch him in the face! He goes flying back a couple of feet.\n"
+				"He appears disoriented. You decide to disarm him and take his gun.\n"
+				"You obtain a gun!\n"<< std::endl;
+
+			//Player gains the gun if they successfully attack the other crew member.
+			removeItem("gun", user);
+
+			//Checks if the user has the rope. If so, the tie up the other crew member.
+			if (user->checkInventory("rope"))
+			{
+				std::cout << "Before you exit the room you decide to tie him up with the rope.\n"
+					"Don't want him causing harm to any other crew members.\n"
+					"You lose the rope!\n"<< std::endl;
+
+				//Discards the rope since the user used it on the other crew member.
+				user->deletePlayerItem("rope");
+			}
+		}
+		else
+		{
+			std::cout << "He's quicker than you expect. He shoots you in the leg!\n"
+				"'You should have just went upstairs. Look what you made me do,' he says.\n"
+				"'I'm going to leave you here for some of my friends. Don't worry, they'll be here soon.'\n"
+				"He walks back up the stairs. You feel intense pain in your leg. It is bleeding heavily.\n"
+				"You lose health!\n" << std::endl;
+		}
+	}
+	else if(correctQuestion == 1)
+	{
+		std::cout << "You decide to listen to him.\n"
+			"'I'll be up there in a bit', he says. 'Got something to take care of real quick around here.'\n"
+			"It's weird that he doing things in the basement, but he did answer most of the questions correctly.\n"
+			"You decide to leave him to his business.\n" << std::endl;
+	}
+	else
+	{
+		std::cout << "You decide to listen to him.\n"
+			"'I'll be up there in a bit', he says. 'Got something to take care of real quick around here.'\n"
+			"It's weird that he doing things in the basement, but he did answer all of the questions correctly.\n"
+			"You decide to leave him to his business.\n" << std::endl;
+	}
+
+	std::cout << std::endl;
 
 	++fOneHappened;
 
@@ -38,7 +223,7 @@ int Basement::featureTwo(Player* user)
 {
 	int outcome = 0;
 
-	std::cout << "Get attacked. Happens second time entering the room." << std::endl;
+	std::cout << "Going to change what happens in the function." << std::endl;
 
 	++fTwoHappened;
 
