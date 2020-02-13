@@ -12,7 +12,7 @@
 #include "map.hpp"
 #include "intro.hpp"
 #include "menu.hpp"
-#include "help.hpp"
+#include "helpFunc.hpp"
 #include "gameEnd.hpp"
 
 /*action functions after parser translation*/
