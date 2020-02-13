@@ -125,7 +125,7 @@ void Player::setGrit(std::string powerup)
 	std::cout << "What are you trying to do?  You can't drink that! And you can't eat it either!" << std::endl;
 }
 
-/*Use this for grit checks in game.  Certain circumstances will cause death if it is too high or too low.*/
+/*Use this for grit checks in game.  Certain circumstances will cause death if it is too high or too low.  Used for game play.  Not to notify player.*/
 int Player::getGrit()
 {
 	return grit;
@@ -260,9 +260,10 @@ void Player::decrementGrit()
 {
 	grit--;
 	std::cout << "Your grit has decreased!" << std::endl;
-	std::cout << "Current grit is: "<<grit << std::endl;
+	std::cout << "Your current grit level is: "<<grit << std::endl;
 }
 
+/*For notifying player of grit level.*/
 void Player::gritWarning()
 {
 	if (grit == 1)
@@ -270,13 +271,21 @@ void Player::gritWarning()
 		std::cout << "Your grit is running dangerously low." << std::endl;
 		std::cout << "If it reaches 0, you will become a big blurbing baby and you will be incapable of crushing your enemies and seeing them driven before you." << std::endl;
 		std::cout << "Also it will be game over for you." << std::endl;
+		return;
 	}
 
 	if (grit == 0)
 	{
 		std::cout << "You couldn't handle the pressure.  You snapped like a rubber band.  What a pitiful disgrace." << std::endl;
 		setAlive(0);
+		return;
 	}
+
+	if (grit > 1)
+	{
+		std::cout << "Your current grit level is: " << grit << std::endl;
+	}
+
 }
 
 int Player::getBearings()
@@ -288,6 +297,19 @@ void Player::setBearings(int bearings)
 {
 needBearings = bearings;
 }
+
+void Player::gritHit(int damage)
+{
+	grit - damage;
+
+	getGrit();
+
+	if (grit == 0)
+	{
+		setAlive(0);
+	}
+}
+
 
 
 

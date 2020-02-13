@@ -70,7 +70,10 @@ public:
 
 	void setBearings(int);	
 
+	void gritHit(int damage);
+
 };
+
 
 
 
