@@ -74,12 +74,21 @@ void roomRouter(std::string commands[3], Room* &playerLocation, Player* &playerP
 void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
 void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
 void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
+void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
+
 
 /*REFACTOR FUNCTION LATER*/
 
 /*discard this function.  only a test*/
 void parserPrototype(std::string userInput, std::string(&commands)[3])
 {
+
+	if (userInput == "go to sickbay")
+	{
+	commands[0] = "go";
+	commands[1] = "to";
+	commands[2] = "sickbay";
+	}
 	if (userInput == "go to macready")
 	{
 		commands[0] = "go";
@@ -430,6 +439,12 @@ void roomRouter(std::string commands[3], Room* &playerLocation, Player* &playerP
 		return;
 	}
 
+	if (playerLocation->getName() == "sickBay")
+	{
+		roomInteractionSickBay(commands, playerLocation, playerPtr, roomList);
+		return;
+	}
+
 }
 /*Function to interact with macready room*/
 /*Based on commands within array, conditions are set up to control interactions with room.*/
@@ -669,6 +684,129 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
+
+
+	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
+	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "macready")
+	{
+		go(playerLocation, roomList, 0, playerPtr);
+		return;
+	}
+
+	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "latrine")
+	{
+		go(playerLocation, roomList, 2, playerPtr);
+		return;
+	}
+
+	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "sickbay")
+	{
+		go(playerLocation, roomList, 5, playerPtr);
+		return;
+	}
+
+		std::cout << "You can't do that here." << std::endl;
+		return;
+	
+}
+
+/*Rewrite this function here.*/
+void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
+{
+	if (commands[0] == "room" && commands[2] == "inventory")
+	{
+		std::cout << "Room Inventory:" << std::endl;
+		playerLocation->itemsInRoom();
+		return;
+	}
+
+	if (commands[0] == "help")
+	{
+		help();
+		return;
+	}
+
+	if (commands[0] == "map")
+	{
+		map();
+		return;
+	}
+
+	if (commands[0] == "inventory")
+	{
+		playerPtr->getInventory();
+		return;
+	}
+
+
+	if (commands[0] == "drink")
+	{
+		drink(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
+	if (commands[0] == "eat")
+	{
+		eat(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
+	if (commands[0] == "take")
+	{
+		take(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
+	if (commands[0] == "drop")
+	{
+		drop(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
+	/*Hallway1 room*/
+	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "room")
+	{
+		std::cout << "CHECKING getLongDescrip() " << std::endl;
+		std::string longDescription = playerLocation->getLongDescrip();
+		std::cout << longDescription << std::endl;
+		return;
+	}
+
+	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "room")
+	{
+		if (playerLocation->getFeatureOneHap() == 1)
+		{
+			std::cout << "'What happened here?' You wonder aloud." << std::endl;
+			return;
+		}
+
+		if (playerLocation->getFeatureOneHap() == 0)
+		{
+			std::cout << "The hallway smells of copper.  You now realize you have been smelling fresh spilt blood.  You now see that the hallway is charged with a desperate violence..." << std::endl;
+			playerLocation->featureOne(playerPtr);
+			return;
+		}
+	}
+
+
+
+	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "crew member")
+	{
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "Jack is slumped over in the bed.  You are too cautious to get close to him and give him another chance to attack you.  He doesn't respond any further to any of your calls." << std::endl;
+			return;
+		}
+
+		if (playerLocation->getFeatureTwoHap() == 0)
+		{
+			playerLocation->featureTwo(playerPtr);
+			return;
+		}
+	}
+
+
+
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "macready")
 	{
@@ -681,10 +819,9 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	
-		std::cout << "You can't do that here." << std::endl;
-		return;
-	
+
+	std::cout << "You can't do that here." << std::endl;
+	return;
 }
 
 void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
@@ -944,8 +1081,12 @@ if(playerPtr->getBearings() == 1)
 playerLocation->displayDescrip();
 playerLocation->displayExits();
 playerPtr->setBearings(0);
+
 }
 userInput = "";
+
+
+playerPtr->gritWarning();
 
 
 std::cout << "________________________________________________________________________________________________________" << std::endl;
@@ -955,16 +1096,18 @@ getline(std::cin, userInput);
 std::cout << "________________________________________________________________________________________________________" << std::endl;
 
 /*userInput will be sent to parser along with a 3 slot array for strings.  the parser will process string into array slots.*/
-// parserPrototype(userInput, commands);
+
+/*parserPrototype(userInput, commands);*/
 Parser::parseInput(userInput, commands);
 
 roomRouter(commands, playerLocation, playerPtr, roomList);
 
-//playerLocation->displayExits();
+/*playerLocation->displayExits();*/
 
 }while(userInput != "exit");
 
 }
+
 
 
 
