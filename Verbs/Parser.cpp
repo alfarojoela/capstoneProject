@@ -35,7 +35,7 @@ std::vector<Verb *> initializeActions()
 std::vector<Verb *> Parser::validActions = initializeActions();
 
 /* Static getter for valid action vector */
-std::vector<Verb *> Parser::getValidActions() 
+std::vector<Verb *> Parser::getValidActions()
 {
     return Parser::validActions;
 }
@@ -47,52 +47,52 @@ std::unordered_map<std::string, std::vector<std::string>> initializeSimilarActio
 
     auto validActions = Parser::getValidActions();
 
-    similarActions.insert( { validActions.front()->getName(), similar::getTalkVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getTalkVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert( { validActions.front()->getName(), similar::getSmellVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getSmellVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert( { validActions.front()->getName(), similar::getDrinkVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getDrinkVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert( { validActions.front()->getName(), similar::getDropVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getDropVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert( { validActions.front()->getName(), similar::getAttackVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getAttackVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert( { validActions.front()->getName(), similar::getEatVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getEatVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert ( { validActions.front()->getName(), similar::getUseVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getUseVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert ( { validActions.front()->getName(), similar::getJumpVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getJumpVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert ( { validActions.front()->getName(), similar::getFleeVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getFleeVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert ( { validActions.front()->getName(), similar::getBreakVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getBreakVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert ( { validActions.front()->getName(), similar::getLookVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getLookVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert ( { validActions.front()->getName(), similar::getLookAtVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getLookAtVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert ( { validActions.front()->getName(), similar::getGoVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getGoVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert ( { validActions.front()->getName(), similar::getTakeVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getTakeVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert ( { validActions.front()->getName(), similar::getHelpVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getHelpVerbs()});
     validActions.erase(validActions.begin());
 
-    similarActions.insert ( { validActions.front()->getName(), similar::getInventoryVerbs() } );
+    similarActions.insert({validActions.front()->getName(), similar::getInventoryVerbs()});
     validActions.erase(validActions.begin());
 
     return similarActions;
@@ -101,16 +101,83 @@ std::unordered_map<std::string, std::vector<std::string>> initializeSimilarActio
 /* Static class unordered map which contains all similar verbs that will be compared against the valid actions */
 std::unordered_map<std::string, std::vector<std::string>> Parser::similarActions = initializeSimilarActions();
 
+/* Static getter for similar actions */
 std::unordered_map<std::string, std::vector<std::string>> Parser::getSimilarActions()
 {
     return similarActions;
 }
 
-/* Predicate for stripping non-alphanumeric characters */
-bool parserPredicate(char character)
+/* REFERENCE: https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance for below
+   implementation of the Levenshtein distance algorithm. Instead of returning only the difference int, a pair
+   of the difference int and word string is returned as this is called  */
+std::pair<int, std::string> Parser::similarWordDistance(const std::string &userInput, const std::string &listWord)
 {
-    std::locale locale;
-    return (std::isalpha(character, locale) || character == ' ') ? false : true;
+    const auto inputLength = userInput.size(), wordLength = listWord.size();
+    std::vector<std::vector<int>> matrix(inputLength + 1, std::vector<int>(wordLength + 1));
+
+    matrix[0][0] = 0;
+
+    for (int i = 1; i <= inputLength; i++)
+        matrix[i][0] = i;
+
+    for (int i = 1; i <= wordLength; i++)
+        matrix[0][i] = i;
+
+    for (int i = 1; i <= inputLength; i++)
+        for (int j = 1; j <= wordLength; j++)
+            matrix[i][j] = std::min({matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j - 1] + (userInput[i - 1] == listWord[j - 1] ? 0 : 1)});
+
+    return make_pair(matrix[inputLength][wordLength], listWord);
+}
+
+/* Static compare function that takes in the user input and checks for misspelled words against the verbs,
+   nouns, and preposition lists. This utilizes the Levenshtein distance algorithm 
+   (REFERENCE: https://medium.com/@ethannam/understanding-the-levenshtein-distance-equation-for-beginners-c4285a5604f0). 
+   It is utilized by checking the distance/difference between the two words by characters. */
+std::string Parser::compareWords(std::string input)
+{
+    std::istringstream inputStream;
+    inputStream.str(input);
+
+    const auto actions = getValidActions();
+    const auto similarActions = getSimilarActions();
+
+    std::vector<std::string> values;
+    std::string tempStr, returnStr = "";
+
+    /* Add verbs */
+    for (Verb *verb : actions)
+    {
+        auto similar = similarActions.find(verb->getName())->second;
+        for (const auto similarValue : similar)
+            values.push_back(similarValue);
+    }
+
+    /* Misc verbs */
+    for (const auto misc : similar::getMiscVerbs())
+        values.push_back(misc);
+    
+    /* Prepositions */
+    for (const auto prep : preposition::getPrepositions())
+        values.push_back(prep);
+
+    /* Nouns */
+    for (const auto noun : noun::getNouns())
+        values.push_back(noun);
+
+    /* Iterate through stream checking the similarity between the lists of nouns, prepositions, and verb 
+       with each word in the stream (i.e. original user input) */
+    while (inputStream >> tempStr) 
+    {
+        for (const auto word : values)
+        {
+            const auto distance = similarWordDistance(tempStr, word);
+            returnStr += (distance.first == 1) ? word + " " : tempStr + " ";
+            
+        }
+    }
+
+    return returnStr;
 }
 
 /* Main text parser */
@@ -119,11 +186,11 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
     bool verbSet = false, prepSet = false, nounSet = false;
     commands[0] = commands[1] = commands[2] = "";
 
-    /* Strip all non-alphanumeric characters */
-    // userInput.erase(std::remove_if(userInput.begin(), userInput.end(), parserPredicate), userInput.end());
-
     /* Change every character to a lower-case for parsing */
     std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::tolower);
+
+    /* TODO: UNCOMMENT WHEN DONE TESTING */
+    // userInput = compareWords(userInput);
 
     /* Stream */
     std::istringstream inputStream;
@@ -133,7 +200,7 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
     while (inputStream >> tempValue)
     {
         /* Check verbs */
-        if (!verbSet) 
+        if (!verbSet)
         {
             const auto actions = getValidActions();
             const auto similarActions = getSimilarActions();
@@ -143,7 +210,7 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
                 auto similar = similarActions.find(verb->getName())->second;
                 for (const auto &similarValue : similar)
                 {
-                    if (tempValue == similarValue) 
+                    if (tempValue == similarValue)
                     {
                         commands[0] = verb->getName();
 
@@ -152,10 +219,11 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
                     }
                 }
 
-                if (verbSet) break;
+                if (verbSet)
+                    break;
             }
 
-            if (!verbSet) 
+            if (!verbSet)
             {
                 for (const auto &similarValue : similar::getMiscVerbs())
                 {
@@ -166,11 +234,11 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
                         verbSet = true;
                         break;
                     }
-                }  
+                }
             }
 
-
-            if (verbSet) continue;
+            if (verbSet)
+                continue;
         }
 
         /* Check prepositions */
@@ -180,7 +248,7 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
 
             for (const auto &prep : prepositions)
             {
-                if (tempValue == prep) 
+                if (tempValue == prep)
                 {
                     commands[1] = tempValue;
 
@@ -188,8 +256,9 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
                     break;
                 }
             }
-            
-            if (prepSet) continue;
+
+            if (prepSet)
+                continue;
         }
 
         /* Check feature/item */
@@ -197,7 +266,7 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
         {
             const auto nouns = noun::getNouns();
 
-            for (const auto &noun : nouns) 
+            for (const auto &noun : nouns)
             {
                 if (tempValue == noun)
                 {
@@ -207,8 +276,8 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
                     break;
                 }
             }
-            
-            if (nounSet) 
+
+            if (nounSet)
             {
                 inputStream >> tempValue;
                 commands[2] = noun::checkCombinedNoun(commands[2], tempValue);
