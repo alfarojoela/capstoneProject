@@ -25,7 +25,7 @@ void ConferenceRoom::setRoom()
 int ConferenceRoom::featureOne(Player* user)
 {
 	int outcome = 0;
-	int counter = 0;
+	int counter = user->getGrit();
 	std::string choice = "1";
 	std::string response = "incorrect";
 
@@ -33,7 +33,7 @@ int ConferenceRoom::featureOne(Player* user)
 		"You take a swig.\n" << std::endl;
 
 	//While loop runs until the player decides to exit or they take 8 drinks
-	while (response == "incorrect" && counter < 8)
+	while (response == "incorrect" && counter < (user->getGrit() + 8))
 	{
 		//If the player chose 1, the question is asked again.
 		if (choice == "1")
@@ -41,7 +41,7 @@ int ConferenceRoom::featureOne(Player* user)
 			std::cout << "Keep drinking?\n"
 				"1. Yes\n"
 				"2. No" << std::endl;
-			std::cin >> choice;
+			getline(std::cin, choice);
 
 			++counter;
 		}
@@ -54,36 +54,38 @@ int ConferenceRoom::featureOne(Player* user)
 		else if (choice == "2")
 		{
 			std::cout << std::endl;
-			std::cout << "You decide you've had enough." << std::endl;
+			std::cout << "You decide you've had enough.\n"
+				"Even though you drank more alcohol here, it doesn't seem to have an effect on your grit.\n"
+				"Must have been some cheap ShopCo brand!"<< std::endl;
 
 			response = "correct";
 		}
 		else
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 
 		//Lines print out based off of how many drinks the player has had.
-		if (counter == 3)
+		if (counter == (user->getGrit() + 3))
 		{
 			std::cout << "You feel buzzed now. Getting back to the same level as last night." << std::endl;
 		}
 
-		if (counter == 6)
+		if (counter == (user->getGrit() + 6))
 		{
 			std::cout << "You feel pretty drunk. Things are getting slower." << std::endl;
 		}
 
-		if (counter == 8)
+		if (counter == (user->getGrit() + 8))
 		{
 			std::cout << "You pass out.\n"
 				"When you wake up, something is standing over you.\n"
 				"It looks human, but it's face looks like it's shrieking. There is no noise coming out though.\n"
 				"It reaches its hand towards your face! That's the last thing you see." << std::endl;
 
-			//Player drinks too much and dies causing outcome to be set to two
-			outcome = 2;
+			//Calls the gritHit function which causes the player to die since they drank too much
+			user->gritHit(user->getGrit());
 		}
 	}
 	std::cout << std::endl;
@@ -106,7 +108,7 @@ int ConferenceRoom::featureTwo(Player* user)
 		"1. Tape One\n"
 		"2. Tape Two\n"
 		"3. Tape Three" << std::endl;
-	std::cin >> choice;
+	getline(std::cin, choice);
 
 	while (response == "incorrect")
 	{
@@ -142,7 +144,7 @@ int ConferenceRoom::featureTwo(Player* user)
 		else
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 
