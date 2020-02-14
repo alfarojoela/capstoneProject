@@ -32,8 +32,8 @@ int EquipmentRoom::featureOne(Player* user)
 		"You do know this room very well since you work in here frequently.\n"
 		"What do you do?\n\n"
 		"1. Find the light switch\n"
-		"2. Progress through the room in the dark\n"<< std::endl;
-	std::cin >> choice;
+		"2. Progress through the room in the dark"<< std::endl;
+	getline(std::cin, choice);
 
 	while (response == "incorrect")
 	{
@@ -71,8 +71,8 @@ int EquipmentRoom::featureOne(Player* user)
 					"You focus on the intense cry. So much so that you trip.\n"
 					"You feel a sharp pain and then nothing!" << std::endl;
 
-				//Outcome set to 2 which means player death and game over
-				outcome = 2;
+				//Calls the gritHit function which causes the player to die since they picked a bad choice.
+				user->gritHit(user->getGrit());
 			}
 
 			response = "correct";
@@ -80,7 +80,7 @@ int EquipmentRoom::featureOne(Player* user)
 		else
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 	std::cout << std::endl;
@@ -102,16 +102,17 @@ int EquipmentRoom::featureTwo(Player* user)
 	std::cout << "You approach the case containing the blow torch. It is in a glass case.\n"
 		"What do you do?\n\n"
 		"1. Break it with your fist\n"
-		"2. Ignore the case\n";
+		"2. Ignore the case";
 	//Checks if the user has the axe to unlock a secret option
 	if (user->checkInventory("axe"))
 	{
-		std::cout << "3. Use the axe\n" << std::endl;
-		std::cin >> choice;
+		std::cout << "\n3. Use the axe" << std::endl;
+		getline(std::cin, choice);
 	}
 	else
 	{
-		std::cin >> choice;
+		std::cout << std::endl;
+		getline(std::cin, choice);
 	}
 
 	while (response == "incorrect")
@@ -138,8 +139,8 @@ int EquipmentRoom::featureTwo(Player* user)
 					"You reach for the blow torch, but stumble as blood gushes out of your arm.\n"
 					"You feel very dizzy and then feel nothing." << std::endl;
 
-				//Outcome set to 2 which means player death and game over
-				outcome = 2;
+				//Calls the gritHit function which causes the player to die since they picked a bad choice.
+				user->gritHit(user->getGrit());
 			}
 
 			response = "correct";
@@ -166,7 +167,7 @@ int EquipmentRoom::featureTwo(Player* user)
 		else
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 	std::cout << std::endl;
