@@ -57,9 +57,10 @@ int RadioRoom::featureOne(Player* user)
 				"You were not expecting this result. You get frustrated. It's been a long day.\n"
 				"In a fit of rage you get up and slam the chair into the radio.\n"
 				"The radio explodes and sparks fly out. You get hit in the arm.\n"
-				"You lose one health!\n"<< std::endl;
+				"You lose one grit!\n"<< std::endl;
 
-			//Call function to make player lose health
+			//Calls the gritHit function to cause the player to lose health.
+			user->gritHit(1);
 
 			std::cout << "After everything calms down you notice some copper wire sticking out of the wreckage of the system.\n"
 				"You decide to pick it up.\n"
@@ -107,9 +108,10 @@ int RadioRoom::featureOne(Player* user)
 					"You were not expecting this result. You get frustrated. It's been a long day.\n"
 					"In a fit of rage you get up and slam the chair into the radio.\n"
 					"The radio explodes and sparks fly out. You get hit in the arm.\n"
-					"You lose one health!\n" << std::endl;
+					"You lose one grit!\n" << std::endl;
 
-				//Call function to make player lose health
+				//Calls the gritHit function to cause the player to lose health.
+				user->gritHit(1);
 
 				std::cout << "After everything calms down you notice some copper wire sticking out of the wreckage of the system.\n"
 					"You decide to pick it up.\n"
