@@ -24,13 +24,10 @@ void SickBay::setRoom()
 /* Function performs the action for the first feature of the room which allows the player to heal.*/
 int SickBay::featureOne(Player* user)
 {
-	int outcome = 3;
+	int outcome = 0;
 
-	std::cout << "You decide to use the medical kit on the table to patch up your wounds.\n"
-		"There are not many items to heal wounds in the base so you are lucky to find it.\n"
-		"You gain one health!\n"<< std::endl;
-
-	//Return outcome 3 which heals the player or calls function to heal player
+	std::cout << "You decide to use the medical kit on the table to patch up the wounds you've received so far.\n"
+		"You feel better by using it, but you feel it has no effect on your grit level.\n" << std::endl;
 
 	++fOneHappened;
 
@@ -55,7 +52,7 @@ int SickBay::featureTwo(Player* user)
 		"What do you do?\n\n"
 		"1. Defend yourself\n"
 		"2. Dodge the attack"<< std::endl;
-	std::cin >> choice;
+	getline(std::cin, choice);
 
 	while (response == "incorrect")
 	{
@@ -80,11 +77,11 @@ int SickBay::featureTwo(Player* user)
 			{
 				std::cout << "You do not fend off his attack and he scrathes you in the process! The wound is pretty deep.\n"
 					"He slumps over after hitting you. You grimace in pain.\n"
-					"You lose 1 health and gain a scalpel!"<< std::endl;
-			}
+					"You lose two grit and gain a scalpel!"<< std::endl;
 
-			//Outcome set to 1 to call function to lose health
-			outcome = 1;
+				//Calls the gritHit function to cause the player to lose health.
+				user->gritHit(2);
+			}
 
 			response = "correct";
 		}
@@ -105,10 +102,10 @@ int SickBay::featureTwo(Player* user)
 			{
 				std::cout << "You don't get out of the way in time! He scratches your back. The wound is pretty deep.\n"
 					"He slumps over after hitting you. You grimace in pain.\n"
-					"You lose 1 health!"<< std::endl;
+					"You lose two grit!"<< std::endl;
 
-				//Outcome set to 1 to call function to lose health
-				outcome = 1;
+				//Calls the gritHit function to cause the player to lose health.
+				user->gritHit(2);
 			}
 
 			response = "correct";
@@ -116,7 +113,7 @@ int SickBay::featureTwo(Player* user)
 		else
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 	std::cout << std::endl;
