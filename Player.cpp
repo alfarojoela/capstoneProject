@@ -299,7 +299,7 @@ needBearings = bearings;
 
 void Player::gritHit(int damage)
 {
-	grit - damage;
+	grit -= damage;
 
 	getGrit();
 
@@ -310,9 +310,9 @@ void Player::gritHit(int damage)
 }
 
 
-int Player::gritSave()
+void Player::setGritSave(int gritLevel)
 {
-	return grit;
+	grit=gritLevel;
 }
 
 
