@@ -110,10 +110,10 @@ int Latrine::featureTwo(Player* user)
 			{
 				std::cout << "You are too slow! The creature bites you in the shoulder. You feel an intense pain.\n"
 					"Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n"
-					"You lose one health!\n" << std::endl;
+					"You lose one grit!\n" << std::endl;
 
-				//Outcome set to 1 to call function to lose health
-				outcome = 1;
+				//Calls the gritHit function to cause the player to lose health.
+				user->gritHit(1);
 			}
 
 			response = "correct";
