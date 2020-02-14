@@ -84,7 +84,25 @@ std::vector<std::string> noun::getNouns()
         "crew",
         "member",
         "crew member",
-        "crewmember"
+        "crewmember",
+        "floor",
+        "alien",
+        "alien dog",
+        "aliendog",
+        "scalpel",
+        "copper",
+        "copper wire",
+        "copperwire",
+        "wild",
+        "wild turkey",
+        "rope",
+        "hollow",
+        "hollow statue",
+        "snow",
+        "snow mobile",
+        "snowmobile",
+        "makers",
+        "makers mark"
     };
 
     return nouns;
