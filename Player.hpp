@@ -72,7 +72,11 @@ public:
 
 	void gritHit(int damage);
 
+	int gritSave();
+
+
 };
+
 
 
 

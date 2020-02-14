@@ -107,17 +107,17 @@ void Player::setGrit(std::string powerup)
 		return;
 	}
 
-	if (type == "matarata")
+	if (type == "mata rata")
 	{
 		std::cout << "Not a good idea hitting the Mata Rata Tequila...That's Spanish for Rat Killer.  And apparently it is good at killing people too.";
 		setAlive(0);
 	}
 
-	if (type == "redherring")
+	if (type == "red herring")
 	{
 		std::cout << "You eat the Red Herring." << std::endl;
 		std::cout << "You feel no effect on your grit level...How disappointing.  You feel cheated and that this was an exercise in futility." << std::endl;
-		deletePlayerItem("redherring");
+		deletePlayerItem("red herring");
 
 		return;
 	}
@@ -210,7 +210,6 @@ Item Player::transferItem(std::string itemNeeded)
 /*string of item to drop is sent as an argument.  checks names of items in inventory.  if found, deletes cell where the item is held.*/
 void Player::deletePlayerItem(std::string itemNeeded)
 {
-	std::cout << "INSIDE OBJECT FUNCTION: void Player::deletePlayerItem" << std::endl;
 	/*Item* itemNeededPtr = &itemNeeded;*/
 	std::string itemToDelete = itemNeeded;
 
@@ -308,6 +307,12 @@ void Player::gritHit(int damage)
 	{
 		setAlive(0);
 	}
+}
+
+
+int Player::gritSave()
+{
+	return grit;
 }
 
 
