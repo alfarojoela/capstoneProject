@@ -193,7 +193,10 @@ int Basement::featureOne(Player* user)
 				"'You should have just went upstairs. Look what you made me do,' he says.\n"
 				"'I'm going to leave you here for some of my friends. Don't worry, they'll be here soon.'\n"
 				"He walks back up the stairs. You feel intense pain in your leg. It is bleeding heavily.\n"
-				"You lose health!\n" << std::endl;
+				"You lose three grit!\n" << std::endl;
+
+			//Calls the gritHit function which causes the player to die since they picked a bad choice.
+			user->gritHit(3);
 		}
 	}
 	else if(correctQuestion == 1)
