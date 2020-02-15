@@ -45,7 +45,7 @@ int EquipmentRoom::featureOne(Player* user)
 				"You hear a scream somewhere off in the base. This urges you even more to find the switch.\n"
 				"After about 20 seconds you find the switch!\n\n"
 				"You see the room contains a lot of different equipment. Most isn't useful to you right now.\n"
-				"You do see a blow torch in a glass case across the room."<< std::endl;
+				"You do see a blowtorch in a glass case across the room."<< std::endl;
 
 			response = "correct";
 		}
@@ -62,7 +62,7 @@ int EquipmentRoom::featureOne(Player* user)
 				std::cout << "You slowly make your way across the room.\n"
 					"About midway through the room, you hear a scream somewhere off in the base!\n"
 					"You ignore it and make it to the other side. Your hand touches the wall on top of a light switch.\n"
-					"You turn on the lights and see a blow torch in a glass case next to you." << std::endl;
+					"You turn on the lights and see a blowtorch in a glass case next to you." << std::endl;
 			}
 			else
 			{
@@ -99,7 +99,7 @@ int EquipmentRoom::featureTwo(Player* user)
 	std::string choice = "";
 	std::string response = "incorrect";
 
-	std::cout << "You approach the case containing the blow torch. It is in a glass case.\n"
+	std::cout << "You approach the case containing the blowtorch. It is in a glass case.\n"
 		"What do you do?\n\n"
 		"1. Break it with your fist\n"
 		"2. Ignore the case";
@@ -128,15 +128,15 @@ int EquipmentRoom::featureTwo(Player* user)
 			if (number < 21)
 			{
 				std::cout << "You successfully break the glass! Somehow you don't even cut yourself!\n"
-					"You obtain the blow torch!" << std::endl;
+					"You obtain the blowtorch!" << std::endl;
 
-				//Removes the blow torch from the room using the removeItem function
-				removeItem("blow torch", user);
+				//Removes the blowtorch from the room using the removeItem function
+				removeItem("blowtorch", user);
 			}
 			else
 			{
 				std::cout << "You break the glass but severely cut yourself in the process!\n"
-					"You reach for the blow torch, but stumble as blood gushes out of your arm.\n"
+					"You reach for the blowtorch, but stumble as blood gushes out of your arm.\n"
 					"You feel very dizzy and then feel nothing." << std::endl;
 
 				//Calls the gritHit function which causes the player to die since they picked a bad choice.
@@ -148,7 +148,7 @@ int EquipmentRoom::featureTwo(Player* user)
 		else if (choice == "2")
 		{
 			std::cout << std::endl;
-			std::cout << "You decide to ignore the blow torch. It isn't booze anyways!" << std::endl;
+			std::cout << "You decide to ignore the blowtorch. It isn't booze anyways!" << std::endl;
 
 			response = "correct";
 		}
@@ -157,10 +157,10 @@ int EquipmentRoom::featureTwo(Player* user)
 			std::cout << std::endl;
 			std::cout << "You decide to break the glass with the axe you found. You take a step back and take a swing.\n"
 				"The glass shatters easily and falls to the ground.\n"
-				"You obtain the blow torch!" << std::endl;
+				"You obtain the blowtorch!" << std::endl;
 
-			//Removes the blow torch from the room using the removeItem function
-			removeItem("blow torch", user);
+			//Removes the blowtorch from the room using the removeItem function
+			removeItem("blowtorch", user);
 
 			response = "correct";
 		}
