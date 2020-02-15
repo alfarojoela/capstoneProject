@@ -13,5 +13,5 @@ public:
 	int featureOne(Player*);
 	int featureTwo(Player*);
 	void setRoom();
-    void obtainAxe(Player*);
+    	void obtainAxe(Player*);
 };
