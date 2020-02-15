@@ -39,15 +39,16 @@ int Garage::featureOne(Player* user)
 
 		//Removes the flamethrower from the room's inventory into the player's inventory
 		removeItem("flamethrower", user);
+
+		//Allows the user to interact with the feature multiple times compared to other feature functions.
+		++fOneHappened;
 	}
 	else
 	{
 		std::cout << "You can't quite remember the code. You think it starts with a 5...\n"
 			"You input a few codes, but the locker isn't opening.\n"
-			"You decide to give up. You're not going to be able to open it.\n" << std::endl;
+			"You decide to give up. You're not going to be able to open it right now.\n" << std::endl;
 	}
-
-	++fOneHappened;
 
 	return outcome;
 }
