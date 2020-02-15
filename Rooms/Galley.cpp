@@ -33,7 +33,7 @@ int Galley::featureOne(Player* user)
 		"Pick it up?\n\n"
 		"1. Pick up the can of sardines\n"
 		"2. Ignore it"<< std::endl;
-	std::cin >> choice;
+	getline(std::cin, choice);
 
 	while (response == "incorrect")
 	{
@@ -41,9 +41,10 @@ int Galley::featureOne(Player* user)
 		{
 			std::cout << std::endl;
 			std::cout << "You decide to pick up the can.\n"
-				"It's not your favorite food, but it might be some of the only edible food left on the base.\n"
+				"It's not your favorite food, but it's probably edible.\n"
 				"You obtain the can of sardines!" << std::endl;
 
+			//Removes the red herring item from the room and adds it to the player's inventory.
 			removeItem("red herring", user);
 
 			response = "correct";
@@ -58,7 +59,7 @@ int Galley::featureOne(Player* user)
 		else
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 	std::cout << std::endl;
@@ -76,7 +77,7 @@ int Galley::featureTwo(Player* user)
 	std::cout << "You decide to move closer to the smell. This is perhaps the worst smell you have experienced in a while.\n"
 		"It's sitting on a plate, but it doesn't look like food.\n\n"
 		"You step closer. The smell gets more horrible...\n\n"
-		"You step closer. You begin to really contemplate why you are doing this. It isn't booze, who cares?\n\n"
+		"You step closer. You begin to really contemplate why you are doing this. It clearly isn't booze.\n\n"
 		"You step closer. You see that it is just decomposing leftovers. Someone forgot to clean up after themselves." << std::endl;
 	std::cout << std::endl;
 
