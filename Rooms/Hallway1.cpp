@@ -34,6 +34,12 @@ int Hallway1::featureOne(Player* user)
 
 	++fOneHappened;
 
+	//Give the axe to the player if this is the first feature they've done in the room.
+	if (user->checkInventory("axe") == 0 && getFeatureTwoHap() == 0)
+	{
+		obtainAxe(user);
+	}
+
 	return outcome;
 }
 
@@ -50,5 +56,32 @@ int Hallway1::featureTwo(Player* user)
 
 	++fTwoHappened;
 
+	//Give the axe to the player if this is the first feature they've done in the room.
+	if (user->checkInventory("axe") == 0 && getFeatureOneHap() == 0)
+	{
+		obtainAxe(user);
+	}
+
 	return outcome;
+}
+
+//Function allows the player to gain an item at the beginning of the game.
+void Hallway1::obtainAxe(Player* user)
+{
+	//Gives different descriptions depending on which feature the function came from.
+	if (getFeatureOneHap() == 1 && getFeatureTwoHap() == 0)
+	{
+		std::cout << "After seeing the unsettling sight of the blood in the room, you decide to pick up the axe hanging on the wall.\n"
+			"You never know what's going on. Best be prepared.\n"
+			"You obtain an axe!\n"<< std::endl;
+	}
+	else if (getFeatureOneHap() == 0 && getFeatureTwoHap() == 1)
+	{
+		std::cout << "After having the unsettling feeling of something rush past your leg, you decide to pick up the axe hanging on the wall.\n"
+			"You never know what's going on. Best be prepared.\n"
+			"You obtain an axe!\n" << std::endl;
+	}
+
+	//Removes the axe from the room's inventory and give it to the player.
+	removeItem("axe", user);
 }
