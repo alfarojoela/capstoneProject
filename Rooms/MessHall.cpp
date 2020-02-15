@@ -34,7 +34,7 @@ int MessHall::featureOne(Player* user)
 		"What do you do?\n\n"
 		"1. Eat the food\n"
 		"2. Walk away"<< std::endl;
-	std::cin >> choice;
+	getline(std::cin, choice);
 
 	while (response == "incorrect")
 	{
@@ -43,10 +43,10 @@ int MessHall::featureOne(Player* user)
 			std::cout << std::endl;
 			std::cout << "You decide to eat the spaghetti. After taking the first bite you can tell it has been sitting out for a bit.\n"
 				"It's still slightly warm and helps with the hangover. You take 15 minutes to eat the plate of spaghetti.\n"
-				"You gain one health!"<< std::endl;
+				"You gain one grit!"<< std::endl;
 
-			//Player gains a health through function call or by outcome being set to 3
-			outcome = 3;
+			//Increases the user's grit by one.
+			user->setGritSave(user->getGrit() + 1);
 
 			response = "correct";
 		}
@@ -60,7 +60,7 @@ int MessHall::featureOne(Player* user)
 		else
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 	std::cout << std::endl;
@@ -83,7 +83,7 @@ int MessHall::featureTwo(Player* user)
 		"What do you do?\n\n"
 		"1. Throw the bottle against the wall\n"
 		"2. Decide it's not worth it and walk away"<< std::endl;
-	std::cin >> choice;
+	getline(std::cin, choice);
 
 	while (response == "incorrect")
 	{
@@ -101,16 +101,17 @@ int MessHall::featureTwo(Player* user)
 					"As you are walking away, you notice a bottle of Beef Eater Gin behind a counter.\n"
 					"You pick it up. You obtain a bottle of gin!" << std::endl;
 
+				//Removes the item from the room and adds it to the player's inventory.
 				removeItem("gin", user);
 			}
 			else
 			{
 				std::cout << "You chuck the bottle against the wall. It shatters and pieces fly everywhere.\n"
 					"A piece ricochets back at you cutting your arm.\n"
-					"You lose one health!" << std::endl;
+					"You lose one grit!" << std::endl;
 
-				//Outcome set to 1 to call function to lose health
-				outcome = 1;
+				//Calls the gritHit function to cause the player to lose health.
+				user->gritHit(1);
 			}
 
 			response = "correct";
@@ -122,6 +123,7 @@ int MessHall::featureTwo(Player* user)
 				"As you are walking away, you notice a bottle of Beef Eater Gin behind a counter.\n"
 				"You pick it up. You obtain a bottle of gin!"<< std::endl;
 
+			//Removes the item from the room and adds it to the player's inventory.
 			removeItem("gin", user);
 
 			response = "correct";
@@ -129,7 +131,7 @@ int MessHall::featureTwo(Player* user)
 		else
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 	std::cout << std::endl;
