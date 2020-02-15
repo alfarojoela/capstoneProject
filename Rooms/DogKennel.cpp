@@ -37,7 +37,7 @@ int DogKennel::featureOne(Player* user)
 		"1. Attack it with your fists\n"
 		"2. Attack it with a weapon\n"
 		"3. Attempt to flee"<< std::endl;
-	std::cin >> choice;
+	getline(std::cin, choice);
 
 	while (response == "incorrect")
 	{
@@ -48,10 +48,10 @@ int DogKennel::featureOne(Player* user)
 				"But you're surprised that you connect with a hit. The creature appears to be a dog, but malformed.\n"
 				"It scurries off after the hit.\n"
 				"You do notice that the creature scratched you pretty good on the arm. Blood is gushing from a cut.\n"
-				"You lose one health!"<< std::endl;
+				"You lose two grit!"<< std::endl;
 
-			//Outcome set to 1 to call function to lose health
-			outcome = 1;
+			//Calls the gritHit function to cause the player to lose health.
+			user->gritHit(2);
 
 			response = "correct";
 		}
@@ -70,8 +70,8 @@ int DogKennel::featureOne(Player* user)
 			}
 			else
 			{
-				std::cout << "You do not have a weapon to fend off the creature!" << std::endl;
-				choice = "3";
+				std::cout << "You do not have a weapon to fend off the creature! You decide to attack it with your fists." << std::endl;
+				choice = "1";
 			}
 		}
 		
@@ -83,8 +83,8 @@ int DogKennel::featureOne(Player* user)
 				"You hit your head on the wall nearby!\n"
 				"The creature stands over you and the last thing you see is the creature's teeth going for your neck..." << std::endl;
 
-			//Outcome set to 2 which means player death and game over
-			outcome = 2;
+			//Calls the gritHit function which causes the player to die since they picked a bad choice.
+			user->gritHit(user->getGrit());
 
 			response = "correct";
 		}
@@ -92,7 +92,7 @@ int DogKennel::featureOne(Player* user)
 		if(choice != "1" && choice != "2" && choice != "3")
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 	std::cout << std::endl;
@@ -115,7 +115,7 @@ int DogKennel::featureTwo(Player* user)
 		"What do you do?\n\n"
 		"1. Jump for the object\n"
 		"2. Ignore the object" << std::endl;
-	std::cin >> choice;
+	getline(std::cin, choice);
 
 	while (response == "incorrect")
 	{
@@ -135,10 +135,10 @@ int DogKennel::featureTwo(Player* user)
 			{
 				std::cout << "You jump and grab the object, but fall awkwardly.\n"
 					"You land heavily on your knee. The pain is intense.\n"
-					"You lose one health!" << std::endl;
+					"You lose one grit!" << std::endl;
 
-				//Outcome set to 1 to call function to lose health
-				outcome = 1;
+				//Calls the gritHit function to cause the player to lose health.
+				user->gritHit(1);
 			}
 
 			std::cout << "You obtain a petri dish!" << std::endl;
@@ -158,7 +158,7 @@ int DogKennel::featureTwo(Player* user)
 		else
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 	std::cout << std::endl;
