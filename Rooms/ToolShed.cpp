@@ -48,7 +48,7 @@ int ToolShed::featureOne(Player* user)
 		"1. Attack the figure with your fists\n"
 		"2. Attack the figure with a weapon\n"
 		"3. Attempt to dodge the incoming attack and flee"<< std::endl;
-	std::cin >> choice;
+	getline(std::cin, choice);
 
 	while (response == "incorrect")
 	{
@@ -75,7 +75,8 @@ int ToolShed::featureOne(Player* user)
 					"The creature catches you in the side with one of its claws.\n"
 					"It drags you down into the snow. The last thing you see is its face!\nIt looks like are human face but its features are melting away.\n"<< std::endl;
 
-				//Call function to kill player
+				//Calls the gritHit function which causes the player to die since they picked a bad choice.
+				user->gritHit(user->getGrit());
 			}
 
 			response = "correct";
@@ -122,7 +123,8 @@ int ToolShed::featureOne(Player* user)
 					"The creature catches up to you and slashes you in the side with one of its claws.\n"
 					"It drags you down into the snow. The last thing you see is its face!\nIt looks like are human face but its features are melting away.\n" << std::endl;
 
-				//Call function to kill player
+				//Calls the gritHit function which causes the player to die since they picked a bad choice.
+				user->gritHit(user->getGrit());
 			}
 
 			response = "correct";
@@ -131,7 +133,7 @@ int ToolShed::featureOne(Player* user)
 		if(choice != "1" && choice != "2" && choice != "3")
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 
@@ -142,7 +144,7 @@ int ToolShed::featureOne(Player* user)
 	}
 	else if (alive > 0 && user->checkInventory("rope") == 1)
 	{
-		std::cout << "You make it to the tool shed. There are not many useful items left here.\n" << std::endl;
+		std::cout << "You head back to the tool shed. There are not many useful items left here.\n" << std::endl;
 	}
 
 	++fOneHappened;
@@ -173,7 +175,7 @@ int ToolShed::featureTwo(Player* user)
 		"What do you do?\n\n"
 		"1. Head deeper into the snow to obtain the item\n"
 		"2. Turn back to the path headed towards the tool shed" << std::endl;
-	std::cin >> choice;
+	getline(std::cin, choice);
 
 	while (response == "incorrect")
 	{
@@ -184,7 +186,7 @@ int ToolShed::featureTwo(Player* user)
 				
 			number = rand() % 100 + 1;
 
-			if (number > 50)
+			if (number > 30)
 			{
 				std::cout << "The item becomes more clear as you move closer. It is a bottle of Maker's Mark whiskey!\nYou could always use more alcohol.\n"
 					"You obtain a bottle of whiskey!" << std::endl;
@@ -200,7 +202,8 @@ int ToolShed::featureTwo(Player* user)
 					"You get turned around and don't know the direction of the item or the base.\n"
 					"You wander further and further away until you can't feel anything anymore." << std::endl;
 
-				//Call function to kill player
+				//Calls the gritHit function which causes the player to die since they picked a bad choice.
+				user->gritHit(user->getGrit());
 			}
 
 			response = "correct";
@@ -208,7 +211,7 @@ int ToolShed::featureTwo(Player* user)
 		else if (choice == "2")
 		{
 			std::cout << std::endl;
-			std::cout << "You decide not to risk it and continue on the path to the tool shed." << std::endl;
+			std::cout << "You decide not to risk it and continue on the path that connects the tool shed and the base." << std::endl;
 
 			++alive;
 			response = "correct";
@@ -216,7 +219,7 @@ int ToolShed::featureTwo(Player* user)
 		else
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 	std::cout << std::endl;
@@ -228,7 +231,7 @@ int ToolShed::featureTwo(Player* user)
 	}
 	else if (alive > 0 && user->checkInventory("rope") == 1)
 	{
-		std::cout << "You make it to the tool shed. There are not many useful items left here.\n" << std::endl;
+		std::cout << "You head back to the tool shed. There are not many useful items left here.\n" << std::endl;
 	}
 
 	++fTwoHappened;
