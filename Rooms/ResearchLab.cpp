@@ -31,6 +31,7 @@ int ResearchLab::featureOne(Player* user)
 	std::cout << "You approach a computer that is currently running a simulation.\n"
 		"You decide to sit down. The title of the screen says 'Infection Simulation'\n"<< std::endl;
 
+	//While loop runs until the user enters no or they run through the full computer simulation
 	while (response == "incorrect" && counter < 4)
 	{
 		++counter;
@@ -40,7 +41,7 @@ int ResearchLab::featureOne(Player* user)
 			std::cout << "Press Enter?\n"
 				"1. Yes\n"
 				"2. No" << std::endl;
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 
 		if (choice == "2")
@@ -53,9 +54,10 @@ int ResearchLab::featureOne(Player* user)
 		if (choice != "1" && choice != "2")
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 
+		//Different parts of the simulation run based off of the counter that is incremented each time through the loop.
 		if (counter == 1 && choice == "1")
 		{
 			std::cout << std::endl;
@@ -130,11 +132,11 @@ int ResearchLab::featureTwo(Player* user)
 		"All of the sudden the chest gives way. The doctor's arms go through the chest!\nHe says 'What the hell!'. Teeth form in the hole on the chest.\n"
 		"They close on the doctor's arms and sever them both.\nBlood begins to spray everywhere! The doctor begins screaming in agony!\n\n"
 		"After a couple seconds, he isn't screaming anymore. He slumps over on the table.\n"
-		"The thing that is the captain stands up. It takes a swipe at you.\n"
+		"The thing that is the captain stands up.\n"
 		"What do you do?\n\n"
 		"1. Attack the creature\n"
-		"2. Attempt to flee and dodge the attack" << std::endl;
-	std::cin >> choice;
+		"2. Attempt to flee" << std::endl;
+	getline(std::cin, choice);
 
 	while (response == "incorrect")
 	{
@@ -176,10 +178,10 @@ int ResearchLab::featureTwo(Player* user)
 				std::cout << "You run as fast as you've ever run in your life. The swipe hits you! It's claws puncture your shoulder.\n"
 					"You reflexively kick backwards causeing the creature to fall onto the ground.\n"
 					"It appears to not be moving.\n"
-					"You lose one health!"<< std::endl;
+					"You lose two grit!"<< std::endl;
 
-				//Outcome set to 1 which means the player will take damage
-				outcome = 1;
+				//Calls the gritHit function to cause the player to lose health.
+				user->gritHit(2);
 			}
 
 			response = "correct";
@@ -188,7 +190,7 @@ int ResearchLab::featureTwo(Player* user)
 		if(choice != "1" && choice != "2")
 		{
 			std::cout << "You have picked an incorrect choice. Please chose again: ";
-			std::cin >> choice;
+			getline(std::cin, choice);
 		}
 	}
 	std::cout << std::endl;
