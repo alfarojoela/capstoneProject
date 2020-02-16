@@ -15,17 +15,6 @@
 #include "helpFunc.hpp"
 #include "gameEnd.hpp"
 
-/*action functions after parser translation*/
-/*
- *  *  *  *  *  * #include "lookAtAction.hpp"
- *   *   *   *   *   * #include "look.hpp"
- *    *    *    *    *    * #include "useAction.hpp"
- *     *     *     *     *     * #include "dropAction.hpp"
- *      *      *      *      *      * #include "goAction.hpp"
- *       *       *       *       *       * */
-
-
-
 /*Player class.  Player object keeps game status such as grit level, victory, death, etc.*/
 #include "Player.hpp"
 
@@ -75,7 +64,6 @@ void lookAt(std::string commands[3], Room* &playerLocation, Player* &playerPtr, 
 void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
 void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
 void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
-void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList);
 
 
 /*REFACTOR FUNCTION LATER*/
@@ -597,17 +585,9 @@ void roomRouter(std::string commands[3], Room* &playerLocation, Player* &playerP
 		return;
 	}
 
-	if (playerLocation->getName() == "sickBay")
-	{
-		roomInteractionSickBay(commands, playerLocation, playerPtr, roomList);
-		return;
-	}
+
 
 }
-
-/*PLACE HOLDER FOR getRoomLocation*/
-
-
 
 /*Function to interact with macready room*/
 /*Based on commands within array, conditions are set up to control interactions with room.*/
@@ -812,39 +792,58 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		return;
 }
 
-
-
 void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
 {
+
+	/*Set of commands to check room inventory.  Mainly for testing purposes rather than for the player.  May keep condition to allow player a cheat.  Won't put in help list.*/
 	if (commands[0] == "room" && commands[2] == "inventory")
 	{
-		std::cout << "Room Inventory:" << std::endl;
 		playerLocation->itemsInRoom();
 		return;
 	}
 
-	if (commands[0] == "help")
+	if (commands[0] == "talk")
 	{
-		help();
+		std::cout << "There is no one in the hallway to talk to except yourself.  So you try to have a conversation, but it doesn't work out so well." << std::endl;
+		std::cout << "Maybe you could leave this room to find someone to talk to?" << std::endl;
 		return;
 	}
-
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
-	if (commands[0] == "inventory")
-	{
-		playerPtr->getInventory();
-		return;
-	}
-
 
 	if (commands[0] == "drink")
 	{
 		drink(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
+	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "floor")
+	{
+		if (playerLocation->getFeatureOneHap() == 1)
+		{
+			std::cout << "'What happened here?'  You wonder aloud." << std::endl;
+			return;
+		}
+
+		else
+			std::cout << "The hallway has a faint metallic smell to it.  You now realize you have been smelling fresh spilt blood.  You now see tha the hallway is charged with a desperate violence..." << std::endl;
+		playerLocation->featureOne(playerPtr);
+		return;
+	}
+
+	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "lights")
+	{
+		std::cout << "You tilt your head up to point your nostrils up at the ceiling and away from the terrible smell.  Some of the flourescent lights burned out and are stinking up the place.  It reminds you of burnt marshmallows on a campfire." << std::endl;
+		return;
+	}
+
+	if (commands[0] == "drop")
+	{
+		drop(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
+
+	if (commands[0] == "attack")
+	{
+		std::cout << "There's no one and nothing to attack now." << std::endl;
 		return;
 	}
 
@@ -854,79 +853,134 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "take")
+	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "lights")
 	{
-		take(commands, playerLocation, playerPtr, roomList, 0);
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "The lighst continue to flicker on and off..." << std::endl;
+			return;
+		}
+
+		else
+		{
+			playerLocation->featureTwo(playerPtr);
+			return;
+		}
+	}
+
+	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "floor")
+	{
+		std::cout << "You are already using the floor to stand on.  What other possible use could it be to you?" << std::endl;
 		return;
 	}
 
-	if (commands[0] == "drop")
+	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "floor")
 	{
-		drop(commands, playerLocation, playerPtr, roomList, 0);
+		std::cout << "You jump up and down on the floor.  It seems stable." << std::endl;
 		return;
 	}
-	
-	/*Hallway1 room*/
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "room")
+
+
+	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "lights")
 	{
-		std::cout << "CHECKING getLongDescrip() " << std::endl;
+		std::cout << "That just doesn't make any sense.  There is no way you can do that." << std::endl;
+		return;
+	}
+
+	if (commands[0] == "flee")
+	{
+		std::cout << "There is nothing to flee from." << std::endl;
+		return;
+	}
+
+	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "floor")
+	{
+		std::cout << "The floor is linoleum glued to concrete.  There is no way you are going to be able to break it." << std::endl;
+		return;
+	}
+
+	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "lights")
+	{
+		std::cout << "That is a bad idea.  Breaking the lights is going to make this room completely dark.  You could trip over something and crack your head!" << std::endl;
+		return;
+	}
+
+	if (commands[0] == "look" && commands[1] == "" && commands[2] == "")
+	{
 		std::string longDescription = playerLocation->getLongDescrip();
 		std::cout << longDescription << std::endl;
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "room")
+	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "floor")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
-			std::cout << "'What happened here?' You wonder aloud." << std::endl;
+			std::cout << "You realize now that the trail of red streaks on the floor is blood." << std::endl;
 			return;
 		}
 
-		if (playerLocation->getFeatureOneHap() == 0)
+		else		
 		{
-			std::cout << "The hallway smells of copper.  You now realize you have been smelling fresh spilt blood.  You now see that the hallway is charged with a desperate violence..." << std::endl;
+			std::cout << "You take a closer look at the floor..." << std::endl;
 			playerLocation->featureOne(playerPtr);
 			return;
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "wall")
+	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "lights")
 	{
-		std::cout << "You feel sick.  The smell is stifling..." << std::endl;
+		std::cout << "The lights flicker on and off.  Maybe you should use the lights." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "lights")
+	if (commands[0] == "look" && commands[1] == "at")
 	{
-		if (playerLocation->getFeatureTwoHap() == 1)
-		{
-			std::cout << "The lights continue to flicker on and off..." << std::endl;
-			return;
-		}
-
-		if (playerLocation->getFeatureTwoHap() == 0)
-		{
-			playerLocation->featureTwo(playerPtr);
-			std::cout << "Whatever ran past you has freaked you out.  You loose some of your resolve." << std::endl;
-			playerPtr->decrementGrit();
-
-			return;
-		}
+		lookAt(commands, playerLocation, playerPtr, roomList, 0);
+		return;
 	}
 
-
+	if (commands[0] == "current" && commands[2] == "room")
+	{
+		std::cout << "CURRENT ROOM: " << playerLocation->getName() << std::endl;
+		return;
+	}
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
+	
+	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "latrine")
+	{
+		go(playerLocation, roomList, 2, playerPtr);
+		return;
+	}
+	
 	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "macready")
 	{
 		go(playerLocation, roomList, 0, playerPtr);
 		return;
 	}
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "latrine")
+	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "equipment room")
 	{
-		go(playerLocation, roomList, 2, playerPtr);
+		go(playerLocation, roomList, 3, playerPtr);
+		return;
+	}
+
+	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "radio room")
+	{
+		go(playerLocation, roomList, 6, playerPtr);
+		return;
+	}
+
+	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway2")
+	{
+		go(playerLocation, roomList, 9, playerPtr);
+		return;
+	}
+
+	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "research lab")
+	{
+		go(playerLocation, roomList, 7, playerPtr);
 		return;
 	}
 
@@ -936,30 +990,16 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-		std::cout << "You can't do that here." << std::endl;
-		return;
-	
-}
-
-/*Rewrite this function here.*/
-void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList)
-{
-	if (commands[0] == "room" && commands[2] == "inventory")
+	if (commands[0] == "take")
 	{
-		std::cout << "Room Inventory:" << std::endl;
-		playerLocation->itemsInRoom();
+		take(commands, playerLocation, playerPtr, roomList, 0);
 		return;
 	}
+
 
 	if (commands[0] == "help")
 	{
 		help();
-		return;
-	}
-
-	if (commands[0] == "map")
-	{
-		map();
 		return;
 	}
 
@@ -969,87 +1009,23 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-
-	if (commands[0] == "drink")
+	if (commands[0] == "map")
 	{
-		drink(commands, playerLocation, playerPtr, roomList, 0);
+		map();
 		return;
 	}
 
-	if (commands[0] == "eat")
+	if (commands[0] == "savegame")
 	{
-		eat(commands, playerLocation, playerPtr, roomList, 0);
+		std::cout << "Place holder for save" << std::endl;
 		return;
 	}
 
-	if (commands[0] == "take")
+	if (commands[0] == "loadgame")
 	{
-		take(commands, playerLocation, playerPtr, roomList, 0);
+		std::cout << "Place holder for load" << std::endl;
 		return;
 	}
-
-	if (commands[0] == "drop")
-	{
-		drop(commands, playerLocation, playerPtr, roomList, 0);
-		return;
-	}
-
-	/*Hallway1 room*/
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "room")
-	{
-		std::cout << "CHECKING getLongDescrip() " << std::endl;
-		std::string longDescription = playerLocation->getLongDescrip();
-		std::cout << longDescription << std::endl;
-		return;
-	}
-
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "room")
-	{
-		if (playerLocation->getFeatureOneHap() == 1)
-		{
-			std::cout << "'What happened here?' You wonder aloud." << std::endl;
-			return;
-		}
-
-		if (playerLocation->getFeatureOneHap() == 0)
-		{
-			std::cout << "The hallway smells of copper.  You now realize you have been smelling fresh spilt blood.  You now see that the hallway is charged with a desperate violence..." << std::endl;
-			playerLocation->featureOne(playerPtr);
-			return;
-		}
-	}
-
-
-
-	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "crew member")
-	{
-		if (playerLocation->getFeatureTwoHap() == 1)
-		{
-			std::cout << "Jack is slumped over in the bed.  You are too cautious to get close to him and give him another chance to attack you.  He doesn't respond any further to any of your calls." << std::endl;
-			return;
-		}
-
-		if (playerLocation->getFeatureTwoHap() == 0)
-		{
-			playerLocation->featureTwo(playerPtr);
-			return;
-		}
-	}
-
-
-
-	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "macready")
-	{
-		go(playerLocation, roomList, 0, playerPtr);
-		return;
-	}
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "latrine")
-	{
-		go(playerLocation, roomList, 2, playerPtr);
-		return;
-	}
-
 
 	std::cout << "You can't do that here." << std::endl;
 	return;
@@ -1374,6 +1350,7 @@ roomRouter(commands, playerLocation, playerPtr, roomList);
 }while(userInput != "exit");
 
 }
+
 
 
 
