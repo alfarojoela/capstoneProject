@@ -303,7 +303,7 @@ void Player::gritHit(int damage)
 
 	getGrit();
 
-	if (grit == 0)
+	if (grit < 0)
 	{
 		setAlive(0);
 	}
