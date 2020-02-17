@@ -9,7 +9,7 @@ Description : Class implementation for ToolShed room.*/
 /* Function sets the attributes of this room so they can be called by get functions.*/
 void ToolShed::setRoom()
 {
-	name = "toolShed";
+	name = "tool shed";
 	longDes = "You make your way towards the tool shed. It is located outside of the base. It is freezing cold outside.\n"
 		"Hopefully you can find something worthwhile in there. You begin to hear groaning coming from the west.\n"
 		"You also notice something shining in the snow to the east.\n";

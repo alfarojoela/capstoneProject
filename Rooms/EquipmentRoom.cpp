@@ -9,7 +9,7 @@ Description : Class implementation for EquipmentRoom room.*/
 /* Function sets the attributes of this room so they can be called by get functions.*/
 void EquipmentRoom::setRoom()
 {
-	name = "equipmentRoom";
+	name = "equipment room";
 	longDes = "You enter the equipment room. The room is currently pitch black. There must be a light switch in here somewhere.\n";
 	shortDes = "You return to the equipment room. It contains equipment used on the base.\n";
 	exitLong = "The hallway which connects to many rooms in the base including the research lab and sick bay is from the way you came.\n"
