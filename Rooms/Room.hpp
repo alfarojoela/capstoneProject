@@ -11,8 +11,8 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h> 
-#include "../Item.hpp"
-#include "../Player.hpp"
+#include "Item.hpp"
+#include "Player.hpp"
 
 class Room {
 public:
@@ -23,9 +23,16 @@ public:
 	virtual std::string getExitShort();
 	virtual bool getFeatureOneHap();
 	virtual bool getFeatureTwoHap();
+	virtual int getRoomEntered();
 	virtual int featureOne(Player*) = 0;
 	virtual int featureTwo(Player*) = 0;
 	virtual int checkItem(std::string);
+	virtual int numOfItems();
+	virtual Item* returnItem(int);
+	virtual void clearInventory();
+	virtual void setFeatureOne(int);
+	virtual void setFeatureTwo(int);
+	virtual void setRoomEntered(int);
 	virtual void itemsInRoom();
 	virtual void setRoom() = 0;
 	virtual void addItem(Item);
