@@ -1985,6 +1985,7 @@ parserPtr->parseInput(userInput, commands);
 if (userInput == "exit")
 {
 	std::cout << "Ending game." << std::endl;
+	parserPtr->freeStaticActions();
 	exit(0);
 }
 

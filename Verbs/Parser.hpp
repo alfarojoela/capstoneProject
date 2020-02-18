@@ -49,4 +49,5 @@ public:
     static void parseInput(std::string, std::string (&commands)[CONST_THREE]);
     static std::vector<Verb *> getValidActions();
     static std::unordered_map<std::string, std::vector<std::string>> getSimilarActions();
+    static void freeStaticActions();
 };

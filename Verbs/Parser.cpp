@@ -286,3 +286,14 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
         }
     }
 }
+
+void Parser::freeStaticActions()
+{
+    if (validActions.empty())
+        return;
+    
+    for (auto action : validActions) 
+        delete action;
+
+    validActions.clear();
+}
