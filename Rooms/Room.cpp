@@ -42,6 +42,12 @@ bool Room::getFeatureTwoHap()
 	return fTwoHappened;
 }
 
+/* Function returns the int value that represents the roomEntered variable. */
+int Room::getRoomEntered()
+{
+	return roomEntered;
+}
+
 /* Function adds an item to the vector of items in the room.  */
 void Room::addItem(Item newItem)
 {
@@ -107,6 +113,51 @@ int Room::checkItem(std::string itemName)
 	}
 
 	return itemFound;
+}
+
+//Function returns the number of items present in the room's inventory
+int Room::numOfItems()
+{
+	int number = 0;
+
+	if (items.size() > 0)
+	{
+		number = items.size();
+	}
+
+	return number;
+}
+
+//Function returns an item at a specific index.
+Item* Room::returnItem(int index)
+{
+	Item* newItem = &items[index];
+
+	return newItem;
+}
+
+//Function clears the inventory of the room.
+void Room::clearInventory()
+{
+	items.clear();
+}
+
+//Function sets the feature one variable in the loading function.
+void Room::setFeatureOne(int newNumber)
+{
+	fOneHappened = newNumber;
+}
+
+//Function sets the feature two variable in the loading function.
+void Room::setFeatureTwo(int newNumber)
+{
+	fTwoHappened = newNumber;
+}
+
+//Function sets the roomEntered variable in the loading function.
+void Room::setRoomEntered(int newNumber)
+{
+	roomEntered = newNumber;
 }
 
 /* Function displays either the short or long description based off a boolean value.*/
