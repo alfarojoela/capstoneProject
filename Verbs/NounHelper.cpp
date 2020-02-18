@@ -102,7 +102,10 @@ std::vector<std::string> noun::getNouns()
         "snow mobile",
         "snowmobile",
         "makers",
-        "makers mark"
+        "makers mark",
+        "case",
+        "groaning",
+        "shining"
     };
 
     return nouns;
