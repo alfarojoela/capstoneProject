@@ -74,7 +74,9 @@ public:
 
 	void setGritSave(int gritLevel);
 
-
+	int inventoryNumber();
+	Item* returnItem(int);
+	void clearInventory();
 };
 
 
