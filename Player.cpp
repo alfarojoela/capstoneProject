@@ -315,6 +315,21 @@ void Player::setGritSave(int gritLevel)
 	grit=gritLevel;
 }
 
+int Player::inventoryNumber()
+{
+	return inventory.size();
+}
 
+Item* Player::returnItem(int index)
+{
+	Item* newItem = &inventory[index];
+
+	return newItem;
+}
+
+void Player::clearInventory()
+{
+	inventory.clear();
+}
 
 
