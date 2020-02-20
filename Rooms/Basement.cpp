@@ -12,7 +12,7 @@ void Basement::setRoom()
 	name = "basement";
 	longDes = "You enter the basement. This area is used for storage. It contains materials that are hazardous.\n"
 		"It's also one of the most expansive areas of the base. You see something hunched over in the corner of the room.\n"
-		"It looks like a person...\n";
+		"It looks like a person...You also hear a rattling noise down a hallway to the left.\n";
 	shortDes = "You return to the basement. This area gives you the creeps.\n";
 	exitLong = "There is a hallway which connects to other rooms in the base like the dog kennel from the way you came.\n";
 	exitShort = "There is a hallway from the direction you came.\n";
@@ -167,7 +167,7 @@ int Basement::featureOne(Player* user)
 		number = rand() % 100 + 1;
 
 		//Even if the user asked mostly correct questions there's still a chance of a negative outcome.
-		if (number > 30)
+		if (number > 20)
 		{
 			std::cout << "You successfully punch him in the face! He goes flying back a couple of feet.\n"
 				"He appears disoriented. You decide to disarm him and take his gun.\n"
@@ -176,15 +176,21 @@ int Basement::featureOne(Player* user)
 			//Player gains the gun if they successfully attack the other crew member.
 			removeItem("gun", user);
 
-			//Checks if the user has the rope. If so, the tie up the other crew member.
+			//Checks if the user has the rope. If so, they tie up the other crew member.
 			if (user->checkInventory("rope"))
 			{
-				std::cout << "Before you exit the room you decide to tie him up with the rope.\n"
-					"Don't want him causing harm to any other crew members.\n"
+				std::cout << "You decide to tie him up with the rope. Don't want him causing harm to any other crew members.\n"
 					"You lose the rope!\n"<< std::endl;
 
 				//Discards the rope since the user used it on the other crew member.
 				user->deletePlayerItem("rope");
+
+				//Allows the user to check the NPC's blood if they have the appropriate items.
+				checkBlood(user);
+			}
+			else
+			{
+				std::cout << "After a couple of seconds, he appears to be knocked out. You decide to leave him there." << std::endl;
 			}
 		}
 		else
@@ -193,9 +199,9 @@ int Basement::featureOne(Player* user)
 				"'You should have just went upstairs. Look what you made me do,' he says.\n"
 				"'I'm going to leave you here for some of my friends. Don't worry, they'll be here soon.'\n"
 				"He walks back up the stairs. You feel intense pain in your leg. It is bleeding heavily.\n"
-				"You lose three grit!\n" << std::endl;
+				"You lose three grit!" << std::endl;
 
-			//Calls the gritHit function which causes the player to die since they picked a bad choice.
+			//Calls the gritHit function which causes the player to take damage.
 			user->gritHit(3);
 		}
 	}
@@ -204,14 +210,14 @@ int Basement::featureOne(Player* user)
 		std::cout << "You decide to listen to him.\n"
 			"'I'll be up there in a bit', he says. 'Got something to take care of real quick around here.'\n"
 			"It's weird that he doing things in the basement, but he did answer most of the questions correctly.\n"
-			"You decide to leave him to his business.\n" << std::endl;
+			"You decide to leave him to his business." << std::endl;
 	}
 	else
 	{
 		std::cout << "You decide to listen to him.\n"
 			"'I'll be up there in a bit', he says. 'Got something to take care of real quick around here.'\n"
 			"It's weird that he doing things in the basement, but he did answer all of the questions correctly.\n"
-			"You decide to leave him to his business.\n" << std::endl;
+			"You decide to leave him to his business." << std::endl;
 	}
 
 	std::cout << std::endl;
@@ -221,12 +227,139 @@ int Basement::featureOne(Player* user)
 	return outcome;
 }
 
-/* Function performs the action for the second feature of the room.*/
+//Function allows the user to check if a member of the base is not human if they have certain items.
+void Basement::checkBlood(Player* user)
+{
+	//Checks whether the player has specific items to help figure out what's going on.
+	if (user->checkInventory("blowtorch") && user->checkInventory("petri dish") && user->checkInventory("copper wire") && user->checkInventory("scalpel"))
+	{
+		std::cout << "As you are finishing tying up Dr. Blair, you hear a clank against the ground.\n"
+			"The blowtorch you had been carrying around fell next to the tied up individual.\n"
+			"You notice blood on the ground next to the blowtorch. There's blood also coming from the doctor's nose.\n\n"
+			"You reach to pick up the blowtorch, but accidently pull its trigger while grabbing it.\n"
+			"A flame shoots out of the blowtorch and you hear a shriek. The blood isn't there anymore!\n"
+			"You don't know a lot about medicine, but that shouldn't happen. You decide to test more of his blood.\n\n"
+			"You take the scalpel you received in the sick bay and make a cut on his finger.\n"
+			"The blood drips into the petri dish you found earlier.\nYou then take the blowtorch and use it on the copper wire you found earlier.\n"
+			"Finally, you insert the copper wire into the petri dish. When you do the blood jumps up and shrieks. It then disappears!\n"
+			"This isn't Dr. Blair you think. This is something else!\n" << std::endl;
+
+		if (user->checkInventory("flamethrower"))
+		{
+			std::cout << "'This isn't right', you think. 'I have to do something about this.'\n"
+				"You pull out the flamethrower. You begin to pour out flames on the thing that isn't Dr. Blair.\n"
+				"It makes no noise at first, but then wakes up and begins shrieking. It's body begins sharking heavily.\n"
+				"You continue to pour on the flames until it stops moving.\nAfter seeing it shake like that, you feel like you made the right choice." << std::endl;
+		}
+		else
+		{
+			std::cout << "'So there are things on the base acting like us, but are not us.', you think.\n"
+				"You decide to leave him tied up down here." << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "This thing wasn't acting like Dr. Blair. You notice the thing bleeding from its nose.\n"
+			"There's got to be some way of testing whether or not it is him." << std::endl;
+	}
+}
+
+/* Function performs the action for the second feature of the room which is to potentially fight a tentacle.*/
 int Basement::featureTwo(Player* user)
 {
 	int outcome = 0;
+	int number = 0;
 
-	std::cout << "Going to change what happens in the function." << std::endl;
+	std::cout << "You decide to investigate the rattling noise.\n"
+		"It sounds distant at first, but gets louder as you progress down the hallway.\n\n"
+		"The hallway opens up into a room that contains a bunch of dusty boxes. The center of the room is empty.\n"
+		"You notice that's where the sound is coming from. As you approach that area, the sound becomes constant.\n\n"
+		"As you are about to step into the center of the room all of a sudden a giant tentacle springs up out of the ground!\n"
+		"Its shape isn't consistent and it appears to be switching from different body types including dog and human.\n"
+		"It begins to move towards you tearing the ground up as it goes.\n"<< std::endl;
+
+	//Checks if the user has the flamethrower to avoid having them possibly take damage. If not, they have a random percent to get hit 3 times.
+	if (user->checkInventory("flamethrower"))
+	{
+		std::cout << "You pull out the flamethrower. 'This thing won't know what's hit them', you think.\n"
+			"You begin to spray flames out at the monster, but it seems to have no effect at first. It keeps moving towards you.\n\n"
+			"As your tank begins to reach half, the monster starts to back up a little bit. It lets out a scream.\n"
+			"You continue to spray until the tentacle makes its way back into the ground completely.\n"
+			"As it is disappearing into the ground, you notice that the flamethrower has run out of fuel.\n"
+			"You lose the flamethrower!\n" << std::endl;
+
+		//Deletes the flamethrower from the player's inventory
+		user->deletePlayerItem("flamethrower");
+
+		std::cout << "Even though the flamethrower is gone, you feel safe for now.\n"
+			"That was only one piece of a larger being. You have to find a way to permantely destroy it!\n" << std::endl;
+	}
+	//The chance of dodging the strike goes down after each attack.
+	else
+	{
+		std::cout << "A claw appears on its side and takes a swipe at you!" << std::endl;
+		std::cout << "You attempt to dodge out of the way of the claw strike.\n" << std::endl;
+
+		number = rand() % 100 + 1;
+
+		if (number > 50)
+		{
+			std::cout << "You dive out of the way of the stike, but quickly get back up.\n"
+				"As you are doing this, you notice a second claw appear on the left side. It takes a swipe at you!"<< std::endl;
+		}
+		else
+		{
+			std::cout << "You try to dive out of the way, but unfornately the claw strikes down on you shoulder.\n"
+				"You lose two grit!\n" << std::endl;
+
+			//Player loses health and the function gritHit is called.
+			user->gritHit(2);
+
+			std::cout << "You notice a second claw appear on the left side.\n"
+				"It takes a swipe at you!" << std::endl;
+		}
+
+		std::cout << "You attempt to dodge out of the way of the second claw strike.\n"  << std::endl;
+
+		number = rand() % 100 + 1;
+
+		if (number > 40)
+		{
+			std::cout << "You are able to sidestep the second strike.\nAs you are doing this, the first claw takes another swipe!" << std::endl;
+		}
+		else
+		{
+			std::cout << "You try to sidestep the strike, but unfornately the claw strikes down into your side.\n"
+				"You lose two grit!\n" << std::endl;
+
+			//Player loses health and the function gritHit is called.
+			user->gritHit(2);
+
+			std::cout << "The first claw takes another swipe at you!" << std::endl;
+		}
+
+		std::cout << "You attempt to dodge out of the way.\n" << std::endl;
+
+		number = rand() % 100 + 1;
+
+		if (number > 30)
+		{
+			std::cout << "You suddenly get an urge to flip backwards. You somehow successfully perform a backflip.\n" << std::endl;
+		}
+		else
+		{
+			std::cout << "You try to do a backflip, but unfornately the claw slashes your leg.\n"
+				"You lose two grit!\n" << std::endl;
+
+			//Player loses health and the function gritHit is called.
+			user->gritHit(2);
+		}
+
+		std::cout << "You notice that you're at the edge of the room. You take a couple steps back down into the hallway.\n"
+			"The tentacle attempts to follow you but is too large. It screams at you.\n"
+			"You feel safe for now.\n"
+			"That was only one piece of a larger being. You have to find a way to permanently destroy it!\n" << std::endl;
+	}
 
 	++fTwoHappened;
 
