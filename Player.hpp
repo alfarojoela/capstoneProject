@@ -21,8 +21,7 @@ private:
 	int victory;
 	int gameEnd;
 	int needBearings;
-	/*altered line*/
-	/*std::vector<Item*> inventory;*/
+	int deathWish;
 	std::vector<Item> inventory;
 
 
@@ -77,6 +76,12 @@ public:
 	int inventoryNumber();
 	Item* returnItem(int);
 	void clearInventory();
+	
+	void setDeathWish(int desire);
+
+	int getDeathWish();
+
+
 };
 
 

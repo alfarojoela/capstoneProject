@@ -8,7 +8,7 @@ Player::Player()
 	std::vector<Item> inventory;
 	gameEnd = 0;
 	needBearings = 1;
-
+	deathWish = 0;
 }
 
 void Player::useItem(std::string item)
@@ -331,5 +331,16 @@ void Player::clearInventory()
 {
 	inventory.clear();
 }
+
+void Player::setDeathWish(int desire)
+{
+deathWish = deathWish+desire;
+}
+
+int Player::getDeathWish()
+{
+return deathWish;
+}
+
 
 
