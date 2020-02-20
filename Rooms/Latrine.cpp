@@ -78,10 +78,8 @@ int Latrine::featureTwo(Player* user)
 			//Add function to check if user has specific items to protect themselves
 			if (user->checkInventory("gun") || user->checkInventory("flamethrower") || user->checkInventory("axe"))
 			{
-				std::cout << "You attack the creature with a weapon. It stood no chance!\n"
-					"Pieces of the creature scatter across the room. Is this real or are you still dreaming in a drunken stupor?\n" << std::endl;
-
-				//Call function to remove item from inventory or set its singleUse to 1
+				//Calls the weapon attack function
+				weaponAttack(user);
 
 				response = "correct";
 			}
@@ -129,4 +127,96 @@ int Latrine::featureTwo(Player* user)
 	++fTwoHappened;
 
 	return outcome;
+}
+
+//Function allows the user to attack creatures with a random weapon from their inventory.
+void Latrine::weaponAttack(Player* user)
+{
+	int numOfWeapons = 0;
+	int number = 0;
+	int randomNumber = 0;
+	int finalIndex = 0;
+	Item* checkItem;
+	std::vector<int> weaponIndex;
+
+	//For loop finds the indexes of the weapons in the user's inventory and adds them to an int vector.
+	for (unsigned int i = 0; i < user->inventoryNumber(); ++i)
+	{
+		checkItem = user->returnItem(i);
+		if (checkItem->getName() == "gun" || checkItem->getName() == "flamethrower" || checkItem->getName() == "axe")
+		{
+			weaponIndex.push_back(i);
+			++numOfWeapons;
+		}
+	}
+
+	//A random number is chosen based off of the number of weapons that the user has.
+	number = rand() % numOfWeapons;
+	finalIndex = weaponIndex[number];
+
+	//The weapon who's index was chosen is set as checkItem
+	checkItem = user->returnItem(finalIndex);
+
+	/*Based off of which weapon was selected different dialogue is displayed. There is a chance the player will take damage and lose the weapon
+	* for each weapon besides the flamethrower. */
+	if (checkItem->getName() == "gun")
+	{
+		std::cout << "You pull out the gun and attempt to take a shot at the creature.\n" << std::endl;
+
+		randomNumber = rand() % 100 + 1;
+
+		if (randomNumber < 80)
+		{
+			std::cout << "The shot hits the creature in the forehead. Pieces of whatever was in the creature's brain scatter across the room!\n" << std::endl;
+		}
+		else
+		{
+			std::cout << "The shot misses! The creature bites you in the shoulder. You feel an intense pain.\n"
+					"Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n"
+					"You lose one grit!\n" << std::endl;
+
+			//Calls the gritHit function to cause the player to lose health.
+			user->gritHit(1);
+
+			std::cout << "You attempt to shoot the gun again at the creature in frustration, but notice that it's broken.\n"
+				"You lose the gun!\n" << std::endl;
+
+			//Deletes the gun if the shot missed.
+			user->deletePlayerItem("gun");
+		}
+	}
+	else if (checkItem->getName() == "axe")
+	{
+		std::cout << "You pull out the axe and attempt to cleave the creature.\n" << std::endl;
+
+		randomNumber = rand() % 100 + 1;
+
+		if (randomNumber < 80)
+		{
+			std::cout << "You swing for the fences and cleave the creature in two.\n"
+				"Is this real or are you still dreaming in a drunken stupor?\n" << std::endl;
+		}
+		else
+		{
+			std::cout << "The swing misses! The creature bites you in the shoulder. You feel an intense pain.\n"
+				"Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n"
+				"You lose one grit!\n" << std::endl;
+
+			//Calls the gritHit function to cause the player to lose health.
+			user->gritHit(1);
+
+			std::cout << "You swung so hard that the axe flung into the wall and broke.\n"
+				"You lose the axe!\n" << std::endl;
+
+			//Deletes the axe if the swing missed.
+			user->deletePlayerItem("axe");
+		}
+	}
+	else if (checkItem->getName() == "flamethrower")
+	{
+		std::cout << "You pull out the flamethrower.\n" << std::endl;
+
+		std::cout << "You spray flames through the air engulfing the creature.\n"
+			"It's burnt to a nice crisp by the time it reaches you.\nGood thing you had the flamethrower ready when you entered the room!\n" << std::endl;
+	}
 }
