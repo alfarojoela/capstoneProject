@@ -26,6 +26,7 @@ std::vector<std::string> noun::getNouns()
         "hall",
         "mess hall",
         "messhall",
+        "radio",
         "radio room",
         "radioroom",
         "research",
@@ -112,7 +113,9 @@ std::vector<std::string> noun::getNouns()
         "west",
         "figure",
         "other",
-        "other equipment"
+        "other equipment",
+        "medical",
+        "medical supplies"
     };
 
     return nouns;
