@@ -166,15 +166,28 @@ std::string Parser::compareWords(std::string input)
         values.push_back(noun);
 
     /* Iterate through stream checking the similarity between the lists of nouns, prepositions, and verb 
-       with each word in the stream (i.e. original user input) */
+       with each word in the stream (i.e. original user input). If the distance is 0 the word is a 100% match. 
+       If distance is 1 then the word is off by a letter which the word in our list that it was checked against
+       will ultimately be used in our parsed input. Any number higher is too much of a difference which we used
+       the original input typed in by the user */
     while (inputStream >> tempStr) 
     {
+        bool distanceTriggered = false;
+
         for (const auto word : values)
         {
+            if (distanceTriggered) break;
+
             const auto distance = similarWordDistance(tempStr, word);
-            returnStr += (distance.first == 1) ? word + " " : tempStr + " ";
-            
+
+            if (distance.first == 1 || distance.first == 0) 
+            {
+                returnStr += word + " ";
+                distanceTriggered = true;
+            }
         }
+
+        if (!distanceTriggered) returnStr += tempStr + " ";
     }
 
     return returnStr;
