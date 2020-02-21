@@ -245,7 +245,9 @@ std::vector<std::string> similar::getMiscVerbs()
     std::vector<std::string> similarMiscVerbs {
         "room",
         "current",
-        "map"
+        "map",
+        "savegame",
+        "loadgame"
     };
 
     return similarMiscVerbs;

@@ -121,11 +121,11 @@ int ResearchLab::featureTwo(Player* user)
 	std::string response = "incorrect";
 
 	std::cout << "You approach the doctor.\n"
-		"'Look who's finally up? Have a good night there, champ.'\n"
+		"'Look who's finally up? Have a good night there, champ,' he says.\n"
 		"You don't respond because you are stunned by the body laid out on the table.\nIt's the captain! It does not look like he's moving.\n"
-		"The doctor frowns at you and then says 'Come over here I need help!'\n\n"
+		"The doctor frowns at you and then says 'Come over here. I need help!'\n\n"
 		"You decide to help the doctor and walk over to the table.\n"
-		"'My strap broke and I need you to hold the body down here' he says.\n"
+		"'My strap broke and I need you to hold the body down here,' he says.\n"
 		"You nod and apply the pressure. He reaches over to the table and picks up a bone saw.\n"
 		"This is not what you signed up for, but you continue applying pressure. He begins to perform an autopsy.\n\n"
 		"You hear the crunch of bones in the captain's chest. Sounds normal to you.\n"
@@ -147,7 +147,8 @@ int ResearchLab::featureTwo(Player* user)
 			//Add function to check if user has specific items to protect themselves
 			if (user->checkInventory("gun") || user->checkInventory("flamethrower") || user->checkInventory("axe"))
 			{
-				std::cout << "You attack the creature with a weapon." << std::endl;
+				//Calls the weapon attack function
+				weaponAttack(user);
 			}
 			else
 			{
@@ -171,7 +172,8 @@ int ResearchLab::featureTwo(Player* user)
 			{
 				std::cout << "You run as fast as you've ever run in your life. The swipe misses you!\n"
 					"The force of the swing causes the creature to fall over face first into the ground.\n"
-					"It appears to not be moving." << std::endl;
+					"You take a nearby chair and slam it in the thing a couple of times.\n"
+					"After that, it appears to not be moving." << std::endl;
 			}
 			else
 			{
@@ -198,4 +200,104 @@ int ResearchLab::featureTwo(Player* user)
 	++fTwoHappened;
 
 	return outcome;
+}
+
+//Function allows the user to attack creatures with a random weapon from their inventory.
+void ResearchLab::weaponAttack(Player* user)
+{
+	int numOfWeapons = 0;
+	int number = 0;
+	int randomNumber = 0;
+	int finalIndex = 0;
+	Item* checkItem;
+	std::vector<int> weaponIndex;
+
+	//For loop finds the indexes of the weapons in the user's inventory and adds them to an int vector.
+	for (unsigned int i = 0; i < user->inventoryNumber(); ++i)
+	{
+		checkItem = user->returnItem(i);
+		if (checkItem->getName() == "gun" || checkItem->getName() == "flamethrower" || checkItem->getName() == "axe")
+		{
+			weaponIndex.push_back(i);
+			++numOfWeapons;
+		}
+	}
+
+	//A random number is chosen based off of the number of weapons that the user has.
+	number = rand() % numOfWeapons;
+	finalIndex = weaponIndex[number];
+
+	//The weapon who's index was chosen is set as checkItem
+	checkItem = user->returnItem(finalIndex);
+
+	/*Based off of which weapon was selected different dialogue is displayed. There is a chance the player will take damage and lose the weapon
+	* for each weapon besides the flamethrower. */
+	if (checkItem->getName() == "gun")
+	{
+		std::cout << "You pull out the gun and attempt to take a shot at the thing that used to be the captain.\n" << std::endl;
+
+		randomNumber = rand() % 100 + 1;
+
+		if (randomNumber < 80)
+		{
+			std::cout << "The shot hits it square in the chest. Blood begins gushing out of the wound.\n"
+				"It continues to move towards you! You fire five more rounds into the thing.\n"
+				"Most of the shots hit various parts of the captain's body, but one is a headshot.\n"
+				"The thing's head explodes. After that shot, it stops moving towards you and falls onto the ground." << std::endl;
+		}
+		else
+		{
+			std::cout << "The shot misses! The thing slashes your arm that is holding the gun. Blood starts gushing from your arm.\n"
+				"You fire a five more rounds into it point blank. All of the shots hit its chest.\n"
+				"After the fifth shot, it falls backwards onto the table it was laying on. It stops moving.\n"
+				"You lose two grit!\n" << std::endl;
+
+			//Calls the gritHit function to cause the player to lose health.
+			user->gritHit(2);
+
+			std::cout << "You notice that the gun has no more rounds in it. This angers you since you don't have any spare bullets.\n"
+				"You throw the gun against a nearby wall.\n"
+				"You lose the gun!" << std::endl;
+
+			//Deletes the gun if the shot missed.
+			user->deletePlayerItem("gun");
+		}
+	}
+	else if (checkItem->getName() == "axe")
+	{
+		std::cout << "You pull out the axe and attempt to strike the thing.\n" << std::endl;
+
+		randomNumber = rand() % 100 + 1;
+
+		if (randomNumber < 80)
+		{
+			std::cout << "You hit it square in the chest sending it flying backwards.\n"
+				"You walk over to where it landed and swing the axe a couple more times until it stops moving." << std::endl;
+		}
+		else
+		{
+			std::cout << "The thing blocks your attack and slashes your arm. You feel an intense pain!\n"
+				"After the slash, you swing another time. It doesn't block this hit.\n"
+				"It falls backwards onto the table it was laying on before. You swing a couple more times until it stops moving.\n"
+				"You lose two grit!\n" << std::endl;
+
+			//Calls the gritHit function to cause the player to lose health.
+			user->gritHit(2);
+
+			std::cout << "After the last swing you hear a clank. You notice the head of the axe has fallen and is separted from the handle.\n"
+				"You lose the axe!" << std::endl;
+
+			//Deletes the axe if the swing missed.
+			user->deletePlayerItem("axe");
+		}
+	}
+	else if (checkItem->getName() == "flamethrower")
+	{
+		std::cout << "You pull out the flamethrower.\n" << std::endl;
+
+		std::cout << "You spray flames through the air engulfing whatever this thing is.\n"
+			"It continues to move towards you at first, but after about five seconds it falls over.\n"
+			"You spray flames on it for about ten more seconds just to be sure.\n"
+			"Good thing you had the flamethrower ready when you entered the room!" << std::endl;
+	}
 }

@@ -1202,7 +1202,7 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "other equpipment")
+	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "other equipment")
 	{
 		std::cout << "The other equipment in the room is of no interest to you right now." << std::endl;
 		return;

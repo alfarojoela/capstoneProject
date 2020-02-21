@@ -22,8 +22,9 @@ private:
 	int gameEnd;
 	int needBearings;
 	int deathWish;
+	int dumbIdea;
 	std::vector<Item> inventory;
-
+	
 
 public:
 	Player();
@@ -81,6 +82,9 @@ public:
 
 	int getDeathWish();
 
+	void setDumbIdea(int idea);
+	
+	int getDumbIdea();
 
 };
 

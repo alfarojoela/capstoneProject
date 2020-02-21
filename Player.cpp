@@ -332,6 +332,9 @@ void Player::clearInventory()
 	inventory.clear();
 }
 
+
+/*Functions for checking and setting deathWish feature to
+ * nuke base for awesome ending of game.*/
 void Player::setDeathWish(int desire)
 {
 deathWish = deathWish+desire;
@@ -341,6 +344,19 @@ int Player::getDeathWish()
 {
 return deathWish;
 }
+
+
+void Player::setDumbIdea(int idea)
+{
+dumbIdea= dumbIdea+idea;
+}
+
+int Player::getDumbIdea()
+{
+return dumbIdea;
+}
+
+
 
 
 

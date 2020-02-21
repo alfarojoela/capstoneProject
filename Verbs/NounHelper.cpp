@@ -105,7 +105,14 @@ std::vector<std::string> noun::getNouns()
         "makers mark",
         "case",
         "groaning",
-        "shining"
+        "shining",
+        "north",
+        "south",
+        "east",
+        "west",
+        "figure",
+        "other",
+        "other equipment"
     };
 
     return nouns;
