@@ -1,6 +1,10 @@
-#include "SimilarVerbHelper.hpp"
+/* Project Name: Capstone Project
+   Class: CS 467
+   Team: Team Thing- Ryan Alcorn, Joel Alfaro, Neil Gayeta
+   File: SimilarVerbHelper.cpp
+   Description: Class implementation for the similar verb helper utilized in the parser */
 
-// TODO: STILL ADDING SIMILAR WORDS & FUNCTIONS
+#include "SimilarVerbHelper.hpp"
 
 std::vector<std::string> similar::getTalkVerbs()
 {

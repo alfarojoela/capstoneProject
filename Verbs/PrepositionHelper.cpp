@@ -1,3 +1,9 @@
+/* Project Name: Capstone Project
+   Class: CS 467
+   Team: Team Thing- Ryan Alcorn, Joel Alfaro, Neil Gayeta
+   File: PrepositionHelper.cpp
+   Description: Class implementation for the preposition helper utilized in the parser */
+
 #include "PrepositionHelper.hpp"
 
 std::vector<std::string> preposition::getPrepositions() 
