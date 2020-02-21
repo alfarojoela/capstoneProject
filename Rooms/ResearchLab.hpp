@@ -13,4 +13,5 @@ public:
 	int featureOne(Player*);
 	int featureTwo(Player*);
 	void setRoom();
+    	void weaponAttack(Player*);
 };
