@@ -110,7 +110,9 @@ std::vector<std::string> noun::getNouns()
         "south",
         "east",
         "west",
-        "figure"
+        "figure",
+        "other",
+        "other equipment"
     };
 
     return nouns;
