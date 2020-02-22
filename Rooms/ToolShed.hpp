@@ -14,4 +14,5 @@ public:
 	int featureTwo(Player*);
 	void setRoom();
     void obtainRope(Player*);
+    void weaponAttack(Player*);
 };
