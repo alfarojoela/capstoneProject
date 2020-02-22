@@ -214,15 +214,15 @@ void DogKennel::weaponAttack(Player* user)
 		else
 		{
 			std::cout << "The shot misses! The dog-like thing bites you on the leg. You feel an intense pain!\n"
-				"You fire a couple more rounds to get it off. Its grip loosens and it falls over.\n"
 				"You lose two grit!\n" << std::endl;
-
-			std::cout << "On closer inspection, it looks like one of the dogs but with a couple interesting features.\n"
-				"There is a tentacle coming out of it's back and it only has three legs.\n"
-				"There's a stump where the fourth leg should be. It looks like it was growing that leg!\n" << std::endl;
 
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(2);
+
+			std::cout << "You fire a couple more rounds into it to get it off. Its grip loosens and it falls over.\n"
+				"On closer inspection, it looks like one of the dogs but with a couple interesting features.\n"
+				"There is a tentacle coming out of it's back and it only has three legs.\n"
+				"There's a stump where the fourth leg should be. It looks like it was growing that leg!\n" << std::endl;
 
 			std::cout << "You notice that the gun has no more rounds in it. This angers you since you don't have any spare bullets.\n"
 				"You throw the gun against a nearby wall.\n"
@@ -249,15 +249,15 @@ void DogKennel::weaponAttack(Player* user)
 		else
 		{
 			std::cout << "The swing misses! The dog-like thing bites you on the leg. You feel an intense pain!\n"
-				"You hammer downward a couple times to get it off you. Its grip loosens and it falls over.\n"
 				"You lose two grit!\n" << std::endl;
-
-			std::cout << "On closer inspection, it looks like one of the dogs but with a couple interesting features.\n"
-				"There is a tentacle coming out of it's back and it only has three legs.\n"
-				"There's a stump where the fourth leg should be. It looks like it was growing that leg!\n" << std::endl;
 
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(2);
+
+			std::cout << "You hammer downward a couple times to get it off you. Its grip loosens and it falls over.\n"
+				"On closer inspection, it looks like one of the dogs but with a couple interesting features.\n"
+				"There is a tentacle coming out of it's back and it only has three legs.\n"
+				"There's a stump where the fourth leg should be. It looks like it was growing that leg!\n" << std::endl;
 
 			std::cout << "You got so distracted by the intense pain that you now notice the head of the axe has separated from the handle.\n"
 				"You lose the axe!" << std::endl;
