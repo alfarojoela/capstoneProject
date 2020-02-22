@@ -8,6 +8,7 @@ void SaveLoad::save(Player* user, std::vector<Room*> rooms, std::string location
 	int victory = 0;
 	int gameEnd = 0;
 	int bearings = 0;
+	int deathWish = 0;
 	Room* newRoom;
 	Item* newItem;
 	//Opens a stream to save the file.
@@ -26,6 +27,8 @@ void SaveLoad::save(Player* user, std::vector<Room*> rooms, std::string location
 	saveFile << gameEnd << "\n";
 	bearings = user->getBearings();
 	saveFile << bearings << "\n";
+	deathWish = user->getDeathWish();
+	saveFile << deathWish << "\n";
 
 	//Writes the user's inventory into the file if there are items in the inventory. Else, writes a line to help parse the data later.
 	if (user->inventoryNumber() > 0)
@@ -87,7 +90,8 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 	std::cout << std::endl;
 	std::cout << "Pre-clearing: " << std::endl;
 	//Prints out the user inventory and room information
-	std::cout << "Grit: " << user->getGrit() << "     Alive: " << user->getAlive() << "     Victory: " << user->getVictory() << "     GameEnd: " << user->getGameEnd() << "     bearings: " << user->getBearings() << std::endl;
+	std::cout << "Grit: " << user->getGrit() << "     Alive: " << user->getAlive() << "     Victory: " << user->getVictory() << 
+		"     GameEnd: " << user->getGameEnd() << "     bearings: " << user->getBearings() << "     deathwish: " << user->getDeathWish() << std::endl;
 	user->getInventory();
 	std::cout << std::endl;
 	for (int i = 0; i < 15; ++i)
@@ -104,6 +108,7 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 	user->setVictory(2);
 	user->setGameEnd(1);
 	user->setBearings(0);
+	user->setDeathWish(5);
 
 	//Clears the user inventory and resets the room's data besides descriptions and names
 	user->clearInventory();
@@ -117,7 +122,8 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 
 	std::cout << std::endl;
 	std::cout << "After clear of inventories but before loading. Player stats are changed: " << std::endl;
-	std::cout << "Grit: " << user->getGrit() << "     Alive: " << user->getAlive() << "     Victory: " << user->getVictory() << "     GameEnd: " << user->getGameEnd() << "     bearings: " << user->getBearings() << std::endl;
+	std::cout << "Grit: " << user->getGrit() << "     Alive: " << user->getAlive() << "     Victory: " << user->getVictory() <<
+		"     GameEnd: " << user->getGameEnd() << "     bearings: " << user->getBearings() << "     deathwish: " << user->getDeathWish() << std::endl;
 	//Prints out the user inventory and room information
 	user->getInventory();
 	std::cout << std::endl;
@@ -136,7 +142,7 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 		{
 			getline(loadFile, line);
 
-			//A counter determines which variable is to be set. The first line is the player's location. The next five are the player's stats.
+			//A counter determines which variable is to be set. The first line is the player's location. The next six are the player's stats.
 			if (counter == 1)
 			{
 				for (int i = 0; i < rooms.size(); ++i)
@@ -167,9 +173,13 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 			{
 				user->setBearings(stoi(line));
 			}
-			/* Lines after line 6 there could be items that were in the player's inventory. The while loop will add items into the player's inventory until it reaches the
+			else if (counter == 7)
+			{
+				user->setDeathWish((stoi(line) - user->getDeathWish()));
+			}
+			/* Lines after line 7 there could be items that were in the player's inventory. The while loop will add items into the player's inventory until it reaches the
 			* line that says playerInt. A counter will then be incremented. */
-			else if (counter > 6)
+			else if (counter > 7)
 			{
 				if (line != "playerInt" && playerIntEnd == 0)
 				{
@@ -228,7 +238,8 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 
 	std::cout << std::endl;
 	std::cout << "After loading the file: " << std::endl;
-	std::cout << "Grit: " << user->getGrit() << "     Alive: " << user->getAlive() << "     Victory: " << user->getVictory() << "     GameEnd: " << user->getGameEnd() << "     bearings: " << user->getBearings() << std::endl;
+	std::cout << "Grit: " << user->getGrit() << "     Alive: " << user->getAlive() << "     Victory: " << user->getVictory() <<
+		"     GameEnd: " << user->getGameEnd() << "     bearings: " << user->getBearings() << "     deathwish: " << user->getDeathWish() << std::endl;
 	//Prints out the user inventory and room information
 	user->getInventory();
 	std::cout << std::endl;
