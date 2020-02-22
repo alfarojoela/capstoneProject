@@ -106,12 +106,13 @@ int Latrine::featureTwo(Player* user)
 			}
 			else
 			{
-				std::cout << "You are too slow! The creature bites you in the shoulder. You feel an intense pain.\n"
-					"Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n"
+				std::cout << "You are too slow! The creature bites you in the shoulder. It hurts!\n"
 					"You lose one grit!\n" << std::endl;
 
 				//Calls the gritHit function to cause the player to lose health.
 				user->gritHit(1);
+
+				std::cout << "Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n" << std::endl;
 			}
 
 			response = "correct";
@@ -171,12 +172,13 @@ void Latrine::weaponAttack(Player* user)
 		}
 		else
 		{
-			std::cout << "The shot misses! The creature bites you in the shoulder. You feel an intense pain.\n"
-					"Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n"
-					"You lose one grit!\n" << std::endl;
+			std::cout << "The shot misses! The creature bites you in the shoulder. It hurts!\n"
+				"You lose one grit!\n" << std::endl;
 
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(1);
+
+			std::cout << "Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n" << std::endl;
 
 			std::cout << "You attempt to shoot the gun again at the creature in frustration, but notice that it's broken.\n"
 				"You lose the gun!\n" << std::endl;
@@ -198,12 +200,13 @@ void Latrine::weaponAttack(Player* user)
 		}
 		else
 		{
-			std::cout << "The swing misses! The creature bites you in the shoulder. You feel an intense pain.\n"
-				"Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n"
+			std::cout << "The swing misses! The creature bites you in the shoulder. It hurts!\n"
 				"You lose one grit!\n" << std::endl;
 
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(1);
+
+			std::cout << "Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n" << std::endl;
 
 			std::cout << "You swung so hard that the axe flung into the wall and broke.\n"
 				"You lose the axe!\n" << std::endl;
