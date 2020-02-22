@@ -172,18 +172,19 @@ int ResearchLab::featureTwo(Player* user)
 			{
 				std::cout << "You run as fast as you've ever run in your life. The swipe misses you!\n"
 					"The force of the swing causes the creature to fall over face first into the ground.\n"
-					"You take a nearby chair and slam it in the thing a couple of times.\n"
-					"After that, it appears to not be moving." << std::endl;
+					"You take a nearby chair and slam it into the thing a couple of times.\n"
+					"After about five hits, it appears to not be moving." << std::endl;
 			}
 			else
 			{
 				std::cout << "You run as fast as you've ever run in your life. The swipe hits you! It's claws puncture your shoulder.\n"
-					"You reflexively kick backwards causeing the creature to fall onto the ground.\n"
-					"It appears to not be moving.\n"
-					"You lose two grit!"<< std::endl;
+					"You lose two grit!\n" << std::endl;
 
 				//Calls the gritHit function to cause the player to lose health.
 				user->gritHit(2);
+
+				std::cout << "You reflexively kick backwards causing the creature to fall onto the ground.\n"
+					"It appears to not be moving." << std::endl;
 			}
 
 			response = "correct";
@@ -248,12 +249,13 @@ void ResearchLab::weaponAttack(Player* user)
 		else
 		{
 			std::cout << "The shot misses! The thing slashes your arm that is holding the gun. Blood starts gushing from your arm.\n"
-				"You fire a five more rounds into it point blank. All of the shots hit its chest.\n"
-				"After the fifth shot, it falls backwards onto the table it was laying on. It stops moving.\n"
 				"You lose two grit!\n" << std::endl;
 
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(2);
+
+			std::cout << "You fire a five more rounds into it point blank. All of the shots hit its chest.\n"
+				"After the fifth shot, it falls backwards onto the table it was laying on. It stops moving.\n" << std::endl;
 
 			std::cout << "You notice that the gun has no more rounds in it. This angers you since you don't have any spare bullets.\n"
 				"You throw the gun against a nearby wall.\n"
@@ -276,13 +278,14 @@ void ResearchLab::weaponAttack(Player* user)
 		}
 		else
 		{
-			std::cout << "The thing blocks your attack and slashes your arm. You feel an intense pain!\n"
-				"After the slash, you swing another time. It doesn't block this hit.\n"
-				"It falls backwards onto the table it was laying on before. You swing a couple more times until it stops moving.\n"
+			std::cout << "The thing blocks your attack and slashes your arm. Blood begins gushing out of the wound.\n"
 				"You lose two grit!\n" << std::endl;
 
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(2);
+
+			std::cout << "After the slash, you swing another time. It doesn't block this hit.\n"
+				"It falls backwards onto the table it was laying on before. You swing a couple more times until it stops moving.\n" << std::endl;
 
 			std::cout << "After the last swing you hear a clank. You notice the head of the axe has fallen and is separted from the handle.\n"
 				"You lose the axe!" << std::endl;
