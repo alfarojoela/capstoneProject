@@ -65,7 +65,7 @@ int ToolShed::featureOne(Player* user)
 			{
 				std::cout << "You perform your maneuver to perfection. The creature is surprised by your sudden movement and tries to pivot.\n"
 					"That along with the punch you throw sends it flying five feet into the snow.\n"
-					"While it is on the ground, you decide its best to flee. You make your way back to the path towards the tool shed.\n" << std::endl;
+					"While it is on the ground, you decide its best to flee.\nYou make your way back to the path towards the tool shed.\n" << std::endl;
 
 				++alive;
 			}
@@ -83,14 +83,13 @@ int ToolShed::featureOne(Player* user)
 		}
 		else if (choice == "2")
 		{
-			std::cout << std::endl;
+			std::cout << std::endl; 
 
 			//Add function to check if user has specific items to protect themselves
 			if (user->checkInventory("gun") || user->checkInventory("flamethrower") || user->checkInventory("axe"))
 			{
-				std::cout << "You attack the creature with a weapon. It is surprised by your sudden attack!\n"
-					"Realizing it is in danger, the creature runs off towards the direction you found it at.\n"
-					"You head back to the trail that leads to the tool shed.\n"<< std::endl;
+				//Calls the weapon attack function
+				weaponAttack(user);
 
 				++alive;
 			}
@@ -182,7 +181,7 @@ int ToolShed::featureTwo(Player* user)
 		if (choice == "1")
 		{
 			std::cout << std::endl;
-			std::cout << "Today's been crazy already why not see what this is! You head towards the glinting item in the snow.\n" << std::endl;
+			std::cout << "Today's been crazy already why not see what this is! You head towards the shimmering item in the snow.\n" << std::endl;
 				
 			number = rand() % 100 + 1;
 
@@ -247,4 +246,116 @@ void ToolShed::obtainRope(Player* user)
 		"You obtain a rope!\n" << std::endl;
 
 	removeItem("rope", user);
+}
+
+//Function allows the user to attack creatures with a random weapon from their inventory.
+void ToolShed::weaponAttack(Player* user)
+{
+	int numOfWeapons = 0;
+	int number = 0;
+	int randomNumber = 0;
+	int finalIndex = 0;
+	Item* checkItem;
+	std::vector<int> weaponIndex;
+
+	//For loop finds the indexes of the weapons in the user's inventory and adds them to an int vector.
+	for (unsigned int i = 0; i < user->inventoryNumber(); ++i)
+	{
+		checkItem = user->returnItem(i);
+		if (checkItem->getName() == "gun" || checkItem->getName() == "flamethrower" || checkItem->getName() == "axe")
+		{
+			weaponIndex.push_back(i);
+			++numOfWeapons;
+		}
+	}
+
+	//A random number is chosen based off of the number of weapons that the user has.
+	number = rand() % numOfWeapons;
+	finalIndex = weaponIndex[number];
+
+	//The weapon who's index was chosen is set as checkItem
+	checkItem = user->returnItem(finalIndex);
+
+	/*Based off of which weapon was selected different dialogue is displayed. There is a chance the player will take damage and lose the weapon
+	* for each weapon besides the flamethrower. */
+	if (checkItem->getName() == "gun")
+	{
+		std::cout << "You pull out the gun and attempt to take a shot at the thing charging at you.\n" << std::endl;
+
+		randomNumber = rand() % 100 + 1;
+
+		if (randomNumber < 80)
+		{
+			std::cout << "The shot hits the creature when it is about midway to you. It continues to charge at you.\n"
+				"You fire five more rounds into the creature in quick succession.\n"
+				"Realizing it is in danger, the creature runs off towards the direction it came from.\n\n"
+				"You head back to the trail that leads to the tool shed.\n" << std::endl;
+		}
+		else
+		{
+			std::cout << "The shot misses! The creature rams you in the side knocking you onto the ground.\n"
+				"You lose three grit!\n" << std::endl;
+
+			//Calls the gritHit function to cause the player to lose health.
+			user->gritHit(3);
+
+			std::cout << "It turns around and is about to stomp you when you fire another shot.\n"
+				"The creature is stunned by this. You fire four more rounds into the creature.\n"
+				"Realizing it is in danger, the creature runs off towards the direction it came from.\n" << std::endl;
+
+			std::cout << "You notice that the gun has no more rounds in it. This angers you since you don't have any spare bullets.\n"
+				"You toss the gun out into the snow. It's useless to you now anyways.\n"
+				"You lose the gun!\n\n"
+				"You head back to the trail that leads to the tool shed.\n" << std::endl;
+
+			//Deletes the gun if the shot missed.
+			user->deletePlayerItem("gun");
+		}
+	}
+	else if (checkItem->getName() == "axe")
+	{
+		std::cout << "You pull out the axe and attempt to sidestep the charge while striking the creature.\n" << std::endl;
+
+		randomNumber = rand() % 100 + 1;
+
+		if (randomNumber < 80)
+		{
+			std::cout << "You successfully dodge out of the way of the attack and cleave the creature in its side.\n"
+				"The creature is stunned by your move. You strike it a couple more times in its side.\n" 
+				"Realizing it is in danger, the creature runs off towards the direction it came from.\n\n"
+				"You head back to the trail that leads to the tool shed.\n" << std::endl;
+		}
+		else
+		{
+			std::cout << "You are unable to get out of the way of the creature. You swing, but the creature ignores your attack.\n"
+				"It rams you in the side knocking you onto the ground.\n"
+				"You lose three grit!\n" << std::endl;
+
+			//Calls the gritHit function to cause the player to lose health.
+			user->gritHit(3);
+				
+			std::cout << "You quickly get back up and swing at it again hitting it in the side.\n"
+				"The creature is stunned by this attack. You strike it a couple more times in its side.\n" 
+				"Realizing it is in danger, the creature runs off towards the direction it came from.\n" << std::endl;
+
+			std::cout << "As the creature is running off, you pull the axe back in towards you and notice how much lighter it is.\n"
+				"The head of the axe is stuck in the side of the creature. You're only holding the handle!\n"
+				"You toss the handle on the snow.\n"
+				"You lose the axe!\n\n"
+				"You head back to the trail that leads to the tool shed.\n" << std::endl;
+
+			//Deletes the axe if the swing missed.
+			user->deletePlayerItem("axe");
+		}
+	}
+	else if (checkItem->getName() == "flamethrower")
+	{
+		std::cout << "You pull out the flamethrower.\n" << std::endl;
+
+		std::cout << "You spray flames through the air towards the charging creature.\n"
+			"It continues to move towards you at first, but realizes midway through its run what it's running into.\n"
+			"It begins to slow down and then turns around.\nIt heads off in the direction you found it at. It must be scared of fire!\n"
+			"Good thing you had the flamethrower ready when you came outside!\n\n"
+			"You head back to the trail that leads to the tool shed.\n" << std::endl;
+	}
 }
