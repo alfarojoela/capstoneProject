@@ -13,6 +13,6 @@ public:
 	int featureOne(Player*);
 	int featureTwo(Player*);
 	void setRoom();
-    void obtainRope(Player*);
-    void weaponAttack(Player*);
+    	void obtainRope(Player*);
+    	void weaponAttack(Player*);
 };
