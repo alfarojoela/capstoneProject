@@ -70,17 +70,19 @@ int SickBay::featureTwo(Player* user)
 			if (number > 70)
 			{
 				std::cout << "You successfully fend off the attack with the scalpel!\n"
-					"He groans in pain as you slash his arm and slumps over after the attempt. You think 'What the hell is going on here?!?'\n"
+					"He groans in pain as you slash his arm and slumps over after the attempt.\nYou think 'What the hell is going on here?!?'\n"
 					"You gain a scalpel!"<< std::endl;
 			}
 			else
 			{
 				std::cout << "You do not fend off his attack and he scrathes you in the process! The wound is pretty deep.\n"
-					"He slumps over after hitting you. You grimace in pain.\n"
-					"You lose two grit and gain a scalpel!"<< std::endl;
+					"You lose two grit!\n"<< std::endl;
 
 				//Calls the gritHit function to cause the player to lose health.
 				user->gritHit(2);
+
+				std::cout << "He slumps over after hitting you. You grimace in pain!\n"
+					"You gain a scalpel!" << std::endl;
 			}
 
 			response = "correct";
@@ -101,11 +103,12 @@ int SickBay::featureTwo(Player* user)
 			else
 			{
 				std::cout << "You don't get out of the way in time! He scratches your back. The wound is pretty deep.\n"
-					"He slumps over after hitting you. You grimace in pain.\n"
-					"You lose two grit!"<< std::endl;
+					"You lose two grit!\n" << std::endl;
 
 				//Calls the gritHit function to cause the player to lose health.
 				user->gritHit(2);
+
+				std::cout << "He slumps over after hitting you. You grimace in pain!" << std::endl;
 			}
 
 			response = "correct";
