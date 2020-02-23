@@ -134,7 +134,7 @@ int RadioRoom::featureOne(Player* user)
 	if (rightAnswer == 2)
 	{
 		std::cout << "You press the button that says TALK. 'Hello, anyone out there?', you say.\n"
-			"You hear nothing for about twenty seconds.\n\n'Hei hvem er dette' you hear coming back from the radio.\n"
+			"You hear nothing for about twenty seconds.\n\n'Hei hvem er dette!' you hear coming back from the radio.\n"
 			"You don't understand this language. It must be from one of the other bases around here.\n\n"
 			"'We need help over! Something weird is going on. This is the American base', you say.\n"
 			"'Det myrdet alle! Hjelppppppppp!', the voice says. The voice starts out normal and then begins to scream.\n"
@@ -149,6 +149,10 @@ int RadioRoom::featureOne(Player* user)
 
 		//Removes the copper wire from the room and gives it to the player.
 		removeItem("copper wire", user);
+
+		//Increases the variable to get one of the endings of the game.
+		user->setDeathWish(3);
+		std::cout << "You gain more knowledge of what's going on!\n" << std::endl;
 	}
 
 	++fOneHappened;
@@ -156,14 +160,56 @@ int RadioRoom::featureOne(Player* user)
 	return outcome;
 }
 
-/* Function performs the action for the second feature of the room.*/
+/* Function performs the action for the second feature of the room which can end the game. 
+* Function never increments the boolean that keeps track of whether the user entered the room so the user can do the feature multiple times.*/
 int RadioRoom::featureTwo(Player* user)
 {
 	int outcome = 0;
 
-	std::cout << "Feature Two: Player decides to destroy the base." << std::endl;
+	if (user->getDeathWish() == 0)
+	{
+		std::cout << "You approach the radio equipment. You don't know why you'd want to use it.\n"
+			"It isn't going to help you get wasted.\n" << std::endl;
+	}
+	else if (user->getDeathWish() > 10 && user->getDeathWish() < 38)
+	{
+		std::cout << "You are distraught by the things you have seen. You decide to call for help.\n"
+			"You pick up the receiver. 'Hello.', you say, 'This is American Research base CX-327. Anyone out there?'\n\n"
+			"You don't hear anything for about twenty seconds.\n"
+			"'This is Sgt. Hernandez of the Air Force. Who am I speaking to? What is the situation at the base?'\n\n"
+			"'My name isn't important.', you say, 'All you need to know is there are bad things happening on this base. We need help!'"
+			"'I've seen some disturbing things here at the base. Something evil is happening here. We need military support ASAP!'\n\n"
+			"'Calm down son.', Sgt. Hernandez says, 'You're speaking to an Air Force officer. We don't handle ground operations.'\n"
+			"'I can inform the Army of your situation. They might not get there for a while.', he says.\n\n"
+			"'Ok, I'll wait here until they come. Thanks for the help!', you say.\n\n"
+			"You hear static on the line after that. You decide to stay in the radio room until the Army arrives.\n"
+			"While waiting you hear a couple screams and scraping noises further in the base.\n"
+			"You wonder if you've made the right call or exposed more people to whatever's going on here...\n" << std::endl;
 
-	++fTwoHappened;
+		//Calls the setGameEnd function to end the game with the bad ending.
+		user->setGameEnd(1);
+	}
+	else if (user->getDeathWish() > 37)
+	{
+		std::cout << "You are distraught by the things you have seen. You decide there is only one course of action.\n"
+			"You pick up the receiver. 'Hello.', you say, 'This is American Research base CX-327. Anyone out there?'\n\n"
+			"You don't hear anything for about twenty seconds.\n"
+			"'This is Sgt. Hernandez of the Air Force. Who am I speaking to? What is the situation at the base?'\n\n"
+			"'My name isn't important.', you say, 'All you need to know is there are bad things happening on this base. We need help!'"
+			"'I've seen some disturbing things. Creatures like out of one of those Sci-fi novels.'\n"
+			"'They act like they're human, but they're not. It's dangerous to allow this place to continue to exist.'\n\n"
+			"'We've got similar reports from other bases in the area.', Sgt. Hernandez says.\n"
+			"'I'm afraid there's only one course of action. I'm sorry son. We only have one option.', he says.\n\n"
+			"'I understand.', you say.\n\n"
+			"You hear static on the line after that.\nYou decide to stay in the radio room until Sgt. Hernandez carries out his orders.\n\n"
+			"While waiting you hear a couple screams and scraping noises further in the base.\n"
+			"You feel like you made the right call. There was no conventional way to beat this thing.\n"
+			"It consumed this base and its crew members. You can only imagine what it would do to the rest of the world if given the opportunity.\n"
+			"Twenty minutes later you hear something slam into the base from above and then nothing at all...\n"<< std::endl;
+
+		//Calls the setGameEnd function to end the game with the good ending.
+		user->setGameEnd(2);
+	}
 
 	return outcome;
 }
