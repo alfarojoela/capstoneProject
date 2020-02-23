@@ -6,7 +6,7 @@
 
 #include "Hallway1.hpp"
 
-/* Function sets the attributes of this room so they can be called by get functions.*/
+   /* Function sets the attributes of this room so they can be called by get functions.*/
 void Hallway1::setRoom()
 {
 	name = "hallway1";
@@ -32,6 +32,10 @@ int Hallway1::featureOne(Player* user)
 		"Or even something out of one of the those horror films. Like the one's that Carpenter guy used to direct.\n"
 		"It is a disturbing sight. Something big went down in here...\n"<< std::endl;
 
+	//Increases the variable to get one of the endings of the game.
+	user->setDeathWish(1);
+	std::cout << "You gain a little bit of knowledge about what's going on!\n" << std::endl;
+
 	++fOneHappened;
 
 	//Give the axe to the player if this is the first feature they've done in the room.
@@ -53,6 +57,10 @@ int Hallway1::featureTwo(Player* user)
 		"Or maybe you're just hungover.\nYou make it to the light switch. It appears to be in functional condition.\n"
 		"All of the sudden something rushes past your leg. It felt like a dog, but at the same time unnatural.\n"
 		"This place is starting to give you the creeps.\n"<< std::endl;
+
+	//Increases the variable to get one of the endings of the game.
+	user->setDeathWish(1);
+	std::cout << "You gain a little bit of knowledge about what's going on!\n" << std::endl;
 
 	++fTwoHappened;
 
