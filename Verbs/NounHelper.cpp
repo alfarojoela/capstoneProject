@@ -125,7 +125,9 @@ std::vector<std::string> noun::getNouns()
         "military",
         "military radio",
         "civilian",
-        "civilian radio"
+        "civilian radio",
+        "captain",
+        "doctor"
     };
 
     return nouns;
