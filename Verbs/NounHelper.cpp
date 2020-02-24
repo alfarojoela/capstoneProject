@@ -121,7 +121,13 @@ std::vector<std::string> noun::getNouns()
         "other",
         "other equipment",
         "medical",
-        "medical supplies"
+        "medical supplies",
+        "military",
+        "military radio",
+        "civilian",
+        "civilian radio",
+        "captain",
+        "doctor"
     };
 
     return nouns;
