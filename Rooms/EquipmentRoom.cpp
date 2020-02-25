@@ -85,6 +85,10 @@ int EquipmentRoom::featureOne(Player* user)
 	}
 	std::cout << std::endl;
 
+	//Increases the variable to get one of the endings of the game.
+	user->setDeathWish(1);
+	std::cout << "You gain a little bit of knowledge about what's going on!\n" << std::endl;
+
 	++fOneHappened;
 
 	return outcome;
@@ -169,7 +173,7 @@ int EquipmentRoom::featureTwo(Player* user)
 			{
 				std::cout << "\nYou got so distracted by the glass shattering that you didn't notice you flung the axe across the room.\n"
 					"You go to pick it up, but it appears the head of the axe has separated from the handle.\n"
-					"You lost the axe!" << std::endl;
+					"You lose the axe!" << std::endl;
 
 				//Calls function to delete the axe from the player's inventory.
 				user->deletePlayerItem("axe");
