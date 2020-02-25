@@ -65,7 +65,7 @@ int ToolShed::featureOne(Player* user)
 			{
 				std::cout << "You perform your maneuver to perfection. The creature is surprised by your sudden movement and tries to pivot.\n"
 					"That along with the punch you throw sends it flying five feet into the snow.\n"
-					"While it is on the ground, you decide its best to flee.\nYou make your way back to the path towards the tool shed.\n" << std::endl;
+					"While it is on the ground, you decide it's best to flee.\nYou make your way back to the path towards the tool shed.\n" << std::endl;
 
 				++alive;
 			}
@@ -73,7 +73,7 @@ int ToolShed::featureOne(Player* user)
 			{
 				std::cout << "You attempt to perform the move you thought up but are too slow!\n"
 					"The creature catches you in the side with one of its claws.\n"
-					"It drags you down into the snow. The last thing you see is its face!\nIt looks like are human face but its features are melting away.\n"<< std::endl;
+					"It drags you down into the snow. The last thing you see is its face!\nIt looks like a human face, but its features are melting away.\n"<< std::endl;
 
 				//Calls the gritHit function which causes the player to die since they picked a bad choice.
 				user->gritHit(user->getGrit());
@@ -120,7 +120,7 @@ int ToolShed::featureOne(Player* user)
 			{
 				std::cout << "You attempt to outrun the creature. Unfornately, you are too slow!\n"
 					"The creature catches up to you and slashes you in the side with one of its claws.\n"
-					"It drags you down into the snow. The last thing you see is its face!\nIt looks like are human face but its features are melting away.\n" << std::endl;
+					"It drags you down into the snow. The last thing you see is its face!\nIt looks like a human face, but its features are melting away.\n" << std::endl;
 
 				//Calls the gritHit function which causes the player to die since they picked a bad choice.
 				user->gritHit(user->getGrit());
@@ -136,6 +136,10 @@ int ToolShed::featureOne(Player* user)
 		}
 	}
 
+	//Increases the variable to get one of the endings of the game.
+	user->setDeathWish(3);
+	std::cout << "You gain some knowledge about what's going on!\n" << std::endl;
+
 	//Used to determine whether the user obtains the rope based on if they've already been to the room.
 	if (alive > 0 && user->checkInventory("rope") == 0)
 	{
@@ -143,7 +147,7 @@ int ToolShed::featureOne(Player* user)
 	}
 	else if (alive > 0 && user->checkInventory("rope") == 1)
 	{
-		std::cout << "You head back to the tool shed. There are not many useful items left here.\n" << std::endl;
+		std::cout << "You return to the tool shed. There are not many useful items left here.\n" << std::endl;
 	}
 
 	++fOneHappened;
@@ -181,7 +185,7 @@ int ToolShed::featureTwo(Player* user)
 		if (choice == "1")
 		{
 			std::cout << std::endl;
-			std::cout << "Today's been crazy already why not see what this is! You head towards the shimmering item in the snow.\n" << std::endl;
+			std::cout << "'Today's been crazy already why not see what this is!', you think. You head towards the shimmering item in the snow.\n" << std::endl;
 				
 			number = rand() % 100 + 1;
 
@@ -197,7 +201,7 @@ int ToolShed::featureTwo(Player* user)
 			}
 			else
 			{
-				std::cout << "You head further into the snow. All of the sudden a gust of wind blows through.\n"
+				std::cout << "You head further into the snow. All of the sudden a strong gust of wind blows through.\n"
 					"You get turned around and don't know the direction of the item or the base.\n"
 					"You wander further and further away until you can't feel anything anymore." << std::endl;
 
@@ -230,7 +234,7 @@ int ToolShed::featureTwo(Player* user)
 	}
 	else if (alive > 0 && user->checkInventory("rope") == 1)
 	{
-		std::cout << "You head back to the tool shed. There are not many useful items left here.\n" << std::endl;
+		std::cout << "You return to the tool shed. There are not many useful items left here.\n" << std::endl;
 	}
 
 	++fTwoHappened;
@@ -288,7 +292,7 @@ void ToolShed::weaponAttack(Player* user)
 		{
 			std::cout << "The shot hits the creature when it is about midway to you. It continues to charge at you.\n"
 				"You fire five more rounds into the creature in quick succession.\n"
-				"Realizing it is in danger, the creature runs off towards the direction it came from.\n\n"
+				"Realizing it is in danger, the creature runs off towards the direction it came from.\n"
 				"You head back to the trail that leads to the tool shed.\n" << std::endl;
 		}
 		else
@@ -305,7 +309,7 @@ void ToolShed::weaponAttack(Player* user)
 
 			std::cout << "You notice that the gun has no more rounds in it. This angers you since you don't have any spare bullets.\n"
 				"You toss the gun out into the snow. It's useless to you now anyways.\n"
-				"You lose the gun!\n\n"
+				"You lose the gun!\n"
 				"You head back to the trail that leads to the tool shed.\n" << std::endl;
 
 			//Deletes the gun if the shot missed.
@@ -322,7 +326,7 @@ void ToolShed::weaponAttack(Player* user)
 		{
 			std::cout << "You successfully dodge out of the way of the attack and cleave the creature in its side.\n"
 				"The creature is stunned by your move. You strike it a couple more times in its side.\n" 
-				"Realizing it is in danger, the creature runs off towards the direction it came from.\n\n"
+				"Realizing it is in danger, the creature runs off towards the direction it came from.\n"
 				"You head back to the trail that leads to the tool shed.\n" << std::endl;
 		}
 		else
@@ -341,7 +345,7 @@ void ToolShed::weaponAttack(Player* user)
 			std::cout << "As the creature is running off, you pull the axe back in towards you and notice how much lighter it is.\n"
 				"The head of the axe is stuck in the side of the creature. You're only holding the handle!\n"
 				"You toss the handle on the snow.\n"
-				"You lose the axe!\n\n"
+				"You lose the axe!\n"
 				"You head back to the trail that leads to the tool shed.\n" << std::endl;
 
 			//Deletes the axe if the swing missed.
@@ -354,8 +358,8 @@ void ToolShed::weaponAttack(Player* user)
 
 		std::cout << "You spray flames through the air towards the charging creature.\n"
 			"It continues to move towards you at first, but realizes midway through its run what it's running into.\n"
-			"It begins to slow down and then turns around.\nIt heads off in the direction you found it at. It must be scared of fire!\n"
-			"Good thing you had the flamethrower ready when you came outside!\n\n"
+			"It begins to slow down and then turns around.\n\nIt heads off in the direction you found it at. It must be scared of fire!\n"
+			"Good thing you had the flamethrower ready when you came outside!\n"
 			"You head back to the trail that leads to the tool shed.\n" << std::endl;
 	}
 }
