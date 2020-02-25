@@ -48,10 +48,14 @@ int DogKennel::featureOne(Player* user)
 				"You're surprised that you connect with a hit. The thing appears to be a dog, but malformed.\n"
 				"It scurries off after the hit.\n"
 				"You do notice that the creature scratched you pretty good on the arm. Blood is gushing from a cut.\n"
-				"You lose two grit!"<< std::endl;
+				"You lose two grit!\n"<< std::endl;
 
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(2);
+
+			//Increases the variable to get one of the endings of the game.
+			user->setDeathWish(2);
+			std::cout << "You gain some knowledge about what's going on!" << std::endl;
 
 			response = "correct";
 		}
@@ -63,6 +67,10 @@ int DogKennel::featureOne(Player* user)
 			{
 				//Calls the weapon attack function
 				weaponAttack(user);
+
+				//Increases the variable to get one of the endings of the game.
+				user->setDeathWish(4);
+				std::cout << "You gain a decent amount of knowledge about what's going on!" << std::endl;
 
 				response = "correct";
 			}
@@ -209,7 +217,7 @@ void DogKennel::weaponAttack(Player* user)
 				"You fire a couple more rounds into the creature until it stops moving.\n\n"
 				"On closer inspection, it looks like one of the dogs but with a couple interesting features.\n"
 				"There is a tentacle coming out of it's back and it only has three legs.\n"
-				"There's a stump where the fourth leg should be. It looks like it was growing that leg!"<< std::endl;
+				"There's a stump where the fourth leg should be. It looks like it was growing that leg!\n"<< std::endl;
 		}
 		else
 		{
@@ -226,7 +234,7 @@ void DogKennel::weaponAttack(Player* user)
 
 			std::cout << "You notice that the gun has no more rounds in it. This angers you since you don't have any spare bullets.\n"
 				"You throw the gun against a nearby wall.\n"
-				"You lose the gun!" << std::endl;
+				"You lose the gun!\n" << std::endl;
 
 			//Deletes the gun if the shot missed.
 			user->deletePlayerItem("gun");
@@ -244,7 +252,7 @@ void DogKennel::weaponAttack(Player* user)
 				"You walk over to where it landed. It appears to not be moving.\n\n"
 				"On closer inspection, it looks like one of the dogs but with a couple interesting features.\n"
 				"There is a tentacle coming out of it's back and it only has three legs.\n"
-				"There's a stump where the fourth leg should be. It looks like it was growing that leg!" << std::endl;
+				"There's a stump where the fourth leg should be. It looks like it was growing that leg!\n" << std::endl;
 		}
 		else
 		{
@@ -260,7 +268,7 @@ void DogKennel::weaponAttack(Player* user)
 				"There's a stump where the fourth leg should be. It looks like it was growing that leg!\n" << std::endl;
 
 			std::cout << "You got so distracted by the intense pain that you now notice the head of the axe has separated from the handle.\n"
-				"You lose the axe!" << std::endl;
+				"You lose the axe!\n" << std::endl;
 
 			//Deletes the axe if the swing missed.
 			user->deletePlayerItem("axe");
@@ -274,6 +282,6 @@ void DogKennel::weaponAttack(Player* user)
 			"It's burnt to a nice crisp midway through its jump.\n\n"
 			"You walk towards its burning corpse to inspect it. You can't really tell what it is.\n"
 			"It looks to be about the size of a dog though.\n"
-			"Good thing you had the flamethrower ready when you entered the room!" << std::endl;
+			"Good thing you had the flamethrower ready when you entered the room!\n" << std::endl;
 	}
 }
