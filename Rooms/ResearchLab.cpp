@@ -102,10 +102,40 @@ int ResearchLab::featureOne(Player* user)
 				"'Destroy the base!'\n\n"
 				"After reading this you press enter again. The simulation ends. You decide to get up from the computer.\n"
 				"'This is bad. Really bad.' you think." << std::endl;
+
 			response = "correct";
 		}
 	}
-	std::cout << std::endl;
+
+	//Different lines are printed about the player's gained knowledge based on how many screens they saw.
+	if (counter == 1)
+	{
+		std::cout << "You gain no knowledge about what's going on!\n" << std::endl;
+	}
+	else if (counter == 2)
+	{
+		//Increases the variable to get one of the endings of the game.
+		user->setDeathWish(1);
+		std::cout << "You gain a little bit of knowledge about what's going on!\n" << std::endl;
+	}
+	else if (counter == 3)
+	{
+		//Increases the variable to get one of the endings of the game.
+		user->setDeathWish(2);
+		std::cout << "You gain some knowledge about what's going on!\n" << std::endl;
+	}
+	else if (counter == 4 && choice == "2")
+	{
+		//Increases the variable to get one of the endings of the game.
+		user->setDeathWish(3);
+		std::cout << "You gain some knowledge about what's going on!\n" << std::endl;
+	}
+	else if (counter == 4 && choice == "1")
+	{
+		//Increases the variable to get one of the endings of the game.
+		user->setDeathWish(4);
+		std::cout << "You gain a decent amount of knowledge about what's going on!\n" << std::endl;
+	}
 
 	++fOneHappened;
 
@@ -121,15 +151,15 @@ int ResearchLab::featureTwo(Player* user)
 	std::string response = "incorrect";
 
 	std::cout << "You approach the doctor.\n"
-		"'Look who's finally up? Have a good night there, champ,' he says.\n"
+		"'Look who's finally up? Have a good night there, champ?,' he says.\n"
 		"You don't respond because you are stunned by the body laid out on the table.\nIt's the captain! It does not look like he's moving.\n"
-		"The doctor frowns at you and then says 'Come over here. I need help!'\n\n"
+		"The doctor frowns at you and then says, 'Come over here. I need help!'\n\n"
 		"You decide to help the doctor and walk over to the table.\n"
-		"'My strap broke and I need you to hold the body down here,' he says.\n"
+		"'My strap broke and I need you to hold the body down here.,' he says while pointing at his shoulders.\n"
 		"You nod and apply the pressure. He reaches over to the table and picks up a bone saw.\n"
 		"This is not what you signed up for, but you continue applying pressure. He begins to perform an autopsy.\n\n"
 		"You hear the crunch of bones in the captain's chest. Sounds normal to you.\n"
-		"All of the sudden the chest gives way. The doctor's arms go through the chest!\nHe says 'What the hell!'. Teeth form in the hole on the chest.\n"
+		"All of the sudden the chest gives way. The doctor's arms go through the chest!\nHe says, 'What the hell!'. Teeth form in the hole on the chest.\n"
 		"They close on the doctor's arms and sever them both.\nBlood begins to spray everywhere! The doctor begins screaming in agony!\n\n"
 		"After a couple seconds, he isn't screaming anymore. He slumps over on the table.\n"
 		"The thing that is the captain stands up.\n"
@@ -197,6 +227,10 @@ int ResearchLab::featureTwo(Player* user)
 		}
 	}
 	std::cout << std::endl;
+
+	//Increases the variable to get one of the endings of the game.
+	user->setDeathWish(5);
+	std::cout << "You gain a lot of knowledge about what's going on!\n" << std::endl;
 
 	++fTwoHappened;
 
