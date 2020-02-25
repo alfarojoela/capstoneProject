@@ -91,6 +91,7 @@ std::vector<std::string> noun::getNouns()
         "crew",
         "member",
         "crew member",
+        "crew members",
         "crewmember",
         "floor",
         "alien",
@@ -127,7 +128,22 @@ std::vector<std::string> noun::getNouns()
         "civilian",
         "civilian radio",
         "captain",
-        "doctor"
+        "doctor",
+        "body",
+        "barry",
+        "jeff",
+        "meal",
+        "counter",
+        "sardines",
+        "odor",
+        "panting",
+        "shimmering",
+        "smell",
+        "glittering",
+        "glistening",
+        "sparkling",
+        "twinkling",
+        "beaming"
     };
 
     return nouns;
