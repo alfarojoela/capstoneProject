@@ -31,8 +31,7 @@ int Latrine::featureOne(Player* user)
 		"Either someone's pulling a prank or something's going on.\n"
 		"The writing on the toilet paper appears to be in charcoal. This is weird.\n"
 		"There are numbers written on here. 5...3...9...2.\n"
-		"Someone wrote the code to the flamethrower locker on here. Odd...\n"<< std::endl;
-
+		"Someone wrote a code on here. Odd...\n"<< std::endl;
 
 	//Removes the toilet paper from the room using the removeItem function
 	removeItem("toilet paper", user);
@@ -51,9 +50,8 @@ int Latrine::featureTwo(Player* user)
 	std::string response = "incorrect";
 
 	std::cout << "You decide to use the restroom. It was a long night.\n"
-		"You begin to hear splashing sounds which causes you to have an uneasy feeling.\n"
-		"You finish using the restroom and begin to walk away.\n"
-		"As you look back all of the sudden something jumps at you!\n"
+		"As you are walking towards the toilet you begin to hear splashing sounds which causes you to have an uneasy feeling.\n"
+		"All of the sudden something jumps from the toilet at you!\n"
 		"What do you do?\n\n"
 		"1. Attack it with your fists\n"
 		"2. Attack it with a weapon\n"
@@ -124,6 +122,10 @@ int Latrine::featureTwo(Player* user)
 			getline(std::cin, choice);
 		}
 	}
+
+	//Increases the variable to get one of the endings of the game.
+	user->setDeathWish(2);
+	std::cout << "You gain some knowledge about what's going on!\n" << std::endl;
 
 	++fTwoHappened;
 
