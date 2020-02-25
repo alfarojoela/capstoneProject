@@ -121,6 +121,10 @@ int SickBay::featureTwo(Player* user)
 	}
 	std::cout << std::endl;
 
+	//Increases the variable to get one of the endings of the game.
+	user->setDeathWish(3);
+	std::cout << "You gain some knowledge about what's going on!\n" << std::endl;
+
 	++fTwoHappened;
 
 	return outcome;
