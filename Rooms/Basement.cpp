@@ -33,7 +33,7 @@ int Basement::featureOne(Player* user)
 	std::cout << "You approach the hunched over figure. As you get closer, it begins to get up.\n"
 		"It looks human and when it turns around you recognize the individual.\n"
 		"He's an older man with glasses and a balding head. It's Dr. Blair!\n\n"
-		"'Don't trust the computer son', he says, 'It's displaying gibberish.'\n\n"
+		"'Don't trust the computer son!', he says, 'It's displaying gibberish.'\n\n"
 		"'Computer, what are you talking about?', you say.\n\n"
 		"'The computer! That we do our research on. It's gone haywire!', he says.\n"
 		"'Everything's going to be fine! Thing was freaking the Captain out.'\n"<< std::endl;
@@ -64,8 +64,8 @@ int Basement::featureOne(Player* user)
 		{
 			std::cout << std::endl;
 			std::cout << "'My wife...', he says, 'We've been here so long I can hardly remember her face hehe.'\n"
-				"'Uhhhhhh...ummmmmmmmmmmmmm'\n"
-				"He seems to have lost his train of thought. 'That's ok, Doc', you say, 'You must have hit your head on something.'\n\n"
+				"'Uhhhhhh...ummmmmmmmmmmmmm.'\n"
+				"He seems to have lost his train of thought. 'That's ok, Doc.', you say, 'You must have hit your head on something.'\n\n"
 				"Him not remembering his wife is suspicious, but not enough evidence that something's off.\n"
 				"You decide to ask him another question.\n" << std::endl;
 
@@ -173,6 +173,10 @@ int Basement::featureOne(Player* user)
 				"He appears disoriented. You decide to disarm him and take his gun.\n"
 				"You obtain a gun!\n"<< std::endl;
 
+			//Increases the variable to get one of the endings of the game.
+			user->setDeathWish(5);
+			std::cout << "You gain a lot of knowledge about what's going on!\n" << std::endl;
+
 			//Player gains the gun if they successfully attack the other crew member.
 			removeItem("gun", user);
 
@@ -196,10 +200,10 @@ int Basement::featureOne(Player* user)
 		else
 		{
 			std::cout << "He's quicker than you expect. He shoots you in the leg!\n"
-				"'You should have just went upstairs. Look what you made me do,' he says.\n"
+				"'You should have just went upstairs. Look what you made me do!,' he says.\n"
 				"'I'm going to leave you here for some of my friends. Don't worry, they'll be here soon.'\n"
 				"He walks back up the stairs. You feel intense pain in your leg. It is bleeding heavily.\n"
-				"You lose three grit!" << std::endl;
+				"You lose three grit!\n" << std::endl;
 
 			//Calls the gritHit function which causes the player to take damage.
 			user->gritHit(3);
@@ -208,7 +212,7 @@ int Basement::featureOne(Player* user)
 	else if(correctQuestion == 1)
 	{
 		std::cout << "You decide to listen to him.\n"
-			"'I'll be up there in a bit', he says. 'Got something to take care of real quick around here.'\n"
+			"'I'll be up there in a bit.', he says. 'Got something to take care of real quick around here.'\n"
 			"It's weird that he doing things in the basement, but he did answer most of the questions correctly.\n"
 			"You decide to leave him to his business." << std::endl;
 	}
@@ -234,21 +238,25 @@ void Basement::checkBlood(Player* user)
 	if (user->checkInventory("blowtorch") && user->checkInventory("petri dish") && user->checkInventory("copper wire") && user->checkInventory("scalpel"))
 	{
 		std::cout << "As you are finishing tying up Dr. Blair, you hear a clank against the ground.\n"
-			"The blowtorch you had been carrying around fell next to the tied up individual.\n"
+			"The blowtorch you had been carrying around fell next to the tied up thing.\n"
 			"You notice blood on the ground next to the blowtorch. There's blood also coming from the doctor's nose.\n\n"
 			"You reach to pick up the blowtorch, but accidently pull its trigger while grabbing it.\n"
 			"A flame shoots out of the blowtorch and you hear a shriek. The blood isn't there anymore!\n"
 			"You don't know a lot about medicine, but that shouldn't happen. You decide to test more of his blood.\n\n"
 			"You take the scalpel you received in the sick bay and make a cut on his finger.\n"
 			"The blood drips into the petri dish you found earlier.\nYou then take the blowtorch and use it on the copper wire you found earlier.\n"
-			"Finally, you insert the copper wire into the petri dish. When you do the blood jumps up and shrieks. It then disappears!\n"
-			"This isn't Dr. Blair you think. This is something else!\n" << std::endl;
+			"Finally, you insert the copper wire into the petri dish. When you do the blood jumps up and shrieks.\nIt then disappears!\n"
+			"'This isn't Dr. Blair!', you think, 'This is something else!'\n" << std::endl;
+
+		//Increases the variable to get one of the endings of the game.
+		user->setDeathWish(10);
+		std::cout << "You gain a significant amount of knowledge about what's going on!\n" << std::endl;
 
 		if (user->checkInventory("flamethrower"))
 		{
-			std::cout << "'This isn't right', you think. 'I have to do something about this.'\n"
+			std::cout << "'This isn't right!', you think. 'I have to do something about this.'\n"
 				"You pull out the flamethrower. You begin to pour out flames on the thing that isn't Dr. Blair.\n"
-				"It makes no noise at first, but then wakes up and begins shrieking. It's body begins sharking heavily.\n"
+				"It makes no noise at first, but then wakes up and begins shrieking. It's body begins shaking heavily.\n"
 				"You continue to pour on the flames until it stops moving.\nAfter seeing it shake like that, you feel like you made the right choice." << std::endl;
 		}
 		else
@@ -281,7 +289,7 @@ int Basement::featureTwo(Player* user)
 	//Checks if the user has the flamethrower to avoid having them possibly take damage. If not, they have a random percent to get hit 3 times.
 	if (user->checkInventory("flamethrower"))
 	{
-		std::cout << "You pull out the flamethrower. 'This thing won't know what's hit them', you think.\n"
+		std::cout << "You pull out the flamethrower. 'This thing won't know what's hit them!', you think.\n"
 			"You begin to spray flames out at the monster, but it seems to have no effect at first. It keeps moving towards you.\n\n"
 			"As your tank begins to reach half, the monster starts to back up a little bit. It lets out a scream.\n"
 			"You continue to spray until the tentacle makes its way back into the ground completely.\n"
@@ -292,7 +300,7 @@ int Basement::featureTwo(Player* user)
 		user->deletePlayerItem("flamethrower");
 
 		std::cout << "Even though the flamethrower is gone, you feel safe for now.\n"
-			"That was only one piece of a larger being. You have to find a way to permantely destroy it!\n" << std::endl;
+			"That was only one piece of a larger being. You have to find a way to permanently destroy it!\n" << std::endl;
 	}
 	//The chance of dodging the strike goes down after each attack.
 	else
@@ -360,6 +368,10 @@ int Basement::featureTwo(Player* user)
 			"You feel safe for now.\n"
 			"That was only one piece of a larger being. You have to find a way to permanently destroy it!\n" << std::endl;
 	}
+
+	//Increases the variable to get one of the endings of the game.
+	user->setDeathWish(5);
+	std::cout << "You gain a lot of knowledge about what's going on!\n" << std::endl;
 
 	++fTwoHappened;
 
