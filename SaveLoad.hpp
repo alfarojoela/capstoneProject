@@ -6,7 +6,7 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
-#include "Room.hpp"
+#include "Rooms/Room.hpp"
 #include "Player.hpp"
 #include "Item.hpp"
 
