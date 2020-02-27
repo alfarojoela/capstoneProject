@@ -52,10 +52,11 @@
 #include "Verbs/Take.hpp"
 #include "Verbs/Talk.hpp"
 #include "Verbs/Use.hpp"
-
 #include "Verbs/VerbEnum.hpp"
 #include "Verbs/Verb.hpp"
 #include "Verbs/Parser.hpp"
+
+#include "SaveLoad.hpp"
 
 /*Prototypes*/
 void roomRouter(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr);
@@ -378,7 +379,7 @@ void roomRouter(std::string commands[3], Room* &playerLocation, Player* &playerP
 void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
 
-	/*Set of commands to check room inventory.  Mainly for testing purposes rather than for the player.  May keep condition to allow player a cheat.  Won't put in help list.*/
+	/*helper phrase.*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
@@ -907,8 +908,8 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 
 	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "toilet")
 	{
-		std::cout << "You jump up on the toilet and take a look at the room.  You notice some writing on the wall.  Is it code?  It reads: 'CS352SUX.'" << std::endl;
-		std::cout << "Is that another code or just graffiti?" << std::endl;
+		std::cout << "You jump up on the toilet and take a look at the room.  You notice some writing on the wall.  Is it code?  It reads: 'Snake was here.'" << std::endl;
+		std::cout << "What kind of name is Snake?" << std::endl;
 		return;
 	}
 
@@ -967,8 +968,20 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 
 	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "creature")
 	{
-		std::cout << "You are not sure what it is that just attacked you.  But you are sure it is not of this world.  Maybe it or one of its kind caused all the carnage in the hallway." << std::endl;
-		return;
+		if (playerLocation->getFeatureTwoHap() == 0)
+		{
+			std::cout << "What creature?  What are you talking about?" << std::endl;
+			return;
+		}
+
+		else
+		{
+			std::cout << "You are not sure what it is that just attacked you.  But you are sure it is not of this world.  Maybe it or one of its kind caused all the carnage in the hallway." << std::endl;
+			return;
+		}
+
+
+
 	}
 
 	if (commands[0] == "look" && commands[1] == "at")
@@ -1567,7 +1580,6 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 			return;
 		}
 
-		return;
 	}
 
 	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "creature")
@@ -3187,6 +3199,10 @@ intro();
 	Basement basement;
 	ConferenceRoom conferenceroom;
 
+	SaveLoad gameSave;
+	SaveLoad* gameSavePtr = &gameSave;
+
+
 	/*Note to self: need to call setRoom function to fill data members before calling functions*/
 	/*Alternative to using new command and perhaps preventing memory leaks*/
 
@@ -3280,13 +3296,18 @@ Item flamethrower("flamethrower");
 Item redHerring("red herring");
 Item copperWire("copper wire");
 
+galleyPtr-> addItem(redHerring);
 hallway1Ptr->addItem(axe);
+sickbayPtr->addItem(scalpel);
 latrinePtr->addItem(toiletPaper);
 equipmentroomPtr->addItem(blowTorch);
 toolshedPtr->addItem(whiskey);
 toolshedPtr->addItem(rope);
-sickbayPtr->addItem(scalpel);
+messhallPtr->addItem(gin);
+dogkennelPtr->addItem(petri);
+garagePtr->addItem(flamethrower);
 radioroomPtr->addItem(copperWire);
+basementPtr->addItem(gun);
 
 /*********************************************/
 /*Loop starts*/
@@ -3323,6 +3344,17 @@ Parser* parserPtr = &parser;
 
 parserPtr->parseInput(userInput, commands);
 
+if (commands[0] == "savegame")
+{
+	std::string currentLocationName = playerLocation->getName();
+	gameSavePtr->save(playerPtr, roomList, currentLocationName);
+}
+
+if (commands[0] == "loadgame")
+{
+	playerLocation = gameSavePtr->load(playerPtr, roomList);
+}
+
 
 if (userInput == "exit")
 {
@@ -3331,6 +3363,8 @@ if (userInput == "exit")
 	exit(0);
 }
 
+
+
 roomRouter(commands, playerLocation, playerPtr, roomList, parserPtr);
 
 /*playerLocation->displayExits();*/
@@ -3338,4 +3372,5 @@ roomRouter(commands, playerLocation, playerPtr, roomList, parserPtr);
 }while(userInput != "exit");
 
 }
+
 
