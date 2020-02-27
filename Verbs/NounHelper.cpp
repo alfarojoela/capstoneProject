@@ -143,7 +143,13 @@ std::vector<std::string> noun::getNouns()
         "glistening",
         "sparkling",
         "twinkling",
-        "beaming"
+        "beaming",
+        "hunched",
+        "person",
+        "shape",
+        "thing",
+        "projector",
+        "table"
     };
 
     return nouns;
