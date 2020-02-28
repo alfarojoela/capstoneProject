@@ -183,8 +183,8 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 			{
 				if (line != "playerInt" && playerIntEnd == 0)
 				{
-					Item* newItem = new Item(line);
-					user->setInventory(*newItem);
+					Item newItem(line);
+					user->setInventory(newItem);
 				}
 				else if (line == "playerInt")
 				{

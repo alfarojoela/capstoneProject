@@ -12,7 +12,7 @@ void DogKennel::setRoom()
 	name = "dogKennel";
 	longDes = "You enter the dog kennel. The base had 7 dogs that were housed in this room.\n"
 		"There isn't seven dogs here now. You hear panting from the corner of the room. You can investigate that.\n"
-		"You also notice something glinting on a shelf in another corner of the room.\n";
+		"You also notice something shimmering on a shelf in another corner of the room.\n";
 	shortDes = "You return to the dog kennel. Where'd all the dogs go?\n";
 	exitLong = "There is a hallway which connects to other rooms in the base like the conference room from the way you came.\n";
 	exitShort = "There is a hallway from the direction you came.\n";
