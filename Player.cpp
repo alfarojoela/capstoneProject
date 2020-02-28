@@ -140,7 +140,7 @@ void Player::setAlive(int dead)
 		std::cout << '\a';
 		std::cout << "Gosh darn it!  You died!\n" << std::endl;
 		std::cout << "That's it man!  Game over, man!  GAME OVER!" << std::endl;
-		exit(0);
+		/*exit(0); */
 	}
 }
 
@@ -334,7 +334,7 @@ void Player::clearInventory()
 
 
 /*Functions for checking and setting deathWish feature to
- * nuke base for awesome ending of game.*/
+ *  * nuke base for awesome ending of game.*/
 void Player::setDeathWish(int desire)
 {
 deathWish = deathWish+desire;
@@ -355,6 +355,7 @@ int Player::getDumbIdea()
 {
 return dumbIdea;
 }
+
 
 
 
