@@ -110,7 +110,10 @@ int Latrine::featureTwo(Player* user)
 				//Calls the gritHit function to cause the player to lose health.
 				user->gritHit(1);
 
-				std::cout << "Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n" << std::endl;
+				if (user->getAlive() != 0)
+				{
+					std::cout << "Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n" << std::endl;
+				}
 			}
 
 			response = "correct";
@@ -123,9 +126,12 @@ int Latrine::featureTwo(Player* user)
 		}
 	}
 
-	//Increases the variable to get one of the endings of the game.
-	user->setDeathWish(2);
-	std::cout << "You gain some knowledge about what's going on!\n" << std::endl;
+	if (user->getAlive() != 0)
+	{
+		//Increases the variable to get one of the endings of the game.
+		user->setDeathWish(2);
+		std::cout << "You gain some knowledge about what's going on!" << std::endl;
+	}
 
 	++fTwoHappened;
 
@@ -180,13 +186,16 @@ void Latrine::weaponAttack(Player* user)
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(1);
 
-			std::cout << "Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n" << std::endl;
+			if (user->getAlive() != 0)
+			{
+				std::cout << "Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n" << std::endl;
 
-			std::cout << "You attempt to shoot the gun again at the creature in frustration, but notice that it's broken.\n"
-				"You lose the gun!\n" << std::endl;
+				std::cout << "You attempt to shoot the gun again at the creature in frustration, but notice that it's broken.\n"
+					"You lose the gun!\n" << std::endl;
 
-			//Deletes the gun if the shot missed.
-			user->deletePlayerItem("gun");
+				//Deletes the gun if the shot missed.
+				user->deletePlayerItem("gun");
+			}
 		}
 	}
 	else if (checkItem->getName() == "axe")
@@ -208,13 +217,16 @@ void Latrine::weaponAttack(Player* user)
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(1);
 
-			std::cout << "Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n" << std::endl;
+			if (user->getAlive() != 0)
+			{
+				std::cout << "Reflexively, you grab it and fling it against the wall. The creature appears to stop moving.\n" << std::endl;
 
-			std::cout << "You swung so hard that the axe flung into the wall and broke.\n"
-				"You lose the axe!\n" << std::endl;
+				std::cout << "You swung so hard that the axe flung into the wall and broke.\n"
+					"You lose the axe!\n" << std::endl;
 
-			//Deletes the axe if the swing missed.
-			user->deletePlayerItem("axe");
+				//Deletes the axe if the swing missed.
+				user->deletePlayerItem("axe");
+			}
 		}
 	}
 	else if (checkItem->getName() == "flamethrower")
