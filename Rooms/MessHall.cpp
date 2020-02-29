@@ -63,7 +63,6 @@ int MessHall::featureOne(Player* user)
 			getline(std::cin, choice);
 		}
 	}
-	std::cout << std::endl;
 
 	++fOneHappened;
 
@@ -134,7 +133,6 @@ int MessHall::featureTwo(Player* user)
 			getline(std::cin, choice);
 		}
 	}
-	std::cout << std::endl;
 
 	++fTwoHappened;
 
