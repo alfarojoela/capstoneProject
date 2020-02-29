@@ -555,6 +555,7 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 	if (commands[0] == "current" && commands[2] == "room")
 	{
 		std::cout << "You are in Macreqdy's Quarters." << std::endl;
+		mapMacready();
 		return;
 	}
 
@@ -766,6 +767,7 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 	if (commands[0] == "current" && commands[2] == "room")
 	{
 		std::cout << "You are in Hallway 1. " << std::endl;
+		mapHallway1();
 		return;
 	}
 
@@ -1029,6 +1031,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 	if (commands[0] == "current" && commands[2] == "room")
 	{
 		std::cout << "CURRENT ROOM: " << playerLocation->getName() << std::endl;
+		mapLatrine();
 		return;
 	}
 
@@ -1295,6 +1298,7 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 	if (commands[0] == "current" && commands[2] == "room")
 	{
 		std::cout << "CURRENT ROOM: " << playerLocation->getName() << std::endl;
+		mapEquipmentRoom();
 		return;
 	}
 
@@ -1640,8 +1644,15 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 	if (commands[0] == "current" && commands[2] == "room")
 	{
 		std::cout << "CURRENT ROOM: " << playerLocation->getName() << std::endl;
+		mapToolShed();
 		return;
 	}
+
+	if(commands[0] == "room")
+		{
+		std::cout << playerLocation->getName()<<std::endl;
+		}
+
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
@@ -1951,6 +1962,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 	if (commands[0] == "current" && commands[2] == "room")
 	{
 		std::cout << "CURRENT ROOM: " << playerLocation->getName() << std::endl;
+		mapSickBay();
 		return;
 	}
 
