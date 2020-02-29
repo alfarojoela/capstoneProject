@@ -109,7 +109,7 @@ std::unordered_map<std::string, std::vector<std::string>> Parser::getSimilarActi
 
 /* REFERENCE: https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance for below
    implementation of the Levenshtein distance algorithm. Instead of returning only the difference int, a pair
-   of the difference int and word string is returned as this is called  */
+   of the difference int and word string is returned as this is called */
 std::pair<int, std::string> Parser::similarWordDistance(const std::string &userInput, const std::string &listWord)
 {
     const auto inputLength = userInput.size(), wordLength = listWord.size();
@@ -180,14 +180,31 @@ std::string Parser::compareWords(std::string input)
 
             const auto distance = similarWordDistance(tempStr, word);
 
-            if (distance.first == 1 || distance.first == 0) 
+            if (distance.first == 0) 
             {
                 returnStr += word + " ";
                 distanceTriggered = true;
             }
         }
 
-        if (!distanceTriggered) returnStr += tempStr + " ";
+        if (distanceTriggered) continue;
+        else 
+        {
+            for (const auto word : values) 
+            {
+                const auto distance = similarWordDistance(tempStr, word);
+
+                if (distance.first == 1) 
+                {
+                    returnStr += word + " ";
+                    distanceTriggered = true;
+                    break;
+                }
+            }
+
+            if (!distanceTriggered) returnStr += tempStr + " ";
+        }
+        
     }
 
     return returnStr;
@@ -202,8 +219,9 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
     /* Change every character to a lower-case for parsing */
     std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::tolower);
 
-    /* TODO: UNCOMMENT WHEN DONE TESTING */
-    // userInput = compareWords(userInput);
+    /* Checks for words in input that may be potentially mispelled and can be parsed to valid words for the game 
+    */
+    userInput = compareWords(userInput);
 
     /* Stream */
     std::istringstream inputStream;
