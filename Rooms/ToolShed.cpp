@@ -136,18 +136,21 @@ int ToolShed::featureOne(Player* user)
 		}
 	}
 
-	//Increases the variable to get one of the endings of the game.
-	user->setDeathWish(3);
-	std::cout << "You gain some knowledge about what's going on!\n" << std::endl;
+	if (user->getAlive() != 0)
+	{
+		//Increases the variable to get one of the endings of the game.
+		user->setDeathWish(3);
+		std::cout << "You gain some knowledge about what's going on!\n" << std::endl;
 
-	//Used to determine whether the user obtains the rope based on if they've already been to the room.
-	if (alive > 0 && user->checkInventory("rope") == 0)
-	{
-		obtainRope(user);
-	}
-	else if (alive > 0 && user->checkInventory("rope") == 1)
-	{
-		std::cout << "You return to the tool shed. There are not many useful items left here.\n" << std::endl;
+		//Used to determine whether the user obtains the rope based on if they've already been to the room.
+		if (user->checkInventory("rope") == 0)
+		{
+			obtainRope(user);
+		}
+		else
+		{
+			std::cout << "You return to the tool shed. There are not many useful items left here." << std::endl;
+		}
 	}
 
 	++fOneHappened;
@@ -203,7 +206,7 @@ int ToolShed::featureTwo(Player* user)
 			{
 				std::cout << "You head further into the snow. All of the sudden a strong gust of wind blows through.\n"
 					"You get turned around and don't know the direction of the item or the base.\n"
-					"You wander further and further away until you can't feel anything anymore." << std::endl;
+					"You wander further and further away until you can't feel anything anymore.\n" << std::endl;
 
 				//Calls the gritHit function which causes the player to die since they picked a bad choice.
 				user->gritHit(user->getGrit());
@@ -228,13 +231,13 @@ int ToolShed::featureTwo(Player* user)
 	std::cout << std::endl;
 
 	//Used to determine whether the user obtains the rope based on if they've already been to the room.
-	if (alive > 0 && user->checkInventory("rope") == 0)
+	if (user->getAlive() != 0 && user->checkInventory("rope") == 0)
 	{
 		obtainRope(user);
 	}
-	else if (alive > 0 && user->checkInventory("rope") == 1)
+	else if (user->getAlive() != 0 && user->checkInventory("rope") == 1)
 	{
-		std::cout << "You return to the tool shed. There are not many useful items left here.\n" << std::endl;
+		std::cout << "You return to the tool shed. There are not many useful items left here." << std::endl;
 	}
 
 	++fTwoHappened;
@@ -247,7 +250,7 @@ void ToolShed::obtainRope(Player* user)
 {
 	std::cout << "You reach the tool shed. The place looks ramshackled. Someone else has been here before you.\n"
 		"You don't see many useful items in the room. The only item that could potentially help you is a rope.\n"
-		"You obtain a rope!\n" << std::endl;
+		"You obtain a rope!" << std::endl;
 
 	removeItem("rope", user);
 }
@@ -303,17 +306,20 @@ void ToolShed::weaponAttack(Player* user)
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(3);
 
-			std::cout << "It turns around and is about to stomp you when you fire another shot.\n"
-				"The creature is stunned by this. You fire four more rounds into the creature.\n"
-				"Realizing it is in danger, the creature runs off towards the direction it came from.\n" << std::endl;
+			if (user->getAlive() != 0)
+			{
+				std::cout << "It turns around and is about to stomp you when you fire another shot.\n"
+					"The creature is stunned by this. You fire four more rounds into the creature.\n"
+					"Realizing it is in danger, the creature runs off towards the direction it came from.\n" << std::endl;
 
-			std::cout << "You notice that the gun has no more rounds in it. This angers you since you don't have any spare bullets.\n"
-				"You toss the gun out into the snow. It's useless to you now anyways.\n"
-				"You lose the gun!\n"
-				"You head back to the trail that leads to the tool shed.\n" << std::endl;
+				std::cout << "You notice that the gun has no more rounds in it. This angers you since you don't have any spare bullets.\n"
+					"You toss the gun out into the snow. It's useless to you now anyways.\n"
+					"You lose the gun!\n"
+					"You head back to the trail that leads to the tool shed.\n" << std::endl;
 
-			//Deletes the gun if the shot missed.
-			user->deletePlayerItem("gun");
+				//Deletes the gun if the shot missed.
+				user->deletePlayerItem("gun");
+			}
 		}
 	}
 	else if (checkItem->getName() == "axe")
@@ -337,19 +343,22 @@ void ToolShed::weaponAttack(Player* user)
 
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(3);
-				
-			std::cout << "You quickly get back up and swing at it again hitting it in the side.\n"
-				"The creature is stunned by this attack. You strike it a couple more times in its side.\n" 
-				"Realizing it is in danger, the creature runs off towards the direction it came from.\n" << std::endl;
+			
+			if (user->getAlive() != 0)
+			{
+				std::cout << "You quickly get back up and swing at it again hitting it in the side.\n"
+					"The creature is stunned by this attack. You strike it a couple more times in its side.\n"
+					"Realizing it is in danger, the creature runs off towards the direction it came from.\n" << std::endl;
 
-			std::cout << "As the creature is running off, you pull the axe back in towards you and notice how much lighter it is.\n"
-				"The head of the axe is stuck in the side of the creature. You're only holding the handle!\n"
-				"You toss the handle on the snow.\n"
-				"You lose the axe!\n"
-				"You head back to the trail that leads to the tool shed.\n" << std::endl;
+				std::cout << "As the creature is running off, you pull the axe back in towards you and notice how much lighter it is.\n"
+					"The head of the axe is stuck in the side of the creature. You're only holding the handle!\n"
+					"You toss the handle on the snow.\n"
+					"You lose the axe!\n"
+					"You head back to the trail that leads to the tool shed.\n" << std::endl;
 
-			//Deletes the axe if the swing missed.
-			user->deletePlayerItem("axe");
+				//Deletes the axe if the swing missed.
+				user->deletePlayerItem("axe");
+			}
 		}
 	}
 	else if (checkItem->getName() == "flamethrower")
