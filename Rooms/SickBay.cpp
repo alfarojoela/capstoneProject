@@ -27,7 +27,7 @@ int SickBay::featureOne(Player* user)
 	int outcome = 0;
 
 	std::cout << "You decide to use the medical kit on the table to patch up the wounds you've received so far.\n"
-		"You feel better by using it, but you feel it has no effect on your grit level.\n" << std::endl;
+		"You feel better by using it, but you feel it has no effect on your grit level." << std::endl;
 
 	++fOneHappened;
 
@@ -67,7 +67,7 @@ int SickBay::featureTwo(Player* user)
 			//Random chance the player will get hurt
 			number = rand() % 100 + 1;
 
-			if (number > 70)
+			if (number < 70)
 			{
 				std::cout << "You successfully fend off the attack with the scalpel!\n"
 					"He groans in pain as you slash his arm and slumps over after the attempt.\nYou think 'What the hell is going on here?!?'\n"
@@ -81,8 +81,11 @@ int SickBay::featureTwo(Player* user)
 				//Calls the gritHit function to cause the player to lose health.
 				user->gritHit(2);
 
-				std::cout << "He slumps over after hitting you. You grimace in pain!\n"
-					"You gain a scalpel!" << std::endl;
+				if (user->getAlive() != 0)
+				{
+					std::cout << "He slumps over after hitting you. You grimace in pain!\n"
+						"You gain a scalpel!" << std::endl;
+				}
 			}
 
 			response = "correct";
@@ -90,14 +93,14 @@ int SickBay::featureTwo(Player* user)
 		else if (choice == "2")
 		{
 			std::cout << std::endl;
-			std::cout << "You attempt to dodge his attack!\n" << std::endl;
+			std::cout << "You attempt to dodge out of the way of his attack!\n" << std::endl;
 
 			//Random chance the player will get hurt
 			number = rand() % 100 + 1;
 
 			if (number > 40)
 			{
-				std::cout << "You successfully dodge the attack!\n"
+				std::cout << "You successfully dive out of the way!\n"
 					"He slumps over after the attempt. You think 'What the hell is going on here?!?'" << std::endl;
 			}
 			else
@@ -108,7 +111,10 @@ int SickBay::featureTwo(Player* user)
 				//Calls the gritHit function to cause the player to lose health.
 				user->gritHit(2);
 
-				std::cout << "He slumps over after hitting you. You grimace in pain!" << std::endl;
+				if (user->getAlive() != 0)
+				{
+					std::cout << "He slumps over after hitting you. You grimace in pain!" << std::endl;
+				}
 			}
 
 			response = "correct";
@@ -121,9 +127,12 @@ int SickBay::featureTwo(Player* user)
 	}
 	std::cout << std::endl;
 
-	//Increases the variable to get one of the endings of the game.
-	user->setDeathWish(3);
-	std::cout << "You gain some knowledge about what's going on!\n" << std::endl;
+	if (user->getAlive() != 0)
+	{
+		//Increases the variable to get one of the endings of the game.
+		user->setDeathWish(3);
+		std::cout << "You gain some knowledge about what's going on!" << std::endl;
+	}
 
 	++fTwoHappened;
 
