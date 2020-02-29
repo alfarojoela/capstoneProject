@@ -21,7 +21,7 @@ void Macready::setRoom()
 	roomEntered = 0;
 }
 
-/* Function performs the action for the first feature of the room.*/
+/* Function performs the action for the first feature of the room which is to search the room.*/
 int Macready::featureOne(Player* user)
 {
 	int outcome = 0;
@@ -30,14 +30,14 @@ int Macready::featureOne(Player* user)
 		"You can't see any booze visible at the moment. MacReady's room is a mess though. You decide to search under the bed.\n"
 		"You don't find any booze under the bed. You do see a strange object though. It looks like a mask...\n"
 		"The mask is white, but looks like someone rubbed clay on a person's face. There are no distinct features on it.\n"
-		"You decide to put the mask back under the bed. MacReady's weird.\n"<< std::endl;
+		"You decide to put the mask back under the bed. MacReady's weird."<< std::endl;
 
 	++fOneHappened;
 
 	return outcome;
 }
 
-/* Function performs the action for the second feature of the room.*/
+/* Function performs the action for the second feature of the room which is to play a game of chess.*/
 int Macready::featureTwo(Player* user)
 {
 	int outcome = 0;
