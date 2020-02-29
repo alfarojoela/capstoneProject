@@ -34,7 +34,7 @@ int Hallway1::featureOne(Player* user)
 
 	//Increases the variable to get one of the endings of the game.
 	user->setDeathWish(1);
-	std::cout << "You gain a little bit of knowledge about what's going on!\n" << std::endl;
+	std::cout << "You gain a little bit of knowledge about what's going on!" << std::endl;
 
 	++fOneHappened;
 
@@ -60,7 +60,7 @@ int Hallway1::featureTwo(Player* user)
 
 	//Increases the variable to get one of the endings of the game.
 	user->setDeathWish(1);
-	std::cout << "You gain a little bit of knowledge about what's going on!\n" << std::endl;
+	std::cout << "You gain a little bit of knowledge about what's going on!" << std::endl;
 
 	++fTwoHappened;
 
@@ -79,15 +79,15 @@ void Hallway1::obtainAxe(Player* user)
 	//Gives different descriptions depending on which feature the function came from.
 	if (getFeatureOneHap() == 1 && getFeatureTwoHap() == 0)
 	{
-		std::cout << "After seeing the unsettling sight of the blood in the room, you decide to pick up the axe hanging on the wall.\n"
+		std::cout << "\nAfter seeing the unsettling sight of the blood in the room, you decide to pick up the axe hanging on the wall.\n"
 			"You never know what's going on. Best be prepared.\n"
-			"You obtain an axe!\n"<< std::endl;
+			"You obtain an axe!"<< std::endl;
 	}
 	else if (getFeatureOneHap() == 0 && getFeatureTwoHap() == 1)
 	{
-		std::cout << "After having the unsettling feeling of something rush past your leg, you decide to pick up the axe hanging on the wall.\n"
+		std::cout << "\nAfter having the unsettling feeling of something rush past your leg, you decide to pick up the axe hanging on the wall.\n"
 			"You never know what's going on. Best be prepared.\n"
-			"You obtain an axe!\n" << std::endl;
+			"You obtain an axe!" << std::endl;
 	}
 
 	//Removes the axe from the room's inventory and give it to the player.
