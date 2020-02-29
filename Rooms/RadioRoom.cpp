@@ -62,12 +62,15 @@ int RadioRoom::featureOne(Player* user)
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(1);
 
-			std::cout << "After everything calms down you notice some copper wire sticking out of the wreckage of the system.\n"
-				"You decide to pick it up.\n"
-				"You obtain copper wire!\n" << std::endl;
+			if (user->getAlive() != 0)
+			{
+				std::cout << "After everything calms down you notice some copper wire sticking out of the wreckage of the system.\n"
+					"You decide to pick it up.\n"
+					"You obtain copper wire!" << std::endl;
 
-			//Removes the copper wire from the room and gives it to the player.
-			removeItem("copper wire", user);
+				//Removes the copper wire from the room and gives it to the player.
+				removeItem("copper wire", user);
+			}
 
 			response = "correct";
 		}
@@ -113,12 +116,15 @@ int RadioRoom::featureOne(Player* user)
 				//Calls the gritHit function to cause the player to lose health.
 				user->gritHit(1);
 
-				std::cout << "After everything calms down you notice some copper wire sticking out of the wreckage of the system.\n"
-					"You decide to pick it up.\n"
-					"You obtain copper wire!\n" << std::endl;
+				if (user->getAlive() != 0)
+				{
+					std::cout << "After everything calms down you notice some copper wire sticking out of the wreckage of the system.\n"
+						"You decide to pick it up.\n"
+						"You obtain copper wire!" << std::endl;
 
-				//Removes the copper wire from the room and gives it to the player.
-				removeItem("copper wire", user);
+					//Removes the copper wire from the room and gives it to the player.
+					removeItem("copper wire", user);
+				}
 
 				response = "correct";
 			}
@@ -140,7 +146,7 @@ int RadioRoom::featureOne(Player* user)
 			"'Det myrdet alle! Hjelppppppppp!', the voice says. The voice starts out normal and then begins to scream.\n"
 			"The screaming lasts for about twenty seconds and then dies down.\n\n"
 			"You wait for about a minute longer, but hear nothing.\n"
-			"Something must be going on at their base too. Is it a Russian attack, you think?\n" << std::endl;
+			"Something must be going on at their base too. 'Is it a Russian attack?', you think.\n" << std::endl;
 
 		std::cout << "You turn the knob a full cycle through, but get no other channels.\n"
 			"You decide to leave the radio equipment alone.\n\n"
@@ -152,7 +158,7 @@ int RadioRoom::featureOne(Player* user)
 
 		//Increases the variable to get one of the endings of the game.
 		user->setDeathWish(3);
-		std::cout << "You gain more knowledge of what's going on!\n" << std::endl;
+		std::cout << "You gain more knowledge of what's going on!" << std::endl;
 	}
 
 	++fOneHappened;
@@ -169,7 +175,7 @@ int RadioRoom::featureTwo(Player* user)
 	if (user->getDeathWish() == 0)
 	{
 		std::cout << "You approach the radio equipment. You don't know why you'd want to use it.\n"
-			"It isn't going to help you get wasted.\n" << std::endl;
+			"It isn't going to help you get wasted." << std::endl;
 	}
 	else if (user->getDeathWish() > 10 && user->getDeathWish() < 38)
 	{
@@ -184,7 +190,7 @@ int RadioRoom::featureTwo(Player* user)
 			"'Ok, I'll wait here until they come. Thanks for the help!', you say.\n\n"
 			"You hear static on the line after that. You decide to stay in the radio room until the Army arrives.\n"
 			"While waiting you hear a couple screams and scraping noises further in the base.\n"
-			"You wonder if you've made the right call or exposed more people to whatever's going on here...\n" << std::endl;
+			"You wonder if you've made the right call or exposed more people to whatever's going on here..." << std::endl;
 
 		//Calls the setGameEnd function to end the game with the bad ending.
 		user->setGameEnd(1);
@@ -205,7 +211,7 @@ int RadioRoom::featureTwo(Player* user)
 			"While waiting you hear a couple screams and scraping noises further in the base.\n"
 			"You feel like you made the right call. There was no conventional way to beat this thing.\n"
 			"It consumed this base and its crew members. You can only imagine what it would do to the rest of the world if given the opportunity.\n"
-			"Twenty minutes later you hear something slam into the base from above and then nothing at all...\n"<< std::endl;
+			"Twenty minutes later you hear something slam into the base from above and then nothing at all..."<< std::endl;
 
 		//Calls the setGameEnd function to end the game with the good ending.
 		user->setGameEnd(2);
