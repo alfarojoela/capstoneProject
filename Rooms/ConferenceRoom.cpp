@@ -88,7 +88,6 @@ int ConferenceRoom::featureOne(Player* user)
 			user->gritHit(user->getGrit());
 		}
 	}
-	std::cout << std::endl;
 
 	++fOneHappened;
 
@@ -118,7 +117,7 @@ int ConferenceRoom::featureTwo(Player* user)
 			std::cout << "You insert the first tape into the machine. It begins to start up.\n"
 				"It starts towards the end of one of the comedy movies that were in the inventory on the base.\n"
 				"You decide to take twenty and finish the film. That movie is hilarious!\n"
-				"After the movie finishes, you decide that it time to move on to investigate further locations of booze.\n"<< std::endl;
+				"After the movie finishes, you decide that it time to move on to investigate further locations of booze."<< std::endl;
 
 			response = "correct";
 		}
@@ -128,7 +127,7 @@ int ConferenceRoom::featureTwo(Player* user)
 			std::cout << "You insert the second tape into the machine. It begins to start up.\n"
 				"It starts up at the beginning of the tape. It appears to be a recording of birds that naturally inhabit this area.\n"
 				"You think to yourself 'This is boring' and turn off the projector.\n"
-				"You decide that it time to move on to investigate further locations of booze.\n" << std::endl;
+				"You decide that it time to move on to investigate further locations of booze." << std::endl;
 
 			response = "correct";
 		}
@@ -137,7 +136,7 @@ int ConferenceRoom::featureTwo(Player* user)
 			std::cout << std::endl;
 			std::cout << "You insert the third tape into the machine. It begins to start up.\n"
 				"There is only black screen for about two minutes. All of the sudden you hear a crumpling noise.\n"
-				"You check the machine. It appears that the tape malfunctioned and ruined the machine in the process.\n" << std::endl;
+				"You check the machine. It appears that the tape malfunctioned and ruined the machine in the process." << std::endl;
 
 			response = "correct";
 		}
