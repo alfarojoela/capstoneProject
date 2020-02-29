@@ -85,9 +85,12 @@ int EquipmentRoom::featureOne(Player* user)
 	}
 	std::cout << std::endl;
 
-	//Increases the variable to get one of the endings of the game.
-	user->setDeathWish(1);
-	std::cout << "You gain a little bit of knowledge about what's going on!\n" << std::endl;
+	if (user->getAlive() != 0)
+	{
+		//Increases the variable to get one of the endings of the game.
+		user->setDeathWish(1);
+		std::cout << "You gain a little bit of knowledge about what's going on!" << std::endl;
+	}
 
 	++fOneHappened;
 
@@ -187,7 +190,6 @@ int EquipmentRoom::featureTwo(Player* user)
 			getline(std::cin, choice);
 		}
 	}
-	std::cout << std::endl;
 
 	++fTwoHappened;
 
