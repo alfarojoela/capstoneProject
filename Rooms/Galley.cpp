@@ -62,7 +62,6 @@ int Galley::featureOne(Player* user)
 			getline(std::cin, choice);
 		}
 	}
-	std::cout << std::endl;
 
 	++fOneHappened;
 
@@ -79,7 +78,6 @@ int Galley::featureTwo(Player* user)
 		"You step closer. The smell gets more horrible...\n\n"
 		"You step closer. You begin to really contemplate why you are doing this. It clearly isn't booze.\n\n"
 		"You step closer. You see that it is just decomposing leftovers. Someone forgot to clean up after themselves." << std::endl;
-	std::cout << std::endl;
 
 	++fTwoHappened;
 
