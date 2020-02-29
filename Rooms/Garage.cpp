@@ -34,8 +34,8 @@ int Garage::featureOne(Player* user)
 	{
 		std::cout << "You pull out the toilet paper you found in the Latrine since it has the code to the locker written on it.\n"
 			"You type in 5...\n3...\n9...\n2...\nThe locker opens.\n"
-			"'Nothing's going to mess with me now' you think.\n"
-			"You obtain the flamethrower!\n" << std::endl;
+			"'Nothing's going to mess with me now!', you think.\n"
+			"You obtain the flamethrower!" << std::endl;
 
 		//Removes the flamethrower from the room's inventory into the player's inventory
 		removeItem("flamethrower", user);
@@ -47,7 +47,7 @@ int Garage::featureOne(Player* user)
 	{
 		std::cout << "You can't quite remember the code. You think it starts with a 5...\n"
 			"You input a few codes, but the locker isn't opening.\n"
-			"You decide to give up. You're not going to be able to open it right now.\n" << std::endl;
+			"You decide to give up. You're not going to be able to open it right now." << std::endl;
 	}
 
 	return outcome;
@@ -63,7 +63,7 @@ int Garage::featureTwo(Player* user)
 		"It's strange that the other snowmobile is missing...\n"
 		"\nYou grab the key from a nearby table and attempt to turn the ignition...\n"
 		"The engine begins to start up, but ultimately doesn't crank over.\n"
-		"It was a good idea, but it looks like there's no easy way out of this situation.\n"<< std::endl;
+		"It was a good idea, but it looks like there's no easy way out of this situation."<< std::endl;
 
 	++fTwoHappened;
 
