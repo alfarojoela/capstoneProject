@@ -224,8 +224,6 @@ int Basement::featureOne(Player* user)
 			"You decide to leave him to his business." << std::endl;
 	}
 
-	std::cout << std::endl;
-
 	++fOneHappened;
 
 	return outcome;
@@ -323,55 +321,73 @@ int Basement::featureTwo(Player* user)
 			//Player loses health and the function gritHit is called.
 			user->gritHit(2);
 
-			std::cout << "You notice a second claw appear on the left side.\n"
-				"It takes a swipe at you!" << std::endl;
+			if (user->getAlive() != 0)
+			{
+				std::cout << "You notice a second claw appear on the left side.\n"
+					"It takes a swipe at you!" << std::endl;
+			}
 		}
 
-		std::cout << "You attempt to dodge out of the way of the second claw strike.\n"  << std::endl;
-
-		number = rand() % 100 + 1;
-
-		if (number > 40)
+		if (user->getAlive() != 0)
 		{
-			std::cout << "You are able to sidestep the second strike.\nAs you are doing this, the first claw takes another swipe!" << std::endl;
+			std::cout << "You attempt to dodge out of the way of the second claw strike.\n" << std::endl;
+
+			number = rand() % 100 + 1;
+
+			if (number > 40)
+			{
+				std::cout << "You are able to sidestep the second strike.\nAs you are doing this, the first claw takes another swipe!" << std::endl;
+			}
+			else
+			{
+				std::cout << "You try to sidestep the strike, but unfornately the claw strikes down into your side.\n"
+					"You lose two grit!\n" << std::endl;
+
+				//Player loses health and the function gritHit is called.
+				user->gritHit(2);
+
+				if (user->getAlive() != 0)
+				{
+					std::cout << "The first claw takes another swipe at you!" << std::endl;
+				}
+			}
 		}
-		else
+
+		if (user->getAlive() != 0)
 		{
-			std::cout << "You try to sidestep the strike, but unfornately the claw strikes down into your side.\n"
-				"You lose two grit!\n" << std::endl;
+			std::cout << "You attempt to dodge out of the way.\n" << std::endl;
 
-			//Player loses health and the function gritHit is called.
-			user->gritHit(2);
+			number = rand() % 100 + 1;
 
-			std::cout << "The first claw takes another swipe at you!" << std::endl;
+			if (number > 30)
+			{
+				std::cout << "You suddenly get an urge to flip backwards. You somehow successfully perform a backflip.\n" << std::endl;
+			}
+			else
+			{
+				std::cout << "You try to do a backflip, but unfornately the claw slashes your leg.\n"
+					"You lose two grit!" << std::endl;
+
+				//Player loses health and the function gritHit is called.
+				user->gritHit(2);
+			}
 		}
 
-		std::cout << "You attempt to dodge out of the way.\n" << std::endl;
-
-		number = rand() % 100 + 1;
-
-		if (number > 30)
+		if (user->getAlive() != 0)
 		{
-			std::cout << "You suddenly get an urge to flip backwards. You somehow successfully perform a backflip.\n" << std::endl;
+			std::cout << "You notice that you're at the edge of the room. You take a couple steps back down into the hallway.\n"
+				"The tentacle attempts to follow you but is too large. It screams at you.\n"
+				"You feel safe for now.\n"
+				"That was only one piece of a larger being. You have to find a way to permanently destroy it!\n" << std::endl;
 		}
-		else
-		{
-			std::cout << "You try to do a backflip, but unfornately the claw slashes your leg.\n"
-				"You lose two grit!\n" << std::endl;
-
-			//Player loses health and the function gritHit is called.
-			user->gritHit(2);
-		}
-
-		std::cout << "You notice that you're at the edge of the room. You take a couple steps back down into the hallway.\n"
-			"The tentacle attempts to follow you but is too large. It screams at you.\n"
-			"You feel safe for now.\n"
-			"That was only one piece of a larger being. You have to find a way to permanently destroy it!\n" << std::endl;
 	}
 
-	//Increases the variable to get one of the endings of the game.
-	user->setDeathWish(5);
-	std::cout << "You gain a lot of knowledge about what's going on!\n" << std::endl;
+	if (user->getAlive() != 0)
+	{
+		//Increases the variable to get one of the endings of the game.
+		user->setDeathWish(5);
+		std::cout << "You gain a lot of knowledge about what's going on!" << std::endl;
+	}
 
 	++fTwoHappened;
 
