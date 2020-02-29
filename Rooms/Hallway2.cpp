@@ -34,8 +34,8 @@ int Hallway2::featureOne(Player* user)
 		"'Don't listen to this guy', Barry chimes in pointing at Jeff. 'There's something off about him right now'.\n"
 		"You stare at them both. They look like they usually do. You notice Jeff staring intently at Barry.\n\n"
 		"Jeff says, 'You two can fret about the dogs all you want. I'm going to go get some shuteye.'\n"
-		"'I suggest you do the same, drunkern' he says pointing at you.\n"
-		"Jeff exits the room. The guy's usually a jerk, but today he seems like it moreso.\n" << std::endl;
+		"'I suggest you do the same, drunkern.', he says pointing at you.\n"
+		"Jeff exits the room. The guy's usually a jerk, but today he seems like it moreso." << std::endl;
 
 	++fOneHappened;
 
@@ -77,7 +77,7 @@ int Hallway2::featureTwo(Player* user)
 		"'Our research is too valuable to fall into enemy hands. You can reach them in the radio room.'\n"
 		"'I'm sure they'd be able to help us out.'\n"
 		"'Let me know what you find out. I'm really scared, man.'\n"
-		"He does not look well. It's probably best to go investigate the rest of the base.\n" << std::endl;
+		"\nHe does not look well. It's probably best to go investigate the rest of the base." << std::endl;
 
 	++fTwoHappened;
 
