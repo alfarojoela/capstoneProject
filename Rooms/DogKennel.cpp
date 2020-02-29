@@ -12,7 +12,7 @@ void DogKennel::setRoom()
 	name = "dogKennel";
 	longDes = "You enter the dog kennel. The base had 7 dogs that were housed in this room.\n"
 		"There isn't seven dogs here now. You hear panting from the corner of the room. You can investigate that.\n"
-		"You also notice something shimmering on a shelf in another corner of the room.\n";
+		"You also notice something glinting on a shelf in another corner of the room.\n";
 	shortDes = "You return to the dog kennel. Where'd all the dogs go?\n";
 	exitLong = "There is a hallway which connects to other rooms in the base like the conference room from the way you came.\n";
 	exitShort = "There is a hallway from the direction you came.\n";
@@ -53,9 +53,12 @@ int DogKennel::featureOne(Player* user)
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(2);
 
-			//Increases the variable to get one of the endings of the game.
-			user->setDeathWish(2);
-			std::cout << "You gain some knowledge about what's going on!" << std::endl;
+			if (user->getAlive() != 0)
+			{
+				//Increases the variable to get one of the endings of the game.
+				user->setDeathWish(2);
+				std::cout << "You gain some knowledge about what's going on!" << std::endl;
+			}
 
 			response = "correct";
 		}
@@ -68,9 +71,12 @@ int DogKennel::featureOne(Player* user)
 				//Calls the weapon attack function
 				weaponAttack(user);
 
-				//Increases the variable to get one of the endings of the game.
-				user->setDeathWish(4);
-				std::cout << "You gain a decent amount of knowledge about what's going on!" << std::endl;
+				if (user->getAlive() != 0)
+				{
+					//Increases the variable to get one of the endings of the game.
+					user->setDeathWish(4);
+					std::cout << "You gain a decent amount of knowledge about what's going on!" << std::endl;
+				}
 
 				response = "correct";
 			}
@@ -101,7 +107,6 @@ int DogKennel::featureOne(Player* user)
 			getline(std::cin, choice);
 		}
 	}
-	std::cout << std::endl;
 
 	++fOneHappened;
 
@@ -147,7 +152,10 @@ int DogKennel::featureTwo(Player* user)
 				user->gritHit(1);
 			}
 
-			std::cout << "You obtain a petri dish!" << std::endl;
+			if (user->getAlive() != 0)
+			{
+				std::cout << "You obtain a petri dish!" << std::endl;
+			}
 
 			//Removes the petri dish from the room using the removeItem function
 			removeItem("petri dish", user);
@@ -167,7 +175,6 @@ int DogKennel::featureTwo(Player* user)
 			getline(std::cin, choice);
 		}
 	}
-	std::cout << std::endl;
 
 	++fTwoHappened;
 
@@ -227,17 +234,20 @@ void DogKennel::weaponAttack(Player* user)
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(2);
 
-			std::cout << "You fire a couple more rounds into it to get it off. Its grip loosens and it falls over.\n"
-				"On closer inspection, it looks like one of the dogs but with a couple interesting features.\n"
-				"There is a tentacle coming out of it's back and it only has three legs.\n"
-				"There's a stump where the fourth leg should be. It looks like it was growing that leg!\n" << std::endl;
+			if (user->getAlive() != 0)
+			{
+				std::cout << "You fire a couple more rounds into it to get it off. Its grip loosens and it falls over.\n"
+					"On closer inspection, it looks like one of the dogs but with a couple interesting features.\n"
+					"There is a tentacle coming out of it's back and it only has three legs.\n"
+					"There's a stump where the fourth leg should be. It looks like it was growing that leg!\n" << std::endl;
 
-			std::cout << "You notice that the gun has no more rounds in it. This angers you since you don't have any spare bullets.\n"
-				"You throw the gun against a nearby wall.\n"
-				"You lose the gun!\n" << std::endl;
+				std::cout << "You notice that the gun has no more rounds in it. This angers you since you don't have any spare bullets.\n"
+					"You throw the gun against a nearby wall.\n"
+					"You lose the gun!\n" << std::endl;
 
-			//Deletes the gun if the shot missed.
-			user->deletePlayerItem("gun");
+				//Deletes the gun if the shot missed.
+				user->deletePlayerItem("gun");
+			}
 		}
 	}
 	else if (checkItem->getName() == "axe")
@@ -262,16 +272,19 @@ void DogKennel::weaponAttack(Player* user)
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(2);
 
-			std::cout << "You hammer downward a couple times to get it off you. Its grip loosens and it falls over.\n"
-				"On closer inspection, it looks like one of the dogs but with a couple interesting features.\n"
-				"There is a tentacle coming out of it's back and it only has three legs.\n"
-				"There's a stump where the fourth leg should be. It looks like it was growing that leg!\n" << std::endl;
+			if (user->getAlive() != 0)
+			{
+				std::cout << "You hammer downward a couple times to get it off you. Its grip loosens and it falls over.\n"
+					"On closer inspection, it looks like one of the dogs but with a couple interesting features.\n"
+					"There is a tentacle coming out of it's back and it only has three legs.\n"
+					"There's a stump where the fourth leg should be. It looks like it was growing that leg!\n" << std::endl;
 
-			std::cout << "You got so distracted by the intense pain that you now notice the head of the axe has separated from the handle.\n"
-				"You lose the axe!\n" << std::endl;
+				std::cout << "You got so distracted by the intense pain that you now notice the head of the axe has separated from the handle.\n"
+					"You lose the axe!\n" << std::endl;
 
-			//Deletes the axe if the swing missed.
-			user->deletePlayerItem("axe");
+				//Deletes the axe if the swing missed.
+				user->deletePlayerItem("axe");
+			}
 		}
 	}
 	else if (checkItem->getName() == "flamethrower")
