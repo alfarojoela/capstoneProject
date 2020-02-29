@@ -110,31 +110,31 @@ int ResearchLab::featureOne(Player* user)
 	//Different lines are printed about the player's gained knowledge based on how many screens they saw.
 	if (counter == 1)
 	{
-		std::cout << "You gain no knowledge about what's going on!\n" << std::endl;
+		std::cout << "You gain no knowledge about what's going on!" << std::endl;
 	}
 	else if (counter == 2)
 	{
 		//Increases the variable to get one of the endings of the game.
 		user->setDeathWish(1);
-		std::cout << "You gain a little bit of knowledge about what's going on!\n" << std::endl;
+		std::cout << "You gain a little bit of knowledge about what's going on!" << std::endl;
 	}
 	else if (counter == 3)
 	{
 		//Increases the variable to get one of the endings of the game.
 		user->setDeathWish(2);
-		std::cout << "You gain some knowledge about what's going on!\n" << std::endl;
+		std::cout << "You gain some knowledge about what's going on!" << std::endl;
 	}
 	else if (counter == 4 && choice == "2")
 	{
 		//Increases the variable to get one of the endings of the game.
 		user->setDeathWish(3);
-		std::cout << "You gain some knowledge about what's going on!\n" << std::endl;
+		std::cout << "You gain some knowledge about what's going on!" << std::endl;
 	}
 	else if (counter == 4 && choice == "1")
 	{
 		//Increases the variable to get one of the endings of the game.
 		user->setDeathWish(4);
-		std::cout << "You gain a decent amount of knowledge about what's going on!\n" << std::endl;
+		std::cout << "You gain a decent amount of knowledge about what's going on!" << std::endl;
 	}
 
 	++fOneHappened;
@@ -213,8 +213,11 @@ int ResearchLab::featureTwo(Player* user)
 				//Calls the gritHit function to cause the player to lose health.
 				user->gritHit(2);
 
-				std::cout << "You reflexively kick backwards causing the creature to fall onto the ground.\n"
-					"It appears to not be moving." << std::endl;
+				if (user->getAlive() != 0)
+				{
+					std::cout << "You reflexively kick backwards causing the creature to fall onto the ground.\n"
+						"It appears to not be moving." << std::endl;
+				}
 			}
 
 			response = "correct";
@@ -228,9 +231,12 @@ int ResearchLab::featureTwo(Player* user)
 	}
 	std::cout << std::endl;
 
-	//Increases the variable to get one of the endings of the game.
-	user->setDeathWish(5);
-	std::cout << "You gain a lot of knowledge about what's going on!\n" << std::endl;
+	if (user->getAlive() != 0)
+	{
+		//Increases the variable to get one of the endings of the game.
+		user->setDeathWish(5);
+		std::cout << "You gain a lot of knowledge about what's going on!" << std::endl;
+	}
 
 	++fTwoHappened;
 
@@ -288,15 +294,18 @@ void ResearchLab::weaponAttack(Player* user)
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(2);
 
-			std::cout << "You fire a five more rounds into it point blank. All of the shots hit its chest.\n"
-				"After the fifth shot, it falls backwards onto the table it was laying on. It stops moving.\n" << std::endl;
+			if (user->getAlive() != 0)
+			{
+				std::cout << "You fire a five more rounds into it point blank. All of the shots hit its chest.\n"
+					"After the fifth shot, it falls backwards onto the table it was laying on. It stops moving.\n" << std::endl;
 
-			std::cout << "You notice that the gun has no more rounds in it. This angers you since you don't have any spare bullets.\n"
-				"You throw the gun against a nearby wall.\n"
-				"You lose the gun!" << std::endl;
+				std::cout << "You notice that the gun has no more rounds in it. This angers you since you don't have any spare bullets.\n"
+					"You throw the gun against a nearby wall.\n"
+					"You lose the gun!" << std::endl;
 
-			//Deletes the gun if the shot missed.
-			user->deletePlayerItem("gun");
+				//Deletes the gun if the shot missed.
+				user->deletePlayerItem("gun");
+			}
 		}
 	}
 	else if (checkItem->getName() == "axe")
@@ -318,14 +327,17 @@ void ResearchLab::weaponAttack(Player* user)
 			//Calls the gritHit function to cause the player to lose health.
 			user->gritHit(2);
 
-			std::cout << "After the slash, you swing another time. It doesn't block this hit.\n"
-				"It falls backwards onto the table it was laying on before. You swing a couple more times until it stops moving.\n" << std::endl;
+			if (user->getAlive() != 0)
+			{
+				std::cout << "After the slash, you swing another time. It doesn't block this hit.\n"
+					"It falls backwards onto the table it was laying on before. You swing a couple more times until it stops moving.\n" << std::endl;
 
-			std::cout << "After the last swing you hear a clank. You notice the head of the axe has fallen and is separted from the handle.\n"
-				"You lose the axe!" << std::endl;
+				std::cout << "After the last swing you hear a clank. You notice the head of the axe has fallen and is separted from the handle.\n"
+					"You lose the axe!" << std::endl;
 
-			//Deletes the axe if the swing missed.
-			user->deletePlayerItem("axe");
+				//Deletes the axe if the swing missed.
+				user->deletePlayerItem("axe");
+			}
 		}
 	}
 	else if (checkItem->getName() == "flamethrower")
