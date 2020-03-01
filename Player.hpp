@@ -25,6 +25,9 @@ private:
 	int dumbIdea;
 	std::vector<Item> inventory;
 	
+	int drOutcome;
+
+	
 
 public:
 	Player();
@@ -85,6 +88,9 @@ public:
 	void setDumbIdea(int idea);
 	
 	int getDumbIdea();
+	
+	int getDrOutcome();
+	void setDrOutcome(int val);
 
 };
 
