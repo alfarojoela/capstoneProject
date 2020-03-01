@@ -198,7 +198,7 @@ std::cout << "X marks your current location." <<std::endl;
 
 std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|"<< std::endl;
 std::cout <<"			|Latrine|		|MacReady Quarters|		|Equipment Room|-------X|Toolshed|"<< std::endl;
-std::cout <<"			|-------|		|-----------------|		|-------X------|	|--------|" << std::endl;
+std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
@@ -236,7 +236,7 @@ std::cout << "X marks your current location." <<std::endl;
 
 std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|"<< std::endl;
 std::cout <<"			|Latrine|		|MacReady Quarters|		|Equipment Room|--------|Toolshed|"<< std::endl;
-std::cout <<"			|-------|		|-----------------|		|-------X------|	|--------|" << std::endl;
+std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
@@ -274,7 +274,7 @@ std::cout << "X marks your current location." <<std::endl;
 
 std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|"<< std::endl;
 std::cout <<"			|Latrine|		|MacReady Quarters|		|Equipment Room|--------|Toolshed|"<< std::endl;
-std::cout <<"			|-------|		|-----------------|		|-------X------|	|--------|" << std::endl;
+std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
@@ -313,7 +313,7 @@ std::cout << "X marks your current location." <<std::endl;
 
 std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|"<< std::endl;
 std::cout <<"			|Latrine|		|MacReady Quarters|		|Equipment Room|--------|Toolshed|"<< std::endl;
-std::cout <<"			|-------|		|-----------------|		|-------X------|	|--------|" << std::endl;
+std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
@@ -352,13 +352,13 @@ std::cout << "X marks your current location." <<std::endl;
 
 std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|"<< std::endl;
 std::cout <<"			|Latrine|		|MacReady Quarters|		|Equipment Room|--------|Toolshed|"<< std::endl;
-std::cout <<"			|-------|		|-----------------|		|-------X------|	|--------|" << std::endl;
+std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"|--------|		|-----------------------------------------------------------------------------------|	   |----------|" << std::endl;
-std::cout <<"|Sick Bay|--------------|                          Hallway 1                                                |-----X|Radio Room|" << std::endl;
+std::cout <<"|Sick Bay|--------------|                          Hallway 1                                                |------|Radio Room|" << std::endl;
 std::cout <<"|--------|		|-----------------------------------------------------------------------------------|	   |----------|" << std::endl;
 std::cout <<"				|			|				" <<std::endl;
 std::cout <<"				|			|				" <<std::endl;
@@ -390,13 +390,13 @@ std::cout << "X marks your current location." <<std::endl;
 
 std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|"<< std::endl;
 std::cout <<"			|Latrine|		|MacReady Quarters|		|Equipment Room|--------|Toolshed|"<< std::endl;
-std::cout <<"			|-------|		|-----------------|		|-------X------|	|--------|" << std::endl;
+std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"|--------|		|-----------------------------------------------------------------------------------|	   |----------|" << std::endl;
-std::cout <<"|Sick Bay|--------------|                          Hallway 1                                                |-----X|Radio Room|" << std::endl;
+std::cout <<"|Sick Bay|--------------|                          Hallway 1                                                |------|Radio Room|" << std::endl;
 std::cout <<"|--------|		|-----------------------------------------------------------------------------------|	   |----------|" << std::endl;
 std::cout <<"				|			|				" <<std::endl;
 std::cout <<"				|			|				" <<std::endl;
@@ -428,13 +428,13 @@ std::cout << "X marks your current location." <<std::endl;
 
 std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|"<< std::endl;
 std::cout <<"			|Latrine|		|MacReady Quarters|		|Equipment Room|--------|Toolshed|"<< std::endl;
-std::cout <<"			|-------|		|-----------------|		|-------X------|	|--------|" << std::endl;
+std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"|--------|		|-----------------------------------------------------------------------------------|	   |----------|" << std::endl;
-std::cout <<"|Sick Bay|--------------|                          Hallway 1                                                |-----X|Radio Room|" << std::endl;
+std::cout <<"|Sick Bay|--------------|                          Hallway 1                                                |------|Radio Room|" << std::endl;
 std::cout <<"|--------|		|-----------------------------------------------------------------------------------|	   |----------|" << std::endl;
 std::cout <<"				|			|				" <<std::endl;
 std::cout <<"				|			|				" <<std::endl;
@@ -467,13 +467,13 @@ std::cout << "X marks your current location." <<std::endl;
 
 std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|"<< std::endl;
 std::cout <<"			|Latrine|		|MacReady Quarters|		|Equipment Room|--------|Toolshed|"<< std::endl;
-std::cout <<"			|-------|		|-----------------|		|-------X------|	|--------|" << std::endl;
+std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"|--------|		|-----------------------------------------------------------------------------------|	   |----------|" << std::endl;
-std::cout <<"|Sick Bay|--------------|                          Hallway 1                                                |-----X|Radio Room|" << std::endl;
+std::cout <<"|Sick Bay|--------------|                          Hallway 1                                                |------|Radio Room|" << std::endl;
 std::cout <<"|--------|		|-----------------------------------------------------------------------------------|	   |----------|" << std::endl;
 std::cout <<"				|			|				" <<std::endl;
 std::cout <<"				|			|				" <<std::endl;
@@ -505,13 +505,13 @@ std::cout << "X marks your current location." <<std::endl;
 
 std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|"<< std::endl;
 std::cout <<"			|Latrine|		|MacReady Quarters|		|Equipment Room|--------|Toolshed|"<< std::endl;
-std::cout <<"			|-------|		|-----------------|		|-------X------|	|--------|" << std::endl;
+std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"|--------|		|-----------------------------------------------------------------------------------|	   |----------|" << std::endl;
-std::cout <<"|Sick Bay|--------------|                          Hallway 1                                                |-----X|Radio Room|" << std::endl;
+std::cout <<"|Sick Bay|--------------|                          Hallway 1                                                |------|Radio Room|" << std::endl;
 std::cout <<"|--------|		|-----------------------------------------------------------------------------------|	   |----------|" << std::endl;
 std::cout <<"				|			|				" <<std::endl;
 std::cout <<"				|			|				" <<std::endl;
@@ -545,7 +545,7 @@ std::cout << "X marks your current location." <<std::endl;
 
 std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|"<< std::endl;
 std::cout <<"			|Latrine|		|MacReady Quarters|		|Equipment Room|--------|Toolshed|"<< std::endl;
-std::cout <<"			|-------|		|-----------------|		|-------X------|	|--------|" << std::endl;
+std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
@@ -584,7 +584,7 @@ std::cout << "X marks your current location." <<std::endl;
 
 std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|"<< std::endl;
 std::cout <<"			|Latrine|		|MacReady Quarters|		|Equipment Room|--------|Toolshed|"<< std::endl;
-std::cout <<"			|-------|		|-----------------|		|-------X------|	|--------|" << std::endl;
+std::cout <<"			|-------|		|-----------------|		|--------------|	|--------|" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
 std::cout <<"				|			|				|		" << std::endl;
@@ -611,4 +611,5 @@ std::cout <<"|-------|			|----------|		|--------|			|---------------|" <<std::en
 std::cout <<"|Galley |			|Dog Kennel|		|Basement|			|Conference Room|" <<std::endl;
 std::cout <<"|-------|			|----------|		|--------|			|---------------|" << std::endl;
 }
+
 
