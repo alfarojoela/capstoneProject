@@ -30,7 +30,8 @@ std::vector<std::string> preposition::getPrepositions()
         "from",
         "upon",
         "onto",
-        "atop"
+        "atop",
+        "ex"
     };
 
     return prepositions;

@@ -149,7 +149,15 @@ std::vector<std::string> noun::getNouns()
         "shape",
         "thing",
         "projector",
-        "table"
+        "table",
+        "rattling",
+        "rattling noise",
+        "noise",
+        "exits",
+        "machina",
+        "tapes",
+        "movies",
+        "films"
     };
 
     return nouns;

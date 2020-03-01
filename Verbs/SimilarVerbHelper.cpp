@@ -72,7 +72,8 @@ std::vector<std::string> similar::getAttackVerbs()
         "attack",
         "charge", 
         "strike", 
-        "advance"
+        "advance",
+        "hit"
     };
 
     return similarAttackVerbs;
@@ -251,7 +252,9 @@ std::vector<std::string> similar::getMiscVerbs()
         "current",
         "map",
         "savegame",
-        "loadgame"
+        "loadgame",
+        "show",
+        "deus"
     };
 
     return similarMiscVerbs;
