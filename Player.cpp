@@ -9,6 +9,8 @@ Player::Player()
 	gameEnd = 0;
 	needBearings = 1;
 	deathWish = 0;
+	drOutcome = 0;
+
 }
 
 void Player::useItem(std::string item)
@@ -356,7 +358,15 @@ int Player::getDumbIdea()
 return dumbIdea;
 }
 
+int Player::getDrOutcome()
+{
+	return drOutcome;
+}
 
+void Player::setDrOutcome(int val)
+{
+	drOutcome = val;
+}
 
 
 
