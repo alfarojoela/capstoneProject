@@ -189,12 +189,19 @@ int Basement::featureOne(Player* user)
 				//Discards the rope since the user used it on the other crew member.
 				user->deletePlayerItem("rope");
 
-				//Allows the user to check the NPC's blood if they have the appropriate items.
+				//Sets the outcome of the interaction to 4. The user's inventory will be checked to see if they have the appropriate items to test the blood.
+				user->setDrOutcome(4);
+
+				//Allows the user to tie up the NPC and check the NPC's blood if they have the appropriate items.
 				checkBlood(user);
 			}
 			else
 			{
-				std::cout << "After a couple of seconds, he appears to be knocked out. You decide to leave him there." << std::endl;
+				std::cout << "After a couple of seconds, the doctor appears to be knocked out.\n"
+					"You decide to leave him there for now. You should probably find something to tie him up with though!"<< std::endl;
+
+				//Sets the outcome of the interaction to 3. The user can come back and tie up the doctor. 
+				user->setDrOutcome(3);
 			}
 		}
 		else
@@ -207,6 +214,9 @@ int Basement::featureOne(Player* user)
 
 			//Calls the gritHit function which causes the player to take damage.
 			user->gritHit(3);
+
+			//Sets the outcome of the interaction to 2. If the user tries to check the doctor's blood they cannot because they failed the feature.
+			user->setDrOutcome(2);
 		}
 	}
 	else if(correctQuestion == 1)
@@ -215,6 +225,9 @@ int Basement::featureOne(Player* user)
 			"'I'll be up there in a bit.', he says. 'Got something to take care of real quick around here.'\n"
 			"It's weird that he doing things in the basement, but he did answer most of the questions correctly.\n"
 			"You decide to leave him to his business." << std::endl;
+
+		//Sets the outcome of the interaction to 1. If the user tries to check the doctor's blood they cannot because they failed the feature.
+		user->setDrOutcome(1);
 	}
 	else
 	{
@@ -222,6 +235,9 @@ int Basement::featureOne(Player* user)
 			"'I'll be up there in a bit', he says. 'Got something to take care of real quick around here.'\n"
 			"It's weird that he doing things in the basement, but he did answer all of the questions correctly.\n"
 			"You decide to leave him to his business." << std::endl;
+
+		//Sets the outcome of the interaction to 1. If the user tries to check the doctor's blood they cannot because they failed the feature.
+		user->setDrOutcome(1);
 	}
 
 	++fOneHappened;
@@ -232,12 +248,71 @@ int Basement::featureOne(Player* user)
 //Function allows the user to check if a member of the base is not human if they have certain items.
 void Basement::checkBlood(Player* user)
 {
+	//Differenet lines and function calls will be executed based off of the items the player has.
+	if (user->getDrOutcome() == 0)
+	{
+		std::cout << "Why would you want to check the blood of the doctor?\nHe hasn't done anything suspicious to you." << std::endl;
+	}
+	else if (user->getDrOutcome() == 1)
+	{
+		std::cout << "Why would you want to check the blood of the doctor?\nHe answered most if not all of your questions correctly." << std::endl;
+	}
+	else if (user->getDrOutcome() == 2)
+	{
+		std::cout << "The doctor isn't here anymore. Remember when he shot you in the leg and took off?" << std::endl;
+	}
+	else if (user->getDrOutcome() == 3)
+	{
+		if (user->checkInventory("rope"))
+		{
+			std::cout << "The doctor is still on the ground knocked out.\nYou decide to tie him up with the rope so he doesn't cause harm to anyone else." << std::endl;
+
+			//Sets the outcome of the interaction to 4. The user's inventory will be checked to see if they have the appropriate items to test the blood.
+			user->setDrOutcome(4);
+
+			//Calls a function that will allow the user to test the NPC's blood if they have the appropriate items.
+			testItems(user);
+		}
+		else
+		{
+			std::cout << "The doctor is still on the ground knocked out.\nYou still need something to tie him up with." << std::endl;
+		}
+	}
+	else if (user->getDrOutcome() == 4)
+	{
+		//Calls a function that will allow the user to test the NPC's blood if they have the appropriate items.
+		testItems(user);
+	}
+	else if (user->getDrOutcome() == 5)
+	{
+		std::cout << "You already tested the doctor's blood. He's not human!\n" << std::endl;
+
+		if (user->checkInventory("flamethrower"))
+		{
+			std::cout << "'This isn't right!', you think. 'I have to do something about this.'\n"
+				"You pull out the flamethrower. You begin to pour out flames on the thing pretending to be Dr. Blair.\n"
+				"It makes no noise at first, but then wakes up and begins shrieking. It's body begins shaking heavily.\n"
+				"You continue to pour on the flames until it stops moving.\nAfter seeing it shake like that, you feel like you made the right choice." << std::endl;
+
+			//Sets the outcome of the interaction to 6. The player has learned all they can from the interaction and destroyed the creature.
+			user->setDrOutcome(6);
+		}
+	}
+	else if (user->getDrOutcome() == 6)
+	{
+		std::cout << "You already found out that the doctor was not human and destroyed it! Good work!" << std::endl;
+	}
+}
+
+void Basement::testItems(Player* user)
+{
 	//Checks whether the player has specific items to help figure out what's going on.
 	if (user->checkInventory("blowtorch") && user->checkInventory("petri dish") && user->checkInventory("copper wire") && user->checkInventory("scalpel"))
 	{
-		std::cout << "As you are finishing tying up Dr. Blair, you hear a clank against the ground.\n"
-			"The blowtorch you had been carrying around fell next to the tied up thing.\n"
-			"You notice blood on the ground next to the blowtorch. There's blood also coming from the doctor's nose.\n\n"
+		std::cout << "You bend down next to the doctor and notice he's still bleeding from his nose.\n"
+			"As you stand up, you hear a clank against the ground.\n"
+			"The blowtorch you had been carrying around fell next to the tied up individual.\n"
+			"You notice blood on the ground next to the blowtorch.\n\n"
 			"You reach to pick up the blowtorch, but accidently pull its trigger while grabbing it.\n"
 			"A flame shoots out of the blowtorch and you hear a shriek. The blood isn't there anymore!\n"
 			"You don't know a lot about medicine, but that shouldn't happen. You decide to test more of his blood.\n\n"
@@ -253,19 +328,25 @@ void Basement::checkBlood(Player* user)
 		if (user->checkInventory("flamethrower"))
 		{
 			std::cout << "'This isn't right!', you think. 'I have to do something about this.'\n"
-				"You pull out the flamethrower. You begin to pour out flames on the thing that isn't Dr. Blair.\n"
+				"You pull out the flamethrower. You begin to pour out flames on the thing pretending to be Dr. Blair.\n"
 				"It makes no noise at first, but then wakes up and begins shrieking. It's body begins shaking heavily.\n"
 				"You continue to pour on the flames until it stops moving.\nAfter seeing it shake like that, you feel like you made the right choice." << std::endl;
+
+			//Sets the outcome of the interaction to 6. The player has learned all they can from the interaction and destroyed the creature.
+			user->setDrOutcome(6);
 		}
 		else
 		{
 			std::cout << "'So there are things on the base acting like us, but are not us.', you think.\n"
-				"You decide to leave him tied up down here." << std::endl;
+				"You decide to leave it tied up down here." << std::endl;
+
+			//Sets the outcome of the interaction to 5. The player has learned all they can from the interaction but has not destroyed the creature.
+			user->setDrOutcome(5);
 		}
 	}
 	else
 	{
-		std::cout << "This thing wasn't acting like Dr. Blair. You notice the thing bleeding from its nose.\n"
+		std::cout << "He wasn't acting like Dr. Blair. He's bleeding from his nose.\n"
 			"There's got to be some way of testing whether or not it is him." << std::endl;
 	}
 }
