@@ -612,14 +612,14 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "computer")
+	if (commands[0] == "break" && commands[2] == "computer")
 	{
 		std::cout << "You're jealous of Macready's outstanding computer and for a split second you consider breaking it out of spite." << std::endl;
 		std::cout << "However, you come to your senses and decide not to break Macready's computer." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "bed")
+	if (commands[0] == "break" && commands[2] == "bed")
 	{
 		std::cout << "You don't want to break Macready's bed.  That will get you on his wrongside." << std::endl;
 		return;
@@ -632,7 +632,7 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "bed")
+	if (commands[0] == "look" &&  commands[2] == "bed")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -648,7 +648,7 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "computer")
+	if (commands[0] == "look" && commands[2] == "computer")
 	{
 		std::cout << "It's a state of the art Commodore 64." << std::endl;
 		std::cout << "The CPU is 1.023 MHz!" << std::endl;

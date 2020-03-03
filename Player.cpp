@@ -89,9 +89,7 @@ void Player::setGrit(std::string powerup)
 	if (type == "beer")
 	{
 		grit = grit + 1;
-		std::cout << "You just had a can of the King of Beers." << std::endl;
-		std::cout << "You still feel thirsty." << std::endl;
-		std::cout << "Your grit level is now: " << getGrit() << std::endl;
+		std::cout << "The beer quenches your thirst for now..." << std::endl;
 		deletePlayerItem("beer");
 
 		return;
