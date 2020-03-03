@@ -97,7 +97,7 @@ void take(std::string commands[3], Room* &playerLocation, Player* &playerPtr, st
 
 	if(playerLocation->checkItem(itemToTake) ==999 && playerLocation->getName() == "macready")
 	{
-		std::cout <<"You can't take that." << std::endl;
+		std::cout <<"You can't do that." << std::endl;
 		std::cout << "Besides, it's not a good idea trying to take Macready's stuff without asking.  You're liable to get on his wrongside.  And you don't wanna be on his wrongside." << std::endl;
 		return;
 	}
@@ -515,6 +515,16 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
+		std::string freeBooze = "beer";
+
+		if (playerLocation->checkItem(freeBooze) != 999)
+		{
+			std::cout << "You notice a bottle of beer on the floor." << std::endl;
+			std::cout << "You don't think MacReady will miss it." << std::endl;
+			std::cout << "He thinks this one is nasty." << std::endl;
+			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+		}
+
 		playerLocation->itemsInRoom();
 		return;
 	}
@@ -534,7 +544,7 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 
 	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "bed")
 	{
-		std::cout << "You take a deep whiff from the bed...It smells like a chimp sleeps here.  And you should know, as you have worked with chimps before." << std::endl;
+		std::cout << "You take a deep whiff from the bed...It smells like a chimp sleeps here.  And you should know because you worked a summer at the zoo once." << std::endl;
 		return;
 	}
 
@@ -700,18 +710,6 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 		std::cout << "You can't do that here." << std::endl;
 		return;
 }
@@ -723,6 +721,15 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
+		std::string freeBooze = "beer";
+
+		if (playerLocation->checkItem(freeBooze) != 999)
+		{
+			std::cout << "You notice a bottle of beer on the floor." << std::endl;
+			std::cout << "What luck it didn't break during the outbreak of carnage." << std::endl;
+			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+		}
+
 		playerLocation->itemsInRoom();
 		return;
 	}
@@ -949,18 +956,6 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
@@ -972,6 +967,15 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
+		std::string freeBooze = "beer";
+
+		if (playerLocation->checkItem(freeBooze) != 999)
+		{
+			std::cout << "You notice a bottle of beer in the sink." << std::endl;
+			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+
+		}
+
 		playerLocation->itemsInRoom();
 		return;
 	}
@@ -1185,18 +1189,6 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
@@ -1210,6 +1202,16 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
 			std::cout << "You start looking for booze and notice..." << std::endl;
+			std::string freeBooze = "beer";
+
+			if (playerLocation->checkItem(freeBooze) != 999)
+			{
+				std::cout << "You notice a bottle of beer on the floor." << std::endl;
+				std::cout << "Amazingly, it was not broken when all the carnage went down." << std::endl;
+				std::cout << "If you want to add it to your inventory, type: 'take beer' " << std::endl;
+				std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+
+			}
 
 			playerLocation->itemsInRoom();
 			return;
@@ -1217,7 +1219,8 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 
 		else
 		{
-			std::cout << "Since the lights are off, you can't do that right now." << std::endl;
+			std::cout << "Turn on the lights before you start looking for booze!" << std::endl;
+			std::cout << "You might trip and crack your head." << std::endl;
 			return;
 		}
 	}
@@ -1468,18 +1471,6 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
@@ -1491,6 +1482,14 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
+		std::string freeBooze = "beer";
+
+		if (playerLocation->checkItem(freeBooze) != 999)
+		{
+			std::cout << "You notice a bottle of beer in the snow." << std::endl;
+			std::cout << "It's like it was waiting for you all along!" << std::endl;
+			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+		}
 
 		playerLocation->itemsInRoom();
 		return;
@@ -1861,18 +1860,6 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
@@ -2163,18 +2150,6 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
@@ -2184,10 +2159,22 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
+		std::cout << "You start looking for booze and notice..." << std::endl;
+		std::string freeBooze = "beer";
+
+		if (playerLocation->checkItem(freeBooze) != 999)
+		{
+			std::cout << "You notice a cold one beside the radio equipment." << std::endl;
+			std::cout << "It has MacReady's name on it with a message taped to it." << std::endl;
+			std::cout << "'Don't drink my beer -RJ' it reads." << std::endl;
+			std::cout << "For all you know, MacReady may not be around anymore." << std::endl;
+			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+
+		}
+
 		playerLocation->itemsInRoom();
 		return;
 	}
-
 	if (commands[0] == "talk" && commands[1] == "on" && commands[2] == "radio")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
@@ -2432,18 +2419,6 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
@@ -2454,6 +2429,14 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
+		std::string freeBooze = "beer";
+
+		if (playerLocation->checkItem(freeBooze) != 999)
+		{
+			std::cout << "You notice a bottle of beer by the computer." << std::endl;
+			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+
+		}
 
 		playerLocation->itemsInRoom();
 		return;
@@ -2733,18 +2716,6 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
@@ -2755,6 +2726,16 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
+		std::string freeBooze = "beer";
+
+		if (playerLocation->checkItem(freeBooze) != 999)
+		{
+			std::cout << "There is a case of beer on the floor beside Barry." << std::endl;
+			std::cout << "You deduce it isn't Barry's because he is a teetotaler." << std::endl;
+			std::cout << "He probably won't mind if you take one." << std::endl;
+			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+
+		}
 
 		playerLocation->itemsInRoom();
 		return;
@@ -2960,6 +2941,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 			std::cout << "Jeff's hands become tentacles and wrap around your neck." << std::endl;
 			std::cout << "You struggle to breathe, but the tentacles are too strong." << std::endl;
 			std::cout << "Everything goes black." << std::endl;
+			playerPtr->setAlive(0);
 			return;
 		}
 	}
@@ -3096,18 +3078,6 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
@@ -3118,6 +3088,16 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
+		std::string freeBooze = "beer";
+
+		if (playerLocation->checkItem(freeBooze) != 999)
+		{
+			std::cout << "You notice a bottle of beer all alone on a table." << std::endl;
+			std::cout << "It looks lonely." << std::endl;
+			std::cout << "Maybe you should take it with you and give it a good home." << std::endl;
+			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+
+		}
 
 		playerLocation->itemsInRoom();
 		return;
@@ -3130,7 +3110,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "drink" && commands[2] == "bottle")
+	if (commands[0] == "drink" && commands[2] == "booze")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -3169,7 +3149,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "smell" && commands[2] == "bottle")
+	if (commands[0] == "smell" && commands[2] == "booze")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -3206,7 +3186,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "attack" && commands[2] == "bottle")
+	if (commands[0] == "attack" && commands[2] == "booze")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -3248,7 +3228,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
-			std::cout << "You already ate it.  How are you going to jump on it now?" << std::endl;
+			std::cout << "That just won't be helpful at this time." << std::endl;
 			return;
 		}
 
@@ -3259,7 +3239,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "bottle")
+	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "booze")
 	{
 		std::cout << "You decide against it." << std::endl;
 		return;
@@ -3302,7 +3282,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "bottle")
+	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "booze")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -3379,18 +3359,6 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
@@ -3403,6 +3371,15 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
+		std::string freeBooze = "beer";
+
+		if (playerLocation->checkItem(freeBooze) != 999)
+		{
+			std::cout << "You notice a bottle of beer on a tool box." << std::endl;
+			std::cout << "You don't see anyone's name on it." << std::endl;
+			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+
+		}
 
 		playerLocation->itemsInRoom();
 		return;
@@ -3686,18 +3663,6 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
@@ -3708,6 +3673,13 @@ void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Playe
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
+		std::string freeBooze = "beer";
+
+		if (playerLocation->checkItem(freeBooze) != 999)
+		{
+			std::cout << "You notice a bottle of beer on a counter." << std::endl;
+			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+		}
 
 		playerLocation->itemsInRoom();
 		return;
@@ -3921,18 +3893,6 @@ void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Playe
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
@@ -3943,6 +3903,15 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
+		std::string freeBooze = "beer";
+
+		if (playerLocation->checkItem(freeBooze) != 999)
+		{
+			std::cout << "You notice a bottle of beer on a shelf." << std::endl;
+			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+
+
+		}
 
 		playerLocation->itemsInRoom();
 		return;
@@ -4215,18 +4184,6 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 	if (commands[0] == "map")
 	{
 		map();
-		return;
-	}
-
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
 		return;
 	}
 
@@ -4539,6 +4496,16 @@ void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocatio
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
+		std::string freeBooze = "beer";
+
+		if (playerLocation->checkItem(freeBooze) != 999)
+		{
+			std::cout << "You notice a bottle of beer beside the projector." << std::endl;
+			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+
+	
+		}
+		
 
 		playerLocation->itemsInRoom();
 		return;
@@ -4851,18 +4818,6 @@ void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocatio
 		return;
 	}
 
-	if (commands[0] == "savegame")
-	{
-		std::cout << "Place holder for save" << std::endl;
-		return;
-	}
-
-	if (commands[0] == "loadgame")
-	{
-		std::cout << "Place holder for load" << std::endl;
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
@@ -4992,6 +4947,12 @@ Item flamethrower("flamethrower");
 Item redHerring("red herring");
 Item copperWire("copper wire");
 
+/*miscellaneous items to place*/
+Item tequila("tequila");
+Item beer("beer");
+Item mataRata("matarata");
+Item vodka("vodka");
+
 galleyPtr-> addItem(redHerring);
 hallway1Ptr->addItem(axe);
 sickbayPtr->addItem(scalpel);
@@ -5004,6 +4965,12 @@ dogkennelPtr->addItem(petri);
 garagePtr->addItem(flamethrower);
 radioroomPtr->addItem(copperWire);
 basementPtr->addItem(gun);
+
+latrinePtr->addItem(beer);
+garagePtr->addItem(mataRata);
+
+
+
 
 /*********************************************/
 /*Loop starts*/
@@ -5019,10 +4986,9 @@ if(playerPtr->getBearings() == 1)
 playerLocation->displayDescrip();
 playerLocation->displayExits();
 playerPtr->setBearings(0);
-playerPtr->gritWarning();
-
 }
 userInput = "";
+playerPtr->gritWarning();
 
 std::cout << "________________________________________________________________________________________________________" << std::endl;
 std::cout << "What do you want to do?" << std::endl;
@@ -5075,6 +5041,7 @@ if (playerPtr->getAlive() == 0)
 }while(userInput != "exit");
 
 }
+
 
 
 
