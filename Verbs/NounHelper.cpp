@@ -157,7 +157,12 @@ std::vector<std::string> noun::getNouns()
         "machina",
         "tapes",
         "movies",
-        "films"
+        "films",
+        "blood",
+        "blood test",
+        "Blair",
+        "doctor",
+        "bottle"
     };
 
     return nouns;
