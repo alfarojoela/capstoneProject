@@ -162,7 +162,8 @@ std::vector<std::string> noun::getNouns()
         "blood test",
         "Blair",
         "doctor",
-        "bottle"
+        "bottle",
+        "pabst"
     };
 
     return nouns;
