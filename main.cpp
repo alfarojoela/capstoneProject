@@ -4714,7 +4714,7 @@ void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocatio
 		return;
 	}
 
-	if (commands[0] == "go" && commands[1] == "hallway2")
+	if (commands[0] == "go" && commands[2] == "hallway2")
 	{
 		go(playerLocation, roomList, 9, playerPtr);
 		return;
