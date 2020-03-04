@@ -219,6 +219,9 @@ void Parser::parseInput(std::string userInput, std::string (&commands)[CONST_THR
     /* Change every character to a lower-case for parsing */
     std::transform(userInput.begin(), userInput.end(), userInput.begin(), ::tolower);
 
+    /* Checks for edge case and miscellaneous parsed terms */
+    userInput = similar::parseMiscEdgeInput(userInput);
+
     /* Checks for words in input that may be potentially mispelled and can be parsed to valid words for the game 
     */
     userInput = compareWords(userInput);

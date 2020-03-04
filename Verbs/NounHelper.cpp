@@ -90,6 +90,7 @@ std::vector<std::string> noun::getNouns()
         "inventory",
         "crew",
         "member",
+        "members",
         "crew member",
         "crew members",
         "crewmember",
@@ -118,6 +119,7 @@ std::vector<std::string> noun::getNouns()
         "south",
         "east",
         "west",
+        "test",
         "figure",
         "other",
         "other equipment",
@@ -161,6 +163,7 @@ std::vector<std::string> noun::getNouns()
         "blood",
         "blood test",
         "Blair",
+        "blair",
         "doctor",
         "bottle",
         "pabst"
