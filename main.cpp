@@ -2741,7 +2741,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "Jeff")
+	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "jeff")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -2757,7 +2757,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "Barry")
+	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "barry")
 	{
 			playerLocation->featureTwo(playerPtr);
 			return;
@@ -2770,7 +2770,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[2] == "Jeff")
+	if (commands[0] == "smell" && commands[2] == "jeff")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -2787,7 +2787,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "smell" && commands[2] == "Barry")
+	if (commands[0] == "smell" && commands[2] == "barry")
 	{
 		std::cout << "You smell Barry." << std::endl;
 		std::cout << "Since he works in the galley, he smells a little like the kitchen: a mix of vegetable soup and meatloaf with a bit of dishwater." << std::endl;
@@ -2802,7 +2802,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "attack" && commands[2] == "Jeff")
+	if (commands[0] == "attack" && commands[2] == "jeff")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -2822,7 +2822,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "attack" && commands[2] == "Barry")
+	if (commands[0] == "attack" && commands[2] == "barry")
 	{
 		std::cout << "You clench your fist and cock it back to give Barry a haymaker." << std::endl;
 		std::cout << "Barry is quicker and pulls out a meat cleaver and buries it into your skull." << std::endl;
@@ -2830,7 +2830,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if ((commands[0] == "eat" && commands[2] == "Barry") || (commands[0] == "eat" && commands[2] == "Jeff"))
+	if ((commands[0] == "eat" && commands[2] == "barry") || (commands[0] == "eat" && commands[2] == "jeff"))
 	{
 		std::cout << "Look, I know it's been a few hours since you ate last." << std::endl;
 		std::cout << "But that's no reason to try and eat your crew mates." << std::endl;
@@ -2844,7 +2844,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "Jeff")
+	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "jeff")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -2865,7 +2865,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "Barry")
+	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "barry")
 	{
 	
 			std::cout << "You walk up to Barry nonchalantly." << std::endl;
@@ -2882,7 +2882,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 	}
 
 
-	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "Jeff")
+	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "jeff")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -2902,7 +2902,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "Barry")
+	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "barry")
 	{
 
 		if (playerLocation->getFeatureOneHap() == 1)
@@ -2924,7 +2924,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 	}
 
 
-	if (commands[0] == "break" && commands[2] == "Jeff")
+	if (commands[0] == "break" && commands[2] == "jeff")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -2946,7 +2946,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "break" && commands[2] == "Barry")
+	if (commands[0] == "break" && commands[2] == "barry")
 	{
 		std::cout << "You walk up to Barry nonchalantly." << std::endl;
 		std::cout << "You resolve to break his face for him." << std::endl;
@@ -2968,7 +2968,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "Barry")
+	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "barry")
 	{
 		std::cout << "Barry appears to be quite worried." << std::endl;
 		std::cout << "You can't blame him." << std::endl;
