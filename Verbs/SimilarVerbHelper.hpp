@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 
 namespace similar
 {
@@ -29,6 +30,8 @@ namespace similar
     std::vector<std::string> getHelpVerbs();
     std::vector<std::string> getInventoryVerbs();
     std::vector<std::string> getMiscVerbs();
+
+    std::string parseMiscEdgeInput(std::string input);
 } 
 
 /* 

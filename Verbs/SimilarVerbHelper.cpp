@@ -101,7 +101,8 @@ std::vector<std::string> similar::getUseVerbs()
         "apply", 
         "handle", 
         "spend", 
-        "expend"
+        "expend",
+        "turn"
     };
 
     return similarUseVerbs;
@@ -163,7 +164,10 @@ std::vector<std::string> similar::getLookVerbs()
         "stare", 
         "view", 
         "glimpse", 
-        "glance"
+        "glance",
+        "check",
+        "inspect",
+        "examine"
     };
 
     return similarLookVerbs;
@@ -258,4 +262,72 @@ std::vector<std::string> similar::getMiscVerbs()
     };
 
     return similarMiscVerbs;
+}
+
+std::string similar::parseMiscEdgeInput(std::string input) 
+{
+    std::istringstream inputStream;
+    inputStream.str(input);
+
+    std::string tempString, returnInput = "";
+
+    if (input.find("turn on") != std::string::npos || input.find("turnon") != std::string::npos) 
+    {
+        while (inputStream >> tempString) 
+        {
+            if (tempString == "turn" || tempString == "turnon") 
+                returnInput += "use ";
+
+            else if (tempString == "on") 
+                continue;
+
+            else
+                returnInput += tempString + " ";
+        }
+
+        return returnInput;
+    }
+    
+    if (input.find("hallway 2") != std::string::npos || input.find("hallway2") != std::string::npos) 
+    {
+        while (inputStream >> tempString) 
+        {
+            if (tempString == "hallway" || tempString == "hallway2") 
+                returnInput += "hallway2 ";
+            else 
+                returnInput += tempString + " ";
+        }
+
+        return returnInput;
+    }
+
+    if (input.find("check") != std::string::npos)
+    {
+        while (inputStream >> tempString) 
+        {
+            if (tempString == "check")
+                returnInput += "look at ";
+            else
+                returnInput += tempString + " ";
+        }
+
+        return returnInput;
+    }
+
+    // TODO: REFACTOR AND ADD
+    while (inputStream >> tempString) 
+    {
+        if (tempString == "macready's" || tempString == "macreadys" || tempString == "macready's quarter" || 
+            tempString == "macready's quarters" || tempString == "mcready's" || tempString == "mcreadys" ||
+            tempString == "mcready's quarters" || tempString == "mcready's quarter" || tempString == "mcreadys quarters" ||
+            tempString == "macreadys quarters") 
+            returnInput += "macready ";
+
+        else if (tempString == "movies" || tempString == "movie" || tempString == "films" || tempString == "film") 
+            returnInput += "tapes ";
+        else 
+            returnInput += tempString + " ";
+    }
+
+    return returnInput;
 }
