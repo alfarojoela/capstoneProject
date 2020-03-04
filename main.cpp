@@ -482,6 +482,12 @@ void roomRouter(std::string commands[3], Room* &playerLocation, Player* &playerP
 		return;
 	}
 
+		if (playerLocation->getName() == "garage")
+	{
+		roomInteractionGarage(commands, playerLocation, playerPtr, roomList, parserPtr);
+		return;
+	}
+	
 	if (playerLocation->getName() == "dogKennel")
 	{
 		roomInteractionDogKennel(commands, playerLocation, playerPtr, roomList, parserPtr);
