@@ -314,6 +314,19 @@ std::string similar::parseMiscEdgeInput(std::string input)
         return returnInput;
     }
 
+    if (input.find("dr") != std::string::npos)
+    {
+        while (inputStream >> tempString)
+        {
+            if (tempString == "dr") 
+                returnInput += "doctor ";
+            else
+                returnInput += tempString + " ";
+        }
+
+        return returnInput;
+    }
+
     // TODO: REFACTOR AND ADD
     while (inputStream >> tempString) 
     {
