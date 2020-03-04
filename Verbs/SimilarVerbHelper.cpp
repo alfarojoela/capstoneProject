@@ -271,6 +271,7 @@ std::string similar::parseMiscEdgeInput(std::string input)
 
     std::string tempString, returnInput = "";
 
+    /* Parse 'turn on' */
     if (input.find("turn on") != std::string::npos || input.find("turnon") != std::string::npos) 
     {
         while (inputStream >> tempString) 
@@ -288,6 +289,7 @@ std::string similar::parseMiscEdgeInput(std::string input)
         return returnInput;
     }
     
+    /* Parse 'hallway 2' or 'hallway2' */
     if (input.find("hallway 2") != std::string::npos || input.find("hallway2") != std::string::npos) 
     {
         while (inputStream >> tempString) 
@@ -301,6 +303,7 @@ std::string similar::parseMiscEdgeInput(std::string input)
         return returnInput;
     }
 
+    /* Parse 'check' */
     if (input.find("check") != std::string::npos)
     {
         while (inputStream >> tempString) 
@@ -314,6 +317,7 @@ std::string similar::parseMiscEdgeInput(std::string input)
         return returnInput;
     }
 
+    /* Parse 'dr' */
     if (input.find("dr") != std::string::npos)
     {
         while (inputStream >> tempString)
@@ -327,17 +331,31 @@ std::string similar::parseMiscEdgeInput(std::string input)
         return returnInput;
     }
 
+    /* Parse 'movies', 'movie', 'films', 'film', and 'tape' */
+    if (input.find("movies") != std::string::npos || input.find("movie") != std::string::npos ||
+        input.find("films") != std::string::npos || input.find("film") != std::string::npos || input.find("tape") != std::string::npos) 
+    {
+        while (inputStream >> tempString)
+        {
+            if (tempString == "movies" || tempString == "movie" || tempString == "films" || tempString == "film")
+                returnInput += "tapes ";
+            
+            else
+                returnInput += tempString + " ";
+        }
+
+        return returnInput;
+    }
+
     // TODO: REFACTOR AND ADD
     while (inputStream >> tempString) 
     {
-        if (tempString == "macready's" || tempString == "macreadys" || tempString == "macready's quarter" || 
-            tempString == "macready's quarters" || tempString == "mcready's" || tempString == "mcreadys" ||
-            tempString == "mcready's quarters" || tempString == "mcready's quarter" || tempString == "mcreadys quarters" ||
-            tempString == "macreadys quarters") 
+        if (tempString.find("macready's") != std::string::npos || tempString.find("macready's") != std::string::npos || tempString.find("macready's quarter") != std::string::npos || 
+            tempString.find("macready's quarters") != std::string::npos || tempString.find("mcready's") != std::string::npos || tempString.find("mcreadys") != std::string::npos ||
+            tempString.find("mcready's quarters") != std::string::npos || tempString.find("mcready's quarter") != std::string::npos || tempString.find("mcreadys quarters") != std::string::npos ||
+            tempString.find("macreadys quarters") != std::string::npos) 
             returnInput += "macready ";
 
-        else if (tempString == "movies" || tempString == "movie" || tempString == "films" || tempString == "film") 
-            returnInput += "tapes ";
         else 
             returnInput += tempString + " ";
     }
