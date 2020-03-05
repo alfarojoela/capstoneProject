@@ -15,6 +15,33 @@
 #include "helpFunc.hpp"
 #include "gameEnd.hpp"
 
+/*Functions to interact with item objects*/
+#include "takeFunc.hpp"
+#include "eatFunc.hpp"
+#include "lookAtFunc.hpp"
+#include "drinkFunc.hpp"
+#include "dropFunc.hpp"
+#include "goFunc.hpp"
+#include "roomRouterFunc.hpp"
+
+/*Function to interact with room objects*/
+#include "roomInteractionMacready.hpp"
+#include "roomInteractionHallway1.hpp"
+#include "roomInteractionLatrine.hpp"
+#include "roomInteractionEquipmentRoom.hpp"
+#include "roomInteractionToolShed.hpp"
+#include "roomInteractionSickBay.hpp"
+#include "roomInteractionRadioRoom.hpp"
+#include "roomInteractionResearchLab.hpp"
+#include "roomInteractionMessHall.hpp"
+#include "roomInteractionHallway2.hpp"
+#include "roomInteractionGarage.hpp"
+#include "roomInteractionGalley.hpp"
+#include "roomInteractionDogKennel.hpp"
+#include "roomInteractionBasement.hpp"
+#include "roomInteractionConferenceRoom.hpp"
+
+
 /*Player class.  Player object keeps game status such as grit level, victory, death, etc.*/
 #include "Player.hpp"
 
@@ -83,225 +110,12 @@ void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocatio
 
 /*REFACTOR FUNCTIONS LATER*/
 
-/*Gets a string out of the commands vector.  Sends the string to the room removeItem function with the player pointer.  Room function handles the transition of inventory to player inventory and then deletes the appropriate cell.*/
-void take(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
-{
-	std::string itemToTake = commands[2];
-	if (playerLocation->checkItem(itemToTake) != 999)
-	{
-		std::cout << "'Yoinks!'you say.  Just like Shaggy from Scooby Doo.  You found the " << itemToTake << std::endl;
-		std::cout << "You're taking it with you." << std::endl;
-		playerLocation->removeItem(itemToTake, playerPtr);
-		return;
-	}
-
-	if(playerLocation->checkItem(itemToTake) ==999 && playerLocation->getName() == "macready")
-	{
-		std::cout <<"You can't do that." << std::endl;
-		std::cout << "Besides, it's not a good idea trying to take Macready's stuff without asking.  You're liable to get on his wrongside.  And you don't wanna be on his wrongside." << std::endl;
-		return;
-	}
-
-	if (playerLocation->checkItem(itemToTake) == 999)
-	{
-		std::cout << "You can't take that." << std::endl;
-		return;
-	}
-
-}
-
-void eat(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
-{
-	std::string food = commands[2];
-	/*bool check = playerPtr->checkInventory(food);*/
-	if (playerPtr->checkInventory(food) == 1)
-	{
-		Item redherring("redherring");
-		playerPtr->setGrit("redherring");
-	}
-	else
-		std::cout << "Sorry.  You can't eat what you don't have in your inventory." << std::endl;
-}
-
-/*lookAt function.  Allows player to look at items in player inventory or room inventory*/
-/*Does a check of both inventories to see if item is in inventory.  if it is, matches condition to print out a description.*/
-void lookAt(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector<Room*> &roomList, int roomNumber)
-{
-	std::string item = commands[2];
-	if (playerPtr->checkInventory(item) == 1 || playerLocation->checkItem(item) !=999)
-	{
-		if (item == "blowtorch")
-		{
-			std::cout << "The blow torch can be used for applying flame to things.  It is almost full." << std::endl;
-			return;
-		}
-
-		if (item == "petri dish")
-		{
-			std::cout << "It's a plastic dish with a lid." << std::endl;
-			std::cout << "You could use it to collect specimens like blood for instance." << std::endl;
-			return;
-		}
-
-		if (item == "copper wire")
-		{
-			std::cout << "You have a small spool of copper wire." << std::endl;
-			std::cout << "It looks like you could apply flame to it.  And then you could use the wire to apply heat to things." << std::endl;
-			return;
-		}
-
-		if (item == "blood sample")
-		{
-			std::cout << "You hold the blood sample up to the light." << std::endl;
-			std::cout << "It looks like ordinary human blood, but is it?" << std::endl;
-			std::cout << "Maybe there is some kind of test." << std::endl;
-			return;
-		}
-
-		if (item == "flamethrower")
-		{
-			std::cout << "You wouldn't want to be on the wrong side of this thing.  It's nearly full.  It has a range of 110 feet." << std::endl;
-			std::cout << "It is in fine operating condition." << std::endl;
-			return;
-		}
-
-		if (item == "gun")
-		{
-			std::cout << "You aren't quite sure why a gun would be needed at this facility." << std::endl;
-			std::cout << "Maybe some people on the team use it to shoot penguins?" << std::endl;
-			std::cout << "Whatever reason it's here, you feel a little bit safer with it." << std::endl;
-			return;
-		}
-
-		if (item == "rope")
-		{
-			std::cout << "The rope is quite strong and should be able to take a lot of stress." << std::endl;
-			return;
-		}
-
-		if (item == "scalpel")
-		{
-			std::cout << "The scalpel's handle fits within your hand.  The bladed end gleams in the light." << std::endl;
-			std::cout << "This definitely can be used to cut." << std::endl;
-			return;
-		}
-
-		if (item == "toilet paper")
-		{
-			std::cout << "You have the code that someone wrote on the toilet paper: 5932." << std::endl;
-			return;
-		}
-
-		if (item == "redherring")
-		{
-			std::cout << "It is a dented can of red herring.  It looks like it should be edible." << std::endl;
-			return;
-		}
-
-		if (item == "axe")
-		{
-			std::cout << "It is a fireaxe in case of emergencies.  It looks sturdy enough to break through doors, barriers, and debris if necessary." << std::endl;
-			return;
-		}
-
-		if (item == "statue")
-		{
-			std::cout << "It's a minature of Auguste Rodin's 'The Thinker.' " << std::endl;
-			return;
-		}
-
-		if (item == "vodka")
-		{
-			std::cout << "Someone got to this bottle before you did.  There are a few swigs left.  Looking at the clear contents, makes you feel a little thirsty." << std::endl;
-			return;
-		}
-
-		if (item == "gin")
-		{
-			std::cout << "You shake the blue bottle.  There is maybe a single serving left of the gin." << std::endl;
-			return;
-		}
-
-		if (item == "whiskey")
-		{
-			std::cout << "It's a single malt whiskey.  Aged to perfection in oak casks." << std::endl;
-			return;
-		}
-
-		if (item == "tequila")
-		{
-			std::cout << "The tequila is in a strange bottle that resembles a skull.  It looks like a fancy brand.  The label assures smoothness with notes of fruit." <<std::endl;
-			return;
-		}
-
-		if (item == "beer")
-		{
-			std::cout << "You inspect the bottle of beer.  The bottle is green so you expect a skunky one." << std::endl;
-			return;
-		}
-
-		if (item == "pabst")
-		{
-			std::cout << "It's an aluminum can of beer.  The label reads, 'Pabst.'  Your stomach turns at the thought of swilling this down." << std::endl;
-			return;
-		}
-
-		if (item == "matarata")
-		{
-			std::cout << "This homemade tequila's container is a plastic gallon jug that looks like it was previously used to keep either distilled water or milk in.  The jug is completely full." << std::endl;
-			std::cout << "No one has bothered to touch this yet which makes it immediately suspect." << std::endl;
-			return;
-		}
-
-		if (item == "red herring")
-		{
-			std::cout << "It is a dented can of red herring.  It looks like it should be edible." << std::endl;
-			return;
-		}
-	}
-
-	else
-	{
-		std::cout << "You can't examine that item.  The " << item << " is not in your inventory." << std::endl;
-		return;
-	}
-}
-
-void drink(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
-{
-	std::string beverage = commands[2];
-	/*bool check = playerPtr->checkInventory(food);*/
-	if (playerPtr->checkInventory(beverage) == 1)
-	{
-		playerPtr->setGrit(beverage);
-		return;
-	}
-	
-		std::cout << "Sorry.  You can't drink what you don't have in your inventory." << std::endl;
-		return;
-}
 
 
-/*Function called from roomInteraction function if drop command is sent.*/
-void drop(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
-{
-	std::string itemToCheck = commands[2];
 
-	if (playerPtr->checkInventory(itemToCheck) == 1)
-	{
-		Item itemToDrop = playerPtr->transferItem(itemToCheck);
-		Item* itemToDropPtr = &itemToDrop;
-		int number = playerPtr->getIndex(itemToCheck);
-		playerLocation->addItem(itemToDrop);
-		playerPtr->deletePlayerItem(itemToCheck);
-		std::cout << "You dropped the " << itemToCheck << std::endl;
-		std::cout << "Don't believe me?" << std::endl;
-		std::cout << "Check your inventory." << std::endl;
-		return;
-	}
-	else
-		std::cout << "You can't drop what's not in your inventory. " << std::endl;
-}
+
+
+
 
 /*go function.  helper function for roomInteraction functions.  Takes playerLocation pointer, vector of room pointers, and an int for the roomNumber.*/
 /*rooms will be listed 0-14.*/
@@ -5485,6 +5299,7 @@ if (playerPtr->getAlive() == 0)
 }while(userInput != "exit");
 
 }
+
 
 
 
