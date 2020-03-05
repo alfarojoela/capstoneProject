@@ -209,6 +209,9 @@ void Room::checkBlood(Player* user)
 		{
 			std::cout << "The doctor is still on the ground knocked out.\nYou decide to tie him up with the rope so he doesn't cause harm to anyone else." << std::endl;
 
+			//Discards the rope since the user used it on the other crew member.
+			user->deletePlayerItem("rope");
+			
 			//Sets the outcome of the interaction to 4. The user's inventory will be checked to see if they have the appropriate items to test the blood.
 			user->setDrOutcome(4);
 
