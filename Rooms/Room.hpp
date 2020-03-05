@@ -39,6 +39,8 @@ public:
 	virtual void removeItem(std::string, Player*);
 	virtual void displayDescrip();
 	virtual void displayExits();
+	void checkBlood(Player*);
+	void testItems(Player*);
 
 protected:
 	std::string name;
