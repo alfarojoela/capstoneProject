@@ -13,6 +13,4 @@ public:
 	int featureOne(Player*);
 	int featureTwo(Player*);
 	void setRoom();
-    	void checkBlood(Player*);
-    	void testItems(Player*);
 }; 
