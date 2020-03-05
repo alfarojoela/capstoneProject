@@ -4136,6 +4136,8 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		{
 			std::cout << "You decide you are going to attack whatever is making that panting sound." << std::endl;
 			std::cout << "Get them before they get you!" << std::endl;
+			playerLocation->featureOne(playerPtr);
+
 			return;
 		}
 	}
@@ -4176,6 +4178,8 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		{
 			std::cout << "You decide you are going to tackle whatever is making that panting sound." << std::endl;
 			std::cout << "Time to take out the trash and kick some tail!" << std::endl;
+			playerLocation->featureOne(playerPtr);
+
 			return;
 		}
 	}
