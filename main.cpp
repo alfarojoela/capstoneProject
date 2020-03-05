@@ -516,7 +516,11 @@ void roomRouter(std::string commands[3], Room* &playerLocation, Player* &playerP
 /*If no conditions are met, it moves to the bottom of the function and a message is printed that whatever the user typed cannot be done.*/
 void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
 
+	}
 	/*helper phrase.*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -532,6 +536,14 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		}
 
 		playerLocation->itemsInRoom();
+		return;
+	}
+
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "Hmm..." << std::endl;
+		std::cout << "There's no one around to do a blood test on." << std::endl;
+		std::cout << "And you have no reason to test your blood." << std::endl;
 		return;
 	}
 
@@ -722,7 +734,11 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 
 void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
 
+	}
 	/*Set of commands to check room inventory.  Mainly for testing purposes rather than for the player.  May keep condition to allow player a cheat.  Won't put in help list.*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -737,6 +753,14 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		}
 
 		playerLocation->itemsInRoom();
+		return;
+	}
+
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "Though this room does have its share of blood, none of it is fresh." << std::endl;
+		std::cout << "Also you aren't sure of the source of blood." << std::endl;
+		std::cout << "Without this information, it wouldn't be helpful to run a test." << std::endl;
 		return;
 	}
 
@@ -968,6 +992,11 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 
 void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
+
+	}
 
 	/*Set of commands to check room inventory.  Mainly for testing purposes rather than for the player.  May keep condition to allow player a cheat.  Won't put in help list.*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
@@ -983,6 +1012,13 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		}
 
 		playerLocation->itemsInRoom();
+		return;
+	}
+
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "It would make sense to do that with a human specimen." << std::endl;
+		std::cout << "You are the only human here and there is no reason to test your own blood." << std::endl;
 		return;
 	}
 
@@ -1201,7 +1237,11 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 
 void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
 
+	}
 	/*Set of commands to check room inventory.*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -1229,6 +1269,13 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 			std::cout << "You might trip and crack your head." << std::endl;
 			return;
 		}
+	}
+
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "It would make sense to do that with a human specimen." << std::endl;
+		std::cout << "You are the only human here and there is no reason to test your own blood." << std::endl;
+		return;
 	}
 
 	if (commands[0] == "talk")
@@ -1484,6 +1531,11 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 /*Change toolshed*/
 void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
+
+	}
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -1498,6 +1550,13 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		}
 
 		playerLocation->itemsInRoom();
+		return;
+	}
+
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "It would make sense to do that with a human specimen." << std::endl;
+		std::cout << "You are the only human here and there is no reason to test your own blood." << std::endl;
 		return;
 	}
 
@@ -1872,12 +1931,22 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 
 void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
+	}
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
 
 		playerLocation->itemsInRoom();
+		return;
+	}
+
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "Now is not the time to do a blood test." << std::endl;
 		return;
 	}
 
@@ -2162,6 +2231,10 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 
 void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
+	}
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -2181,6 +2254,15 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		playerLocation->itemsInRoom();
 		return;
 	}
+
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "Now is not the time to do a blood test." << std::endl;
+		std::cout << "You are in the Radio Room by yourself." << std::endl;
+		std::cout << "No need to test your own blodo." << std::endl;
+		return;
+	}
+
 	if (commands[0] == "talk" && commands[1] == "on" && commands[2] == "radio")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
@@ -2431,6 +2513,11 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 
 void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
+
+	}
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -2447,6 +2534,13 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		playerLocation->itemsInRoom();
 		return;
 	}
+
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "Now is not the time to do a blood test." << std::endl;
+		return;
+	}
+
 
 	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "doctor")
 	{
@@ -2728,6 +2822,11 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 
 void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
+
+	}
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -2744,6 +2843,12 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		}
 
 		playerLocation->itemsInRoom();
+		return;
+	}
+
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "Now is not the time to do a blood test." << std::endl;
 		return;
 	}
 
@@ -3090,6 +3195,11 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 
 void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
+
+	}
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -3108,6 +3218,15 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		playerLocation->itemsInRoom();
 		return;
 	}
+
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "Now is not the time to do a blood test." << std::endl;
+		std::cout << "You are in the Mess Hall by yourself." << std::endl;
+		std::cout << "No need to test your own blood." << std::endl;
+		return;
+	}
+
 
 	if (commands[0] == "talk")
 	{
@@ -3373,6 +3492,11 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 /*New ones 2/27/2020*/
 void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
+
+	}
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -3388,6 +3512,14 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 		}
 
 		playerLocation->itemsInRoom();
+		return;
+	}
+
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "Now is not the time to do a blood test." << std::endl;
+		std::cout << "You are in the Garage by yourself." << std::endl;
+		std::cout << "No need to test your own blood." << std::endl;
 		return;
 	}
 
@@ -3675,6 +3807,11 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 
 void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
+
+	}
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -3688,6 +3825,14 @@ void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Playe
 		}
 
 		playerLocation->itemsInRoom();
+		return;
+	}
+
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "Now is not the time to do a blood test." << std::endl;
+		std::cout << "You are in the Galley by yourself." << std::endl;
+		std::cout << "No need to test your own blood." << std::endl;
 		return;
 	}
 
@@ -3905,6 +4050,11 @@ void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Playe
 
 void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
+
+	}
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -3923,6 +4073,12 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "Now is not the time to do a blood test." << std::endl;
+		std::cout << "You are the only human in the Dog Kennel right now." << std::endl;
+		return;
+	}
 	if (commands[0] == "talk" && commands[2] == "panting")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
@@ -4199,6 +4355,11 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 
 void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
+
+	}
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -4209,15 +4370,17 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "talk" && commands[2] == "figure" && playerPtr->getDrOutcome() == 0) || (commands[0] == "talk" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 0)
 		|| (commands[0] == "talk" && commands[2] == "thing" && playerPtr->getDrOutcome() == 0) || (commands[0] == "talk" && commands[2] == "shape"&& playerPtr->getDrOutcome() == 0)
-		|| (commands[0] == "talk" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 0))
+		|| (commands[0] == "talk" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 0) || (commands[0] == "talk" && commands[2] == "person"&& playerPtr->getDrOutcome() == 0)
+		|| (commands[0] == "talk" && commands[2] == "blair"&& playerPtr->getDrOutcome() == 0))
 	{
-			playerLocation->featureOne(playerPtr);
-			return;
+		playerLocation->featureOne(playerPtr);
+		return;
 	}
 
 	if ((commands[0] == "talk" && commands[2] == "figure" && playerPtr->getDrOutcome() == 1) || (commands[0] == "talk" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 1)
 		|| (commands[0] == "talk" && commands[2] == "thing" && playerPtr->getDrOutcome() == 1) || (commands[0] == "talk" && commands[2] == "shape"&& playerPtr->getDrOutcome() == 1)
-		|| (commands[0] == "talk" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 1))
+		|| (commands[0] == "talk" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 1) || (commands[0] == "talk" && commands[2] == "person"&& playerPtr->getDrOutcome() == 1)
+		|| (commands[0] == "talk" && commands[2] == "blair"&& playerPtr->getDrOutcome() == 1))
 	{
 		std::cout << "After your talk with the doctor, you feel assured that he is at least mostly ok." << std::endl;
 		std::cout << "You decide to leave him to his business." << std::endl;
@@ -4226,7 +4389,8 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "talk" && commands[2] == "figure" && playerPtr->getDrOutcome() == 2) || (commands[0] == "talk" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 2)
 		|| (commands[0] == "talk" && commands[2] == "thing" && playerPtr->getDrOutcome() == 2) || (commands[0] == "talk" && commands[2] == "shape"&& playerPtr->getDrOutcome() == 2)
-		|| (commands[0] == "talk" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 2))
+		|| (commands[0] == "talk" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 2) || (commands[0] == "talk" && commands[2] == "person"&& playerPtr->getDrOutcome() == 2)
+		|| (commands[0] == "talk" && commands[2] == "blair"&& playerPtr->getDrOutcome() == 2))
 	{
 		std::cout << "The doctor shot you and ran off." << std::endl;
 		std::cout << "What are you going to talk to him about? " << std::endl;
@@ -4234,17 +4398,23 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if ((commands[0] == "talk" && commands[2] == "figure" && playerPtr->getDrOutcome() > 2 && playerPtr->getDrOutcome() < 6) || (commands[0] == "talk" && commands[2] == "hunched" && playerPtr->getDrOutcome() > 2 && playerPtr->getDrOutcome() < 6)
-		|| (commands[0] == "talk" && commands[2] == "thing" && playerPtr->getDrOutcome() > 2 && playerPtr->getDrOutcome() < 6) || (commands[0] == "talk" && commands[2] == "shape"&& playerPtr->getDrOutcome() > 2 && playerPtr->getDrOutcome() < 6)
-		|| (commands[0] == "talk" && commands[2] == "doctor"&& playerPtr->getDrOutcome() >2 && playerPtr->getDrOutcome() < 6))
+	if ((commands[0] == "talk" && commands[2] == "figure" && playerPtr->getDrOutcome() > 2 && playerPtr->getDrOutcome() < 6) ||
+		(commands[0] == "talk" && commands[2] == "hunched" && playerPtr->getDrOutcome() > 2 && playerPtr->getDrOutcome() < 6)
+		|| (commands[0] == "talk" && commands[2] == "thing" && playerPtr->getDrOutcome() > 2 && playerPtr->getDrOutcome() < 6) ||
+		(commands[0] == "talk" && commands[2] == "shape"&& playerPtr->getDrOutcome() > 2 && playerPtr->getDrOutcome() < 6)
+		|| (commands[0] == "talk" && commands[2] == "doctor"&& playerPtr->getDrOutcome() > 2 && playerPtr->getDrOutcome() < 6) ||
+		(commands[0] == "talk" && commands[2] == "person"&& playerPtr->getDrOutcome() > 2 && playerPtr->getDrOutcome() < 6)
+		|| (commands[0] == "talk" && commands[2] == "blair"&& playerPtr->getDrOutcome() > 2 && playerPtr->getDrOutcome() < 6)
+		)
 	{
 		std::cout << "The docotr is unresponsive." << std::endl;
 		return;
 	}
 
-	if ((commands[0] == "talk" && commands[2] == "figure" && playerPtr->getDrOutcome()==6) || (commands[0] == "talk" && commands[2] == "hunched" && playerPtr->getDrOutcome() ==6)
-		|| (commands[0] == "talk" && commands[2] == "thing" && playerPtr->getDrOutcome()==6) || (commands[0] == "talk" && commands[2] == "shape"&& playerPtr->getDrOutcome()==6)
-		|| (commands[0] == "talk" && commands[2] == "doctor"&& playerPtr->getDrOutcome() ==6))
+	if ((commands[0] == "talk" && commands[2] == "figure" && playerPtr->getDrOutcome() == 6) || (commands[0] == "talk" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 6)
+		|| (commands[0] == "talk" && commands[2] == "thing" && playerPtr->getDrOutcome() == 6) || (commands[0] == "talk" && commands[2] == "shape"&& playerPtr->getDrOutcome() == 6)
+		|| (commands[0] == "talk" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 6) || (commands[0] == "talk" && commands[2] == "person"&& playerPtr->getDrOutcome() == 6)
+		|| (commands[0] == "talk" && commands[2] == "blair"&& playerPtr->getDrOutcome() == 6))
 	{
 		std::cout << "That is a hoot and holler!" << std::endl;
 		std::cout << "Whatever it was, you can't talk to it now because it is a smoldering heap of burning remains." << std::endl;
@@ -4260,7 +4430,8 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "smell" && commands[2] == "figure" && playerPtr->getDrOutcome() == 6) || (commands[0] == "smell" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 6)
 		|| (commands[0] == "smell" && commands[2] == "thing" && playerPtr->getDrOutcome() == 6) || (commands[0] == "smell" && commands[2] == "shape"&& playerPtr->getDrOutcome() == 6)
-		|| (commands[0] == "smell" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 6))
+		|| (commands[0] == "smell" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 6) || (commands[0] == "smell" && commands[2] == "person"&& playerPtr->getDrOutcome() == 6)
+		|| (commands[0] == "smell" && commands[2] == "blair"&& playerPtr->getDrOutcome() == 6))
 	{
 		std::cout << "The room is filled with a not unpleasent smell of cooked meat." << std::endl;
 		std::cout << "Whatver was posing as the doctor, its species does smell appetizing when it is cooking." << std::endl;
@@ -4270,7 +4441,8 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "smell" && commands[2] == "figure" && playerPtr->getDrOutcome() == 2) || (commands[0] == "smell" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 2)
 		|| (commands[0] == "smell" && commands[2] == "thing" && playerPtr->getDrOutcome() == 2) || (commands[0] == "smell" && commands[2] == "shape"&& playerPtr->getDrOutcome() == 2)
-		|| (commands[0] == "smell" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 2)) 
+		|| (commands[0] == "smell" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 2) || (commands[0] == "smell" && commands[2] == "person"&& playerPtr->getDrOutcome() == 2)
+		|| (commands[0] == "smell" && commands[2] == "blair"&& playerPtr->getDrOutcome() == 2))
 	{
 		std::cout << "You didn't notice any bizarre smells about the guy before he shot you." << std::endl;
 		std::cout << "He didn't smell drunk." << std::endl;
@@ -4279,7 +4451,8 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "smell" && commands[2] == "figure" && playerPtr->getDrOutcome() == 0) || (commands[0] == "smell" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 0)
 		|| (commands[0] == "smell" && commands[2] == "thing" && playerPtr->getDrOutcome() == 0) || (commands[0] == "smell" && commands[2] == "shape"&& playerPtr->getDrOutcome() == 0)
-		|| (commands[0] == "smell" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 0)) 
+		|| (commands[0] == "smell" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 0) || (commands[0] == "smell" && commands[2] == "person"&& playerPtr->getDrOutcome() == 0)
+		|| (commands[0] == "smell" && commands[2] == "blair"&& playerPtr->getDrOutcome() == 0))
 	{
 		std::cout << "You start sniffing the air to check if the doctor smells different than usual." << std::endl;
 		std::cout << "You notice nothing out of the ordinary about him." << std::endl;
@@ -4289,7 +4462,8 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "smell" && commands[2] == "figure") || (commands[0] == "smell" && commands[2] == "hunched")
 		|| (commands[0] == "smell" && commands[2] == "thing") || (commands[0] == "smell" && commands[2] == "shape")
-		|| (commands[0] == "smell" && commands[2] == "doctor"))
+		|| (commands[0] == "smell" && commands[2] == "doctor") || (commands[0] == "smell" && commands[2] == "person")
+		|| (commands[0] == "smell" && commands[2] == "blair"))
 	{
 		std::cout << "The doctor doesn't smell like he has been drinking." << std::endl;
 		std::cout << "The only alcohol you smell is the stuff on your own clothes and coming out of your own pores." << std::endl;
@@ -4302,9 +4476,10 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if ((commands[0] == "attack" && commands[2] == "figure")|| (commands[0] == "attack" && commands[2] == "hunched")
-		|| (commands[0] == "attack" && commands[2] == "thing" ) || (commands[0] == "attack" && commands[2] == "shape")
-		|| (commands[0] == "attack" && commands[2] == "doctor"))
+	if ((commands[0] == "attack" && commands[2] == "figure") || (commands[0] == "attack" && commands[2] == "hunched")
+		|| (commands[0] == "attack" && commands[2] == "thing") || (commands[0] == "attack" && commands[2] == "shape")
+		|| (commands[0] == "attack" && commands[2] == "doctor") || (commands[0] == "attack" && commands[2] == "person")
+		|| (commands[0] == "attack" && commands[2] == "blair"))
 	{
 		std::cout << "You walk up ready with a sucker punch." << std::endl;
 		std::cout << "Whatever it is, it looks like Dr. Blair, but the familiar face melts away into a maw of teeth." << std::endl;
@@ -4315,7 +4490,7 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "eat" && commands[2] == "figure" && playerPtr->getDrOutcome() == 6) || (commands[0] == "eat" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 6)
 		|| (commands[0] == "eat" && commands[2] == "thing" && playerPtr->getDrOutcome() == 6) || (commands[0] == "eat" && commands[2] == "shape"&& playerPtr->getDrOutcome() == 6)
-		|| (commands[0] == "eat" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 6))
+		|| (commands[0] == "eat" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 6) || (commands[0] == "eat" && commands[2] == "person"&& playerPtr->getDrOutcome() == 6))
 	{
 		std::cout << "Smelling the burnt heap of remains, and noting no one else is around, you grab hunk of burning meat and have a few bites." << std::endl;
 		std::cout << "It isn't bad." << std::endl;
@@ -4327,7 +4502,8 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "eat" && commands[2] == "figure") || (commands[0] == "eat" && commands[2] == "hunched" && playerPtr)
 		|| (commands[0] == "eat" && commands[2] == "thing") || (commands[0] == "eat" && commands[2] == "shape")
-		|| (commands[0] == "eat" && commands[2] == "doctor"))
+		|| (commands[0] == "eat" && commands[2] == "doctor") || (commands[0] == "eat" && commands[2] == "person")
+		|| (commands[0] == "eat" && commands[2] == "blair"))
 	{
 		std::cout << "There is a time and place to eat." << std::endl;
 		std::cout << "This isn't the right time for that right now." << std::endl;
@@ -4336,7 +4512,8 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "jump" && commands[2] == "figure") || (commands[0] == "jump" && commands[2] == "hunched")
 		|| (commands[0] == "jump" && commands[2] == "thing") || (commands[0] == "jump" && commands[2] == "shape")
-		|| (commands[0] == "jump" && commands[2] == "doctor"))
+		|| (commands[0] == "jump" && commands[2] == "doctor") || (commands[0] == "jump" && commands[2] == "person")
+		|| (commands[0] == "jump" && commands[2] == "blair"))
 	{
 		std::cout << "You plan to get the jump on 'em." << std::endl;
 		std::cout << "In your hungover state, you are too slow!" << std::endl;
@@ -4345,9 +4522,10 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 		playerPtr->setAlive(0);
 	}
 
-	if ((commands[0] == "flee" && commands[2] == "figure"  && playerPtr->getDrOutcome()==0) || (commands[0] == "flee" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 0)
+	if ((commands[0] == "flee" && commands[2] == "figure"  && playerPtr->getDrOutcome() == 0) || (commands[0] == "flee" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 0)
 		|| (commands[0] == "flee" && commands[2] == "thing" &&playerPtr->getDrOutcome() == 0) || (commands[0] == "flee" && commands[2] == "shape" && playerPtr->getDrOutcome() == 0)
-		|| (commands[0] == "flee" && commands[2] == "doctor" && playerPtr->getDrOutcome() == 0))
+		|| (commands[0] == "flee" && commands[2] == "doctor" && playerPtr->getDrOutcome() == 0) || (commands[0] == "flee" && commands[2] == "person" && playerPtr->getDrOutcome() == 0)
+		|| (commands[0] == "flee" && commands[2] == "blair" && playerPtr->getDrOutcome() == 0))
 	{
 		if (playerLocation->getFeatureTwoHap() == 0)
 		{
@@ -4367,7 +4545,8 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "flee" && commands[2] == "figure") || (commands[0] == "flee" && commands[2] == "hunched")
 		|| (commands[0] == "flee" && commands[2] == "thing") || (commands[0] == "flee" && commands[2] == "shape")
-		|| (commands[0] == "flee" && commands[2] == "doctor"))
+		|| (commands[0] == "flee" && commands[2] == "doctor") || (commands[0] == "flee" && commands[2] == "person")
+		|| (commands[0] == "flee" && commands[2] == "blair"))
 	{
 		if (playerLocation->getFeatureTwoHap() == 0)
 		{
@@ -4387,7 +4566,8 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "break" && commands[2] == "figure") || (commands[0] == "break" && commands[2] == "hunched")
 		|| (commands[0] == "break" && commands[2] == "thing") || (commands[0] == "break" && commands[2] == "shape")
-		|| (commands[0] == "break" && commands[2] == "doctor"))
+		|| (commands[0] == "break" && commands[2] == "doctor") || (commands[0] == "break" && commands[2] == "person")
+		|| (commands[0] == "break" && commands[2] == "blair"))
 	{
 		std::cout << "You walk up ready with a sucker punch." << std::endl;
 		std::cout << "Whatever it is, it looks like Dr. Blair, but the familiar face melts away into a maw of teeth." << std::endl;
@@ -4396,11 +4576,7 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 	}
 
 
-	if (commands[0] == "eat")
-	{
-		eat(commands, playerLocation, playerPtr, roomList, 0);
-		return;
-	}
+
 
 
 	if (commands[0] == "look" && commands[1] == "" && commands[2] == "")
@@ -4418,7 +4594,8 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "look" && commands[2] == "figure" && playerPtr->getDrOutcome() == 0) || (commands[0] == "look" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 0)
 		|| (commands[0] == "look" && commands[2] == "thing" && playerPtr->getDrOutcome() == 0) || (commands[0] == "look" && commands[2] == "shape"&& playerPtr->getDrOutcome() == 0)
-		|| (commands[0] == "look" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 0))
+		|| (commands[0] == "look" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 0) || (commands[0] == "look" && commands[2] == "person"&& playerPtr->getDrOutcome() == 0)
+		|| (commands[0] == "look" && commands[2] == "blair"&& playerPtr->getDrOutcome() == 0))
 	{
 		playerLocation->featureOne(playerPtr);
 		return;
@@ -4426,8 +4603,10 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "look" && commands[2] == "figure" && playerPtr->getDrOutcome() == 1) || (commands[0] == "look" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 1)
 		|| (commands[0] == "look" && commands[2] == "thing" && playerPtr->getDrOutcome() == 1) || (commands[0] == "look" && commands[2] == "shape"&& playerPtr->getDrOutcome() == 1)
-		|| (commands[0] == "look" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 1))
+		|| (commands[0] == "look" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 1) || (commands[0] == "look" && commands[2] == "person" && playerPtr->getDrOutcome() == 1)
+		|| (commands[0] == "look" && commands[2] == "blair" && playerPtr->getDrOutcome() == 1))
 	{
+		std::cout << "Dr. Blair seems a little distracted." << std::endl;
 		std::cout << "So Dr. Blair is acting a little weird." << std::endl;
 		std::cout << "He mostly answered all your stupid questions correctly." << std::endl;
 		return;
@@ -4435,7 +4614,8 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "look" && commands[2] == "figure" && playerPtr->getDrOutcome() == 2) || (commands[0] == "look" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 2)
 		|| (commands[0] == "look" && commands[2] == "thing" && playerPtr->getDrOutcome() == 2) || (commands[0] == "look" && commands[2] == "shape"&& playerPtr->getDrOutcome() == 2)
-		|| (commands[0] == "look" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 2))
+		|| (commands[0] == "look" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 2) || (commands[0] == "look" && commands[2] == "person"&& playerPtr->getDrOutcome() == 2)
+		|| (commands[0] == "look" && commands[2] == "blair"&& playerPtr->getDrOutcome() == 2))
 	{
 		std::cout << "You can't get a second look at Dr. Blair." << std::endl;
 		std::cout << "He shot you and ran off." << std::endl;
@@ -4444,25 +4624,249 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 	if ((commands[0] == "look" && commands[2] == "figure" && playerPtr->getDrOutcome() == 6) || (commands[0] == "look" && commands[2] == "hunched" && playerPtr->getDrOutcome() == 6)
 		|| (commands[0] == "look" && commands[2] == "thing" && playerPtr->getDrOutcome() == 6) || (commands[0] == "look" && commands[2] == "shape"&& playerPtr->getDrOutcome() == 6)
-		|| (commands[0] == "look" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 6))
+		|| (commands[0] == "look" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 6) || (commands[0] == "look" && commands[2] == "doctor"&& playerPtr->getDrOutcome() == 6)
+		|| (commands[0] == "look" && commands[2] == "blair"&& playerPtr->getDrOutcome() == 6))
 	{
 		std::cout << "The sight of burning remains takes you back to family cook outs and barbecues from your childhood." << std::endl;
 		return;
 	}
 
-	if ((commands[0] == "look" && commands[2] == "figure")|| (commands[0] == "look" && commands[2] == "hunched")
+	if ((commands[0] == "look" && commands[2] == "figure") || (commands[0] == "look" && commands[2] == "hunched")
 		|| (commands[0] == "look" && commands[2] == "thing") || (commands[0] == "look" && commands[2] == "shape")
-		|| (commands[0] == "look" && commands[2] == "doctor"))
+		|| (commands[0] == "look" && commands[2] == "doctor") || (commands[0] == "look" && commands[2] == "person")
+		|| (commands[0] == "look" && commands[2] == "blair"))
 	{
 		std::cout << "He looks like Dr. Blair, but you are convinced it isn't really him." << std::endl;
 		return;
 	}
 
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		playerLocation->checkBlood(playerPtr);
+	}
+
 	if (commands[0] == "go" && commands[2] == "hallway2")
 	{
+		std::cout << "Whatever was making that noise isn't here right now..." << std::endl;
 		go(playerLocation, roomList, 9, playerPtr);
 		return;
 	}
+
+	if ((commands[0] == "talk" && commands[2] == "rattling") || (commands[0] == "talk" && commands[2] == "rattling nosie") || (commands[0] == "talk" && commands[2] == "thing")
+		|| (commands[0] == "talk" && commands[2] == "creature") || (commands[0] == "talk" && commands[2] == "dog"))
+
+	{
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "That thing attacked you, and now you want to have a conversation with it?" << std::endl;
+			std::cout << "Bad idea." << std::endl;
+			std::cout << "You stupidly go back to Hallway 2 to converse with the creature." << std::endl;
+			std::cout << "Thankfully it isn't there, and you go back to the Basement." << std::endl;
+			return;
+		}
+
+		else
+		{
+			std::cout << "You call out in the direction of the rattling noise." << std::endl;
+			std::cout << "Maybe whoever made that noise can't hear you." << std::endl;
+			std::cout << "So you climb the steps out of the basement." << std::endl;
+			playerLocation->featureTwo(playerPtr);
+			return;
+		}
+	}
+
+
+	if ((commands[0] == "smell" && commands[2] == "rattling") || (commands[0] == "smell" && commands[2] == "rattling nosie") || (commands[0] == "smell" && commands[2] == "thing")
+		|| (commands[0] == "smell" && commands[2] == "creature") || (commands[0] == "smell" && commands[2] == "dog"))
+	{
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "You decide it would be foolish to go back and try to smell the creature that attacked you." << std::endl;
+			return;
+		}
+
+		else
+		{
+			std::cout << "You must think you are part bloodhound." << std::endl;
+			std::cout << "You smell the air in the direction of the rattling noise." << std::endl;
+			std::cout << "Your sense of smell is not that strong." << std::endl;
+			std::cout << "You can't smell it." << std::endl;
+			return;
+		}
+	}
+
+	if ((commands[0] == "attack" && commands[2] == "rattling") || (commands[0] == "attack" && commands[2] == "rattling nosie") || (commands[0] == "attack" && commands[2] == "thing")
+		|| (commands[0] == "attack" && commands[2] == "creature") || (commands[0] == "attack" && commands[2] == "dog"))
+	{
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "That thing attacked you, and now you want to go for round two with it?" << std::endl;
+			std::cout << "Bad idea." << std::endl;
+			std::cout << "You stupidly go back to Hallway 2 to attack the creature." << std::endl;
+			std::cout << "The creature pounces on you and rips your head off this time." << std::endl;
+			playerPtr->setAlive(0);
+			return;
+		}
+
+		else
+		{
+			std::cout << "You are not sure what is making that noise." << std::endl;
+			std::cout << "But you are convinced you are ready to tangle with it if necessary." << std::endl;
+			playerLocation->featureTwo(playerPtr);
+			return;
+		}
+	}
+
+	if ((commands[0] == "eat" && commands[2] == "rattling") || (commands[0] == "eat" && commands[2] == "rattling nosie") || (commands[0] == "eat" && commands[2] == "thing")
+		|| (commands[0] == "eat" && commands[2] == "creature") || (commands[0] == "eat" && commands[2] == "dog"))
+	{
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "That thing attacked you, and now you want to go for round two with it?" << std::endl;
+			std::cout << "Bad idea." << std::endl;
+			std::cout << "You stupidly go back to Hallway 2 to hunt the creature for food." << std::endl;
+			std::cout << "The creature pounces on you and rips your head off this time." << std::endl;
+			playerPtr->setAlive(0);
+			return;
+		}
+
+		else
+		{
+			std::cout << "You decide you don't want to eat what was making the rattling sound." << std::endl;
+			std::cout << "At least not at this time." << std::endl;
+			return;
+		}
+	}
+
+	if ((commands[0] == "use" && commands[2] == "rattling") || (commands[0] == "use" && commands[2] == "rattling nosie") || (commands[0] == "use" && commands[2] == "thing")
+		|| (commands[0] == "use" && commands[2] == "creature") || (commands[0] == "use" && commands[2] == "dog"))
+	{
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "That thing attacked you, and now you want to go for round two with it?" << std::endl;
+			std::cout << "You stupidly go back to Hallway 2 to attempt capturing the creature." << std::endl;
+			std::cout << "'If I can capture the creature and train it, it may be useful,' you think." << std::endl;
+			std::cout << "The creature pounces on you and rips your head off this time." << std::endl;
+			playerPtr->setAlive(0);
+			return;
+		}
+
+		else
+		{
+			std::cout << "There is no way to tell if the source of the rattling noise will be useful to you." << std::endl;
+			return;
+		}
+	}
+
+	if ((commands[0] == "jump" && commands[2] == "rattling") || (commands[0] == "jump" && commands[2] == "rattling nosie") || (commands[0] == "jump" && commands[2] == "thing")
+		|| (commands[0] == "jump" && commands[2] == "creature") || (commands[0] == "jump" && commands[2] == "dog"))
+	{
+
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "That thing attacked you, and now you want to go for round two with it?" << std::endl;
+			std::cout << "You stupidly go back to Hallway 2 to attempt to get the jump on the creature." << std::endl;
+			std::cout << "'You want payback!" << std::endl;
+			std::cout << "The creature pounces on you and rips your head off this time." << std::endl;
+			playerPtr->setAlive(0);
+			return;
+		}
+
+		else
+		{
+			std::cout << "You decide to approach whatever is making the noise cautiously." << std::endl;
+			std::cout << "You want to get the jump on it." << std::endl;
+			playerLocation->featureTwo(playerPtr);
+			return;
+		}
+	}
+
+	if ((commands[0] == "flee" && commands[2] == "rattling") || (commands[0] == "flee" && commands[2] == "rattling nosie") || (commands[0] == "flee" && commands[2] == "thing")
+		|| (commands[0] == "flee" && commands[2] == "creature") || (commands[0] == "flee" && commands[2] == "dog"))
+	{
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "You being here and not in Hallway 2 is kind of like having fleed from whatever that was, isn't it?" << std::endl;
+			return;
+		}
+
+		else
+		{
+			std::cout << "Whatever is making that noise is in Hallway 2." << std::endl;
+			std::cout << "You are in the Basement." << std::endl;
+			std::cout << "There really isn't a need to flee." << std::endl;
+			return;
+		}
+
+	}
+
+	if ((commands[0] == "break" && commands[2] == "rattling") || (commands[0] == "break" && commands[2] == "rattling nosie") || (commands[0] == "break" && commands[2] == "thing")
+		|| (commands[0] == "break" && commands[2] == "creature") || (commands[0] == "break" && commands[2] == "dog"))
+	{
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "That thing attacked you, and now you want to go for round two with it?" << std::endl;
+			std::cout << "Bad idea." << std::endl;
+			std::cout << "You stupidly go back to Hallway 2 to attack the creature." << std::endl;
+			std::cout << "The creature pounces on you and rips your head off this time." << std::endl;
+			playerPtr->setAlive(0);
+			return;
+		}
+
+		else
+		{
+			std::cout << "You are not sure what is making that noise." << std::endl;
+			std::cout << "But you are convinced you are ready to tangle with it if necessary." << std::endl;
+			playerLocation->featureTwo(playerPtr);
+			return;
+		}
+}
+
+	if ((commands[0] == "look at" && commands[2] == "rattling") || (commands[0] == "look at" && commands[2] == "rattling nosie") || (commands[0] == "look at" && commands[2] == "thing")
+		|| (commands[0] == "look at" && commands[2] == "creature") || (commands[0] == "look at" && commands[2] == "dog"))
+
+	{
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "You never want to look at that thing again." << std::endl;
+			std::cout << "You decide to not go looking for it." << std::endl;
+			return;
+		}
+
+		else
+		{
+			std::cout << "You are not sure what is making that noise." << std::endl;
+			std::cout << "You plan on getting a look at it." << std::endl;
+			playerLocation->featureTwo(playerPtr);
+			return;
+		}
+	}
+
+	if ((commands[0] == "go" && commands[2] == "rattling") || (commands[0] == "go" && commands[2] == "rattling nosie") || (commands[0] == "go" && commands[2] == "thing")
+		|| (commands[0] == "go" && commands[2] == "creature") || (commands[0] == "go" && commands[2] == "dog"))
+	{
+		if (playerLocation->getFeatureTwoHap() == 1)
+		{
+			std::cout << "That thing attacked you, and now you want to go for round two with it?" << std::endl;
+			std::cout << "Bad idea." << std::endl;
+			std::cout << "You stupidly go back to Hallway 2 to attack the creature." << std::endl;
+			std::cout << "The creature pounces on you and rips your head off this time." << std::endl;
+			playerPtr->setAlive(0);
+			return;
+		}
+
+		else
+		{
+			std::cout << "You are not sure what is making that noise." << std::endl;
+			std::cout << "You choose to go to whatever is making that sound." << std::endl;
+			playerLocation->featureTwo(playerPtr);
+			return;
+		}
+	}
+
+
+
+
 
 	if (commands[0] == "room")
 	{
@@ -4504,6 +4908,11 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
+	if (commands[0] == "eat")
+	{
+		eat(commands, playerLocation, playerPtr, roomList, 0);
+		return;
+	}
 
 	std::cout << "You can't do that here." << std::endl;
 	return;
@@ -4511,6 +4920,11 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 
 void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
 {
+	if (commands[0] == "savegame" || commands[0] == "loadgame")
+	{
+		return;
+
+	}
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
 	{
@@ -4530,6 +4944,13 @@ void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocatio
 		return;
 	}
 
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	{
+		std::cout << "Now is not the time to do a blood test." << std::endl;
+		std::cout << "You are in the Conference Room by yourself." << std::endl;
+		std::cout << "No need to test your own blood." << std::endl;
+		return;
+	}
 	if (commands[0] == "talk")
 	{
 		std::cout << "You call out to the room." << std::endl;
@@ -5060,6 +5481,7 @@ if (playerPtr->getAlive() == 0)
 }while(userInput != "exit");
 
 }
+
 
 
 
