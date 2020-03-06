@@ -13,8 +13,8 @@ void ResearchLab::setRoom()
 	longDes = "You enter the research lab. This is an area where the crew conducts research during the mission.\n"
 		"You see the doctor in the room inspecting a body.\nThere is also a computer displaying information in the corner of the room.\n";
 	shortDes = "You return to the research lab. It's a useful room in the base.\n";
-	exitLong = "The hallway which connects to many rooms in the base including the radio room and sick bay is from the way you came.\n";
-	exitShort = "There is a hallway from the direction you came.\n";
+	exitLong = "The hallway which connects to many rooms in the base including the radio room and sick bay is from the way you came(northeast).\n";
+	exitShort = "There is a hallway from the direction you came(northeast).\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
