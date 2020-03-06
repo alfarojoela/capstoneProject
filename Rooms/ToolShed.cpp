@@ -11,8 +11,8 @@ void ToolShed::setRoom()
 {
 	name = "tool shed";
 	longDes = "You make your way towards the tool shed. It is located outside of the base. It is freezing cold outside.\n"
-		"Hopefully you can find something worthwhile in there. You begin to hear groaning coming from the west.\n"
-		"You also notice something shining in the snow to the east.\n";
+		"Hopefully you can find something worthwhile in there. You begin to hear groaning coming from the north.\n"
+		"You also notice something shining in the snow to the south.\n";
 	shortDes = "You return to the tool shed. It used to contain useful equipment.\n";
 	exitLong = "The equipment room which leads back into the base is from the way you came.\n";
 	exitShort = "The equipment room is from the direction you came.\n";
@@ -37,7 +37,7 @@ int ToolShed::featureOne(Player* user)
 	}
 	else
 	{
-		std::cout << "You head west towards the groaning noise. It could be an injured member of the base." << std::endl;
+		std::cout << "You head north towards the groaning noise. It could be an injured member of the base." << std::endl;
 	}
 
 	std::cout << "You walk for about two minutes before you see a hunched over figure about 20 feet ahead of you.\n"
@@ -170,11 +170,11 @@ int ToolShed::featureTwo(Player* user)
 	//Used to determine which text displays since the two features happen outside.
 	if (getFeatureOneHap() == 1)
 	{
-		std::cout << "You head back outside and go east towards the glint in the snow." << std::endl;
+		std::cout << "You head back outside and go south towards the glint in the snow." << std::endl;
 	}
 	else
 	{
-		std::cout << "You head east towards the glint in the snow." << std::endl;
+		std::cout << "You head south towards the glint in the snow." << std::endl;
 	}
 
 	std::cout << "Your body is getting colder and colder, but there could be something useful there.\n"
