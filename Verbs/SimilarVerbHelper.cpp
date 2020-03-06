@@ -13,7 +13,8 @@ std::vector<std::string> similar::getTalkVerbs()
         "chat", 
         "communicate", 
         "says", 
-        "tell"
+        "tell",
+        "speak"
     };
 
     return similarTalkVerbs;
@@ -61,7 +62,8 @@ std::vector<std::string> similar::getDropVerbs()
         "give up", 
         "lower", 
         "release", 
-        "shed"
+        "shed",
+        "leave"
     };
 
     return similarDropVerbs;
@@ -88,7 +90,8 @@ std::vector<std::string> similar::getEatVerbs()
         "ingest", 
         "nibble", 
         "swallow", 
-        "bite"
+        "bite",
+        "gobble"
     };
 
     return similarEatVerbs;
@@ -121,7 +124,8 @@ std::vector<std::string> similar::getJumpVerbs()
         "leap", 
         "pounce", 
         "skip", 
-        "spring"
+        "spring",
+        "tackle"
     };
 
     return similarJumpVerbs;
@@ -136,7 +140,8 @@ std::vector<std::string> similar::getFleeVerbs()
         "retreat", 
         "take off", 
         "vanish", 
-        "evade"
+        "evade",
+        "run"
     };
 
     return similarFleeVerbs;
@@ -206,7 +211,9 @@ std::vector<std::string> similar::getTakeVerbs()
         "take",
         "grab",
         "get",
-        "pick up"
+        "pick up",
+        "swipe",
+        "steal"
     };
 
     return similarTakeVerbs;
@@ -264,12 +271,19 @@ std::vector<std::string> similar::getMiscVerbs()
     return similarMiscVerbs;
 }
 
-std::string similar::parseMiscEdgeInput(std::string input) 
+std::string similar::parseMiscEdgeInput(std::string userInput) 
 {
-    std::istringstream inputStream;
+    std::istringstream tempStream, inputStream;
+    std::string tempString, input = "";
+
+    tempStream.str(userInput);
+
+    while (tempStream >> tempString)
+        input += tempString + " ";
+
     inputStream.str(input);
 
-    std::string tempString, returnInput = "";
+    std::string returnInput = "";
 
     /* Parse 'turn on' */
     if (input.find("turn on") != std::string::npos || input.find("turnon") != std::string::npos) 
@@ -347,7 +361,63 @@ std::string similar::parseMiscEdgeInput(std::string input)
         return returnInput;
     }
 
-    // TODO: REFACTOR AND ADD
+    /* Parse directionals of 'north east', 'north west', 'south west', 'south east' */
+    if (input.find("north east") != std::string::npos)  
+    {
+        while (inputStream >> tempString) 
+        {
+            if (tempString == "north")
+                returnInput += "northeast ";
+
+            else
+                returnInput += tempString + " ";
+        }
+
+        return returnInput;
+    }
+
+    if (input.find("north west") != std::string::npos)
+    {
+        while (inputStream >> tempString) 
+        {
+            if (tempString == "north")
+                returnInput += "northwest ";
+
+            else
+                returnInput += tempString + " ";
+        }
+
+        return returnInput;
+    }
+
+    if (input.find("south west") != std::string::npos)
+    {
+        while (inputStream >> tempString) 
+        {
+            if (tempString == "south")
+                returnInput += "southwest ";
+
+            else
+                returnInput += tempString + " ";
+        }
+
+        return returnInput;
+    }
+
+    if (input.find("south east") != std::string::npos)
+    {
+        while (inputStream >> tempString) 
+        {
+            if (tempString == "south")
+                returnInput += "southeast ";
+
+            else
+                returnInput += tempString + " ";
+        }
+
+        return returnInput;
+    }
+
     while (inputStream >> tempString) 
     {
         if (tempString.find("macready's") != std::string::npos || tempString.find("macready's") != std::string::npos || tempString.find("macready's quarter") != std::string::npos || 
