@@ -231,17 +231,9 @@ basementPtr->addItem(gun);
 latrinePtr->addItem(beer);
 garagePtr->addItem(mataRata);
 
-
-
-
 /*********************************************/
 /*Loop starts*/
 do {
-/*Checks victory status at start of loop.*/
-if (rj.getVictory() != 0)
-{
-gameEnd(rj);
-}
 
 if(playerPtr->getBearings() == 1)
 {
@@ -279,7 +271,6 @@ if (commands[0] == "loadgame")
 	playerLocation = gameSavePtr->load(playerPtr, roomList);
 }
 
-
 if (userInput == "exit")
 {
 	std::cout << "Ending game." << std::endl;
@@ -287,9 +278,22 @@ if (userInput == "exit")
 	return(0);
 }
 
-
+if (commands[0] == "deus" && commands[1] == "ex" && commands[2] == "machina")
+{
+	playerPtr->setGameEnd(3);
+	gameEnd(rj);
+	parserPtr->freeStaticActions();
+	return (0);
+}
 
 roomRouter(commands, playerLocation, playerPtr, roomList, parserPtr);
+
+if (rj.getGameEnd() != 0) 
+{
+	gameEnd(rj);
+	parserPtr->freeStaticActions();
+	return(0);
+}
 
 /*playerLocation->displayExits();*/
 if (playerPtr->getAlive() == 0)
@@ -299,7 +303,7 @@ if (playerPtr->getAlive() == 0)
 	return(0);
 }
 
-
 }while(userInput != "exit");
 
 }
+
