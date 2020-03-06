@@ -14,8 +14,8 @@ void Macready::setRoom()
 		"You are not in your quarters. This is MacReady's room. It doesn't look like he's around though.\n"
 		"You could search around for more booze under the bed.   Perhaps Macready has some stored there.  You also notice a computer in the room with a chess game in progress.\n";
 	shortDes = "You return to the MacReady's quarters. There's still no booze in here.\n";
-	exitLong = "There is a hallway outside this room that leads to other rooms in the base.\nThe base is eerily quiet right now.\n";
-	exitShort = "There is a hallway outside this room.\n";
+	exitLong = "There is a hallway outside this room(to the south) that leads to other rooms in the base.\nThe base is eerily quiet right now.\n";
+	exitShort = "There is a hallway outside this room(to the south).\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
