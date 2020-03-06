@@ -14,8 +14,8 @@ void Basement::setRoom()
 		"It's also one of the most expansive areas of the base. You see something hunched over in the corner of the room.\n"
 		"It looks like a person...You also hear a rattling noise down a hallway to the left.\n";
 	shortDes = "You return to the basement. This area gives you the creeps.\n";
-	exitLong = "There is a hallway which connects to other rooms in the base like the dog kennel from the way you came.\n";
-	exitShort = "There is a hallway from the direction you came.\n";
+	exitLong = "There is a hallway which connects to other rooms in the base like the dog kennel from the way you came(north).\n";
+	exitShort = "There is a hallway from the direction you came(north).\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
