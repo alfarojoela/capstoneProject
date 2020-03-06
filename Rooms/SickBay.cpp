@@ -14,8 +14,8 @@ void SickBay::setRoom()
 		"The crew has luckily not had too many members stay here for long.\nYou notice that the room contains medical supplies for the base."
 		"\nThere is also a member of the crew currently laying on the bed. You can't tell their condition from this distance.\n";
 	shortDes = "You return to the sick bay. This is the room where the sick or injured are cared for.\n";
-	exitLong = "The hallway which connects to many rooms in the base including the research lab and radio room is from the way you came.\n";
-	exitShort = "There is a hallway from the direction you came.\n";
+	exitLong = "The hallway which connects to many rooms in the base including the research lab and radio room is from the way you came(east).\n";
+	exitShort = "There is a hallway from the direction you came(east).\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
