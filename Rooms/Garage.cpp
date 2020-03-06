@@ -14,8 +14,8 @@ void Garage::setRoom()
 		"There is currently one snowmobile in the room. It could be a potential means of escape.\n"
 		"There are other bases located nearby...\nThere is also a locker containing a flamethrower.\n";
 	shortDes = "You return to the garage. The area where the snowmobiles are stored.\n";
-	exitLong = "There is a hallway which connects to other rooms in the base like the mess hall from the way you came.\n";
-	exitShort = "There is a hallway from the direction you came.\n";
+	exitLong = "There is a hallway which connects to other rooms in the base like the mess hall from the way you came(west).\n";
+	exitShort = "There is a hallway from the direction you came(west).\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
