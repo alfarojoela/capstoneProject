@@ -12,9 +12,9 @@ void EquipmentRoom::setRoom()
 	name = "equipment room";
 	longDes = "You enter the equipment room. The room is currently pitch black. There must be a light switch in here somewhere.\n";
 	shortDes = "You return to the equipment room. It contains equipment used on the base.\n";
-	exitLong = "The hallway which connects to many rooms in the base including the research lab and sick bay is from the way you came.\n"
+	exitLong = "The hallway which connects to many rooms in the base including the research lab and sick bay is from the way you came(southwest).\n"
 		"There is a tool shed located to the east.\n";
-	exitShort = "There is a hallway from the direction you came and a tool shed to the east.\n";
+	exitShort = "There is a hallway from the direction you came(southwest) and a tool shed to the east.\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
