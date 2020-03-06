@@ -13,8 +13,8 @@ void RadioRoom::setRoom()
 	longDes = "You enter the radio room. This room contains the radio equipment along with other advanced equipment used on the base.\n"
 		"You see the radio equipment in the corner of the room.\nThere is also equipment on the other side of the room used to speak with the military.\n";
 	shortDes = "You return to the radio room. It contains equipement to contact the outside world.\n";
-	exitLong = "The hallway which connects to many rooms in the base including the research lab and sick bay is from the way you came.\n";
-	exitShort = "There is a hallway from the direction you came.\n";
+	exitLong = "The hallway which connects to many rooms in the base including the research lab and sick bay is from the way you came(west).\n";
+	exitShort = "There is a hallway from the direction you came(west).\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
