@@ -14,8 +14,8 @@ void Latrine::setRoom()
 		"This room usually does not smell good. It's not a room you want to stay in for long,\nbut you think you remember booze being in here."
 		" You notice some toilet paper in an odd location in the room.\nYou also have the need to use the restroom.\n";
 	shortDes = "You return to the latrine. It's a bathroom.\n";
-	exitLong = "The hallway which connects to many rooms in the base including the research lab and sick bay is from the way you came.\n";
-	exitShort = "There is a hallway from the direction you came.\n";
+	exitLong = "The hallway which connects to many rooms in the base including the research lab and sick bay is from the way you came(southeast).\n";
+	exitShort = "There is a hallway from the direction you came(southeast).\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
