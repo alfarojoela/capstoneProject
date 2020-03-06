@@ -13,7 +13,8 @@ std::vector<std::string> similar::getTalkVerbs()
         "chat", 
         "communicate", 
         "says", 
-        "tell"
+        "tell",
+        "speak"
     };
 
     return similarTalkVerbs;
@@ -61,7 +62,8 @@ std::vector<std::string> similar::getDropVerbs()
         "give up", 
         "lower", 
         "release", 
-        "shed"
+        "shed",
+        "leave"
     };
 
     return similarDropVerbs;
@@ -88,7 +90,8 @@ std::vector<std::string> similar::getEatVerbs()
         "ingest", 
         "nibble", 
         "swallow", 
-        "bite"
+        "bite",
+        "gobble"
     };
 
     return similarEatVerbs;
@@ -121,7 +124,8 @@ std::vector<std::string> similar::getJumpVerbs()
         "leap", 
         "pounce", 
         "skip", 
-        "spring"
+        "spring",
+        "tackle"
     };
 
     return similarJumpVerbs;
@@ -136,7 +140,8 @@ std::vector<std::string> similar::getFleeVerbs()
         "retreat", 
         "take off", 
         "vanish", 
-        "evade"
+        "evade",
+        "run"
     };
 
     return similarFleeVerbs;
@@ -206,7 +211,9 @@ std::vector<std::string> similar::getTakeVerbs()
         "take",
         "grab",
         "get",
-        "pick up"
+        "pick up",
+        "swipe",
+        "steal"
     };
 
     return similarTakeVerbs;
