@@ -14,9 +14,15 @@ void Hallway2::setRoom()
 		"crewmembers in this room, Jeff and Barry.\n";
 	shortDes = "You return one of the hallways. It is connected to many rooms in the base.\n"
 		"Both men that were here before are gone.\n";
-	exitLong = "This room is connected to other rooms in the base.\nThis includes the mess hall, dog kennel,"
-		" basement, conference room, and garage.\n";
-	exitShort = "There are five rooms connected to this room.\n";
+	exitLong = "This room is connected to many other rooms in the base.\n"
+		"This includes the mess hall to the west where members of the crew have meals together,\n"
+		"the dog kennel to the southwest where the dogs are kept,\n"
+		"the basement to the south where equipment is stored,\n"
+		"the conference room to the southeast where the crew holds meetings,\n"
+		"and the garage to the east where the snowmobiles are stored.\n";
+	exitShort = "There are five rooms connected to this hallway. The mess hall to the west,\n"
+		"the dog kennel to the southwest, the basement to the south, the conference room to the southeast,\n"
+		"and the garage to the east.\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
