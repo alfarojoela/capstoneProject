@@ -14,9 +14,15 @@ void Hallway1::setRoom()
 		"There appears to be nobody around right now. There is a terrible smell emanating from the room.\n"
 		"You notice the floor has a trail of red streaks on it.  The lights are blinking on and off. The room wasn't like this yesterday...\n";
 	shortDes = "You enter a hallway. This hallway is connected to many rooms. The lights are blinking on and off. On and off.\n";
-	exitLong = "This room is connected to many other rooms in the base.\nThis includes the radio room, equipment room,"
-		" sick bay, latrine, and research lab.\n";
-	exitShort = "There are five rooms connected to this hallway.\n";
+	exitLong = "This room is connected to many other rooms in the base.\n"
+		"This includes the radio room to the east where members of the crew can contact the outside world,\n"
+		"the equipment room to the northeast where the crew stores useful equipement,\n"
+		"the sick bay to the west where ill or injured members are taken care of,\n"
+		"the research lab to the southwest where members of the crew conduct research on the base,\n"
+		"and the latrine to the northwest which is a toilet.\n";
+	exitShort = "There are five rooms connected to this hallway. The radio room to the east,\n"
+		"the equipment room to the northeast, the sick bay to the west, the research lab to the southwest,\n"
+		"and the latrine to the northwest.\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
