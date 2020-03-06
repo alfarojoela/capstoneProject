@@ -14,9 +14,9 @@ void Galley::setRoom()
 		"The room usually smells good, but today it smells entirely different. There is more of a rotten smell"
 		" in the air.\nYou sense the area where the smell is coming from. You also notice some food on the counter.\n";
 	shortDes = "You return to the galley. The area still smells terrible.\n";
-	exitLong = "The mess hall is from the direction you came.\nIt is the area of the base where members of the"
+	exitLong = "The mess hall is from the direction you came(north).\nIt is the area of the base where members of the"
 		" crew ate their meals together.\n";
-	exitShort = "The mess hall is from the direction you came.\n";
+	exitShort = "The mess hall is from the direction you came(north).\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
