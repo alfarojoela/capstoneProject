@@ -14,8 +14,8 @@ void ConferenceRoom::setRoom()
 		"You know there's a film projector in this room and you notice a couple of tapes on a table.\n"
 		"You also notice a bottle of booze sitting on the main table.\n";
 	shortDes = "You return to the conference room. There was booze here.\n";
-	exitLong = "There is a hallway which connects to other rooms in the base like the basement from the way you came.\n";
-	exitShort = "There is a hallway from the direction you came.\n";
+	exitLong = "There is a hallway which connects to other rooms in the base like the basement from the way you came(norhtwest).\n";
+	exitShort = "There is a hallway from the direction you came(norhtwest).\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
