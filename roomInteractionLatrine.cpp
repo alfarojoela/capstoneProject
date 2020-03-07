@@ -45,7 +45,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "toilet paper")
+	if (commands[0] == "smell" && commands[2] == "toilet paper")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -60,7 +60,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		}
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "toilet")
+	if (commands[0] == "smell" && commands[2] == "toilet")
 	{
 		std::cout << "You observe that despite the carnage in the hallway, the toilet smells like it was recently cleaned." << std::endl;
 		return;
@@ -78,7 +78,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "eat" && commands[1] == "the" && commands[2] == "toilet paper")
+	if (commands[0] == "eat" && commands[2] == "toilet paper")
 	{
 		std::cout << "Not a good idea to eat the toilet paper.  You don't want to forget the code that's written on it." << std::endl;
 		return;
@@ -90,7 +90,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "toilet")
+	if (commands[0] == "use" && commands[2] == "toilet")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -105,13 +105,13 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		}
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "toilet paper")
+	if (commands[0] == "use" && commands[2] == "toilet paper")
 	{
 		std::cout << "You decide against using the toilet paper.  It has a code on it.  The code may come in handy." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "toilet")
+	if (commands[0] == "jump" && commands[2] == "toilet")
 	{
 		std::cout << "You jump up on the toilet and take a look at the room.  You notice some writing on the wall.  Is it code?  It reads: 'Snake was here.'" << std::endl;
 		std::cout << "What kind of name is Snake?" << std::endl;
@@ -119,7 +119,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 	}
 
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "toilet paper")
+	if (commands[0] == "jump" && commands[2] == "toilet paper")
 	{
 		std::cout << "That just doesn't make any sense.  There is no reason to do that." << std::endl;
 		return;
@@ -131,13 +131,13 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "toilet")
+	if (commands[0] == "break"  && commands[2] == "toilet")
 	{
 		std::cout << "You decide against it.  'I would sooner destroy a stained glass window than a piece of art like yourself,' you say to the toilet." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "toilet paper")
+	if (commands[0] == "break" &&  commands[2] == "toilet paper")
 	{
 		std::cout << "You might need it for later.  Besides, how do you break toilet paper?" << std::endl;
 		return;
@@ -150,7 +150,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "toilet paper")
+	if (commands[0] == "look" && commands[2] == "toilet paper")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -165,13 +165,13 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "toilet")
+	if (commands[0] == "look" && commands[2] == "toilet")
 	{
 		std::cout << "You behold the majesty of the porcelain throne.  It is a one piece, American Standard Madera, flushing at 1.6 gallons per flush, with an elongated bowl. " << std::endl;
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "creature")
+	if (commands[0] == "look" && commands[2] == "creature")
 	{
 		if (playerLocation->getFeatureTwoHap() == 0)
 		{
@@ -184,9 +184,6 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 			std::cout << "You are not sure what it is that just attacked you.  But you are sure it is not of this world.  Maybe it or one of its kind caused all the carnage in the hallway." << std::endl;
 			return;
 		}
-
-
-
 	}
 
 	if (commands[0] == "look" && commands[1] == "at")
@@ -211,11 +208,30 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway1")
+	if ((commands[0] == "go" && commands[2] == "hallway1") || (commands[2] == "southeast"))
 	{
 		go(playerLocation, roomList, 1, playerPtr);
 		return;
 	}
+
+	if (commands[0] == "take" && commands[2] == "toilet paper")
+	{
+		if (playerLocation->getFeatureOneHap() == 1)
+		{
+			std::cout << "You already added it to your inventory." << std::endl;
+			return;
+		}
+
+		else
+		{
+			playerLocation->featureOne(playerPtr);
+			return;
+		}
+	}
+
+
+
+
 
 	if (commands[0] == "take")
 	{
@@ -245,4 +261,5 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 
