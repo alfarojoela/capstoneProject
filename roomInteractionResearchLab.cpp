@@ -274,8 +274,14 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if ((commands[0] == "go" && commands[2] == "hallway1") || (commands[2] == "hallway 1") || (commands[2] == "hallway") || (commands[2] == "northeast") || (commands[2] == "north east"))
+	if ((commands[0] == "go" && commands[2] == "hallway1") || (commands[2] == "hallway 1") || (commands[2] == "hallway") || (commands[2] == "northeast") || (commands[2] == "north east") || (commands[2] == "north"))
 	{
+		if (commands[2] == "north")
+		{
+		std::cout << "You probably meant to type northeast.\nWe thought this could happen due to a lot of testing.\nWe'll correct your error and have you move northeast.\n--Team Thingy" <<std::endl;
+		}
+
+
 		go(playerLocation, roomList, 1, playerPtr);
 		return;
 	}
