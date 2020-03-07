@@ -179,7 +179,7 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in Hallway 1. " << std::endl;
 		mapHallway1();
@@ -230,6 +230,21 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
+	if ((commands[0] == "take" && commands[2] == "axe"))
+	{
+		if (playerLocation->getFeatureOneHap() == 0)
+		{
+			playerLocation->featureOne(playerPtr);
+			return;
+		}
+
+		else
+		{
+			take(commands, playerLocation, playerPtr, roomList, 0);
+			return;
+		}
+	}
+
 	if (commands[0] == "take")
 	{
 		take(commands, playerLocation, playerPtr, roomList, 0);
@@ -246,12 +261,6 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 	if (commands[0] == "inventory")
 	{
 		playerPtr->getInventory();
-		return;
-	}
-
-	if (commands[0] == "map")
-	{
-		map();
 		return;
 	}
 

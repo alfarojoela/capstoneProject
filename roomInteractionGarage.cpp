@@ -19,7 +19,6 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 			std::cout << "You notice a bottle of beer on a tool box." << std::endl;
 			std::cout << "You don't see anyone's name on it." << std::endl;
 			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
-
 		}
 
 		playerLocation->itemsInRoom();
@@ -151,7 +150,7 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "case")
+	if (commands[0] == "jump" && commands[2] == "case")
 	{
 		std::cout << "You jump on the case to get a better look at the room." << std::endl;
 		std::cout << "You look up at the ceiling tiles and notice some one has written very faintly on the one above your head." << std::endl;
@@ -162,7 +161,7 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "snowmobile")
+	if ((commands[0] == "jump" &&  commands[2] == "snowmobile") || (commands[0] == "jump" && commands[2] == "snow mobile"))
 	{
 		std::cout << "You climb up on a work bench and pretend the snowmobile is a horse." << std::endl;
 		std::cout << "You try jumping into the saddle like a cowboy from a movie." << std::endl;
@@ -220,7 +219,7 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "case")
+	if (commands[0] == "look" && commands[2] == "case")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -249,7 +248,7 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in the Garage." << std::endl;
 		mapGarage();
@@ -258,7 +257,7 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway2")
+	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "west") || (commands[2] == "hallway2") || (commands[2] == "hallway1"))
 	{
 		go(playerLocation, roomList, 9, playerPtr);
 		return;
@@ -286,13 +285,11 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 		}
 	}
 
-
 	if (commands[0] == "take")
 	{
 		take(commands, playerLocation, playerPtr, roomList, 0);
 		return;
 	}
-
 
 	if (commands[0] == "help")
 	{
@@ -306,13 +303,6 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
-

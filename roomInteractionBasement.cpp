@@ -5,7 +5,6 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 	if (commands[0] == "savegame" || commands[0] == "loadgame")
 	{
 		return;
-
 	}
 	/*phrase for looking at room inventory*/
 	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
@@ -67,8 +66,7 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 		std::cout << "Whatever it was, you can't talk to it now because it is a smoldering heap of burning remains." << std::endl;
 		return;
 	}
-
-
+	
 	if (commands[0] == "drink")
 	{
 		drink(commands, playerLocation, playerPtr, roomList, 0);
@@ -222,10 +220,6 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 		playerPtr->setAlive(0);
 	}
 
-
-
-
-
 	if (commands[0] == "look" && commands[1] == "" && commands[2] == "")
 	{
 		std::string longDescription = playerLocation->getLongDescrip();
@@ -292,7 +286,7 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 		playerLocation->checkBlood(playerPtr);
 	}
 
-	if (commands[0] == "go" && commands[2] == "hallway2")
+	if ((commands[0] == "go" && commands[2] == "hallway2") ||(commands[2] == "hallway") || (commands[2] == "north") || (commands[2] == "hallway2") || (commands[2] == "hallway1"))
 	{
 		std::cout << "Whatever was making that noise isn't here right now..." << std::endl;
 		go(playerLocation, roomList, 9, playerPtr);
@@ -511,10 +505,6 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-
-
-
-
 	if (commands[0] == "room")
 	{
 		/*Asks pointer to get name*/
@@ -522,10 +512,10 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
-		std::cout << "You are in the Dog Kennel." << std::endl;
-		mapHallway2();
+		std::cout << "You are in the Basement. " << std::endl;
+		mapBasement();
 		return;
 	}
 
@@ -549,12 +539,6 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	if (commands[0] == "eat")
 	{
 		eat(commands, playerLocation, playerPtr, roomList, 0);
@@ -564,4 +548,5 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 

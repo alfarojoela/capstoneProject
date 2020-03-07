@@ -59,14 +59,14 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "groaning")
+	if (commands[0] == "smell" &&  commands[2] == "groaning")
 	{
 		std::cout << "You don't smell anything decipherable coming from the direction of whatever is groaning." << std::endl;
 		std::cout << "You should probably get a little bit closer to whatever is making that sound." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "shining")
+	if (commands[0] == "smell" && commands[2] == "shining")
 	{
 		std::cout << "Whatever is shining out here is not casting off any kind of odor." << std::endl;
 		std::cout << "Maybe you should get a little closer." << std::endl;
@@ -79,7 +79,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "attack" && commands[1] == "the" && commands[2] == "groaning")
+	if (commands[0] == "attack" && commands[2] == "groaning")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -107,7 +107,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "eat" && commands[1] == "the" &&commands[2] == "groaning")
+	if (commands[0] == "eat" && commands[2] == "groaning")
 	{
 		std::cout << "Whatever is groaning is still alive." << std::endl;
 		std::cout << "It could be human or a wounded animal." << std::endl;
@@ -116,7 +116,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "eat" && commands[1] == "the" && commands[2] == "shining")
+	if (commands[0] == "eat" && commands[2] == "shining")
 	{
 		std::cout << "Whatever is shining, it looks like it is glass.  And you probably don't want to eat glass." << std::endl;
 		std::cout << "Maybe you should get closer to get a better look." << std::endl;
@@ -129,13 +129,13 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "groaning")
+	if (commands[0] == "use" && commands[2] == "groaning")
 	{
 		std::cout << "Whatever is groaning out here doesn't seem useable." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "shining")
+	if (commands[0] == "use" && commands[2] == "shining")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -151,7 +151,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "groaning")
+	if (commands[0] == "jump"  && commands[2] == "groaning")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -169,7 +169,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 	}
 
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "shining")
+	if (commands[0] == "jump" && commands[2] == "shining")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -186,7 +186,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "groaning")
+	if (commands[0] == "flee"  && commands[2] == "groaning")
 	{
 
 		if (playerLocation->getFeatureOneHap() == 1)
@@ -204,7 +204,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "shining")
+	if (commands[0] == "flee"  &&commands[2] == "shining")
 	{
 
 		if (playerLocation->getFeatureTwoHap() == 1)
@@ -223,7 +223,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 	}
 
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "groaning")
+	if (commands[0] == "break" && commands[2] == "groaning")
 	{
 		std::cout << "That doesn't make any sense." << std::endl;
 		std::cout << "Do you mean you want to attack the thing that's groaning?" << std::endl;
@@ -231,7 +231,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "shining")
+	if (commands[0] == "break"  && commands[2] == "shining")
 	{
 		std::cout << "If you want to break the thing that's shining, you should probably get closer to it." << std::endl;
 		return;
@@ -244,7 +244,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "groaning")
+	if (commands[0] == "look"  && commands[2] == "groaning")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -265,7 +265,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "shining")
+	if (commands[0] == "look"  && commands[2] == "shining")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -285,7 +285,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "creature")
+	if (commands[0] == "look" && commands[2] == "creature")
 	{
 
 		if (playerLocation->getFeatureOneHap() == 1)
@@ -318,7 +318,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are near the Tool Shed." << std::endl;
 		mapToolShed();
@@ -328,13 +328,13 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "equipment room")
+	if ( (commands[0] == "go"  && commands[2] == "equipment room") || (commands[0] == "go" && commands[2] == "west") || (commands[0] == "go" && commands[2] == "equipmentroom"))
 	{
 		go(playerLocation, roomList, 3, playerPtr);
 		return;
 	}
 
-	if (commands[0] == "go" && commands[1] == "to" &&commands[2] == "groaning")
+	if (commands[0] == "go" && commands[2] == "groaning")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -352,7 +352,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "go" && commands[1] == "to" &&commands[2] == "shining")
+	if (commands[0] == "go"  && commands[2] == "shining")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -367,9 +367,6 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 			return;
 		}
 	}
-
-
-
 
 	if (commands[0] == "take")
 	{
@@ -390,13 +387,8 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 

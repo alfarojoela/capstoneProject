@@ -171,7 +171,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "booze")
+	if (commands[0] == "jump"  && commands[2] == "booze")
 	{
 		std::cout << "You decide against it." << std::endl;
 		return;
@@ -198,7 +198,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "meal")
+	if (commands[0] == "look" && commands[2] == "meal")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -214,7 +214,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "booze")
+	if (commands[0] == "look"  && commands[2] == "booze")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -244,7 +244,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in the Mess Hall." << std::endl;
 		mapMessHall();
@@ -253,13 +253,13 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway2")
+	if ((commands[0] == "go"  && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "hallway 2") || (commands[2] == "east"))
 	{
 		go(playerLocation, roomList, 9, playerPtr);
 		return;
 	}
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "galley")
+	if ((commands[0] == "go"  && commands[2] == "galley") || (commands[2] == "south"))
 	{
 		go(playerLocation, roomList, 11, playerPtr);
 		return;
@@ -285,13 +285,8 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 

@@ -22,7 +22,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "crew member")
+	if (commands[0] == "talk" && commands[2] == "crew member")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -45,13 +45,13 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "medical supplies")
+	if (commands[0] == "smell" && commands[2] == "medical supplies")
 	{
 		std::cout << "The medical supplies have that sterile smell only medical supplies can have." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "crew member")
+	if (commands[0] == "smell" && commands[2] == "crew member")
 	{
 		std::cout << "You can smell Jack from a good distance." << std::endl;
 		std::cout << "He doesn't smell quite right." << std::endl;
@@ -65,7 +65,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "attack" && commands[1] == "the" && commands[2] == "crew member")
+	if (commands[0] == "attack" && commands[2] == "crew member")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -92,7 +92,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "eat" && commands[1] == "the" &&commands[2] == "crew member")
+	if (commands[0] == "eat" && commands[2] == "crew member")
 	{
 		std::cout << "What is wrong with you?" << std::endl;
 		std::cout << "This game is not a Donner Party simulator!" << std::endl;
@@ -106,7 +106,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "medical supplies")
+	if (commands[0] == "use" && commands[2] == "medical supplies")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -121,7 +121,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		}
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "crew member")
+	if (commands[0] == "use" && commands[2] == "crew member")
 	{
 		std::cout << "You are not a master manipulator." << std::endl;
 		std::cout << "You don't have the charisma to use people." << std::endl;
@@ -130,14 +130,14 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 
 
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "medical supplies")
+	if (commands[0] == "jump"  && commands[2] == "medical supplies")
 	{
 		std::cout << "There is no point in jumping on the medical supplies." << std::endl;
 		return;
 	}
 
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "crew member")
+	if (commands[0] == "jump" && commands[2] == "crew member")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -154,7 +154,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		}
 	}
 
-	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "crew member")
+	if (commands[0] == "flee" &&commands[2] == "crew member")
 	{
 
 		if (playerLocation->getFeatureTwoHap() == 1)
@@ -173,13 +173,13 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		}
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "medical supplies")
+	if (commands[0] == "break" && commands[2] == "medical supplies")
 	{
 		std::cout << "There is no reason to wase good medical supplies." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "crew member")
+	if (commands[0] == "break"  && commands[2] == "crew member")
 	{
 		std::cout << "He's already pretty broken up from the look of him." << std::endl;
 		std::cout << "There's no need for overkill." << std::endl;
@@ -193,7 +193,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "crew member")
+	if (commands[0] == "look" && commands[2] == "crew member")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -209,7 +209,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "medical supplies")
+	if (commands[0] == "look" && commands[2] == "medical supplies")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -239,7 +239,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in the Sick Bay." << std::endl;
 		mapSickBay();
@@ -248,13 +248,13 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway1")
+	if ((commands[0] == "go"  && commands[2] == "hallway1") || (commands[2] == "east") || (commands[2] == "hallway 1") || (commands[2] == "hallway" ))
 	{
 		go(playerLocation, roomList, 1, playerPtr);
 		return;
 	}
 
-	if (commands[0] == "go" && commands[1] == "to" &&commands[2] == "crew member")
+	if (commands[0] == "go" && commands[2] == "crew member")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -291,13 +291,8 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 

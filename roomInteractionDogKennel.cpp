@@ -17,8 +17,6 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		{
 			std::cout << "You notice a bottle of beer on a shelf." << std::endl;
 			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
-
-
 		}
 
 		playerLocation->itemsInRoom();
@@ -244,7 +242,7 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "go" && commands[2] == "hallway2")
+	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "northeast") || (commands[2] == "hallway2") || (commands[2] == "hallway1"))
 	{
 		go(playerLocation, roomList, 9, playerPtr);
 		return;
@@ -257,7 +255,7 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in the Dog Kennel." << std::endl;
 		mapDogKennel();
@@ -299,13 +297,8 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 

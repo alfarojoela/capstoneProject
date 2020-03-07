@@ -180,7 +180,7 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in Macreqdy's Quarters." << std::endl;
 		mapMacready();

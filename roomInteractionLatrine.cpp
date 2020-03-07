@@ -199,7 +199,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in the Latrine." << std::endl;
 		mapLatrine();
@@ -208,7 +208,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if ((commands[0] == "go" && commands[2] == "hallway1") || (commands[2] == "southeast"))
+	if ((commands[0] == "go" && commands[2] == "hallway1") || (commands[2] == "southeast") || (commands[2] == "hallway"))
 	{
 		go(playerLocation, roomList, 1, playerPtr);
 		return;
@@ -229,10 +229,6 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		}
 	}
 
-
-
-
-
 	if (commands[0] == "take")
 	{
 		take(commands, playerLocation, playerPtr, roomList, 0);
@@ -249,12 +245,6 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 	if (commands[0] == "inventory")
 	{
 		playerPtr->getInventory();
-		return;
-	}
-
-	if (commands[0] == "map")
-	{
-		map();
 		return;
 	}
 

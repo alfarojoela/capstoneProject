@@ -32,7 +32,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "jeff")
+	if (commands[0] == "talk" &&  commands[2] == "jeff")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -48,7 +48,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "barry")
+	if (commands[0] == "talk" && commands[2] == "barry")
 	{
 		playerLocation->featureTwo(playerPtr);
 		return;
@@ -135,7 +135,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "jeff")
+	if (commands[0] == "jump"  && commands[2] == "jeff")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -156,7 +156,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "barry")
+	if (commands[0] == "jump" && commands[2] == "barry")
 	{
 
 		std::cout << "You walk up to Barry nonchalantly." << std::endl;
@@ -173,7 +173,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 	}
 
 
-	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "jeff")
+	if (commands[0] == "flee"  && commands[2] == "jeff")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -193,7 +193,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "barry")
+	if (commands[0] == "flee"  && commands[2] == "barry")
 	{
 
 		if (playerLocation->getFeatureOneHap() == 1)
@@ -259,7 +259,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "barry")
+	if (commands[0] == "look" && commands[2] == "barry")
 	{
 		std::cout << "Barry appears to be quite worried." << std::endl;
 		std::cout << "You can't blame him." << std::endl;
@@ -267,7 +267,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "Jeff")
+	if (commands[0] == "look"  && commands[2] == "Jeff")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -299,7 +299,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in Hallway 2." << std::endl;
 		mapHallway2();
@@ -308,37 +308,37 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway1")
+	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "north") || (commands[2] == "hallway2") || (commands[2] == "hallway1") || (commands[2] == "hallway 1"))
 	{
 		go(playerLocation, roomList, 1, playerPtr);
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[1] == "to" && commands[2] == "mess hall") || (commands[0] == "go" && commands[1] == "to" && commands[2] == "messhall"))
+	if ((commands[0] == "go" && commands[2] == "mess hall") || (commands[0] == "go" && commands[2] == "messhall") || (commands[2] == "east"))
 	{
 		go(playerLocation, roomList, 8, playerPtr);
 		return;
 	}
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "garage")
+	if ((commands[0] == "go" && commands[2] == "garage") || (commands[2] == "west"))
 	{
 		go(playerLocation, roomList, 10, playerPtr);
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[1] == "to" && commands[2] == "dog kennel") || (commands[0] == "go" && commands[1] == "to" && commands[2] == "dogkennel"))
+	if ((commands[0] == "go" && commands[2] == "dog kennel") || (commands[0] == "go" && commands[2] == "dogkennel") || (commands[2] == "southwest") || (commands[2] == "south west"))
 	{
 		go(playerLocation, roomList, 12, playerPtr);
 		return;
 	}
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "basement")
+	if ((commands[0] == "go" && commands[2] == "basement") || (commands[2] == "south"))
 	{
 		go(playerLocation, roomList, 13, playerPtr);
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[1] == "to" && commands[2] == "conference room") || (commands[0] == "go" && commands[1] == "to" && commands[2] == "conferenceroom"))
+	if ((commands[0] == "go"  && commands[2] == "conference room") || (commands[0] == "go" && commands[2] == "conferenceroom") || (commands[2] == "southeast")|| (commands[2] == "south east"))
 	{
 		go(playerLocation, roomList, 14, playerPtr);
 		return;
@@ -349,7 +349,6 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		take(commands, playerLocation, playerPtr, roomList, 0);
 		return;
 	}
-
 
 	if (commands[0] == "help")
 	{
@@ -363,13 +362,8 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 

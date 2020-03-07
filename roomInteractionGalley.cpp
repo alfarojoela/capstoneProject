@@ -109,15 +109,13 @@ void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Playe
 		}
 	}
 
-
-
 	if (commands[0] == "eat")
 	{
 		eat(commands, playerLocation, playerPtr, roomList, 0);
 		return;
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "counter")
+	if (commands[0] == "jump" && commands[2] == "counter")
 	{
 		std::cout << "You jump on the counter to get a better look at the room." << std::endl;
 		std::cout << "You look up at the ceiling tiles and notice some one has written very faintly on the one above your head." << std::endl;
@@ -125,9 +123,7 @@ void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Playe
 		std::cout << "Who is that?" << std::endl;
 		std::cout << "A member of the last crew that went back to the States?" << std::endl;
 		return;
-
 	}
-
 
 	if (commands[0] == "flee")
 	{
@@ -150,7 +146,7 @@ void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Playe
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "counter")
+	if (commands[0] == "look"  && commands[2] == "counter")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -160,13 +156,11 @@ void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Playe
 
 		else
 		{
-			std::cout << "You decide to excamine the counter more closely." << std::endl;
+			std::cout << "You decide to examine the counter more closely." << std::endl;
 			playerLocation->featureOne(playerPtr);
 			return;
 		}
 	}
-
-
 
 	if (commands[0] == "look" && commands[1] == "at")
 	{
@@ -181,7 +175,7 @@ void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Playe
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in the Galley." << std::endl;
 		mapGalley();
@@ -190,13 +184,13 @@ void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Playe
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "mess hall")
+	if ((commands[0] == "go" && commands[2] == "mess hall") || (commands[0] == "go" && commands[2] == "messhall") || (commands[2] == "north"))
 	{
 		go(playerLocation, roomList, 8, playerPtr);
 		return;
 	}
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "odor")
+	if (commands[0] == "go" && commands[2] == "odor")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -234,13 +228,8 @@ void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Playe
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 

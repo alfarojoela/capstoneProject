@@ -18,11 +18,7 @@ void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocatio
 		{
 			std::cout << "You notice a bottle of beer beside the projector." << std::endl;
 			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
-
-
 		}
-
-
 		playerLocation->itemsInRoom();
 		return;
 	}
@@ -237,7 +233,7 @@ void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocatio
 		return;
 	}
 
-	if (commands[0] == "go" && commands[2] == "hallway2")
+	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "northwest") || (commands[2] == "hallway2") || (commands[2] == "hallway1"))
 	{
 		go(playerLocation, roomList, 9, playerPtr);
 		return;
@@ -250,7 +246,7 @@ void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocatio
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in the Conference Room." << std::endl;
 		mapConferenceRoom();
@@ -335,13 +331,8 @@ void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocatio
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 

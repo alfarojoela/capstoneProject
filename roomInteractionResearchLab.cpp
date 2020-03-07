@@ -32,7 +32,7 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 	}
 
 
-	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "doctor")
+	if (commands[0] == "talk" && commands[2] == "doctor")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -48,14 +48,14 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		}
 	}
 
-	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "computer")
+	if (commands[0] == "talk" && commands[2] == "computer")
 	{
 		std::cout << "Although this computer is more sophisticated than Macready's, it is not voice activated." << std::endl;
 		std::cout << "You'll have to use it like any other computer." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "talk" && commands[1] == "to" && commands[2] == "captain")
+	if (commands[0] == "talk"  && commands[2] == "captain")
 	{
 		std::cout << "He's not going to be able to tell  you anything." << std::endl;
 		std::cout << "As the saying goes, 'Dead men tell no tales.' " << std::endl;
@@ -68,13 +68,13 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "computer")
+	if (commands[0] == "smell"&& commands[2] == "computer")
 	{
 		std::cout << "It doesn't smell out of the ordinary." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "doctor")
+	if (commands[0] == "smell" && commands[2] == "doctor")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -99,7 +99,7 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		return;
 	}
 
-	if (commands[0] == "attack" && commands[1] == "the" && commands[2] == "computer")
+	if (commands[0] == "attack"  && commands[2] == "computer")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -115,7 +115,7 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		}
 	}
 
-	if (commands[0] == "attack" && commands[1] == "the" && commands[2] == "doctor")
+	if (commands[0] == "attack"  && commands[2] == "doctor")
 	{
 		if (playerLocation->getFeatureTwoHap() == 0)
 		{
@@ -134,14 +134,13 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		}
 	}
 
-
 	if (commands[0] == "eat")
 	{
 		eat(commands, playerLocation, playerPtr, roomList, 0);
 		return;
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "computer")
+	if (commands[0] == "use"  && commands[2] == "computer")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -158,20 +157,20 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		}
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "doctor")
+	if (commands[0] == "jump" && commands[2] == "doctor")
 	{
 		std::cout << "You decide against tackling the doctor." << std::endl;
 		return;
 	}
 
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "computer")
+	if (commands[0] == "jump" && commands[2] == "computer")
 	{
 		std::cout << "You don't want to take the chance of breaking some pricey equipment." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "doctor")
+	if (commands[0] == "flee"&& commands[2] == "doctor")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -193,7 +192,7 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		}
 	}
 
-	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "computer")
+	if (commands[0] == "flee" &&commands[2] == "computer")
 	{
 
 		std::cout << "You don't need to be afraid of the computer." << std::endl;
@@ -202,7 +201,7 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 	}
 
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "computer")
+	if (commands[0] == "break" && commands[2] == "computer")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -218,7 +217,7 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		}
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "doctor")
+	if (commands[0] == "break" &&  commands[2] == "doctor")
 	{
 		std::cout << "Not a viable option." << std::endl;
 		return;
@@ -231,7 +230,7 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "doctor")
+	if (commands[0] == "look" && commands[2] == "doctor")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -246,7 +245,7 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "computer")
+	if (commands[0] == "look"  && commands[2] == "computer")
 	{
 		playerLocation->featureOne(playerPtr);
 		return;
@@ -266,7 +265,7 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in the Research Lab." << std::endl;
 		mapResearchLab();
@@ -275,7 +274,7 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway1")
+	if ((commands[0] == "go" && commands[2] == "hallway1") || (commands[2] == "hallway 1") || (commands[2] == "hallway") || (commands[2] == "northeast") || (commands[2] == "north east"))
 	{
 		go(playerLocation, roomList, 1, playerPtr);
 		return;
@@ -300,13 +299,8 @@ void roomInteractionResearchLab(std::string commands[3], Room* &playerLocation, 
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 

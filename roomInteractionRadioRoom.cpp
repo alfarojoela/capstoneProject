@@ -239,7 +239,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in the Radio Room." << std::endl;
 		mapRadioRoom();
@@ -248,7 +248,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway1")
+	if ((commands[0] == "go"  && commands[2] == "hallway1") || (commands[2] == "west") || (commands[2] == "hallway 1"))
 	{
 		go(playerLocation, roomList, 1, playerPtr);
 		return;
@@ -273,13 +273,8 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 

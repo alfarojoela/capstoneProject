@@ -243,7 +243,7 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
 	{
 		std::cout << "You are in the Equipment Room." << std::endl;
 		mapEquipmentRoom();
@@ -252,13 +252,13 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway1")
+	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "southwest") || (commands[2] == "hallway2") || (commands[2] == "hallway1"))
 	{
 		go(playerLocation, roomList, 1, playerPtr);
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[1] == "to" && commands[2] == "toolshed") || (commands[0] == "go" && commands[1] == "to" && commands[2] == "tool shed"))
+	if ((commands[0] == "go" && commands[2] == "toolshed") || (commands[0] == "go" && commands[2] == "tool shed") || (commands[2] == "east"))
 	{
 		go(playerLocation, roomList, 4, playerPtr);
 		return;
@@ -284,13 +284,8 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 
