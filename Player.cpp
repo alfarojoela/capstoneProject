@@ -334,7 +334,7 @@ void Player::clearInventory()
 
 
 /*Functions for checking and setting deathWish feature to
- *  * nuke base for awesome ending of game.*/
+ *  *  * nuke base for awesome ending of game.*/
 void Player::setDeathWish(int desire)
 {
 deathWish = deathWish+desire;
@@ -365,6 +365,7 @@ void Player::setDrOutcome(int val)
 {
 	drOutcome = val;
 }
+
 
 
 
