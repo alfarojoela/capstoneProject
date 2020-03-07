@@ -4,7 +4,7 @@ void eat(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std
 {
 	std::string food = commands[2];
 	/*bool check = playerPtr->checkInventory(food);*/
-	if (playerPtr->checkInventory(food) == 1)
+	if ((playerPtr->checkInventory(food) == 1) || (commands[2] == "sardines"))
 	{
 		Item redherring("red herring");
 		playerPtr->setGrit("red herring");
@@ -12,5 +12,6 @@ void eat(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std
 	else
 		std::cout << "Sorry.  You can't eat what you don't have in your inventory." << std::endl;
 }
+
 
 
