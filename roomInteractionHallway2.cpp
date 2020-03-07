@@ -314,13 +314,13 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[2] == "mess hall") || (commands[0] == "go" && commands[2] == "messhall") || (commands[2] == "east"))
+	if ((commands[0] == "go" && commands[2] == "mess hall") || (commands[0] == "go" && commands[2] == "messhall") || (commands[2] == "west"))
 	{
 		go(playerLocation, roomList, 8, playerPtr);
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[2] == "garage") || (commands[2] == "west"))
+	if ((commands[0] == "go" && commands[2] == "garage") || (commands[2] == "east"))
 	{
 		go(playerLocation, roomList, 10, playerPtr);
 		return;
