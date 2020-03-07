@@ -289,7 +289,7 @@ void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocatio
 		}
 
 
-		go(playerLocation, roomList, 14, playerPtr);
+		go(playerLocation, roomList, 9, playerPtr);
 		return;
 	}
 
