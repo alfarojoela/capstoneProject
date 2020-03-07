@@ -242,8 +242,17 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "northeast") || (commands[2] == "hallway2") || (commands[2] == "hallway1"))
+	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "northeast") || (commands[2] == "hallway2") || (commands[2] == "hallway1") || (commands[2] == "north"))
 	{
+		
+		if(commands[2] == "north")
+
+		{
+		std::cout << "You probably meant to type northeast.\nNot north.\nWe'll let it go and make the correction to northeast.\n--Team Thingy" << std::endl;
+		
+		}
+
+
 		go(playerLocation, roomList, 9, playerPtr);
 		return;
 	}
