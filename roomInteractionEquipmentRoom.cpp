@@ -252,8 +252,13 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "southwest") || (commands[2] == "hallway2") || (commands[2] == "hallway1"))
+	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "southwest") || (commands[2] == "hallway2") || (commands[2] == "hallway1") || (commands[2] == "south"))
 	{
+		if(commands[2] == "south")
+		{
+		std::cout << "You probably meant southwest.\nWe anticipated this could happen due to our rigorous testing.\nSo we'll let it go and let you move back to Hallway 1.\n--Team Thingy" <<std::endl;
+		}
+	
 		go(playerLocation, roomList, 1, playerPtr);
 		return;
 	}
