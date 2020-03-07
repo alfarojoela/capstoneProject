@@ -328,7 +328,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if ( (commands[0] == "go"  && commands[2] == "equipment room") || (commands[0] == "go" && commands[2] == "west") || (commands[0] == "go" && commands[2] == "equipmentroom"))
+	if ( (commands[0] == "go"  && commands[2] == "equipment room") || (commands[0] == "go" && commands[2] == "west") || (commands[0] == "go" && commands[2] == "equipmentroom") || (commands[2] == "west"))
 	{
 		go(playerLocation, roomList, 3, playerPtr);
 		return;
