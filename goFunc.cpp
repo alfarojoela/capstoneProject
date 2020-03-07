@@ -107,3 +107,4 @@ void go(Room* &playerLocation, std::vector<Room*> &roomList, int roomNumber, Pla
 
 	playerPtr->setBearings(1);
 }
+
