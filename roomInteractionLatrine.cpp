@@ -208,8 +208,13 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if ((commands[0] == "go" && commands[2] == "hallway1") || (commands[2] == "southeast") || (commands[2] == "hallway"))
+	if ((commands[0] == "go" && commands[2] == "hallway1") || (commands[2] == "southeast") || (commands[2] == "hallway") || (commands[2] == "south"))
 	{
+		if(commands[2] == "south")
+		{
+		std::cout << "You probably meant southeast but you typed south.\nWe'll let it go.  \nWe've done rigorous testing and anticipated this sort of thing..\n--Team Thingy." <<std::endl;
+		}
+
 		go(playerLocation, roomList, 1, playerPtr);
 		return;
 	}
