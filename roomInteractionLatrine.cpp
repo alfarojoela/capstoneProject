@@ -6,7 +6,21 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 	if (commands[0] == "savegame" || commands[0] == "loadgame")
 	{
 		return;
+	}
 
+	if ((commands[0] == "drink" && commands[2] == "toilet") )
+	{
+		std::cout << "You are not a dog." << std::endl;
+		std::cout << "Don't drink from the toilet." << std::endl;
+		std::cout << "Sicko." << std::endl;
+		return;
+	}
+
+	if ((commands[0] == "drink" && commands[2] == "toilet paper"))
+	{
+		std::cout << "You can't drink it." << std::endl;
+		std::cout << "Your request doesn't make any sense at all." << std::endl;
+		return;
 	}
 
 	/*Set of commands to check room inventory.  Mainly for testing purposes rather than for the player.  May keep condition to allow player a cheat.  Won't put in help list.*/
@@ -18,7 +32,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		if (playerLocation->checkItem(freeBooze) != 999)
 		{
 			std::cout << "You notice a bottle of beer in the sink." << std::endl;
-			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+			std::cout << "After checking the room for booze, you also notice the following..." << std::endl;
 
 		}
 
@@ -199,7 +213,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map") || (commands[0] == "show"))
 	{
 		std::cout << "You are in the Latrine." << std::endl;
 		mapLatrine();
@@ -219,17 +233,17 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "take" && commands[2] == "toilet paper")
+	if ((commands[0] == "take" && commands[2] == "toilet paper"))
 	{
-		if (playerLocation->getFeatureOneHap() == 1)
+		if (playerLocation->getFeatureOneHap() == 0)
 		{
-			std::cout << "You already added it to your inventory." << std::endl;
+			playerLocation->featureOne(playerPtr);
 			return;
 		}
 
 		else
 		{
-			playerLocation->featureOne(playerPtr);
+			take(commands, playerLocation, playerPtr, roomList, 0);
 			return;
 		}
 	}
@@ -256,5 +270,6 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 
 
