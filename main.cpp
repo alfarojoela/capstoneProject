@@ -87,12 +87,8 @@
 
 int main()
 {
-srand(time(NULL));
-intro();
-/*menu(); */
-/*map();*/
-/*help();*/
-
+	srand((unsigned int)time(NULL));
+	intro();
 
 	/*Creation of Objects*/
 	Player rj;
@@ -189,7 +185,6 @@ roomList.push_back(galleyPtr);
 roomList.push_back(dogkennelPtr);
 roomList.push_back(basementPtr);
 roomList.push_back(conferenceroomPtr);
-
 
 std::string commands[3];
 std::string userInput = "";
@@ -306,4 +301,5 @@ if (playerPtr->getAlive() == 0)
 }while(userInput != "exit");
 
 }
+
 
