@@ -5,6 +5,14 @@
 void lookAt(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector<Room*> &roomList, int roomNumber)
 {
 	std::string item = commands[2];
+
+	if (commands[2] == "sardines" || commands[2] == "redherring")
+	{
+		item = "red herring";
+		std::cout << "You were mistaken.\nIt's a can of Red Herring." << std::endl;
+	}
+
+
 	if (playerPtr->checkInventory(item) == 1 || playerLocation->checkItem(item) != 999)
 	{
 		if (item == "blowtorch")
@@ -69,7 +77,7 @@ void lookAt(std::string commands[3], Room* &playerLocation, Player* &playerPtr, 
 			return;
 		}
 
-		if (item == "redherring")
+		if ((item == "redherring") || (commands[2] =="red herring") || (commands[2] =="sardines"))
 		{
 			std::cout << "It is a dented can of red herring.  It looks like it should be edible." << std::endl;
 			return;
@@ -143,4 +151,5 @@ void lookAt(std::string commands[3], Room* &playerLocation, Player* &playerPtr, 
 		return;
 	}
 }
+
 
