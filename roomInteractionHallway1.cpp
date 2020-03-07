@@ -1,4 +1,4 @@
-#include "roomInteractionHallway1.hpp"""
+#include "roomInteractionHallway1.hpp"
 
 
 void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, Parser* parserPtr)
@@ -46,7 +46,7 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "floor")
+	if (commands[0] == "smell" && commands[2] == "floor")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -101,20 +101,20 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "floor")
+	if (commands[0] == "use" &&  commands[2] == "floor")
 	{
 		std::cout << "You are already using the floor to stand on.  What other possible use could it be to you?" << std::endl;
 		return;
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "floor")
+	if (commands[0] == "jump" && commands[2] == "floor")
 	{
 		std::cout << "You jump up and down on the floor.  It seems stable." << std::endl;
 		return;
 	}
 
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "lights")
+	if (commands[0] == "jump" && commands[2] == "lights")
 	{
 		std::cout << "That just doesn't make any sense.  There is no way you can do that." << std::endl;
 		return;
@@ -126,13 +126,13 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "floor")
+	if (commands[0] == "break"  && commands[2] == "floor")
 	{
 		std::cout << "The floor is linoleum glued to concrete.  There is no way you are going to be able to break it." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "lights")
+	if (commands[0] == "break" && commands[2] == "lights")
 	{
 		std::cout << "That is a bad idea.  Breaking the lights is going to make this room completely dark.  You could trip over something and crack your head!" << std::endl;
 		return;
@@ -145,7 +145,7 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "floor")
+	if (commands[0] == "look" && commands[2] == "floor")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -161,7 +161,7 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "lights")
+	if (commands[0] == "look" && commands[2] == "lights")
 	{
 		std::cout << "The lights flicker on and off.  Maybe you should use the lights." << std::endl;
 		return;
@@ -188,43 +188,43 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "latrine")
+	if ((commands[0] == "go" && commands[2] == "latrine") || (commands[2] == "northwest"))
 	{
 		go(playerLocation, roomList, 2, playerPtr);
 		return;
 	}
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "macready")
+	if ((commands[0] == "go" && commands[2] == "macready") || (commands[2] == "north"))
 	{
 		go(playerLocation, roomList, 0, playerPtr);
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[1] == "to" && commands[2] == "equipment room") || (commands[0] == "go" && commands[1] == "to" && commands[2] == "equipmentroom"))
+	if ((commands[0] == "go" && commands[2] == "equipment room") || (commands[0] == "go" && commands[2] == "equipmentroom") || (commands[2] == "northeast"))
 	{
 		go(playerLocation, roomList, 3, playerPtr);
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[1] == "to" && commands[2] == "radio room") || (commands[0] == "go" && commands[1] == "to" && commands[2] == "radioroom"))
+	if ((commands[0] == "go" && commands[2] == "radio room") || (commands[0] == "go" && commands[2] == "radioroom") || (commands[2] == "east"))
 	{
 		go(playerLocation, roomList, 6, playerPtr);
 		return;
 	}
 
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway2")
+	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[2] == "south") || (commands[0] == "go" && commands[2] == "hallway1"))
 	{
 		go(playerLocation, roomList, 9, playerPtr);
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[1] == "to" && commands[2] == "research lab") || (commands[0] == "go" && commands[1] == "to" && commands[2] == "researchlab"))
+	if ((commands[0] == "go" && commands[2] == "research lab") || (commands[0] == "go" && commands[2] == "researchlab") || (commands[2] == "southwest"))
 	{
 		go(playerLocation, roomList, 7, playerPtr);
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[1] == "to" && commands[2] == "sickbay") || commands[0] == "go" && commands[1] == "to" && commands[2] == "sick bay")
+	if ((commands[0] == "go" && commands[2] == "sickbay") || (commands[0] == "go" && commands[2] == "sick bay") || (commands[2] == "west"))
 	{
 		go(playerLocation, roomList, 5, playerPtr);
 		return;
@@ -258,4 +258,5 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 
