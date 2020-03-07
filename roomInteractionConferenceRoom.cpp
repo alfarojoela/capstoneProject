@@ -233,8 +233,15 @@ void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocatio
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "northwest") || (commands[2] == "hallway2") || (commands[2] == "hallway1"))
+	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "northwest") || (commands[2] == "hallway2") || (commands[2] == "hallway1") || (commands[2] == "north"))
 	{
+		if(commands[2] == "north")
+		{
+		std::cout << "You probably meant to type northwest.\nWe'll let it go and make the correction to northwest.\n--Team Thingy" <<std::endl;
+		}
+
+
+
 		go(playerLocation, roomList, 9, playerPtr);
 		return;
 	}
@@ -281,17 +288,6 @@ void roomInteractionConferenceRoom(std::string commands[3], Room* &playerLocatio
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[2] == "hallway2") || (commands[0] == "go" && commands[2] == "hallway") || (commands[0] == "go" && commands[2] == "hallway 2") || (commands[2] == "northwest") || (commands[2] == "north"))
-	{
-		if(commands[2] == "north")
-		{
-		std::cout << "You probably meant northwest.\nWe'll make the correction to northwest.\n--Team Thingy" <<std::endl;
-		}
-
-
-		go(playerLocation, roomList, 9, playerPtr);
-		return;
-	}
 
 	if (commands[0] == "go" && commands[2] == "projector")
 	{
