@@ -13,7 +13,7 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 
 	}
 	/*helper phrase.*/
-	if (commands[0] == "look" && commands[1] == "for" && commands[2] == "booze")
+	if (commands[0] == "look" && commands[2] == "booze")
 	{
 		std::cout << "You start looking for booze and notice..." << std::endl;
 		std::string freeBooze = "beer";
@@ -30,7 +30,7 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[1] == "at" && commands[2] == "blood"))
+	if ((commands[0] == "use" && commands[2] == "blood test") || (commands[0] == "look" && commands[2] == "blood"))
 	{
 		std::cout << "Hmm..." << std::endl;
 		std::cout << "There's no one around to do a blood test on." << std::endl;
@@ -51,13 +51,13 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "bed")
+	if (commands[0] == "smell" && commands[2] == "bed")
 	{
 		std::cout << "You take a deep whiff from the bed...It smells like a chimp sleeps here.  And you should know because you worked a summer at the zoo once." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "computer")
+	if (commands[0] == "smell" && commands[2] == "computer")
 	{
 		std::cout << "It smells like a new computer.  The chimpesque odor of Macready's room has not had the opportunity to be absorbed by the computer yet." << std::endl;
 		return;
@@ -81,7 +81,7 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "computer")
+	if (commands[0] == "use" && commands[2] == "computer")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -96,20 +96,20 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "bed")
+	if (commands[0] == "use" && commands[2] == "bed")
 	{
 		std::cout << "You consider taking a nap in Macready's bed.  But then reconsider.  You don't wanna smell like a chimp." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "bed")
+	if (commands[0] == "jump" && commands[2] == "bed")
 	{
 		std::cout << "You climb onto Macready's bed and start jumping on it to test the springs.  You hear something snap and stop your jumping." << std::endl;
 		std::cout << "You have the benefit of plausible deniability.  If he complains about a broken bed, you are just going to deny all knowledge." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "computer")
+	if (commands[0] == "jump" && commands[2] == "computer")
 	{
 		std::cout << "The computer is not meant for jumping on.  You can't do that here." << std::endl;
 		return;
@@ -188,7 +188,7 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 	}
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
-	if (commands[0] == "go" && commands[1] == "to" && commands[2] == "hallway1")
+	if ((commands[0] == "go" && commands[2] == "hallway1") || (commands[2] == "south"))
 	{
 		go(playerLocation, roomList, 1, playerPtr);
 		return;
@@ -199,7 +199,6 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		take(commands, playerLocation, playerPtr, roomList, 0);
 		return;
 	}
-
 
 	if (commands[0] == "help")
 	{
@@ -213,13 +212,8 @@ void roomInteractionMacready(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "map")
-	{
-		map();
-		return;
-	}
-
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 
