@@ -5,6 +5,12 @@ void drop(std::string commands[3], Room* &playerLocation, Player* &playerPtr, st
 {
 	std::string itemToCheck = commands[2];
 
+	if (commands[2] == "sardines" || commands[2] == "redherring")
+	{
+		itemToCheck = "red herring";
+	}
+
+
 	if (playerPtr->checkInventory(itemToCheck) == 1)
 	{
 		Item itemToDrop = playerPtr->transferItem(itemToCheck);
@@ -20,3 +26,4 @@ void drop(std::string commands[3], Room* &playerLocation, Player* &playerPtr, st
 	else
 		std::cout << "You can't drop what's not in your inventory. " << std::endl;
 }
+
