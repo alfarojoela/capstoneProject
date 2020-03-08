@@ -18,7 +18,7 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		{
 			std::cout << "You notice a bottle of beer on the floor." << std::endl;
 			std::cout << "What luck it didn't break during the outbreak of carnage." << std::endl;
-			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+			std::cout << "After checking the room for booze, you also notice the following..." << std::endl;
 		}
 
 		playerLocation->itemsInRoom();
@@ -51,12 +51,13 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
 			std::cout << "'What happened here?'  You wonder aloud." << std::endl;
+			std::cout << "The hallway has a faint metallic smell to it. \nYou now realize you have been smelling fresh spilt blood.  \nYou now see tha the hallway is charged with a desperate violence..." << std::endl;
+
 			return;
 		}
 
 		else
 		{
-			std::cout << "The hallway has a faint metallic smell to it.  You now realize you have been smelling fresh spilt blood.  You now see tha the hallway is charged with a desperate violence..." << std::endl;
 			playerLocation->featureOne(playerPtr);
 			return;
 		}
@@ -179,7 +180,7 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map") || (commands[0] == "show"))
 	{
 		std::cout << "You are in Hallway 1. " << std::endl;
 		mapHallway1();
@@ -234,6 +235,7 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 	{
 		if (playerLocation->getFeatureOneHap() == 0)
 		{
+			std::cout << "Before taking the axe, you decide to investigate the room a little first..." << std::endl;
 			playerLocation->featureOne(playerPtr);
 			return;
 		}
@@ -267,5 +269,6 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 
 
