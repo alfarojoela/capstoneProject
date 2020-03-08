@@ -19,7 +19,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 			std::cout << "It has MacReady's name on it with a message taped to it." << std::endl;
 			std::cout << "'Don't drink my beer -RJ' it reads." << std::endl;
 			std::cout << "For all you know, MacReady may not be around anymore." << std::endl;
-			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+			std::cout << "After checking the room for booze, you also notice the following..." << std::endl;
 
 		}
 
@@ -35,7 +35,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "talk" && commands[1] == "on" && commands[2] == "radio")
+	if (commands[0] == "talk"  && commands[2] == "radio")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -51,7 +51,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		}
 	}
 
-	if (commands[0] == "talk" && commands[1] == "on" && commands[2] == "military radio")
+	if (commands[0] == "talk" && commands[2] == "military radio")
 	{
 		playerLocation->featureTwo(playerPtr);
 	}
@@ -63,13 +63,13 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "civilian radio")
+	if (commands[0] == "smell" && commands[2] == "civilian radio")
 	{
 		std::cout << "It doesn't really smell like much of anything." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "military radio")
+	if (commands[0] == "smell"  && commands[2] == "military radio")
 	{
 		std::cout << "It doesn't really smell like much of anything." << std::endl;
 		return;
@@ -81,7 +81,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "attack" && commands[1] == "the" && commands[2] == "civilian radio")
+	if (commands[0] == "attack" && commands[2] == "civilian radio")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -97,7 +97,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		}
 	}
 
-	if (commands[0] == "attack" && commands[1] == "the" && commands[2] == "military radio")
+	if (commands[0] == "attack" && commands[2] == "military radio")
 	{
 		std::cout << "You make a fist to punch the radio, but then think better of it." << std::endl;
 		std::cout << "It is after all a radio for contacting the military." << std::endl;
@@ -105,7 +105,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if ((commands[0] == "eat" && commands[1] == "the" && commands[2] == "civilian radio") || (commands[0] == "eat" && commands[1] == "the" && commands[2] == "military radio"))
+	if ((commands[0] == "eat" && commands[2] == "civilian radio") || (commands[0] == "eat"  && commands[2] == "military radio"))
 	{
 		std::cout << "You remember reading about some guy in the Guinness Book of Records who ate metal and glass object and even a plane." << std::endl;
 		std::cout << "You look at the radio and decide you don't have the intenstinal fortitude to do such feats of stupidity." << std::endl;
@@ -118,7 +118,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "civilian radio")
+	if (commands[0] == "use" && commands[2] == "civilian radio")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -133,13 +133,13 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		}
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "military radio")
+	if (commands[0] == "use" && commands[2] == "military radio")
 	{
 		playerLocation->featureTwo(playerPtr);
 		return;
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "civilian radio")
+	if (commands[0] == "jump" && commands[2] == "civilian radio")
 	{
 		std::cout << "You decide to climb up on the desk and jump on the radio." << std::endl;
 		std::cout << "You fall off the desk and do a face plant on the floor." << std::endl;
@@ -149,13 +149,13 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 	}
 
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "military radio")
+	if (commands[0] == "jump" && commands[2] == "military radio")
 	{
 		std::cout << "You reconsider jumping on the equipment used to contact the military." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "civilian radio")
+	if (commands[0] == "flee"  &&commands[2] == "civilian radio")
 	{
 
 		std::cout << "You don't need to be afraid of the radio." << std::endl;
@@ -163,7 +163,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "flee" &&commands[1] == "from" &&commands[2] == "military radio")
+	if (commands[0] == "flee" &&commands[2] == "military radio")
 	{
 
 		std::cout << "You don't need to be afraid of the radio." << std::endl;
@@ -172,7 +172,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 	}
 
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "civilian radio")
+	if (commands[0] == "break"  && commands[2] == "civilian radio")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -187,7 +187,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		}
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "military radio")
+	if (commands[0] == "break" && commands[2] == "military radio")
 	{
 		std::cout << "You decide against breaking the radio used to contact the military." << std::endl;
 		std::cout << "What if you need to use it later?" << std::endl;
@@ -201,7 +201,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "civilian radio")
+	if (commands[0] == "look" && commands[2] == "civilian radio")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -219,7 +219,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "military radio")
+	if (commands[0] == "look" && commands[2] == "military radio")
 	{
 		std::cout << "This radio is newer than the civilian radio." << std::endl;
 		return;
@@ -239,7 +239,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map") || (commands[0] == "show"))
 	{
 		std::cout << "You are in the Radio Room." << std::endl;
 		mapRadioRoom();
@@ -253,6 +253,23 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		go(playerLocation, roomList, 1, playerPtr);
 		return;
 	}
+
+	if ((commands[0] == "take" && commands[2] == "copper wire"))
+	{
+		if (playerLocation->getFeatureOneHap() == 0)
+		{
+			std::cout << "Before doing that, you decide to use the radio." << std::endl;
+			playerLocation->featureOne(playerPtr);
+			return;
+		}
+
+		else
+		{
+			take(commands, playerLocation, playerPtr, roomList, 0);
+			return;
+		}
+	}
+
 
 	if (commands[0] == "take")
 	{
@@ -276,5 +293,6 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 
 
