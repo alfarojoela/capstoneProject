@@ -35,7 +35,7 @@ void roomInteractionRadioRoom(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "talk"  && commands[2] == "radio")
+	if ((commands[0] == "talk"  && commands[2] == "civilian radio"))
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
