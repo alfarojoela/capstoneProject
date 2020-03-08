@@ -285,6 +285,22 @@ std::string similar::parseMiscEdgeInput(std::string userInput)
 
     std::string returnInput = "";
 
+    /* Parse 'map' */
+    if (input.find("map") != std::string::npos || input.find("mapp") != std::string::npos ||
+        input.find("mp") != std::string::npos || input.find("mappp") != std::string::npos || input.find("mpp") != std::string::npos)
+    {
+        returnInput += "map";
+        return returnInput;
+    }
+
+    /* Parse 'inventory' */
+    if (input.find("inventory") != std::string::npos)
+    {
+        returnInput += "inventory";
+        return returnInput;
+    }
+
+
     /* Parse 'turn on' */
     if (input.find("turn on") != std::string::npos || input.find("turnon") != std::string::npos) 
     {
