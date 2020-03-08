@@ -211,7 +211,7 @@ std::vector<std::string> similar::getTakeVerbs()
         "take",
         "grab",
         "get",
-        "pick up",
+        "pickup",
         "swipe",
         "steal"
     };
@@ -297,6 +297,24 @@ std::string similar::parseMiscEdgeInput(std::string userInput)
     if (input.find("inventory") != std::string::npos)
     {
         returnInput += "inventory";
+        return returnInput;
+    }
+
+    /* Parse 'pick up' */
+    if (input.find("pick up") != std::string::npos)
+    {
+        while (inputStream >> tempString)
+        {
+            if (tempString == "pick")
+                returnInput += "take ";
+            
+            else if (tempString == "up")
+                continue;
+            
+            else
+                returnInput += tempString + " ";
+        }
+
         return returnInput;
     }
 
