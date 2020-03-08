@@ -259,11 +259,13 @@ if (commands[0] == "savegame")
 {
 	std::string currentLocationName = playerLocation->getName();
 	gameSavePtr->save(playerPtr, roomList, currentLocationName);
+	std::cout << "GAME SAVED" <<std::endl;
 }
 
 if (commands[0] == "loadgame")
 {
 	playerLocation = gameSavePtr->load(playerPtr, roomList);
+	std::cout << "GAME LOADED" <<std::endl;
 }
 
 if (userInput == "exit")
