@@ -21,8 +21,7 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 				std::cout << "You notice a bottle of beer on the floor." << std::endl;
 				std::cout << "Amazingly, it was not broken when all the carnage went down." << std::endl;
 				std::cout << "If you want to add it to your inventory, type: 'take beer' " << std::endl;
-				std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
-
+				std::cout << "After checking the room for booze, you also notice the following..." << std::endl;
 			}
 
 			playerLocation->itemsInRoom();
@@ -65,7 +64,7 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "lights")
+	if (commands[0] == "smell"  && commands[2] == "lights")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -81,7 +80,7 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		}
 	}
 
-	if (commands[0] == "smell" && commands[1] == "the" && commands[2] == "case")
+	if (commands[0] == "smell"  && commands[2] == "case")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -118,9 +117,10 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 
 	}
 
-	if (commands[0] == "eat" && commands[1] == "the" && commands[2] == "lights")
+	if (commands[0] == "eat"  && commands[2] == "lights")
 	{
 		std::cout << "Nope.  You can't do that." << std::endl;
+		std::cout << "How are you going to eat the lights?" << std::endl;
 		return;
 	}
 
@@ -130,7 +130,7 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		return;
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "lights")
+	if (commands[0] == "use"  && commands[2] == "lights")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -145,13 +145,13 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		}
 	}
 
-	if (commands[0] == "use" && commands[1] == "the" && commands[2] == "case")
+	if (commands[0] == "use"  && commands[2] == "case")
 	{
 		std::cout << "You fumble with the case.  It appears to be locked." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "case")
+	if (commands[0] == "jump"  && commands[2] == "case")
 	{
 		std::cout << "You jump up and down on the case and fall onto the floor." << std::endl;
 		std::cout << "'Ouch,' you exclaim." << std::endl;
@@ -164,13 +164,13 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		return;
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "lights")
+	if (commands[0] == "break" && commands[2] == "lights")
 	{
 		std::cout << "You decide against it.  You might have to come back here.  So it is a good idea to not break the light switch or lights." << std::endl;
 		return;
 	}
 
-	if (commands[0] == "break" && commands[1] == "the" && commands[2] == "case")
+	if (commands[0] == "break" && commands[2] == "case")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -191,7 +191,7 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "lights")
+	if (commands[0] == "look" && commands[2] == "lights")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -206,7 +206,7 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "case")
+	if (commands[0] == "look"  && commands[2] == "case")
 	{
 		if (playerLocation->getFeatureOneHap() == 1 && playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -224,7 +224,7 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "other equipment")
+	if (commands[0] == "look" && commands[2] == "other equipment")
 	{
 		std::cout << "The other equipment in the room is of no interest to you right now." << std::endl;
 		return;
@@ -243,7 +243,7 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		return;
 	}
 
-	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map") || (commands[0] == "show"))
 	{
 		std::cout << "You are in the Equipment Room." << std::endl;
 		mapEquipmentRoom();
@@ -269,7 +269,21 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 		return;
 	}
 
+	if ((commands[0] == "take" && commands[2] == "blowtorch"))
+	{
+		if (playerLocation->getFeatureTwoHap() == 0 && playerLocation->getFeatureOneHap() == 1)
+		{
+			std::cout << "Before taking the blowtorch, you're going to have to break the case..." << std::endl;
+			playerLocation->featureTwo(playerPtr);
+			return;
+		}
 
+		else
+		{
+			take(commands, playerLocation, playerPtr, roomList, 0);
+			return;
+		}
+	}
 	if (commands[0] == "take")
 	{
 		take(commands, playerLocation, playerPtr, roomList, 0);
@@ -292,5 +306,6 @@ void roomInteractionEquipmentRoom(std::string commands[3], Room* &playerLocation
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 
 
