@@ -16,7 +16,7 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		if (playerLocation->checkItem(freeBooze) != 999)
 		{
 			std::cout << "You notice a bottle of beer on a shelf." << std::endl;
-			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+			std::cout << "After checking the room for booze, you also notice the following..." << std::endl;
 		}
 
 		playerLocation->itemsInRoom();
@@ -114,7 +114,7 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "panting")
+	if (commands[0] == "jump" && commands[2] == "panting")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -186,7 +186,7 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "panting")
+	if (commands[0] == "look" && commands[2] == "panting")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -202,7 +202,7 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		}
 	}
 
-	if (commands[0] == "look" && commands[1] == "at" && commands[2] == "shimmering")
+	if (commands[0] == "look" && commands[2] == "shimmering")
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -264,7 +264,7 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 		return;
 	}
 
-	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map") || (commands[0] == "show"))
 	{
 		std::cout << "You are in the Dog Kennel." << std::endl;
 		mapDogKennel();
@@ -273,19 +273,21 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if (commands[0] == "take" && commands[2] == "shimmering")
+	if ((commands[0] == "take" && commands[2] == "petri dish") || (commands[0] == "take" && commands[2] == "shimmering"))
 	{
-		if (playerLocation->getFeatureTwoHap() == 1)
+		if (playerLocation->getFeatureTwoHap() == 0)
 		{
-			std::cout << "You already took it." << std::endl;
+			playerLocation->featureTwo(playerPtr);
 			return;
 		}
 
 		else
 		{
-			playerLocation->featureTwo(playerPtr);
+			take(commands, playerLocation, playerPtr, roomList, 0);
+			return;
 		}
 	}
+
 
 	if (commands[0] == "take")
 	{
@@ -309,5 +311,6 @@ void roomInteractionDogKennel(std::string commands[3], Room* &playerLocation, Pl
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 
 
