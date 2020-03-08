@@ -198,7 +198,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 
 		if (playerLocation->getFeatureOneHap() == 0)
 		{
-			std::cout << "As you have approached whatever is groaning, it doesn't seem like you need to flee from it yet." << std::endl;
+			std::cout << "As you have not approached whatever is groaning, it doesn't seem like you need to flee from it yet." << std::endl;
 			std::cout << "Maybe you should get closer to it first?" << std::endl;
 			return;
 		}
