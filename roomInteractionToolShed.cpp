@@ -31,7 +31,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "talk")
+	if (commands[0] == "talk" && commands[2] == "groaning")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
