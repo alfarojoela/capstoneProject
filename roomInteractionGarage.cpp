@@ -18,7 +18,7 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 		{
 			std::cout << "You notice a bottle of beer on a tool box." << std::endl;
 			std::cout << "You don't see anyone's name on it." << std::endl;
-			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+			std::cout << "After checking the room for booze, you also notice the following..." << std::endl;
 		}
 
 		playerLocation->itemsInRoom();
@@ -248,7 +248,7 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 		return;
 	}
 
-	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map") ||(commands[0] == "show"))
 	{
 		std::cout << "You are in the Garage." << std::endl;
 		mapGarage();
@@ -265,22 +265,16 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 
 	if (commands[0] == "take" && commands[2] == "flamethrower")
 	{
-		if (playerLocation->getFeatureOneHap() == 1 && playerPtr->checkInventory("flamethrower") == 1)
+		if(playerLocation->getFeatureOneHap()==0)
 		{
-			std::cout << "You already took the flamethrower." << std::endl;
-			return;
-		}
-
-		if (playerLocation->getFeatureOneHap() == 1 && playerPtr->checkInventory("flamethrower") == 0)
-		{
-			take(commands, playerLocation, playerPtr, roomList, 0);
+			std::cout << "You decide to examine the case and see about getting the flamethrower out." << std::endl;
+			playerLocation->featureOne(playerPtr);
 			return;
 		}
 
 		else
 		{
-			std::cout << "You decide to examine the case and see about getting the flamethrower out." << std::endl;
-			playerLocation->featureOne(playerPtr);
+			take(commands, playerLocation, playerPtr, roomList, 0);
 			return;
 		}
 	}
@@ -306,3 +300,4 @@ void roomInteractionGarage(std::string commands[3], Room* &playerLocation, Playe
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
