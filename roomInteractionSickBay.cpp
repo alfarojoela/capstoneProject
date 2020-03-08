@@ -22,7 +22,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "talk" && commands[2] == "crew member")
+	if ((commands[0] == "talk" && commands[2] == "crew member") || (commands[0] == "talk" && commands[2] == "person"))
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -51,7 +51,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "smell" && commands[2] == "crew member")
+	if ((commands[0] == "smell" && commands[2] == "crew member") || (commands[0] == "smell" && commands[2] == "person"))
 	{
 		std::cout << "You can smell Jack from a good distance." << std::endl;
 		std::cout << "He doesn't smell quite right." << std::endl;
@@ -65,7 +65,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "attack" && commands[2] == "crew member")
+	if ((commands[0] == "attack" && commands[2] == "crew member") || (commands[0] == "attack" && commands[2] == "person"))
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -92,7 +92,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "eat" && commands[2] == "crew member")
+	if ((commands[0] == "eat" && commands[2] == "crew member")|| (commands[0] == "eat" && commands[2] == "person"))
 	{
 		std::cout << "What is wrong with you?" << std::endl;
 		std::cout << "This game is not a Donner Party simulator!" << std::endl;
@@ -121,7 +121,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		}
 	}
 
-	if (commands[0] == "use" && commands[2] == "crew member")
+	if ((commands[0] == "use" && commands[2] == "crew member")||(commands[0] == "use" && commands[2] == "person"))
 	{
 		std::cout << "You are not a master manipulator." << std::endl;
 		std::cout << "You don't have the charisma to use people." << std::endl;
@@ -137,7 +137,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 	}
 
 
-	if (commands[0] == "jump" && commands[2] == "crew member")
+	if ((commands[0] == "jump" && commands[2] == "crew member")||(commands[0] == "jump" && commands[2] == "person"))
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -154,7 +154,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		}
 	}
 
-	if (commands[0] == "flee" &&commands[2] == "crew member")
+	if ((commands[0] == "flee" &&commands[2] == "crew member")||(commands[0] == "flee" &&commands[2] == "person"))
 	{
 
 		if (playerLocation->getFeatureTwoHap() == 1)
@@ -179,7 +179,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "break"  && commands[2] == "crew member")
+	if ((commands[0] == "break"  && commands[2] == "crew member")||(commands[0] == "break"  && commands[2] == "person"))
 	{
 		std::cout << "He's already pretty broken up from the look of him." << std::endl;
 		std::cout << "There's no need for overkill." << std::endl;
@@ -193,7 +193,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "look" && commands[2] == "crew member")
+	if ((commands[0] == "look" && commands[2] == "crew member")||(commands[0] == "look" && commands[2] == "person"))
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
@@ -254,7 +254,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if (commands[0] == "go" && commands[2] == "crew member")
+	if ((commands[0] == "go" && commands[2] == "crew member")||(commands[0] == "go" && commands[2] == "person"))
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
