@@ -230,7 +230,7 @@ void roomInteractionHallway1(std::string commands[3], Room* &playerLocation, Pla
 		go(playerLocation, roomList, 5, playerPtr);
 		return;
 	}
-
+/*NEW CONDITION*/
 	if ((commands[0] == "take" && commands[2] == "axe"))
 	{
 		if (playerLocation->getFeatureOneHap() == 0)
