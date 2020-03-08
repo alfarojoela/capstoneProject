@@ -28,9 +28,17 @@ void take(std::string commands[3], Room* &playerLocation, Player* &playerPtr, st
 
 	if (playerLocation->checkItem(itemToTake) == 999)
 	{
+		if (playerPtr->checkInventory(itemToTake) == 1)
+		{
+			std::cout << "It's already in your inventory." << std::endl;
+			return;
+		}
+
 		std::cout << "You can't take that." << std::endl;
 		return;
 	}
+
+
 
 }
 
