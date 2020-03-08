@@ -18,7 +18,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 			std::cout << "You notice a bottle of beer all alone on a table." << std::endl;
 			std::cout << "It looks lonely." << std::endl;
 			std::cout << "Maybe you should take it with you and give it a good home." << std::endl;
-			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+			std::cout << "After checking the room for booze, you also notice the following..." << std::endl;
 
 		}
 
@@ -156,7 +156,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "jump" && commands[1] == "on" && commands[2] == "meal")
+	if (commands[0] == "jump" && commands[2] == "meal")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
@@ -244,7 +244,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map") || (commands[0] == "show"))
 	{
 		std::cout << "You are in the Mess Hall." << std::endl;
 		mapMessHall();
@@ -264,6 +264,52 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 		go(playerLocation, roomList, 11, playerPtr);
 		return;
 	}
+
+	if ((commands[0] == "take" && commands[2] == "gin") ||(commands[0] == "take" && commands[2] == "booze") || (commands[0] == "take" && commands[2] == "bottle"))
+	{
+		if (playerLocation->getFeatureTwoHap() == 0)
+		{
+			playerLocation->featureTwo(playerPtr);
+			return;
+		}
+
+		else
+		{
+			take(commands, playerLocation, playerPtr, roomList, 0);
+			return;
+		}
+	}
+
+	if ((commands[0] == "take" && commands[2] == "meal") || (commands[0] == "take" && commands[2] == "spaghetti"))
+	{
+		if (playerLocation->getFeatureOneHap() == 0)
+		{
+			playerLocation->featureOne(playerPtr);
+			return;
+		}
+
+		else
+		{
+			take(commands, playerLocation, playerPtr, roomList, 0);
+			return;
+		}
+	}
+
+	if ((commands[0] == "take" && commands[2] == "gin") || (commands[0] == "take" && commands[2] == "booze") || (commands[0] == "take" && commands[2] == "bottle"))
+	{
+		if (playerLocation->getFeatureOneHap() == 0)
+		{
+			playerLocation->featureOne(playerPtr);
+			return;
+		}
+
+		else
+		{
+			take(commands, playerLocation, playerPtr, roomList, 0);
+			return;
+		}
+	}
+
 
 
 	if (commands[0] == "take")
@@ -288,5 +334,6 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 
 
