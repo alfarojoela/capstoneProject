@@ -267,7 +267,7 @@ void roomInteractionHallway2(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "look"  && commands[2] == "Jeff")
+	if (commands[0] == "look" && commands[2] == "jeff")
 	{
 		if (playerLocation->getFeatureOneHap() == 1)
 		{
