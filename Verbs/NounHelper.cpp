@@ -166,7 +166,6 @@ std::vector<std::string> noun::getNouns()
         "films",
         "blood",
         "blood test",
-        "Blair",
         "blair",
         "doctor",
         "bottle",
