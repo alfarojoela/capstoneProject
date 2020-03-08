@@ -3,10 +3,17 @@
 /*Gets a string out of the commands vector.  Sends the string to the room removeItem function with the player pointer.  Room function handles the transition of inventory to player inventory and then deletes the appropriate cell.*/
 void take(std::string commands[3], Room* &playerLocation, Player* &playerPtr, std::vector <Room*> &roomList, int roomNumber)
 {
+
 	std::string itemToTake = commands[2];
+
+	if (commands[2] == "sardines" || commands[2] == "redherring")
+	{
+		itemToTake = "red herring";
+	}
+
 	if (playerLocation->checkItem(itemToTake) != 999)
 	{
-		std::cout << "'Yoinks!'you say.  Just like Shaggy from Scooby Doo.  You found the " << itemToTake << std::endl;
+		std::cout << "'Zoinks!'you say.  Just like Shaggy from Scooby Doo.  You found the " << itemToTake << std::endl;
 		std::cout << "You're taking it with you." << std::endl;
 		playerLocation->removeItem(itemToTake, playerPtr);
 		return;
@@ -26,4 +33,5 @@ void take(std::string commands[3], Room* &playerLocation, Player* &playerPtr, st
 	}
 
 }
+
 
