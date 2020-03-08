@@ -17,7 +17,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		{
 			std::cout << "You notice a bottle of beer in the snow." << std::endl;
 			std::cout << "It's like it was waiting for you all along!" << std::endl;
-			std::cout << "After checking the room for booze, you also notice some other potentially useful items." << std::endl;
+			std::cout << "After checking the area for booze, you also notice the following..." << std::endl;
 		}
 
 		playerLocation->itemsInRoom();
@@ -304,13 +304,6 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if (commands[0] == "current" && commands[2] == "room")
-	{
-		std::cout << "CURRENT ROOM: " << playerLocation->getName() << std::endl;
-		mapToolShed();
-		return;
-	}
-
 	if (commands[0] == "room")
 	{
 		/*Asks pointer to get name*/
@@ -318,7 +311,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map") || (commands[0] == "show"))
 	{
 		std::cout << "You are near the Tool Shed." << std::endl;
 		mapToolShed();
@@ -368,6 +361,38 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 		}
 	}
 
+	if (commands[0] == "take" && commands[2] == "rope")
+	{
+		if (playerLocation->getFeatureOneHap() == 0)
+		{
+			std::cout << "Before taking the rope you decide to investigate what is making that groaning sound..." << std::endl;
+			playerLocation->featureOne(playerPtr);
+			return;
+		}
+
+		else
+		{
+			take(commands, playerLocation, playerPtr, roomList, 0);
+			return;
+		}
+	}
+
+	if (commands[0] == "take" && commands[2] == "whiskey")
+	{
+		if (playerLocation->getFeatureTwoHap() == 0)
+		{
+			playerLocation->featureTwo(playerPtr);
+			return;
+		}
+
+		else
+		{
+			take(commands, playerLocation, playerPtr, roomList, 0);
+			return;
+		}
+	}
+
+
 	if (commands[0] == "take")
 	{
 		take(commands, playerLocation, playerPtr, roomList, 0);
@@ -390,5 +415,6 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 
 
