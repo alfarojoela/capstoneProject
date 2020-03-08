@@ -70,6 +70,7 @@ void roomInteractionLatrine(std::string commands[3], Room* &playerLocation, Play
 		else
 		{
 			playerLocation->featureOne(playerPtr);
+						std::cout << "It has the faint smell of charcoal on it.  Probably from the smudged writing on it." << std::endl;
 			return;
 		}
 	}
