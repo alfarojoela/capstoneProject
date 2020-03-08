@@ -287,7 +287,7 @@ std::string similar::parseMiscEdgeInput(std::string userInput)
 
     /* Parse 'map' */
     if (input.find("map") != std::string::npos || input.find("mapp") != std::string::npos ||
-        input.find("mp") != std::string::npos || input.find("mappp") != std::string::npos || input.find("mpp") != std::string::npos)
+        input.find("mappp") != std::string::npos)
     {
         returnInput += "map";
         return returnInput;
