@@ -216,7 +216,7 @@ void roomInteractionToolShed(std::string commands[3], Room* &playerLocation, Pla
 
 		if (playerLocation->getFeatureTwoHap() == 0)
 		{
-			std::cout << "As you have not approached whatever is groaning, it doesn't seem like you need to flee from it just yet." << std::endl;
+			std::cout << "As you have not approached whatever is shining, it doesn't seem like you need to flee from it just yet." << std::endl;
 			std::cout << "Maybe you should get closer to it first to decide if you need to flee from it?" << std::endl;
 			return;
 		}
