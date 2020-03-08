@@ -512,11 +512,37 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 		return;
 	}
 
-	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map"))
+	if ((commands[0] == "current" && commands[2] == "room") || (commands[0] == "map") || (commands[0] == "show"))
 	{
 		std::cout << "You are in the Basement. " << std::endl;
 		mapBasement();
 		return;
+	}
+
+	if (commands[0] == "take"  && commands[2] == "gun")
+	{
+		if (playerLocation->getFeatureOneHap() == 0)
+		{
+			std::cout << "You should talk to the doctor first to see if that is necessary." << std::endl;
+			playerLocation->featureOne(playerPtr);
+			return;
+		}
+
+		if((playerPtr->getDrOutcome()==1))
+		{
+			std::cout << "The doctor answered all of your stupid questions in a satisfacotry manner." << std::endl;
+			std::cout << "You don't need to take the gun." << std::endl;
+			return;
+		}
+
+		if ((playerPtr->getDrOutcome() == 2))
+		{
+			std::cout << "You can't do that now." << std::endl;
+			std::cout << "The doctor removed the firing pin before he left." << std::endl;
+			std::cout << "The gun is as good as useless." << std::endl;
+			std::cout << "You decide to leave the gun where he dropped it." << std::endl;
+			return;
+		}
 	}
 
 
@@ -548,5 +574,6 @@ void roomInteractionBasement(std::string commands[3], Room* &playerLocation, Pla
 	std::cout << "You can't do that here." << std::endl;
 	return;
 }
+
 
 
