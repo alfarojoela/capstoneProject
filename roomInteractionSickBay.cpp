@@ -254,7 +254,7 @@ void roomInteractionSickBay(std::string commands[3], Room* &playerLocation, Play
 		return;
 	}
 
-	if ((commands[0] == "go" && commands[2] == "crew member")||(commands[0] == "go" && commands[2] == "person"))
+	if ((commands[0] == "go" && commands[2] == "crew member")||(commands[0] == "go" && commands[2] == "person") || (commands[0] == "go" && commands[2] == "bed"))
 	{
 		if (playerLocation->getFeatureTwoHap() == 1)
 		{
