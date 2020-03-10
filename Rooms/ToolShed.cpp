@@ -14,8 +14,8 @@ void ToolShed::setRoom()
 		"Hopefully you can find something worthwhile in there. You begin to hear groaning coming from the north.\n"
 		"You also notice something shining in the snow to the south.\n";
 	shortDes = "You return to the tool shed. It used to contain useful equipment.\n";
-	exitLong = "The equipment room which leads back into the base is from the way you came.\n";
-	exitShort = "The equipment room is from the direction you came.\n";
+	exitLong = "The equipment room which leads back into the base is from the way you came(west).\n";
+	exitShort = "The equipment room is from the direction you came(west).\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
