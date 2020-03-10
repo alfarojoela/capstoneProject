@@ -76,7 +76,7 @@ int Hallway2::featureTwo(Player* user)
 	//Gives a hint to the user if they don't have the flamethrower
 	if (!user->checkInventory("flamethrower"))
 	{
-		std::cout << "Barry says, 'You remember where the flamethrower is?'\nIt's in the garage, but you have to remember the code to open the locker.'\n"
+		std::cout << "Barry says, 'You remember where the flamethrower is?'\n'It's in the garage, but you have to remember the code to open the locker.'\n"
 			"'I don't know the code. I'm only a chef. They don't trust me with that information.'\n" << std::endl;
 	}
 
