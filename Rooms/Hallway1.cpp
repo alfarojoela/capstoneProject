@@ -19,10 +19,11 @@ void Hallway1::setRoom()
 		"the equipment room to the northeast where the crew stores useful equipement,\n"
 		"the sick bay to the west where ill or injured members are taken care of,\n"
 		"the research lab to the southwest where members of the crew conduct research on the base,\n"
+		"the second hallway(hallway2) to the south\n"
 		"and the latrine to the northwest which is a toilet.\n";
-	exitShort = "There are five rooms connected to this hallway. The radio room to the east,\n"
+	exitShort = "There are six rooms connected to this hallway. The radio room to the east,\n"
 		"the equipment room to the northeast, the sick bay to the west, the research lab to the southwest,\n"
-		"and the latrine to the northwest.\n";
+		"the second hallway(hallway2) to the south, and the latrine to the northwest.\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
