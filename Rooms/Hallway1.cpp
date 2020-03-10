@@ -86,13 +86,13 @@ void Hallway1::obtainAxe(Player* user)
 	if (getFeatureOneHap() == 1 && getFeatureTwoHap() == 0)
 	{
 		std::cout << "\nAfter seeing the unsettling sight of the blood in the room, you decide to pick up the axe hanging on the wall.\n"
-			"You never know what's going on. Best be prepared.\n"
+			"You never know what's going to happen. Best be prepared.\n"
 			"You obtain an axe!"<< std::endl;
 	}
 	else if (getFeatureOneHap() == 0 && getFeatureTwoHap() == 1)
 	{
 		std::cout << "\nAfter having the unsettling feeling of something rush past your leg, you decide to pick up the axe hanging on the wall.\n"
-			"You never know what's going on. Best be prepared.\n"
+			"You never know what's going to happen. Best be prepared.\n"
 			"You obtain an axe!" << std::endl;
 	}
 
