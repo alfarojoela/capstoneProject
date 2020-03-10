@@ -19,10 +19,11 @@ void Hallway2::setRoom()
 		"the dog kennel to the southwest where the dogs are kept,\n"
 		"the basement to the south where equipment is stored,\n"
 		"the conference room to the southeast where the crew holds meetings,\n"
+		"the first hallway(hallway1) to the north\n"
 		"and the garage to the east where the snowmobiles are stored.\n";
-	exitShort = "There are five rooms connected to this hallway. The mess hall to the west,\n"
+	exitShort = "There are six rooms connected to this hallway. The mess hall to the west,\n"
 		"the dog kennel to the southwest, the basement to the south, the conference room to the southeast,\n"
-		"and the garage to the east.\n";
+		"the first hallway(hallway1) to the north, and the garage to the east.\n";
 	fOneHappened = 0;
 	fTwoHappened = 0;
 	roomEntered = 0;
