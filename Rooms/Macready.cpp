@@ -45,7 +45,7 @@ int Macready::featureTwo(Player* user)
 	std::string response = "incorrect";
 
 	std::cout << "The computer screen is one of the main sources of light in the room. There is a chess game in progress.\n"
-		"The game looks to be about midway through. The taken pieces on both sides seem pretty easily matched.\n"
+		"The game looks to be about midway through. The taken pieces on both sides seem pretty evenly matched.\n"
 		"Analysing the screen you see only two viable options. You could take a risk and move you queen down to check.\n"
 		"You could also move your knight to block and bait out any incoming attacks towards your king.\n"
 		"Which do you choose?\n\n"
