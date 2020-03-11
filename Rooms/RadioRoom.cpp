@@ -190,7 +190,7 @@ int RadioRoom::featureTwo(Player* user)
 			"'Ok, I'll wait here until they come. Thanks for the help!', you say.\n\n"
 			"You hear static on the line after that. You decide to stay in the radio room until the Army arrives.\n"
 			"While waiting you hear a couple screams and scraping noises further in the base.\n"
-			"You wonder if you've made the right call or exposed more people to whatever's going on here..." << std::endl;
+			"You wonder if you've made the right call or exposed more people to whatever's going on here...\n" << std::endl;
 
 		//Calls the setGameEnd function to end the game with the bad ending.
 		user->setGameEnd(1);
@@ -211,7 +211,7 @@ int RadioRoom::featureTwo(Player* user)
 			"While waiting you hear a couple screams and scraping noises further in the base.\n"
 			"You feel like you made the right call. There was no conventional way to beat this thing.\n"
 			"It consumed this base and its crew members. You can only imagine what it would do to the rest of the world if given the opportunity.\n"
-			"Twenty minutes later you hear something slam into the base from above and then nothing at all..."<< std::endl;
+			"Twenty minutes later you hear something slam into the base from above and then nothing at all...\n"<< std::endl;
 
 		//Calls the setGameEnd function to end the game with the good ending.
 		user->setGameEnd(2);
