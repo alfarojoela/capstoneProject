@@ -253,7 +253,7 @@ void roomInteractionMessHall(std::string commands[3], Room* &playerLocation, Pla
 
 	/*calls helper go function with playerLocation pointer, list of rooms and room number to go to.*/
 
-	if ((commands[0] == "go"  && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "hallway 2") || (commands[2] == "east"))
+	if ((commands[0] == "go"  && commands[2] == "hallway2") || (commands[2] == "hallway") || (commands[2] == "hallway 2") || (commands[2] == "east") || (commands[2] == "hallway1"))
 	{
 		go(playerLocation, roomList, 9, playerPtr);
 		return;
