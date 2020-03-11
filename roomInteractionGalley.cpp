@@ -34,7 +34,7 @@ void roomInteractionGalley(std::string commands[3], Room* &playerLocation, Playe
 
 	if (commands[0] == "talk")
 	{
-		std::cout << "There is no one here in the mess hall." << std::endl;
+		std::cout << "There is no one here in the Galley." << std::endl;
 		std::cout << "Therefore, talking is pointless." << std::endl;
 		return;
 	}
