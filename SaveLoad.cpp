@@ -97,14 +97,14 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 		"     GameEnd: " << user->getGameEnd() << "     bearings: " << user->getBearings() << "     deathwish: " << user->getDeathWish() <<
 		"     DrOutcome: " << user->getDrOutcome() << std::endl;
 	user->getInventory();
-	std::cout << std::endl;*/
+	std::cout << std::endl;
 	for (int i = 0; i < 15; ++i)
 	{
 		newRoom = rooms[i];
 
 		std::cout << newRoom->getName() << " " << newRoom->getFeatureOneHap() << " " << newRoom->getFeatureTwoHap() << " " << newRoom->getRoomEntered() << std::endl;
 		newRoom->itemsInRoom();
-	}
+	}*/
 
 	//Changes the player's stats for testing
 	user->setGritSave(10);
@@ -132,14 +132,14 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 		"     DrOutcome: " << user->getDrOutcome() << std::endl;
 	//Prints out the user inventory and room information
 	user->getInventory();
-	std::cout << std::endl;*/
+	std::cout << std::endl;
 	for (int i = 0; i < 15; ++i)
 	{
 		newRoom = rooms[i];
 
 		std::cout << newRoom->getName() << " " << newRoom->getFeatureOneHap() << " " << newRoom->getFeatureTwoHap() << " " << newRoom->getRoomEntered() << std::endl;
 		newRoom->itemsInRoom();
-	}
+	}*/
 
 	//Runs through the lines in the file.
 	if (loadFile.is_open())
@@ -253,14 +253,14 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 		"     DrOutcome: " << user->getDrOutcome() << std::endl;
 	//Prints out the user inventory and room information
 	user->getInventory();
-	std::cout << std::endl;*/
+	std::cout << std::endl;
 	for (int i = 0; i < 15; ++i)
 	{
 		newRoom = rooms[i];
 
 		std::cout << newRoom->getName() << " " << newRoom->getFeatureOneHap() << " " << newRoom->getFeatureTwoHap() << " " << newRoom->getRoomEntered() << std::endl;
 		newRoom->itemsInRoom();
-	}
+	}*/
 
 	loadFile.close();
 
