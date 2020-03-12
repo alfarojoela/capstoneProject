@@ -29,7 +29,7 @@ int ResearchLab::featureOne(Player* user)
 	std::string response = "incorrect";
 
 	std::cout << "You approach a computer that is currently running a simulation.\n"
-		"You decide to sit down. The title of the screen says 'Infection Simulation'\n"<< std::endl;
+		"You decide to sit down. The title of the screen says 'Infection Simulation'\n" << std::endl;
 
 	//While loop runs until the user enters no or they run through the full computer simulation
 	while (response == "incorrect" && counter < 4)
@@ -107,34 +107,37 @@ int ResearchLab::featureOne(Player* user)
 		}
 	}
 
-	//Different lines are printed about the player's gained knowledge based on how many screens they saw.
-	if (counter == 1)
+	if (getFeatureOneHap() == 0) 
 	{
-		std::cout << "You gain no knowledge about what's going on!" << std::endl;
-	}
-	else if (counter == 2)
-	{
-		//Increases the variable to get one of the endings of the game.
-		user->setDeathWish(1);
-		std::cout << "You gain a little bit of knowledge about what's going on!" << std::endl;
-	}
-	else if (counter == 3)
-	{
-		//Increases the variable to get one of the endings of the game.
-		user->setDeathWish(2);
-		std::cout << "You gain some knowledge about what's going on!" << std::endl;
-	}
-	else if (counter == 4 && choice == "2")
-	{
-		//Increases the variable to get one of the endings of the game.
-		user->setDeathWish(3);
-		std::cout << "You gain some knowledge about what's going on!" << std::endl;
-	}
-	else if (counter == 4 && choice == "1")
-	{
-		//Increases the variable to get one of the endings of the game.
-		user->setDeathWish(4);
-		std::cout << "You gain a decent amount of knowledge about what's going on!" << std::endl;
+		//Different lines are printed about the player's gained knowledge based on how many screens they saw.
+		if (counter == 1)
+		{
+			std::cout << "You gain no knowledge about what's going on!" << std::endl;
+		}
+		else if (counter == 2)
+		{
+			//Increases the variable to get one of the endings of the game.
+			user->setDeathWish(1);
+			std::cout << "You gain a little bit of knowledge about what's going on!" << std::endl;
+		}
+		else if (counter == 3)
+		{
+			//Increases the variable to get one of the endings of the game.
+			user->setDeathWish(2);
+			std::cout << "You gain some knowledge about what's going on!" << std::endl;
+		}
+		else if (counter == 4 && choice == "2")
+		{
+			//Increases the variable to get one of the endings of the game.
+			user->setDeathWish(3);
+			std::cout << "You gain some knowledge about what's going on!" << std::endl;
+		}
+		else if (counter == 4 && choice == "1")
+		{
+			//Increases the variable to get one of the endings of the game.
+			user->setDeathWish(4);
+			std::cout << "You gain a decent amount of knowledge about what's going on!" << std::endl;
+		}
 	}
 
 	++fOneHappened;
