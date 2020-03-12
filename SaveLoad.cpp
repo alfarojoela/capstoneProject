@@ -90,14 +90,14 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 	//Opens a stream to read data from the file
 	std::ifstream loadFile("thingSave.txt");
 
-	std::cout << std::endl;
+	/*std::cout << std::endl;
 	std::cout << "Pre-clearing: " << std::endl;
 	//Prints out the user inventory and room information
 	std::cout << "Grit: " << user->getGrit() << "     Alive: " << user->getAlive() << "     Victory: " << user->getVictory() << 
 		"     GameEnd: " << user->getGameEnd() << "     bearings: " << user->getBearings() << "     deathwish: " << user->getDeathWish() <<
 		"     DrOutcome: " << user->getDrOutcome() << std::endl;
 	user->getInventory();
-	std::cout << std::endl;
+	std::cout << std::endl;*/
 	for (int i = 0; i < 15; ++i)
 	{
 		newRoom = rooms[i];
@@ -125,14 +125,14 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 		newRoom->setRoom();
 	}
 
-	std::cout << std::endl;
+	/*std::cout << std::endl;
 	std::cout << "After clear of inventories but before loading. Player stats are changed: " << std::endl;
 	std::cout << "Grit: " << user->getGrit() << "     Alive: " << user->getAlive() << "     Victory: " << user->getVictory() <<
 		"     GameEnd: " << user->getGameEnd() << "     bearings: " << user->getBearings() << "     deathwish: " << user->getDeathWish() <<
 		"     DrOutcome: " << user->getDrOutcome() << std::endl;
 	//Prints out the user inventory and room information
 	user->getInventory();
-	std::cout << std::endl;
+	std::cout << std::endl;*/
 	for (int i = 0; i < 15; ++i)
 	{
 		newRoom = rooms[i];
@@ -246,14 +246,14 @@ Room* SaveLoad::load(Player* user, std::vector<Room*> rooms)
 		}
 	}
 
-	std::cout << std::endl;
+	/*std::cout << std::endl;
 	std::cout << "After loading the file: " << std::endl;
 	std::cout << "Grit: " << user->getGrit() << "     Alive: " << user->getAlive() << "     Victory: " << user->getVictory() <<
 		"     GameEnd: " << user->getGameEnd() << "     bearings: " << user->getBearings() << "     deathwish: " << user->getDeathWish() <<
 		"     DrOutcome: " << user->getDrOutcome() << std::endl;
 	//Prints out the user inventory and room information
 	user->getInventory();
-	std::cout << std::endl;
+	std::cout << std::endl;*/
 	for (int i = 0; i < 15; ++i)
 	{
 		newRoom = rooms[i];
