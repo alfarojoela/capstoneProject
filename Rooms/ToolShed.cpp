@@ -192,7 +192,7 @@ int ToolShed::featureTwo(Player* user)
 				
 			number = rand() % 100 + 1;
 
-			if (number > 30)
+			if (number > 15)
 			{
 				std::cout << "The item becomes more clear as you move closer. It is a bottle of Maker's Mark whiskey!\nYou could always use more alcohol.\n"
 					"You obtain a bottle of whiskey!" << std::endl;
